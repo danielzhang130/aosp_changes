@@ -1,0 +1,82 @@
+From cae258629dd35dc4fd1b0427866e6a6308062576 Mon Sep 17 00:00:00 2001
+From: danielzhang130 <danielzhang130@gmail.com>
+Date: Mon, 1 Aug 2022 14:14:11 -0400
+Subject: [PATCH] Show entire battery usage history in settings app
+
+Signed-off-by: danielzhang130 <danielzhang130@gmail.com>
+Change-Id: I138102c7a866a7aef77f9e3573061e19140e44b1
+---
+ .../internal/os/BatteryStatsHistory.java      | 19 ++++++++++++++++---
+ .../os/BatteryUsageStatsProvider.java         | 11 +++++------
+ 2 files changed, 21 insertions(+), 9 deletions(-)
+
+diff --git a/core/java/com/android/internal/os/BatteryStatsHistory.java b/core/java/com/android/internal/os/BatteryStatsHistory.java
+index b0fce8f18..3eb8cc41a 100644
+--- a/core/java/com/android/internal/os/BatteryStatsHistory.java
++++ b/core/java/com/android/internal/os/BatteryStatsHistory.java
+@@ -153,12 +153,25 @@ public class BatteryStatsHistory {
+     /**
+      * Used when BatteryStatsImpl object is created from deserialization of a parcel,
+      * such as Settings app or checkin file.
+-     * @param historyBuffer the history buffer
++     * @param historyParcel the history buffer
+      */
+-    public BatteryStatsHistory(Parcel historyBuffer) {
++    public BatteryStatsHistory(Parcel historyParcel) {
+         mStats = null;
+         mHistoryDir = null;
+-        mHistoryBuffer = historyBuffer;
++
++        Parcel copy = Parcel.obtain();
++        copy.appendFrom(historyParcel, 0, historyParcel.dataSize());
++
++        copy.setDataPosition(copy.dataSize() - 4);
++        int size = copy.readInt();
++        copy.setDataPosition(size);
++
++        readFromParcel(copy);
++
++        copy.setDataSize(size);
++
++        mHistoryBuffer = copy;
++        mHistoryBuffer.setDataPosition(0);
+     }
+ 
+     public File getHistoryDirectory() {
+diff --git a/core/java/com/android/internal/os/BatteryUsageStatsProvider.java b/core/java/com/android/internal/os/BatteryUsageStatsProvider.java
+index 09e409bd9..e50ec3af2 100644
+--- a/core/java/com/android/internal/os/BatteryUsageStatsProvider.java
++++ b/core/java/com/android/internal/os/BatteryUsageStatsProvider.java
+@@ -16,6 +16,7 @@
+ 
+ package com.android.internal.os;
+ 
++import android.os.Parcel;
+ import android.content.Context;
+ import android.hardware.SensorManager;
+ import android.os.BatteryConsumer;
+@@ -219,17 +220,15 @@ public class BatteryUsageStatsProvider {
+ 
+             BatteryStatsImpl batteryStatsImpl = (BatteryStatsImpl) mStats;
+ 
+-            // Make a copy of battery history to avoid concurrent modification.
+             Parcel historyBuffer = Parcel.obtain();
+             historyBuffer.appendFrom(batteryStatsImpl.mHistoryBuffer, 0,
+                     batteryStatsImpl.mHistoryBuffer.dataSize());
++            int originalSize = historyBuffer.dataSize();
+ 
+-            final File systemDir =
+-                    batteryStatsImpl.mBatteryStatsHistory.getHistoryDirectory().getParentFile();
+-            final BatteryStatsHistory batteryStatsHistory =
+-                    new BatteryStatsHistory(batteryStatsImpl, systemDir, historyBuffer);
++            batteryStatsImpl.mBatteryStatsHistory.writeToParcel(historyBuffer);
++            historyBuffer.writeInt(originalSize);
+ 
+-            batteryUsageStatsBuilder.setBatteryHistory(batteryStatsHistory);
++            batteryUsageStatsBuilder.setBatteryHistory(new BatteryStatsHistory(historyBuffer));
+         }
+ 
+         BatteryUsageStats stats = batteryUsageStatsBuilder.build();
+-- 
+2.34.1
+

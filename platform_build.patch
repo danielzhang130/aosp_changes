@@ -1,0 +1,298 @@
+From b3f9552179e59cb2fa9ec10f95426fe96c4bd710 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 30 Sep 2022 22:46:34 -0400
+Subject: [PATCH] patch
+
+Change-Id: Ib37ca8514fbf326efe6abc016f80865a2168c5c5
+---
+ target/board/gsi_system_ext.prop            |  2 +-
+ target/board/pixel_3/BoardConfig.mk         | 70 +++++++++++++++++
+ target/board/pixel_3/README.txt             |  7 ++
+ target/board/pixel_3/device.mk              | 84 +++++++++++++++++++++
+ target/board/pixel_3/sepolicy/OWNERS        |  1 +
+ target/board/pixel_3/sepolicy/file.te       |  6 ++
+ target/board/pixel_3/sepolicy/file_contexts | 12 +++
+ target/board/pixel_3/system_ext.prop        |  5 ++
+ target/product/AndroidProducts.mk           |  1 +
+ target/product/pixel_3.mk                   | 10 +++
+ 10 files changed, 197 insertions(+), 1 deletion(-)
+ create mode 100644 target/board/pixel_3/BoardConfig.mk
+ create mode 100644 target/board/pixel_3/README.txt
+ create mode 100644 target/board/pixel_3/device.mk
+ create mode 100644 target/board/pixel_3/sepolicy/OWNERS
+ create mode 100644 target/board/pixel_3/sepolicy/file.te
+ create mode 100644 target/board/pixel_3/sepolicy/file_contexts
+ create mode 100644 target/board/pixel_3/system_ext.prop
+ create mode 100644 target/product/pixel_3.mk
+
+diff --git a/target/board/gsi_system_ext.prop b/target/board/gsi_system_ext.prop
+index 780aadc..7c87e5d 100644
+--- a/target/board/gsi_system_ext.prop
++++ b/target/board/gsi_system_ext.prop
+@@ -2,7 +2,7 @@
+ ro.cp_system_other_odex=0
+ 
+ # GSI always disables adb authentication
+-ro.adb.secure=0
++ro.adb.secure=1
+ 
+ # GSI disables non-AOSP nnapi extensions on product partition
+ ro.nnapi.extensions.deny_on_product=true
+diff --git a/target/board/pixel_3/BoardConfig.mk b/target/board/pixel_3/BoardConfig.mk
+new file mode 100644
+index 0000000..40be80e
+--- /dev/null
++++ b/target/board/pixel_3/BoardConfig.mk
+@@ -0,0 +1,70 @@
++# Copyright (C) 2018 The Android Open Source Project
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#      http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++#
++
++# arm64 emulator specific definitions
++TARGET_ARCH := arm64
++TARGET_ARCH_VARIANT := armv8-a
++TARGET_CPU_VARIANT := generic
++TARGET_CPU_ABI := arm64-v8a
++
++TARGET_2ND_ARCH := arm
++TARGET_2ND_CPU_ABI := armeabi-v7a
++TARGET_2ND_CPU_ABI2 := armeabi
++
++ifneq ($(TARGET_BUILD_APPS)$(filter cts sdk,$(MAKECMDGOALS)),)
++# DO NOT USE
++# DO NOT USE
++#
++# This architecture / CPU variant must NOT be used for any 64 bit
++# platform builds. It is the lowest common denominator required
++# to build an unbundled application or cts for all supported 32 and 64 bit
++# platforms.
++#
++# If you're building a 64 bit platform (and not an application) the
++# ARM-v8 specification allows you to assume all the features available in an
++# armv7-a-neon CPU. You should set the following as 2nd arch/cpu variant:
++#
++# TARGET_2ND_ARCH_VARIANT := armv8-a
++# TARGET_2ND_CPU_VARIANT := generic
++#
++# DO NOT USE
++# DO NOT USE
++TARGET_2ND_ARCH_VARIANT := armv7-a-neon
++# DO NOT USE
++# DO NOT USE
++TARGET_2ND_CPU_VARIANT := generic
++# DO NOT USE
++# DO NOT USE
++else
++TARGET_2ND_ARCH_VARIANT := armv8-a
++TARGET_2ND_CPU_VARIANT := generic
++endif
++
++# Include 64-bit mediaserver to support 64-bit only devices
++TARGET_DYNAMIC_64_32_MEDIASERVER := true
++
++include build/make/target/board/BoardConfigGsiCommon.mk
++
++# Some vendors still haven't cleaned up all device specific directories under
++# root!
++
++# TODO(b/111434759, b/111287060) SoC specific hacks
++BOARD_ROOT_EXTRA_SYMLINKS += /vendor/lib/dsp:/dsp
++BOARD_ROOT_EXTRA_SYMLINKS += /mnt/vendor/persist:/persist
++BOARD_ROOT_EXTRA_SYMLINKS += /vendor/firmware_mnt:/firmware
++
++# TODO(b/36764215): remove this setting when the generic system image
++# no longer has QCOM-specific directories under /.
++BOARD_SEPOLICY_DIRS += build/make/target/board/generic_arm64/sepolicy
+diff --git a/target/board/pixel_3/README.txt b/target/board/pixel_3/README.txt
+new file mode 100644
+index 0000000..8711a14
+--- /dev/null
++++ b/target/board/pixel_3/README.txt
+@@ -0,0 +1,7 @@
++The "generic_arm64" product defines a non-hardware-specific arm64 target
++without a bootloader.
++
++It is also the target to build the generic kernel image (GKI).
++
++It is not a product "base class"; no other products inherit
++from it or use it in any way.
+diff --git a/target/board/pixel_3/device.mk b/target/board/pixel_3/device.mk
+new file mode 100644
+index 0000000..b143d9b
+--- /dev/null
++++ b/target/board/pixel_3/device.mk
+@@ -0,0 +1,84 @@
++#
++# Copyright (C) 2013 The Android Open Source Project
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#      http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++#
++
++include $(SRC_TARGET_DIR)/product/generic_kernel.mk
++
++ifdef BUILD_WITH_KERNEL
++
++# Keep prebuilt
++PRODUCT_COPY_FILES += \
++    kernel/prebuilts/4.19/arm64/kernel-4.19-gz:kernel-4.19-gz \
++    kernel/prebuilts/mainline/arm64/kernel-mainline-allsyms:kernel-mainline \
++    kernel/prebuilts/mainline/arm64/kernel-mainline-gz-allsyms:kernel-mainline-gz \
++    kernel/prebuilts/mainline/arm64/kernel-mainline-lz4-allsyms:kernel-mainline-lz4 \
++
++PRODUCT_COPY_FILES += \
++    kernel/prebuilts/5.4/arm64/kernel-5.4:kernel-5.4 \
++    kernel/prebuilts/5.4/arm64/kernel-5.4-gz:kernel-5.4-gz \
++    kernel/prebuilts/5.4/arm64/kernel-5.4-lz4:kernel-5.4-lz4 \
++    $(OUT_DIR)/target/kernel/5.10/arm64/kernel-5.10:kernel-5.10 \
++    $(OUT_DIR)/target/kernel/5.10/arm64/kernel-5.10-gz:kernel-5.10-gz \
++    $(OUT_DIR)/target/kernel/5.10/arm64/kernel-5.10-lz4:kernel-5.10-lz4 \
++
++ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
++PRODUCT_COPY_FILES += \
++    kernel/prebuilts/4.19/arm64/kernel-4.19-gz:kernel-4.19-gz-allsyms \
++    kernel/prebuilts/5.4/arm64/kernel-5.4:kernel-5.4-allsyms \
++    kernel/prebuilts/5.4/arm64/kernel-5.4-gz:kernel-5.4-gz-allsyms \
++    kernel/prebuilts/5.4/arm64/kernel-5.4-lz4:kernel-5.4-lz4-allsyms \
++    $(OUT_DIR)/target/kernel/5.10/arm64/kernel-5.10-allsyms:kernel-5.10-allsyms \
++    $(OUT_DIR)/target/kernel/5.10/arm64/kernel-5.10-gz-allsyms:kernel-5.10-gz-allsyms \
++    $(OUT_DIR)/target/kernel/5.10/arm64/kernel-5.10-lz4-allsyms:kernel-5.10-lz4-allsyms \
++
++endif
++
++else # BUILD_WITH_KERNEL
++
++PRODUCT_COPY_FILES += \
++    kernel/prebuilts/4.19/arm64/kernel-4.19-gz:kernel-4.19-gz \
++    kernel/prebuilts/5.4/arm64/kernel-5.4:kernel-5.4 \
++    kernel/prebuilts/5.4/arm64/kernel-5.4-gz:kernel-5.4-gz \
++    kernel/prebuilts/5.4/arm64/kernel-5.4-lz4:kernel-5.4-lz4 \
++    kernel/prebuilts/5.10/arm64/kernel-5.10:kernel-5.10 \
++    kernel/prebuilts/5.10/arm64/kernel-5.10-gz:kernel-5.10-gz \
++    kernel/prebuilts/5.10/arm64/kernel-5.10-lz4:kernel-5.10-lz4 \
++
++$(call _output-kernel-info,kernel/prebuilts/4.19/arm64,kernel/4.19)
++$(call _output-kernel-info,kernel/prebuilts/5.4/arm64,kernel/5.4)
++$(call _output-kernel-info,kernel/prebuilts/5.10/arm64,kernel/5.10)
++
++ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
++PRODUCT_COPY_FILES += \
++    kernel/prebuilts/4.19/arm64/kernel-4.19-gz-allsyms:kernel-4.19-gz-allsyms \
++    kernel/prebuilts/5.4/arm64/kernel-5.4-allsyms:kernel-5.4-allsyms \
++    kernel/prebuilts/5.4/arm64/kernel-5.4-gz-allsyms:kernel-5.4-gz-allsyms \
++    kernel/prebuilts/5.4/arm64/kernel-5.4-lz4-allsyms:kernel-5.4-lz4-allsyms \
++    kernel/prebuilts/5.10/arm64/kernel-5.10-allsyms:kernel-5.10-allsyms \
++    kernel/prebuilts/5.10/arm64/kernel-5.10-gz-allsyms:kernel-5.10-gz-allsyms \
++    kernel/prebuilts/5.10/arm64/kernel-5.10-lz4-allsyms:kernel-5.10-lz4-allsyms \
++
++$(call _output-kernel-info-debug,kernel/prebuilts/4.19/arm64,kernel/4.19-debug)
++$(call _output-kernel-info-debug,kernel/prebuilts/5.4/arm64,kernel/5.4-debug)
++$(call _output-kernel-info-debug,kernel/prebuilts/5.10/arm64,kernel/5.10-debug)
++
++endif
++
++endif # BUILD_WITH_KERNEL
++
++PRODUCT_BUILD_VENDOR_BOOT_IMAGE := false
++PRODUCT_BUILD_RECOVERY_IMAGE := false
++
++$(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
+diff --git a/target/board/pixel_3/sepolicy/OWNERS b/target/board/pixel_3/sepolicy/OWNERS
+new file mode 100644
+index 0000000..6dc2b86
+--- /dev/null
++++ b/target/board/pixel_3/sepolicy/OWNERS
+@@ -0,0 +1 @@
++include platform/system/sepolicy:/OWNERS
+diff --git a/target/board/pixel_3/sepolicy/file.te b/target/board/pixel_3/sepolicy/file.te
+new file mode 100644
+index 0000000..7adfdfa
+--- /dev/null
++++ b/target/board/pixel_3/sepolicy/file.te
+@@ -0,0 +1,6 @@
++# TODO(b/36764215): remove this file when the generic system image
++# no longer has these directories
++type persist_file, file_type;
++
++# Default type for anything under /firmware.
++type firmware_file, fs_type, contextmount_type;
+diff --git a/target/board/pixel_3/sepolicy/file_contexts b/target/board/pixel_3/sepolicy/file_contexts
+new file mode 100644
+index 0000000..0a80559
+--- /dev/null
++++ b/target/board/pixel_3/sepolicy/file_contexts
+@@ -0,0 +1,12 @@
++# TODO(b/36764215): remove this file when the generic system image
++# no longer has these directories. They are specific to QCOM.
++
++# /
++/tombstones             u:object_r:rootfs:s0
++/dsp                    u:object_r:rootfs:s0
++
++# /persist
++/persist(/.*)?          u:object_r:persist_file:s0
++
++# files in firmware
++/firmware(/.*)?         u:object_r:firmware_file:s0
+diff --git a/target/board/pixel_3/system_ext.prop b/target/board/pixel_3/system_ext.prop
+new file mode 100644
+index 0000000..5b0183a
+--- /dev/null
++++ b/target/board/pixel_3/system_ext.prop
+@@ -0,0 +1,5 @@
++#
++# system.prop for generic arm64 sdk
++#
++
++rild.libpath=/vendor/lib64/libreference-ril.so
+diff --git a/target/product/AndroidProducts.mk b/target/product/AndroidProducts.mk
+index ee702e5..6cd24ce 100644
+--- a/target/product/AndroidProducts.mk
++++ b/target/product/AndroidProducts.mk
+@@ -79,6 +79,7 @@ PRODUCT_MAKEFILES += \
+     $(LOCAL_DIR)/module_arm64.mk \
+     $(LOCAL_DIR)/module_x86.mk \
+     $(LOCAL_DIR)/module_x86_64.mk \
++    $(LOCAL_DIR)/pixel_3.mk \
+ 
+ COMMON_LUNCH_CHOICES := \
+     aosp_arm64-eng \
+diff --git a/target/product/pixel_3.mk b/target/product/pixel_3.mk
+new file mode 100644
+index 0000000..f6061b6
+--- /dev/null
++++ b/target/product/pixel_3.mk
+@@ -0,0 +1,10 @@
++$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_arm64.mk)
++$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_release.mk)
++
++PRODUCT_NAME := pixel_3
++PRODUCT_DEVICE := pixel_3
++PRODUCT_BRAND := Google
++PRODUCT_MODEL := Pixel 3
++PRODUCT_CHARACTERISTICS := phone
++PRODUCT_MANUFACTURER := My Custom
++
+-- 
+2.34.1
+

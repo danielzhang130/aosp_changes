@@ -1,7 +1,7 @@
-From b3f9552179e59cb2fa9ec10f95426fe96c4bd710 Mon Sep 17 00:00:00 2001
+From 03da96e999ed1928469a23a5aa58e6db176d6660 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 30 Sep 2022 22:46:34 -0400
-Subject: [PATCH] patch
+Subject: [PATCH 1/4] patch
 
 Change-Id: Ib37ca8514fbf326efe6abc016f80865a2168c5c5
 ---
@@ -292,6 +292,118 @@ index 0000000..f6061b6
 +PRODUCT_MODEL := Pixel 3
 +PRODUCT_CHARACTERISTICS := phone
 +PRODUCT_MANUFACTURER := My Custom
++
+-- 
+2.34.1
+
+
+From e9b83d71e65496235a1650b0d62634ce61cfc2f2 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 18 Nov 2022 22:11:03 -0500
+Subject: [PATCH 2/4] Add stock fingerprint
+
+Change-Id: Ib825c8109e9a210efb748b8a162888b9900e7814
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ core/main.mk              | 1 +
+ target/board/blueline     | 1 +
+ target/product/pixel_3.mk | 8 ++++++--
+ 3 files changed, 8 insertions(+), 2 deletions(-)
+ create mode 120000 target/board/blueline
+
+diff --git a/core/main.mk b/core/main.mk
+index c63c6df..2306e85 100644
+--- a/core/main.mk
++++ b/core/main.mk
+@@ -184,6 +184,7 @@ TARGET_BUILD_JAVA_SUPPORT_LEVEL :=$= platform
+ 
+ # -----------------------------------------------------------------
+ 
++ADDITIONAL_SYSTEM_PROPERTIES += ro.build.stock_fingerprint=${PRODUCT_STOCK_FINGERPRINT}
+ ADDITIONAL_SYSTEM_PROPERTIES += ro.treble.enabled=${PRODUCT_FULL_TREBLE}
+ 
+ $(KATI_obsolete_var PRODUCT_FULL_TREBLE,\
+diff --git a/target/board/blueline b/target/board/blueline
+new file mode 120000
+index 0000000..d52eb9f
+--- /dev/null
++++ b/target/board/blueline
+@@ -0,0 +1 @@
++pixel_3/
+\ No newline at end of file
+diff --git a/target/product/pixel_3.mk b/target/product/pixel_3.mk
+index f6061b6..684b610 100644
+--- a/target/product/pixel_3.mk
++++ b/target/product/pixel_3.mk
+@@ -1,8 +1,12 @@
+ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_arm64.mk)
+ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_release.mk)
+ 
+-PRODUCT_NAME := pixel_3
+-PRODUCT_DEVICE := pixel_3
++PRODUCT_PACKAGE_OVERLAYS := build/make/target/product/pixel_3/overlay
++
++PRODUCT_STOCK_FINGERPRINT := google/blueline/blueline:12/SP1A.210812.015/7679548:user/release-keys
++
++PRODUCT_NAME := blueline
++PRODUCT_DEVICE := blueline
+ PRODUCT_BRAND := Google
+ PRODUCT_MODEL := Pixel 3
+ PRODUCT_CHARACTERISTICS := phone
+-- 
+2.34.1
+
+
+From c98e101cb678c0ece70fd4f145987ade22c8a272 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 18 Nov 2022 22:11:50 -0500
+Subject: [PATCH 3/4] restore power button function
+
+Change-Id: I84ab760f9dfb205c9fe9ab9dd9171709ea169a2d
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../overlay/frameworks/base/core/res/res/values/config.xml  | 6 ++++++
+ 1 file changed, 6 insertions(+)
+ create mode 100644 target/product/pixel_3/overlay/frameworks/base/core/res/res/values/config.xml
+
+diff --git a/target/product/pixel_3/overlay/frameworks/base/core/res/res/values/config.xml b/target/product/pixel_3/overlay/frameworks/base/core/res/res/values/config.xml
+new file mode 100644
+index 0000000..98f4743
+--- /dev/null
++++ b/target/product/pixel_3/overlay/frameworks/base/core/res/res/values/config.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <integer name="config_longPressOnPowerBehavior">1</integer>
++    <integer name="config_keyChordPowerVolumeUp">0</integer>
++</resources>
++
+-- 
+2.34.1
+
+
+From 4c8a72f5f9cfa5435d462ebb3818f9ab2834b16f Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sat, 19 Nov 2022 11:10:05 -0500
+Subject: [PATCH 4/4] Set auto brightness on by default
+
+Change-Id: I06673b1b771b2090873922333e5ab26c51f7fc89
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../base/packages/SettingsProvider/res/values/defaults.xml   | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 target/product/pixel_3/overlay/frameworks/base/packages/SettingsProvider/res/values/defaults.xml
+
+diff --git a/target/product/pixel_3/overlay/frameworks/base/packages/SettingsProvider/res/values/defaults.xml b/target/product/pixel_3/overlay/frameworks/base/packages/SettingsProvider/res/values/defaults.xml
+new file mode 100644
+index 0000000..394c586
+--- /dev/null
++++ b/target/product/pixel_3/overlay/frameworks/base/packages/SettingsProvider/res/values/defaults.xml
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <bool name="def_screen_brightness_automatic_mode">true</bool>
++</resources>
 +
 -- 
 2.34.1

@@ -1,7 +1,7 @@
 From 03da96e999ed1928469a23a5aa58e6db176d6660 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 30 Sep 2022 22:46:34 -0400
-Subject: [PATCH 1/4] patch
+Subject: [PATCH 1/5] patch
 
 Change-Id: Ib37ca8514fbf326efe6abc016f80865a2168c5c5
 ---
@@ -300,7 +300,7 @@ index 0000000..f6061b6
 From e9b83d71e65496235a1650b0d62634ce61cfc2f2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:11:03 -0500
-Subject: [PATCH 2/4] Add stock fingerprint
+Subject: [PATCH 2/5] Add stock fingerprint
 
 Change-Id: Ib825c8109e9a210efb748b8a162888b9900e7814
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -357,7 +357,7 @@ index f6061b6..684b610 100644
 From c98e101cb678c0ece70fd4f145987ade22c8a272 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:11:50 -0500
-Subject: [PATCH 3/4] restore power button function
+Subject: [PATCH 3/5] restore power button function
 
 Change-Id: I84ab760f9dfb205c9fe9ab9dd9171709ea169a2d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -385,7 +385,7 @@ index 0000000..98f4743
 From 4c8a72f5f9cfa5435d462ebb3818f9ab2834b16f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 19 Nov 2022 11:10:05 -0500
-Subject: [PATCH 4/4] Set auto brightness on by default
+Subject: [PATCH 4/5] Set auto brightness on by default
 
 Change-Id: I06673b1b771b2090873922333e5ab26c51f7fc89
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -405,6 +405,46 @@ index 0000000..394c586
 +    <bool name="def_screen_brightness_automatic_mode">true</bool>
 +</resources>
 +
+-- 
+2.34.1
+
+
+From bc8f9ee2c53cf7b13666fd3da92ee60a48a9a176 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sat, 19 Nov 2022 14:55:37 -0500
+Subject: [PATCH 5/5] Add stock security patch date
+
+Change-Id: I9b501b9bb004ffab4a6f62c2bce672b4cc2826a5
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ core/main.mk              | 1 +
+ target/product/pixel_3.mk | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/core/main.mk b/core/main.mk
+index 2306e85..48221d3 100644
+--- a/core/main.mk
++++ b/core/main.mk
+@@ -185,6 +185,7 @@ TARGET_BUILD_JAVA_SUPPORT_LEVEL :=$= platform
+ # -----------------------------------------------------------------
+ 
+ ADDITIONAL_SYSTEM_PROPERTIES += ro.build.stock_fingerprint=${PRODUCT_STOCK_FINGERPRINT}
++ADDITIONAL_SYSTEM_PROPERTIES += ro.build.stock_security_patch=${PRODUCT_STOCK_SECURITY_PATCH}
+ ADDITIONAL_SYSTEM_PROPERTIES += ro.treble.enabled=${PRODUCT_FULL_TREBLE}
+ 
+ $(KATI_obsolete_var PRODUCT_FULL_TREBLE,\
+diff --git a/target/product/pixel_3.mk b/target/product/pixel_3.mk
+index 684b610..1daa9e7 100644
+--- a/target/product/pixel_3.mk
++++ b/target/product/pixel_3.mk
+@@ -4,6 +4,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_release.mk)
+ PRODUCT_PACKAGE_OVERLAYS := build/make/target/product/pixel_3/overlay
+ 
+ PRODUCT_STOCK_FINGERPRINT := google/blueline/blueline:12/SP1A.210812.015/7679548:user/release-keys
++PRODUCT_STOCK_SECURITY_PATCH := 2021-10-05
+ 
+ PRODUCT_NAME := blueline
+ PRODUCT_DEVICE := blueline
 -- 
 2.34.1
 

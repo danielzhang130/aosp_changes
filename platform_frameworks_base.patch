@@ -1,97 +1,16 @@
-From dc0055a285c9072f860093572fe5c52aeeab7a0c Mon Sep 17 00:00:00 2001
-From: danielzhang130 <danielzhang130@gmail.com>
-Date: Mon, 1 Aug 2022 14:14:11 -0400
-Subject: [PATCH 1/4] Show entire battery usage history in settings app
-
-Signed-off-by: danielzhang130 <danielzhang130@gmail.com>
-Change-Id: I138102c7a866a7aef77f9e3573061e19140e44b1
----
- .../internal/os/BatteryStatsHistory.java      | 19 ++++++++++++++++---
- .../os/BatteryUsageStatsProvider.java         | 11 +++++------
- 2 files changed, 21 insertions(+), 9 deletions(-)
-
-diff --git a/core/java/com/android/internal/os/BatteryStatsHistory.java b/core/java/com/android/internal/os/BatteryStatsHistory.java
-index b0fce8f1..3eb8cc41 100644
---- a/core/java/com/android/internal/os/BatteryStatsHistory.java
-+++ b/core/java/com/android/internal/os/BatteryStatsHistory.java
-@@ -153,12 +153,25 @@ public class BatteryStatsHistory {
-     /**
-      * Used when BatteryStatsImpl object is created from deserialization of a parcel,
-      * such as Settings app or checkin file.
--     * @param historyBuffer the history buffer
-+     * @param historyParcel the history buffer
-      */
--    public BatteryStatsHistory(Parcel historyBuffer) {
-+    public BatteryStatsHistory(Parcel historyParcel) {
-         mStats = null;
-         mHistoryDir = null;
--        mHistoryBuffer = historyBuffer;
-+
-+        Parcel copy = Parcel.obtain();
-+        copy.appendFrom(historyParcel, 0, historyParcel.dataSize());
-+
-+        copy.setDataPosition(copy.dataSize() - 4);
-+        int size = copy.readInt();
-+        copy.setDataPosition(size);
-+
-+        readFromParcel(copy);
-+
-+        copy.setDataSize(size);
-+
-+        mHistoryBuffer = copy;
-+        mHistoryBuffer.setDataPosition(0);
-     }
- 
-     public File getHistoryDirectory() {
-diff --git a/core/java/com/android/internal/os/BatteryUsageStatsProvider.java b/core/java/com/android/internal/os/BatteryUsageStatsProvider.java
-index 09e409bd..e50ec3af 100644
---- a/core/java/com/android/internal/os/BatteryUsageStatsProvider.java
-+++ b/core/java/com/android/internal/os/BatteryUsageStatsProvider.java
-@@ -16,6 +16,7 @@
- 
- package com.android.internal.os;
- 
-+import android.os.Parcel;
- import android.content.Context;
- import android.hardware.SensorManager;
- import android.os.BatteryConsumer;
-@@ -219,17 +220,15 @@ public class BatteryUsageStatsProvider {
- 
-             BatteryStatsImpl batteryStatsImpl = (BatteryStatsImpl) mStats;
- 
--            // Make a copy of battery history to avoid concurrent modification.
-             Parcel historyBuffer = Parcel.obtain();
-             historyBuffer.appendFrom(batteryStatsImpl.mHistoryBuffer, 0,
-                     batteryStatsImpl.mHistoryBuffer.dataSize());
-+            int originalSize = historyBuffer.dataSize();
- 
--            final File systemDir =
--                    batteryStatsImpl.mBatteryStatsHistory.getHistoryDirectory().getParentFile();
--            final BatteryStatsHistory batteryStatsHistory =
--                    new BatteryStatsHistory(batteryStatsImpl, systemDir, historyBuffer);
-+            batteryStatsImpl.mBatteryStatsHistory.writeToParcel(historyBuffer);
-+            historyBuffer.writeInt(originalSize);
- 
--            batteryUsageStatsBuilder.setBatteryHistory(batteryStatsHistory);
-+            batteryUsageStatsBuilder.setBatteryHistory(new BatteryStatsHistory(historyBuffer));
-         }
- 
-         BatteryUsageStats stats = batteryUsageStatsBuilder.build();
--- 
-2.34.1
-
-
-From 5ef9cb97c7b2b6a9138345b4a46f85bb1bbc5065 Mon Sep 17 00:00:00 2001
+From 7a464f5f156b599baf43650ab402849828940a1d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 2/4] copy safetynet hooks from ProtonAOSP
+Subject: [PATCH 1/2] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
  core/java/android/app/Instrumentation.java    |  4 +
- .../internal/gmscompat/AttestationHooks.java  | 92 +++++++++++++++++++
- 2 files changed, 96 insertions(+)
+ .../net/config/ManifestConfigSource.java      |  2 +-
+ .../internal/gmscompat/AttestationHooks.java  | 86 +++++++++++++++++++
+ .../keystore2/AndroidKeyStoreSpi.java         |  3 +
+ 4 files changed, 94 insertions(+), 1 deletion(-)
  create mode 100644 core/java/com/android/internal/gmscompat/AttestationHooks.java
 
 diff --git a/core/java/android/app/Instrumentation.java b/core/java/android/app/Instrumentation.java
@@ -123,12 +42,25 @@ index 8984c429..58258aca 100644
          return app;
      }
  
+diff --git a/core/java/android/security/net/config/ManifestConfigSource.java b/core/java/android/security/net/config/ManifestConfigSource.java
+index b885e726..5fe0ab24 100644
+--- a/core/java/android/security/net/config/ManifestConfigSource.java
++++ b/core/java/android/security/net/config/ManifestConfigSource.java
+@@ -57,7 +57,7 @@ public class ManifestConfigSource implements ConfigSource {
+             }
+             int configResource = mApplicationInfo.networkSecurityConfigRes;
+             ConfigSource source;
+-            if (configResource != 0) {
++            if (false) {
+                 boolean debugBuild =
+                         (mApplicationInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+                 if (DBG) {
 diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
 new file mode 100644
-index 00000000..71d865f6
+index 00000000..77101541
 --- /dev/null
 +++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
-@@ -0,0 +1,92 @@
+@@ -0,0 +1,86 @@
 +/*
 + * Copyright (C) 2021 The Android Open Source Project
 + *
@@ -164,19 +96,17 @@ index 00000000..71d865f6
 +
 +    private static final String PROCESS_UNSTABLE = "com.google.android.gms.unstable";
 +
-+    private static final String PRODUCT_STOCK_FINGERPRINT =
-+            SystemProperties.get("ro.build.stock_fingerprint");
-+
 +    private static final String PACKAGE_GMS_CORE = "com.google.android.gms";
++    private static final String PACKAGE_G_PAY = "com.google.android.apps.walletnfcrel";
 +
 +    private static volatile boolean sIsGms = false;
 +
 +    private AttestationHooks() { }
 +
-+    private static void setBuildField(String key, String value) {
++    private static void setBuildField(Class clazz, String key, String value) {
 +        try {
 +            // Unlock
-+            Field field = Build.class.getDeclaredField(key);
++            Field field = clazz.getDeclaredField(key);
 +            field.setAccessible(true);
 +
 +            // Edit
@@ -190,19 +120,15 @@ index 00000000..71d865f6
 +    }
 +
 +    private static void spoofBuildGms() {
-+        // Set fingerprint for SafetyNet CTS profile
-+        if (PRODUCT_STOCK_FINGERPRINT.length() > 0) {
-+            setBuildField("FINGERPRINT", PRODUCT_STOCK_FINGERPRINT);
-+        }
-+
 +        // Alter model name to avoid hardware attestation enforcement
-+        setBuildField("MODEL", Build.MODEL + " ");
-+        setBuildField("MANUFACTURER", "Google");
++        setBuildField(Build.class, "MODEL", Build.MODEL + " ");
++        setBuildField(Build.class, "MANUFACTURER", "Google");
 +    }
 +
 +    public static void initApplicationBeforeOnCreate(Application app) {
-+        if (PACKAGE_GMS_CORE.equals(app.getPackageName()) &&
-+                PROCESS_UNSTABLE.equals(Application.getProcessName())) {
++        if ((PACKAGE_GMS_CORE.equals(app.getPackageName()) &&
++                PROCESS_UNSTABLE.equals(Application.getProcessName())) ||
++            PACKAGE_G_PAY.equals(app.getPackageName())){
 +            sIsGms = true;
 +            spoofBuildGms();
 +        }
@@ -221,110 +147,6 @@ index 00000000..71d865f6
 +    }
 +}
 +
--- 
-2.34.1
-
-
-From 340de63c0958cc8feff0aac2132690c3765abfde Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Tue, 29 Nov 2022 19:54:33 -0500
-Subject: [PATCH 3/4] pass safetynet and gpay
-
-Change-Id: I9c67ba2b342fb2c60ecca6caf1ccfc96238964e3
-Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
----
- .../net/config/ManifestConfigSource.java      |  2 +-
- .../internal/gmscompat/AttestationHooks.java  | 28 ++++++++++++++-----
- .../keystore2/AndroidKeyStoreSpi.java         |  3 ++
- 3 files changed, 25 insertions(+), 8 deletions(-)
-
-diff --git a/core/java/android/security/net/config/ManifestConfigSource.java b/core/java/android/security/net/config/ManifestConfigSource.java
-index b885e726..5fe0ab24 100644
---- a/core/java/android/security/net/config/ManifestConfigSource.java
-+++ b/core/java/android/security/net/config/ManifestConfigSource.java
-@@ -57,7 +57,7 @@ public class ManifestConfigSource implements ConfigSource {
-             }
-             int configResource = mApplicationInfo.networkSecurityConfigRes;
-             ConfigSource source;
--            if (configResource != 0) {
-+            if (false) {
-                 boolean debugBuild =
-                         (mApplicationInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
-                 if (DBG) {
-diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
-index 71d865f6..4960c9d3 100644
---- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
-+++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
-@@ -23,6 +23,7 @@ import android.util.Log;
- 
- import java.lang.reflect.Field;
- import java.util.Arrays;
-+import java.util.stream.Collectors;
- 
- /** @hide */
- /**
-@@ -36,16 +37,20 @@ public final class AttestationHooks {
-     private static final String PRODUCT_STOCK_FINGERPRINT =
-             SystemProperties.get("ro.build.stock_fingerprint");
- 
-+    private static final String PRODUCT_STOCK_SECURITY_PATCH =
-+            SystemProperties.get("ro.build.stock_security_patch");
-+
-     private static final String PACKAGE_GMS_CORE = "com.google.android.gms";
-+    private static final String PACKAGE_G_PAY = "com.google.android.apps.walletnfcrel";
- 
-     private static volatile boolean sIsGms = false;
- 
-     private AttestationHooks() { }
- 
--    private static void setBuildField(String key, String value) {
-+    private static void setBuildField(Class clazz, String key, String value) {
-         try {
-             // Unlock
--            Field field = Build.class.getDeclaredField(key);
-+            Field field = clazz.getDeclaredField(key);
-             field.setAccessible(true);
- 
-             // Edit
-@@ -61,17 +66,22 @@ public final class AttestationHooks {
-     private static void spoofBuildGms() {
-         // Set fingerprint for SafetyNet CTS profile
-         if (PRODUCT_STOCK_FINGERPRINT.length() > 0) {
--            setBuildField("FINGERPRINT", PRODUCT_STOCK_FINGERPRINT);
-+            setBuildField(Build.class, "FINGERPRINT", PRODUCT_STOCK_FINGERPRINT);
-+        }
-+
-+        if (PRODUCT_STOCK_SECURITY_PATCH.length() > 0) {
-+            setBuildField(Build.VERSION.class, "SECURITY_PATCH", PRODUCT_STOCK_SECURITY_PATCH);
-         }
- 
-         // Alter model name to avoid hardware attestation enforcement
--        setBuildField("MODEL", Build.MODEL + " ");
--        setBuildField("MANUFACTURER", "Google");
-+        setBuildField(Build.class, "MODEL", Build.MODEL + " ");
-+        setBuildField(Build.class, "MANUFACTURER", "Google");
-     }
- 
-     public static void initApplicationBeforeOnCreate(Application app) {
--        if (PACKAGE_GMS_CORE.equals(app.getPackageName()) &&
--                PROCESS_UNSTABLE.equals(Application.getProcessName())) {
-+        if ((PACKAGE_GMS_CORE.equals(app.getPackageName()) &&
-+                PROCESS_UNSTABLE.equals(Application.getProcessName())) ||
-+            PACKAGE_G_PAY.equals(app.getPackageName())){
-             sIsGms = true;
-             spoofBuildGms();
-         }
-@@ -86,6 +96,10 @@ public final class AttestationHooks {
-         // Check stack for SafetyNet
-         if (sIsGms && isCallerSafetyNet()) {
-             throw new UnsupportedOperationException();
-+        } else {
-+            Log.d(TAG, "Not safetynet\n" + Arrays.stream(Thread.currentThread().getStackTrace())
-+                    .map(elem -> elem.toString() + "\n")
-+                    .collect(Collectors.joining()));
-         }
-     }
- }
 diff --git a/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java b/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java
 index 33411e1e..133a4094 100644
 --- a/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java
@@ -350,68 +172,29 @@ index 33411e1e..133a4094 100644
 2.34.1
 
 
-From 26e1daf6e3dc5a751d2a47505a50c5876ad65192 Mon Sep 17 00:00:00 2001
+From f502a7984946692793b0b34eb1c83a612ec1527d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Wed, 14 Dec 2022 21:26:08 -0500
-Subject: [PATCH 4/4] simplify safetynet setup
+Date: Fri, 16 Dec 2022 11:31:41 -0500
+Subject: [PATCH 2/2] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- .../internal/gmscompat/AttestationHooks.java  | 20 -------------------
- 1 file changed, 20 deletions(-)
+ packages/SettingsProvider/res/values/defaults.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
-index 4960c9d3..77101541 100644
---- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
-+++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
-@@ -23,7 +23,6 @@ import android.util.Log;
- 
- import java.lang.reflect.Field;
- import java.util.Arrays;
--import java.util.stream.Collectors;
- 
- /** @hide */
- /**
-@@ -34,12 +33,6 @@ public final class AttestationHooks {
- 
-     private static final String PROCESS_UNSTABLE = "com.google.android.gms.unstable";
- 
--    private static final String PRODUCT_STOCK_FINGERPRINT =
--            SystemProperties.get("ro.build.stock_fingerprint");
--
--    private static final String PRODUCT_STOCK_SECURITY_PATCH =
--            SystemProperties.get("ro.build.stock_security_patch");
--
-     private static final String PACKAGE_GMS_CORE = "com.google.android.gms";
-     private static final String PACKAGE_G_PAY = "com.google.android.apps.walletnfcrel";
- 
-@@ -64,15 +57,6 @@ public final class AttestationHooks {
-     }
- 
-     private static void spoofBuildGms() {
--        // Set fingerprint for SafetyNet CTS profile
--        if (PRODUCT_STOCK_FINGERPRINT.length() > 0) {
--            setBuildField(Build.class, "FINGERPRINT", PRODUCT_STOCK_FINGERPRINT);
--        }
--
--        if (PRODUCT_STOCK_SECURITY_PATCH.length() > 0) {
--            setBuildField(Build.VERSION.class, "SECURITY_PATCH", PRODUCT_STOCK_SECURITY_PATCH);
--        }
--
-         // Alter model name to avoid hardware attestation enforcement
-         setBuildField(Build.class, "MODEL", Build.MODEL + " ");
-         setBuildField(Build.class, "MANUFACTURER", "Google");
-@@ -96,10 +80,6 @@ public final class AttestationHooks {
-         // Check stack for SafetyNet
-         if (sIsGms && isCallerSafetyNet()) {
-             throw new UnsupportedOperationException();
--        } else {
--            Log.d(TAG, "Not safetynet\n" + Arrays.stream(Thread.currentThread().getStackTrace())
--                    .map(elem -> elem.toString() + "\n")
--                    .collect(Collectors.joining()));
-         }
-     }
- }
+diff --git a/packages/SettingsProvider/res/values/defaults.xml b/packages/SettingsProvider/res/values/defaults.xml
+index 7732da40..5d4190a6 100644
+--- a/packages/SettingsProvider/res/values/defaults.xml
++++ b/packages/SettingsProvider/res/values/defaults.xml
+@@ -31,7 +31,7 @@
+     <bool name="def_accelerometer_rotation">false</bool>
+     <!-- Default screen brightness, from 0 to 255.  102 is 40%. -->
+     <integer name="def_screen_brightness">102</integer>
+-    <bool name="def_screen_brightness_automatic_mode">false</bool>
++    <bool name="def_screen_brightness_automatic_mode">true</bool>
+     <fraction name="def_window_animation_scale">100%</fraction>
+     <fraction name="def_window_transition_scale">100%</fraction>
+     <bool name="def_haptic_feedback">true</bool>
 -- 
 2.34.1
 

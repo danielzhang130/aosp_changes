@@ -1,0 +1,28 @@
+From c577aea5cca5b21aa8cb14ef60fc5043c4245d0b Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 16 Dec 2022 11:57:31 -0500
+Subject: [PATCH] relax sepolicy
+
+Change-Id: Ic3045fd9b1548fc3c82d221ca9bca05d094d9734
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ Android.mk | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/Android.mk b/Android.mk
+index 8fd90b0..7807cbe 100644
+--- a/Android.mk
++++ b/Android.mk
+@@ -89,9 +89,6 @@ endif
+ 
+ NEVERALLOW_ARG :=
+ ifeq ($(SELINUX_IGNORE_NEVERALLOWS),true)
+-ifeq ($(TARGET_BUILD_VARIANT),user)
+-$(error SELINUX_IGNORE_NEVERALLOWS := true cannot be used in user builds)
+-endif
+ $(warning Be careful when using the SELINUX_IGNORE_NEVERALLOWS flag. \
+           It does not work in user builds and using it will \
+           not stop you from failing CTS.)
+-- 
+2.34.1
+

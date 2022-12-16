@@ -1,0 +1,228 @@
+From 1ddfc8f414845d91c848447ac324fd7891b92700 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 16 Dec 2022 11:37:56 -0500
+Subject: [PATCH] Add mitm certificate
+
+Change-Id: I79ca72ce46ed701c88e38f9e7c188c3a1979e7a5
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ files/c8750f0d.0        | 84 +++++++++++++++++++++++++++++++++++++++++
+ google/files/c8750f0d.0 | 84 +++++++++++++++++++++++++++++++++++++++++
+ google/roots.pem        | 22 +++++++++++
+ 3 files changed, 190 insertions(+)
+ create mode 100644 files/c8750f0d.0
+ create mode 100644 google/files/c8750f0d.0
+
+diff --git a/files/c8750f0d.0 b/files/c8750f0d.0
+new file mode 100644
+index 0000000..3e6dc44
+--- /dev/null
++++ b/files/c8750f0d.0
+@@ -0,0 +1,84 @@
++-----BEGIN CERTIFICATE-----
++MIIDoTCCAomgAwIBAgIGDpNZjG5jMA0GCSqGSIb3DQEBCwUAMCgxEjAQBgNVBAMM
++CW1pdG1wcm94eTESMBAGA1UECgwJbWl0bXByb3h5MB4XDTIwMTAxMTE1MjIxNVoX
++DTIzMTAxMzE1MjIxNVowKDESMBAGA1UEAwwJbWl0bXByb3h5MRIwEAYDVQQKDAlt
++aXRtcHJveHkwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCk1spFVCK8
++lh7oud/EYkiLCOuYoYq6A2el2WWQlnE2rtCZwjpFNKtZhFh8iIereHi5KLyZH/UZ
++7jQBfukSsPGtom8DXJayxVzCCIoRWLP3Lu4HzzaeInWn3J0ZrESsVdX5U8lQCN7i
++AH/9LCsKZkmYacDjjHM+pZCLfSwwOArgRZi/YATKEnL2s+DuU9com8VyfAIwRLoW
++WwayHblRS4cK2K/uI0qYcTkrGw1GFJlq44tWKVxyBxtapaw8v7JbsbNI3fTV/MIF
++1WYroUQWXjmTNmvTsvhgrsCobt2/8QW5YL2uD7FiRlYn/OifzRWVzPJp+QMxYw4p
++gDLGRN8MLzqdAgMBAAGjgdAwgc0wDwYDVR0TAQH/BAUwAwEB/zARBglghkgBhvhC
++AQEEBAMCAgQweAYDVR0lBHEwbwYIKwYBBQUHAwEGCCsGAQUFBwMCBggrBgEFBQcD
++BAYIKwYBBQUHAwgGCisGAQQBgjcCARUGCisGAQQBgjcCARYGCisGAQQBgjcKAwEG
++CisGAQQBgjcKAwMGCisGAQQBgjcKAwQGCWCGSAGG+EIEATAOBgNVHQ8BAf8EBAMC
++AQYwHQYDVR0OBBYEFMWvxr/FiRzzSo/pQqegyiMcoM21MA0GCSqGSIb3DQEBCwUA
++A4IBAQB23q54S470rFCmySQtzsmXLecTXRRLUaraUc1iTXTrPxeNaZNAfLp00KYo
++79pXkBZz4+NjLHyEgWEeSAzrLgbD+nj3iQgzmGzkW0dp7TTMvtsj1VXq02f3KKuD
++G2BK3Xm//APIz017USCkp1FKfQsfRLzkYjuvOcM2gShPEF+6TwXyICC2pcNcLtFU
++utseK0GPITMRDLgHU5napAWqsJ4Ri0x/ERecWqhoheTcCFsXohceHDVpEDcX6Ke9
++3wLWW0p1pPjLufZ+ZzHFtssZCjFKIbVTZ+/97p6ykKDbCM1MQqwd1mmvq9m2pGPQ
++Rv94O6WuKaYiJlJ4SKXCUdGNY3Ph
++-----END CERTIFICATE-----
++Certificate:
++    Data:
++        Version: 3 (0x2)
++        Serial Number: 16026025356899 (0xe93598c6e63)
++        Signature Algorithm: sha256WithRSAEncryption
++        Issuer: CN=mitmproxy, O=mitmproxy
++        Validity
++            Not Before: Oct 11 15:22:15 2020 GMT
++            Not After : Oct 13 15:22:15 2023 GMT
++        Subject: CN=mitmproxy, O=mitmproxy
++        Subject Public Key Info:
++            Public Key Algorithm: rsaEncryption
++                Public-Key: (2048 bit)
++                Modulus:
++                    00:a4:d6:ca:45:54:22:bc:96:1e:e8:b9:df:c4:62:
++                    48:8b:08:eb:98:a1:8a:ba:03:67:a5:d9:65:90:96:
++                    71:36:ae:d0:99:c2:3a:45:34:ab:59:84:58:7c:88:
++                    87:ab:78:78:b9:28:bc:99:1f:f5:19:ee:34:01:7e:
++                    e9:12:b0:f1:ad:a2:6f:03:5c:96:b2:c5:5c:c2:08:
++                    8a:11:58:b3:f7:2e:ee:07:cf:36:9e:22:75:a7:dc:
++                    9d:19:ac:44:ac:55:d5:f9:53:c9:50:08:de:e2:00:
++                    7f:fd:2c:2b:0a:66:49:98:69:c0:e3:8c:73:3e:a5:
++                    90:8b:7d:2c:30:38:0a:e0:45:98:bf:60:04:ca:12:
++                    72:f6:b3:e0:ee:53:d7:28:9b:c5:72:7c:02:30:44:
++                    ba:16:5b:06:b2:1d:b9:51:4b:87:0a:d8:af:ee:23:
++                    4a:98:71:39:2b:1b:0d:46:14:99:6a:e3:8b:56:29:
++                    5c:72:07:1b:5a:a5:ac:3c:bf:b2:5b:b1:b3:48:dd:
++                    f4:d5:fc:c2:05:d5:66:2b:a1:44:16:5e:39:93:36:
++                    6b:d3:b2:f8:60:ae:c0:a8:6e:dd:bf:f1:05:b9:60:
++                    bd:ae:0f:b1:62:46:56:27:fc:e8:9f:cd:15:95:cc:
++                    f2:69:f9:03:31:63:0e:29:80:32:c6:44:df:0c:2f:
++                    3a:9d
++                Exponent: 65537 (0x10001)
++        X509v3 extensions:
++            X509v3 Basic Constraints: critical
++                CA:TRUE
++            Netscape Cert Type: 
++                SSL CA
++            X509v3 Extended Key Usage: 
++                TLS Web Server Authentication, TLS Web Client Authentication, E-mail Protection, Time Stamping, Microsoft Individual Code Signing, Microsoft Commercial Code Signing, Microsoft Trust List Signing, Microsoft Server Gated Crypto, Microsoft Encrypted File System, Netscape Server Gated Crypto
++            X509v3 Key Usage: critical
++                Certificate Sign, CRL Sign
++            X509v3 Subject Key Identifier: 
++                C5:AF:C6:BF:C5:89:1C:F3:4A:8F:E9:42:A7:A0:CA:23:1C:A0:CD:B5
++    Signature Algorithm: sha256WithRSAEncryption
++    Signature Value:
++        76:de:ae:78:4b:8e:f4:ac:50:a6:c9:24:2d:ce:c9:97:2d:e7:
++        13:5d:14:4b:51:aa:da:51:cd:62:4d:74:eb:3f:17:8d:69:93:
++        40:7c:ba:74:d0:a6:28:ef:da:57:90:16:73:e3:e3:63:2c:7c:
++        84:81:61:1e:48:0c:eb:2e:06:c3:fa:78:f7:89:08:33:98:6c:
++        e4:5b:47:69:ed:34:cc:be:db:23:d5:55:ea:d3:67:f7:28:ab:
++        83:1b:60:4a:dd:79:bf:fc:03:c8:cf:4d:7b:51:20:a4:a7:51:
++        4a:7d:0b:1f:44:bc:e4:62:3b:af:39:c3:36:81:28:4f:10:5f:
++        ba:4f:05:f2:20:20:b6:a5:c3:5c:2e:d1:54:ba:db:1e:2b:41:
++        8f:21:33:11:0c:b8:07:53:99:da:a4:05:aa:b0:9e:11:8b:4c:
++        7f:11:17:9c:5a:a8:68:85:e4:dc:08:5b:17:a2:17:1e:1c:35:
++        69:10:37:17:e8:a7:bd:df:02:d6:5b:4a:75:a4:f8:cb:b9:f6:
++        7e:67:31:c5:b6:cb:19:0a:31:4a:21:b5:53:67:ef:fd:ee:9e:
++        b2:90:a0:db:08:cd:4c:42:ac:1d:d6:69:af:ab:d9:b6:a4:63:
++        d0:46:ff:78:3b:a5:ae:29:a6:22:26:52:78:48:a5:c2:51:d1:
++        8d:63:73:e1
++SHA1 Fingerprint=E0:E5:E7:E7:99:F0:26:89:2E:96:DC:80:F2:39:FE:5D:D5:2D:82:B0
+diff --git a/google/files/c8750f0d.0 b/google/files/c8750f0d.0
+new file mode 100644
+index 0000000..3e6dc44
+--- /dev/null
++++ b/google/files/c8750f0d.0
+@@ -0,0 +1,84 @@
++-----BEGIN CERTIFICATE-----
++MIIDoTCCAomgAwIBAgIGDpNZjG5jMA0GCSqGSIb3DQEBCwUAMCgxEjAQBgNVBAMM
++CW1pdG1wcm94eTESMBAGA1UECgwJbWl0bXByb3h5MB4XDTIwMTAxMTE1MjIxNVoX
++DTIzMTAxMzE1MjIxNVowKDESMBAGA1UEAwwJbWl0bXByb3h5MRIwEAYDVQQKDAlt
++aXRtcHJveHkwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCk1spFVCK8
++lh7oud/EYkiLCOuYoYq6A2el2WWQlnE2rtCZwjpFNKtZhFh8iIereHi5KLyZH/UZ
++7jQBfukSsPGtom8DXJayxVzCCIoRWLP3Lu4HzzaeInWn3J0ZrESsVdX5U8lQCN7i
++AH/9LCsKZkmYacDjjHM+pZCLfSwwOArgRZi/YATKEnL2s+DuU9com8VyfAIwRLoW
++WwayHblRS4cK2K/uI0qYcTkrGw1GFJlq44tWKVxyBxtapaw8v7JbsbNI3fTV/MIF
++1WYroUQWXjmTNmvTsvhgrsCobt2/8QW5YL2uD7FiRlYn/OifzRWVzPJp+QMxYw4p
++gDLGRN8MLzqdAgMBAAGjgdAwgc0wDwYDVR0TAQH/BAUwAwEB/zARBglghkgBhvhC
++AQEEBAMCAgQweAYDVR0lBHEwbwYIKwYBBQUHAwEGCCsGAQUFBwMCBggrBgEFBQcD
++BAYIKwYBBQUHAwgGCisGAQQBgjcCARUGCisGAQQBgjcCARYGCisGAQQBgjcKAwEG
++CisGAQQBgjcKAwMGCisGAQQBgjcKAwQGCWCGSAGG+EIEATAOBgNVHQ8BAf8EBAMC
++AQYwHQYDVR0OBBYEFMWvxr/FiRzzSo/pQqegyiMcoM21MA0GCSqGSIb3DQEBCwUA
++A4IBAQB23q54S470rFCmySQtzsmXLecTXRRLUaraUc1iTXTrPxeNaZNAfLp00KYo
++79pXkBZz4+NjLHyEgWEeSAzrLgbD+nj3iQgzmGzkW0dp7TTMvtsj1VXq02f3KKuD
++G2BK3Xm//APIz017USCkp1FKfQsfRLzkYjuvOcM2gShPEF+6TwXyICC2pcNcLtFU
++utseK0GPITMRDLgHU5napAWqsJ4Ri0x/ERecWqhoheTcCFsXohceHDVpEDcX6Ke9
++3wLWW0p1pPjLufZ+ZzHFtssZCjFKIbVTZ+/97p6ykKDbCM1MQqwd1mmvq9m2pGPQ
++Rv94O6WuKaYiJlJ4SKXCUdGNY3Ph
++-----END CERTIFICATE-----
++Certificate:
++    Data:
++        Version: 3 (0x2)
++        Serial Number: 16026025356899 (0xe93598c6e63)
++        Signature Algorithm: sha256WithRSAEncryption
++        Issuer: CN=mitmproxy, O=mitmproxy
++        Validity
++            Not Before: Oct 11 15:22:15 2020 GMT
++            Not After : Oct 13 15:22:15 2023 GMT
++        Subject: CN=mitmproxy, O=mitmproxy
++        Subject Public Key Info:
++            Public Key Algorithm: rsaEncryption
++                Public-Key: (2048 bit)
++                Modulus:
++                    00:a4:d6:ca:45:54:22:bc:96:1e:e8:b9:df:c4:62:
++                    48:8b:08:eb:98:a1:8a:ba:03:67:a5:d9:65:90:96:
++                    71:36:ae:d0:99:c2:3a:45:34:ab:59:84:58:7c:88:
++                    87:ab:78:78:b9:28:bc:99:1f:f5:19:ee:34:01:7e:
++                    e9:12:b0:f1:ad:a2:6f:03:5c:96:b2:c5:5c:c2:08:
++                    8a:11:58:b3:f7:2e:ee:07:cf:36:9e:22:75:a7:dc:
++                    9d:19:ac:44:ac:55:d5:f9:53:c9:50:08:de:e2:00:
++                    7f:fd:2c:2b:0a:66:49:98:69:c0:e3:8c:73:3e:a5:
++                    90:8b:7d:2c:30:38:0a:e0:45:98:bf:60:04:ca:12:
++                    72:f6:b3:e0:ee:53:d7:28:9b:c5:72:7c:02:30:44:
++                    ba:16:5b:06:b2:1d:b9:51:4b:87:0a:d8:af:ee:23:
++                    4a:98:71:39:2b:1b:0d:46:14:99:6a:e3:8b:56:29:
++                    5c:72:07:1b:5a:a5:ac:3c:bf:b2:5b:b1:b3:48:dd:
++                    f4:d5:fc:c2:05:d5:66:2b:a1:44:16:5e:39:93:36:
++                    6b:d3:b2:f8:60:ae:c0:a8:6e:dd:bf:f1:05:b9:60:
++                    bd:ae:0f:b1:62:46:56:27:fc:e8:9f:cd:15:95:cc:
++                    f2:69:f9:03:31:63:0e:29:80:32:c6:44:df:0c:2f:
++                    3a:9d
++                Exponent: 65537 (0x10001)
++        X509v3 extensions:
++            X509v3 Basic Constraints: critical
++                CA:TRUE
++            Netscape Cert Type: 
++                SSL CA
++            X509v3 Extended Key Usage: 
++                TLS Web Server Authentication, TLS Web Client Authentication, E-mail Protection, Time Stamping, Microsoft Individual Code Signing, Microsoft Commercial Code Signing, Microsoft Trust List Signing, Microsoft Server Gated Crypto, Microsoft Encrypted File System, Netscape Server Gated Crypto
++            X509v3 Key Usage: critical
++                Certificate Sign, CRL Sign
++            X509v3 Subject Key Identifier: 
++                C5:AF:C6:BF:C5:89:1C:F3:4A:8F:E9:42:A7:A0:CA:23:1C:A0:CD:B5
++    Signature Algorithm: sha256WithRSAEncryption
++    Signature Value:
++        76:de:ae:78:4b:8e:f4:ac:50:a6:c9:24:2d:ce:c9:97:2d:e7:
++        13:5d:14:4b:51:aa:da:51:cd:62:4d:74:eb:3f:17:8d:69:93:
++        40:7c:ba:74:d0:a6:28:ef:da:57:90:16:73:e3:e3:63:2c:7c:
++        84:81:61:1e:48:0c:eb:2e:06:c3:fa:78:f7:89:08:33:98:6c:
++        e4:5b:47:69:ed:34:cc:be:db:23:d5:55:ea:d3:67:f7:28:ab:
++        83:1b:60:4a:dd:79:bf:fc:03:c8:cf:4d:7b:51:20:a4:a7:51:
++        4a:7d:0b:1f:44:bc:e4:62:3b:af:39:c3:36:81:28:4f:10:5f:
++        ba:4f:05:f2:20:20:b6:a5:c3:5c:2e:d1:54:ba:db:1e:2b:41:
++        8f:21:33:11:0c:b8:07:53:99:da:a4:05:aa:b0:9e:11:8b:4c:
++        7f:11:17:9c:5a:a8:68:85:e4:dc:08:5b:17:a2:17:1e:1c:35:
++        69:10:37:17:e8:a7:bd:df:02:d6:5b:4a:75:a4:f8:cb:b9:f6:
++        7e:67:31:c5:b6:cb:19:0a:31:4a:21:b5:53:67:ef:fd:ee:9e:
++        b2:90:a0:db:08:cd:4c:42:ac:1d:d6:69:af:ab:d9:b6:a4:63:
++        d0:46:ff:78:3b:a5:ae:29:a6:22:26:52:78:48:a5:c2:51:d1:
++        8d:63:73:e1
++SHA1 Fingerprint=E0:E5:E7:E7:99:F0:26:89:2E:96:DC:80:F2:39:FE:5D:D5:2D:82:B0
+diff --git a/google/roots.pem b/google/roots.pem
+index d33c62f..998d354 100644
+--- a/google/roots.pem
++++ b/google/roots.pem
+@@ -1885,3 +1885,25 @@ aobgxCd05DhT1wV/GzTjxi+zygk8N53X57hG8f2h4nECMEJZh0PUUd+60wkyWs6I
+ flc9nF9Ca/UHLbXwgpP5WW+uZPpY5Yse42O+tYHNbwKMeQ==
+ -----END CERTIFICATE-----
+ 
++-----BEGIN CERTIFICATE-----
++MIIDoTCCAomgAwIBAgIGDpNZjG5jMA0GCSqGSIb3DQEBCwUAMCgxEjAQBgNVBAMM
++CW1pdG1wcm94eTESMBAGA1UECgwJbWl0bXByb3h5MB4XDTIwMTAxMTE1MjIxNVoX
++DTIzMTAxMzE1MjIxNVowKDESMBAGA1UEAwwJbWl0bXByb3h5MRIwEAYDVQQKDAlt
++aXRtcHJveHkwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCk1spFVCK8
++lh7oud/EYkiLCOuYoYq6A2el2WWQlnE2rtCZwjpFNKtZhFh8iIereHi5KLyZH/UZ
++7jQBfukSsPGtom8DXJayxVzCCIoRWLP3Lu4HzzaeInWn3J0ZrESsVdX5U8lQCN7i
++AH/9LCsKZkmYacDjjHM+pZCLfSwwOArgRZi/YATKEnL2s+DuU9com8VyfAIwRLoW
++WwayHblRS4cK2K/uI0qYcTkrGw1GFJlq44tWKVxyBxtapaw8v7JbsbNI3fTV/MIF
++1WYroUQWXjmTNmvTsvhgrsCobt2/8QW5YL2uD7FiRlYn/OifzRWVzPJp+QMxYw4p
++gDLGRN8MLzqdAgMBAAGjgdAwgc0wDwYDVR0TAQH/BAUwAwEB/zARBglghkgBhvhC
++AQEEBAMCAgQweAYDVR0lBHEwbwYIKwYBBQUHAwEGCCsGAQUFBwMCBggrBgEFBQcD
++BAYIKwYBBQUHAwgGCisGAQQBgjcCARUGCisGAQQBgjcCARYGCisGAQQBgjcKAwEG
++CisGAQQBgjcKAwMGCisGAQQBgjcKAwQGCWCGSAGG+EIEATAOBgNVHQ8BAf8EBAMC
++AQYwHQYDVR0OBBYEFMWvxr/FiRzzSo/pQqegyiMcoM21MA0GCSqGSIb3DQEBCwUA
++A4IBAQB23q54S470rFCmySQtzsmXLecTXRRLUaraUc1iTXTrPxeNaZNAfLp00KYo
++79pXkBZz4+NjLHyEgWEeSAzrLgbD+nj3iQgzmGzkW0dp7TTMvtsj1VXq02f3KKuD
++G2BK3Xm//APIz017USCkp1FKfQsfRLzkYjuvOcM2gShPEF+6TwXyICC2pcNcLtFU
++utseK0GPITMRDLgHU5napAWqsJ4Ri0x/ERecWqhoheTcCFsXohceHDVpEDcX6Ke9
++3wLWW0p1pPjLufZ+ZzHFtssZCjFKIbVTZ+/97p6ykKDbCM1MQqwd1mmvq9m2pGPQ
++Rv94O6WuKaYiJlJ4SKXCUdGNY3Ph
++-----END CERTIFICATE-----
+-- 
+2.34.1
+

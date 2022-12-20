@@ -1,7 +1,7 @@
-From b1d13a9816e6cbf9950c66995f03798b30bbba54 Mon Sep 17 00:00:00 2001
+From f881608c5de981b077e13ad9736dd1b0ad378691 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
-Subject: [PATCH 1/6] Various updates to phh treble device
+Subject: [PATCH 1/7] Various updates to phh treble device
 
 - make adb secure
 - remove su
@@ -6467,10 +6467,10 @@ index db7c86d..4797b06 100644
 2.34.1
 
 
-From 37c4520d0dc5fe072ba212c8c12150c64f02f87b Mon Sep 17 00:00:00 2001
+From 9ee58845677fcb450a53675f9b0c85d22545274e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
-Subject: [PATCH 2/6] Passes safetynet out of the box
+Subject: [PATCH 2/7] Passes safetynet out of the box
 
 remove unneeded system prop changes
 
@@ -6507,10 +6507,10 @@ index 42d315f..155936b 100644
 2.34.1
 
 
-From 598e9880fb8548a616f58cadd20f221426c9c7ed Mon Sep 17 00:00:00 2001
+From 77411992afa88f4d18cd9d517acb8cb669464140 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
-Subject: [PATCH 3/6] Fix adb not connecting when device first starts
+Subject: [PATCH 3/7] Fix adb not connecting when device first starts
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -6551,10 +6551,10 @@ index 55b3311..0000000
 2.34.1
 
 
-From a759bf82e6a94f37776716e37cda8e8b73efbfea Mon Sep 17 00:00:00 2001
+From aeead67cfae6b5eef4b942cb8d9286fa8963cdd4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
-Subject: [PATCH 4/6] Add FP3 boot animation
+Subject: [PATCH 4/7] Add FP3 boot animation
 
 - add nova launcher
 - remove unused packages
@@ -14909,10 +14909,10 @@ index 738b96f..516377a 100644
 2.34.1
 
 
-From ba515ef6ce5fac0fb54d3b45f9fcf1fe615821ac Mon Sep 17 00:00:00 2001
+From dbb55c399209237fb77c4683bf09f2275124322a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
-Subject: [PATCH 5/6] Add fp3 boot animation
+Subject: [PATCH 5/7] Add fp3 boot animation
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16498,10 +16498,10 @@ index 516377a..0000000
 2.34.1
 
 
-From 4f8f4e5675185f76a6bb132d1d21dc27786f997e Mon Sep 17 00:00:00 2001
+From e1a8cead9f01cb251f887391acba5a6cf722966b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:45:26 -0500
-Subject: [PATCH 6/6] fix bootanimation
+Subject: [PATCH 6/7] fix bootanimation
 
 ---
  blueline.mk | 3 +++
@@ -16521,6 +16521,32 @@ index d5ccf61..5b3265d 100644
  PRODUCT_NAME := blueline
  PRODUCT_DEVICE := blueline
  PRODUCT_BRAND := Google
+-- 
+2.34.1
+
+
+From df6223e7d0a3109133ad146d0d998cb694dd43f8 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Tue, 20 Dec 2022 18:49:11 -0500
+Subject: [PATCH 7/7] Add ro.build.version.real_security_patch
+
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ base.mk | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/base.mk b/base.mk
+index 9f975c7..243d251 100644
+--- a/base.mk
++++ b/base.mk
+@@ -37,6 +37,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+ 	ro.build.version.all_codenames=$(PLATFORM_VERSION_ALL_CODENAMES) \
+ 	ro.build.version.release=$(PLATFORM_VERSION) \
+ 	ro.build.version.security_patch=$(PLATFORM_SECURITY_PATCH) \
++	ro.build.version.real_security_patch=$(PLATFORM_SECURITY_PATCH) \
+ 	ro.logd.auditd=true \
+ 	ro.logd.kernel=true \
+ 	
 -- 
 2.34.1
 

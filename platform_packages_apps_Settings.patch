@@ -1,7 +1,7 @@
-From 31cf354976854b1d5eaa8e8205baa7a14dfc4b1c Mon Sep 17 00:00:00 2001
+From f05e97a1a97ef233ddf1deb6f7e96882f145a5dc Mon Sep 17 00:00:00 2001
 From: danielzhang130 <danielzhang130@gmail.com>
 Date: Sat, 13 Aug 2022 13:32:22 -0400
-Subject: [PATCH] Add Build and Build.VERSION info to about phone screen
+Subject: [PATCH 1/2] Add Build and Build.VERSION info to about phone screen
 
 Signed-off-by: danielzhang130 <danielzhang130@gmail.com>
 Change-Id: I0ad77dbe06acd451dc153b14b0443e3fd914c08f
@@ -166,6 +166,54 @@ index 0000000..3605682
 +    }
 +}
 +
+-- 
+2.34.1
+
+
+From abfbd24080d3d27891bc54548d57572fbfd65f28 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Tue, 20 Dec 2022 18:51:09 -0500
+Subject: [PATCH 2/2] Change about android screen to show real security patch
+
+Change-Id: I83afaaa0231ad9610db2813126404d09c5c630d9
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../SecurityPatchLevelPreferenceController.java              | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java b/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java
+index 1df78a8..946aa7a 100644
+--- a/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java
++++ b/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java
+@@ -20,17 +20,18 @@ import android.content.Context;
+ import android.content.Intent;
+ import android.content.pm.PackageManager;
+ import android.net.Uri;
++import android.os.SystemProperties;
+ import android.text.TextUtils;
+ import android.util.Log;
+ 
+ import androidx.preference.Preference;
+ 
+ import com.android.settings.core.BasePreferenceController;
+-import com.android.settingslib.DeviceInfoUtils;
+ 
+ public class SecurityPatchLevelPreferenceController extends BasePreferenceController {
+ 
+     private static final String TAG = "SecurityPatchCtrl";
++    private static final String SECURITY_PATCH = "ro.build.version.real_security_patch";
+     private static final Uri INTENT_URI_DATA = Uri.parse(
+             "https://source.android.com/security/bulletin/");
+ 
+@@ -40,7 +41,7 @@ public class SecurityPatchLevelPreferenceController extends BasePreferenceContro
+     public SecurityPatchLevelPreferenceController(Context context, String key) {
+         super(context, key);
+         mPackageManager = mContext.getPackageManager();
+-        mCurrentPatch = DeviceInfoUtils.getSecurityPatch();
++        mCurrentPatch = SystemProperties.get(SECURITY_PATCH);
+     }
+ 
+     @Override
 -- 
 2.34.1
 

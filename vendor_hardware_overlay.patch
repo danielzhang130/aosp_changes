@@ -1,4 +1,4 @@
-From 76f99799fea0038f69dcbd67463716ccc51be38a Mon Sep 17 00:00:00 2001
+From 00fe84bb0496953db545b992d2a3f2cea15730f4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:44:02 -0500
 Subject: [PATCH] Add fairphone system ui overlay
@@ -57,15 +57,10 @@ index 0000000..87ee5ac
 +    <integer name="volume_dialog_gravity">19</integer>
 +</resources>
 diff --git a/overlay.mk b/overlay.mk
-index c1b8722..ca400e4 100644
+index 823769e..31aacb5 100644
 --- a/overlay.mk
 +++ b/overlay.mk
-@@ -1,18 +1,10 @@
- PRODUCT_PACKAGES += \
- 	HardwareOverlayPicker \
- 	QtiAudio \
--	TrebleApp \
- 	treble-overlay-NavBar \
+@@ -6,13 +6,6 @@ PRODUCT_PACKAGES += \
  	treble-overlay-NightMode \
  	treble-overlay-SystemUI-FalseLocks \
  	treble-overlay-Telephony-LTE \
@@ -79,7 +74,7 @@ index c1b8722..ca400e4 100644
  	treble-overlay-asus-zenfonemaxshot \
  	treble-overlay-blackview-bv6900 \
  	treble-overlay-blackview-bv9500plus \
-@@ -20,32 +12,9 @@ PRODUCT_PACKAGES += \
+@@ -20,32 +13,9 @@ PRODUCT_PACKAGES += \
  	treble-overlay-caf-ims \
  	treble-overlay-devinputjack \
  	treble-overlay-duoqin-qin2pro \
@@ -113,7 +108,7 @@ index c1b8722..ca400e4 100644
  	treble-overlay-hw-ims \
  	treble-overlay-infinix-note10 \
  	treble-overlay-infinix-note10pro \
-@@ -55,192 +24,20 @@ PRODUCT_PACKAGES += \
+@@ -55,192 +25,20 @@ PRODUCT_PACKAGES += \
  	treble-overlay-infinix-s4 \
  	treble-overlay-infinix-zero6 \
  	treble-overlay-infinix-zeroxpro \
@@ -306,7 +301,7 @@ index c1b8722..ca400e4 100644
  	treble-overlay-sprd-ims \
  	treble-overlay-teclast-m30 \
  	treble-overlay-teclast-t30 \
-@@ -260,67 +57,7 @@ PRODUCT_PACKAGES += \
+@@ -260,68 +58,7 @@ PRODUCT_PACKAGES += \
  	treble-overlay-umidigi-A5pro \
  	treble-overlay-umidigi-power \
  	treble-overlay-unihertz-jelly2 \
@@ -342,6 +337,7 @@ index c1b8722..ca400e4 100644
 -	treble-overlay-xiaomi-pocof4-systemui \
 -	treble-overlay-xiaomi-pocom3pro5g \
 -	treble-overlay-xiaomi-pocom4pro5g \
+-	treble-overlay-xiaomi-pocom4pro5g-systemui \
 -	treble-overlay-xiaomi-pocox3gt \
 -	treble-overlay-xiaomi-redmi10x5g \
 -	treble-overlay-xiaomi-redmi10x5g-systemui \

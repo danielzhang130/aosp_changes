@@ -1,7 +1,7 @@
 From f881608c5de981b077e13ad9736dd1b0ad378691 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
-Subject: [PATCH 1/9] Various updates to phh treble device
+Subject: [PATCH 01/10] Various updates to phh treble device
 
 - make adb secure
 - remove su
@@ -6470,7 +6470,7 @@ index db7c86d..4797b06 100644
 From 9ee58845677fcb450a53675f9b0c85d22545274e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
-Subject: [PATCH 2/9] Passes safetynet out of the box
+Subject: [PATCH 02/10] Passes safetynet out of the box
 
 remove unneeded system prop changes
 
@@ -6510,7 +6510,7 @@ index 42d315f..155936b 100644
 From 77411992afa88f4d18cd9d517acb8cb669464140 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
-Subject: [PATCH 3/9] Fix adb not connecting when device first starts
+Subject: [PATCH 03/10] Fix adb not connecting when device first starts
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -6554,7 +6554,7 @@ index 55b3311..0000000
 From aeead67cfae6b5eef4b942cb8d9286fa8963cdd4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
-Subject: [PATCH 4/9] Add FP3 boot animation
+Subject: [PATCH 04/10] Add FP3 boot animation
 
 - add nova launcher
 - remove unused packages
@@ -14912,7 +14912,7 @@ index 738b96f..516377a 100644
 From dbb55c399209237fb77c4683bf09f2275124322a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
-Subject: [PATCH 5/9] Add fp3 boot animation
+Subject: [PATCH 05/10] Add fp3 boot animation
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16501,7 +16501,7 @@ index 516377a..0000000
 From e1a8cead9f01cb251f887391acba5a6cf722966b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:45:26 -0500
-Subject: [PATCH 6/9] fix bootanimation
+Subject: [PATCH 06/10] fix bootanimation
 
 ---
  blueline.mk | 3 +++
@@ -16528,7 +16528,7 @@ index d5ccf61..5b3265d 100644
 From df6223e7d0a3109133ad146d0d998cb694dd43f8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:49:11 -0500
-Subject: [PATCH 7/9] Add ro.build.version.real_security_patch
+Subject: [PATCH 07/10] Add ro.build.version.real_security_patch
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16554,7 +16554,7 @@ index 9f975c7..243d251 100644
 From ab83788acee67e8390b7bbc00ead17147116c327 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
-Subject: [PATCH 8/9] Remove restarting surfaceflinger
+Subject: [PATCH 08/10] Remove restarting surfaceflinger
 
 - stop boot animation restarting
 - lcd density seems to be set correctly without it
@@ -16585,7 +16585,7 @@ index d1fffde..0991f3a 100644
 From ce9fae0ecce69b89bc6b6abc8f5030f233f940bf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
-Subject: [PATCH 9/9] Remove twrp files
+Subject: [PATCH 09/10] Remove twrp files
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29579,6 +29579,265 @@ index cb67b71..0000000
 -
 -sync
 -reboot
+-- 
+2.34.1
+
+
+From 318bd9c85301059dcb194d7ea67802d25e1d71be Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Thu, 22 Dec 2022 21:47:06 -0500
+Subject: [PATCH 10/10] Remove ota
+
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ base.mk         |   1 -
+ files/ota.sh    |  52 -----------------------
+ ota/Android.bp  |  12 ------
+ ota/phh-ota.cpp | 110 ------------------------------------------------
+ ota/phh-ota.rc  |  12 ------
+ vndk.rc         |   3 --
+ 6 files changed, 190 deletions(-)
+ delete mode 100644 files/ota.sh
+ delete mode 100644 ota/Android.bp
+ delete mode 100644 ota/phh-ota.cpp
+ delete mode 100644 ota/phh-ota.rc
+
+diff --git a/base.mk b/base.mk
+index a377ea4..b385581 100644
+--- a/base.mk
++++ b/base.mk
+@@ -170,7 +170,6 @@ PRODUCT_PACKAGES += \
+ 
+ PRODUCT_COPY_FILES += \
+ 	device/phh/treble/phh-securize.sh:system/bin/phh-securize.sh \
+-	device/phh/treble/files/ota.sh:system/bin/ota.sh \
+ 
+ PRODUCT_COPY_FILES += \
+ 	device/phh/treble/remove-telephony.sh:system/bin/remove-telephony.sh \
+diff --git a/files/ota.sh b/files/ota.sh
+deleted file mode 100644
+index a43ce81..0000000
+--- a/files/ota.sh
++++ /dev/null
+@@ -1,52 +0,0 @@
+-#!/system/bin/sh
+-
+-set -ex
+-
+-if ! [ "$(getprop ro.boot.dynamic_partitions)" = true ];then
+-    echo "OTA is supported only for devices with dynamic partitions!"
+-    exit 1
+-fi
+-
+-flavor=$(getprop ro.product.product.name)
+-if [ -f /system/phh/secure ];then
+-	flavor=${flavor}-secure
+-fi
+-nextVersion=$(curl --silent -L https://raw.githubusercontent.com/phhusson/treble_experimentations/master/ota/squeak/$flavor/date)
+-if [ -z "$nextVersion" ];then
+-    echo "Couldn't find any OTA for $flavor"
+-    exit 1
+-fi
+-
+-url=$(curl --silent -L https://raw.githubusercontent.com/phhusson/treble_experimentations/master/ota/squeak/$flavor/url)
+-size=$(curl --silent -L https://raw.githubusercontent.com/phhusson/treble_experimentations/master/ota/squeak/$flavor/size)
+-
+-if [ "$(getprop ro.product.build.date.utc)" = "$nextVersion" ];then
+-    echo "Installing $nextVersion onto itself, aborting"
+-    exit 1
+-fi
+-
+-if ! curl --silent -L https://raw.githubusercontent.com/phhusson/treble_experimentations/master/ota/squeak/$flavor/known_releases |grep -q $(getprop ro.product.build.date.utc);then
+-    echo "Warning! The build you are currently running is unknown. Type YES to confirm you want to apply OTA from $url"
+-    read answer
+-    if ! [ "$answer" = YES ];then
+-        exit 1
+-    fi
+-fi
+-
+-if [ -b /dev/tmp-phh ] && ! tune2fs -l /dev/tmp-phh  |grep 'Last mount time' |grep -q n/a;then
+-    echo "Warning! It looks like you modified your system image! Flashing this OTA will revert this!"
+-    echo "Type YES to acknowledge"
+-    read answer
+-    if ! [ "$answer" = YES ];then
+-        exit 1
+-    fi
+-fi
+-
+-echo "Flashing from ${url}..."
+-
+-dmDevice=$(phh-ota new-slot)
+-curl -L "$url" | busybox_phh xz -d -c > $dmDevice
+-phh-ota switch-slot
+-
+-reboot
+-exit 0
+diff --git a/ota/Android.bp b/ota/Android.bp
+deleted file mode 100644
+index 741b553..0000000
+--- a/ota/Android.bp
++++ /dev/null
+@@ -1,12 +0,0 @@
+-cc_binary {
+-	name: "phh-ota",
+-	srcs: [
+-		"phh-ota.cpp",
+-	],
+-	shared_libs: [
+-		"libfs_mgr",
+-		"libbase",
+-		"liblp",
+-	],
+-	init_rc: ["phh-ota.rc"],
+-}
+diff --git a/ota/phh-ota.cpp b/ota/phh-ota.cpp
+deleted file mode 100644
+index 895a897..0000000
+--- a/ota/phh-ota.cpp
++++ /dev/null
+@@ -1,110 +0,0 @@
+-#include <string>
+-#include <sys/stat.h>
+-#include <sys/types.h>
+-#include <sys/mount.h>
+-#include <sys/sysmacros.h>
+-#include <sys/xattr.h>
+-#include <stdio.h>
+-#include <unistd.h>
+-#include <fcntl.h>
+-#include <libfiemap/image_manager.h>
+-#include <android-base/file.h>
+-
+-using namespace std::chrono_literals;
+-using namespace std::string_literals;
+-using android::fiemap::IImageManager;
+-
+-
+-std::string getNextSlot() {
+-    std::string current_slot;
+-    std::string next_slot = "a";
+-    if(android::base::ReadFileToString("/metadata/phh/img", &current_slot) &&
+-        current_slot.c_str()[0] == 'a') {
+-            next_slot = "b";
+-    }
+-    return next_slot;
+-}
+-
+-int main(int argc, char **argv) {
+-	mkdir("/metadata/gsi/phh", 0771);
+-	chown("/metadata/gsi/phh", 0, 1000);
+-	mkdir("/data/gsi/phh", 0771);
+-	chown("/data/gsi/phh", 0, 1000);
+-
+-	auto imgManager = IImageManager::Open("phh", 0ms);
+-	if(argc>=2 && strcmp(argv[1], "unmap") == 0) {
+-		fprintf(stderr, "Unmapping backing image returned %s\n", imgManager->UnmapImageDevice("system_otaphh_a") ? "true" : "false");
+-		fprintf(stderr, "Unmapping backing image returned %s\n", imgManager->UnmapImageDevice("system_otaphh_b") ? "true" : "false");
+-		return 0;
+-	}
+-	if(argc>=2 && strcmp(argv[1], "switch-slot") == 0) {
+-		std::string next_slot = getNextSlot();
+-		mkdir("/metadata/phh", 0700);
+-		android::base::WriteStringToFile(next_slot, "/metadata/phh/img");
+-		return 0;
+-	}
+-	if(argc>=2 && strcmp(argv[1], "new-slot") == 0) {
+-		std::string next_slot = getNextSlot();
+-
+-		std::string imageName = "system_otaphh_"s + next_slot;
+-
+-		fprintf(stderr, "Unmapping backing image returned %s\n", imgManager->UnmapImageDevice(imageName) ? "true" : "false");
+-		fprintf(stderr, "Deleting backing image returned %s\n", imgManager->DeleteBackingImage(imageName) ? "true" : "false");
+-		auto backRes = imgManager->CreateBackingImage(imageName, 4*1024*1024*1024LL, IImageManager::CREATE_IMAGE_DEFAULT, nullptr);
+-		if(backRes.is_ok()) {
+-			fprintf(stderr, "Creating system image succeeded\n");
+-		} else {
+-			fprintf(stderr, "Creating system image failed\n");
+-			return -1;
+-		}
+-
+-		std::string blockDev;
+-		fprintf(stderr, "Mapping backing image returned %s\n", imgManager->MapImageDevice(imageName, 0ms, &blockDev) ? "true" : "false");
+-		fprintf(stderr, "blockdev is %s\n", blockDev.c_str());
+-		printf("%s\n", blockDev.c_str());
+-
+-		struct stat sb;
+-		for(int i=0; i<10; i++) {
+-			if(!stat(blockDev.c_str(), &sb)) break;
+-			sleep(1);
+-		}
+-
+-		if(!S_ISBLK(sb.st_mode)) {
+-			fprintf(stderr, "blockDev wasn't block dev\n");
+-			return -1;
+-		}
+-
+-		unlink("/dev/phh-ota");
+-		mknod("/dev/phh-ota", 0664 | S_IFBLK, makedev(major(sb.st_rdev), minor(sb.st_rdev)));
+-		chmod("/dev/phh-ota", 0664);
+-		// Allow system uid to write there
+-		chown("/dev/phh-ota", 0, 1000);
+-		const char *dstContext = "u:object_r:phhota_dev:s0";
+-		setxattr("/dev/phh-ota", "security.selinux", dstContext, strlen(dstContext), 0);
+-
+-		return 0;
+-	}
+-	if(argc>=2 && strcmp(argv[1], "delete-other-slot") == 0) {
+-		const char* current_slot = getenv("PHH_OTA_SLOT");
+-		if(current_slot == NULL) {
+-			imgManager->UnmapImageDevice("system_otaphh_a");
+-			imgManager->DeleteBackingImage("system_otaphh_a");
+-			imgManager->UnmapImageDevice("system_otaphh_b");
+-			imgManager->DeleteBackingImage("system_otaphh_b");
+-			return 0;
+-		}
+-		if(current_slot[0] == 'a') {
+-			imgManager->UnmapImageDevice("system_otaphh_b");
+-			imgManager->DeleteBackingImage("system_otaphh_b");
+-			return 0;
+-		}
+-		if(current_slot[0] == 'b') {
+-			imgManager->UnmapImageDevice("system_otaphh_a");
+-			imgManager->DeleteBackingImage("system_otaphh_a");
+-			return 0;
+-		}
+-		return 0;
+-	}
+-
+-	return 1;
+-}
+diff --git a/ota/phh-ota.rc b/ota/phh-ota.rc
+deleted file mode 100644
+index c6c5814..0000000
+--- a/ota/phh-ota.rc
++++ /dev/null
+@@ -1,12 +0,0 @@
+-service phh-ota-make /system/bin/phh-ota new-slot
+-	seclabel u:r:phhsu_daemon:s0
+-	disabled
+-	oneshot
+-
+-service phh-ota-switch /system/bin/phh-ota switch-slot
+-	seclabel u:r:phhsu_daemon:s0
+-	disabled
+-	oneshot
+-
+-on property:sys.boot_completed=1
+-    exec u:r:phhsu_daemon:s0 root -- /system/bin/phh-ota delete-other-slot
+diff --git a/vndk.rc b/vndk.rc
+index 0991f3a..4b9c16d 100644
+--- a/vndk.rc
++++ b/vndk.rc
+@@ -73,9 +73,6 @@ on property:persist.sys.phh.restart_ril=true
+ on property:vendor.debug.sf.latch_unsignaled=1
+     setprop debug.sf.latch_unsignaled 1
+ 
+-on property:sys.phh.uninstall-ota=true
+-    exec u:r:phhsu_daemon:s0 root -- /system/bin/rm /metadata/phh/img
+-
+ on property:ro.vendor.radio.default_network=*
+     setprop ro.telephony.default_network ${ro.vendor.radio.default_network}
+ 
 -- 
 2.34.1
 

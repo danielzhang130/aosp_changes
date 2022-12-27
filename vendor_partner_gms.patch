@@ -1,26 +1,18 @@
-From b635c04fd2ee0f71154007819198e1e1ab369c3a Mon Sep 17 00:00:00 2001
+From 822b8d1ea6001c42c6179f62efda2ec74093fffd Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 12:12:59 -0500
 Subject: [PATCH] Remove ununsed apps
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- products/gms.mk | 20 --------------------
- 1 file changed, 20 deletions(-)
+ products/gms.mk | 19 -------------------
+ 1 file changed, 19 deletions(-)
 
 diff --git a/products/gms.mk b/products/gms.mk
-index bfdb8f6..209b6fe 100644
+index bfdb8f6..0796a27 100644
 --- a/products/gms.mk
 +++ b/products/gms.mk
-@@ -28,7 +28,6 @@ PRODUCT_PACKAGES := \
-     SpeechServicesByGoogle \
-     GmsCore \
-     Phonesky \
--    SetupWizard \
-     WebViewGoogle \
-     Wellbeing
- 
-@@ -61,16 +60,7 @@ PRODUCT_PACKAGE_OVERLAYS += $(ANDROID_PARTNER_GMS_HOME)/overlay/gms_overlay
+@@ -61,16 +61,7 @@ PRODUCT_PACKAGE_OVERLAYS += $(ANDROID_PARTNER_GMS_HOME)/overlay/gms_overlay
  
  # GMS mandatory application packages
  PRODUCT_PACKAGES += \
@@ -37,7 +29,7 @@ index bfdb8f6..209b6fe 100644
  
  # GMS comms suite
  $(call inherit-product, $(ANDROID_PARTNER_GMS_HOME)/products/google_comms_suite.mk)
-@@ -81,26 +71,16 @@ $(call inherit-product, $(ANDROID_PARTNER_GMS_HOME)/products/personal_safety.mk)
+@@ -81,26 +72,16 @@ $(call inherit-product, $(ANDROID_PARTNER_GMS_HOME)/products/personal_safety.mk)
  # GMS optional application packages
  PRODUCT_PACKAGES += \
      AndroidSystemIntelligence_Features \

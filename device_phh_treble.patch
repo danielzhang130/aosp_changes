@@ -1,7 +1,7 @@
 From f881608c5de981b077e13ad9736dd1b0ad378691 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
-Subject: [PATCH 01/12] Various updates to phh treble device
+Subject: [PATCH 01/13] Various updates to phh treble device
 
 - make adb secure
 - remove su
@@ -6470,7 +6470,7 @@ index db7c86d..4797b06 100644
 From 9ee58845677fcb450a53675f9b0c85d22545274e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
-Subject: [PATCH 02/12] Passes safetynet out of the box
+Subject: [PATCH 02/13] Passes safetynet out of the box
 
 remove unneeded system prop changes
 
@@ -6510,7 +6510,7 @@ index 42d315f..155936b 100644
 From 77411992afa88f4d18cd9d517acb8cb669464140 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
-Subject: [PATCH 03/12] Fix adb not connecting when device first starts
+Subject: [PATCH 03/13] Fix adb not connecting when device first starts
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -6554,7 +6554,7 @@ index 55b3311..0000000
 From aeead67cfae6b5eef4b942cb8d9286fa8963cdd4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
-Subject: [PATCH 04/12] Add FP3 boot animation
+Subject: [PATCH 04/13] Add FP3 boot animation
 
 - add nova launcher
 - remove unused packages
@@ -14912,7 +14912,7 @@ index 738b96f..516377a 100644
 From dbb55c399209237fb77c4683bf09f2275124322a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
-Subject: [PATCH 05/12] Add fp3 boot animation
+Subject: [PATCH 05/13] Add fp3 boot animation
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16501,7 +16501,7 @@ index 516377a..0000000
 From e1a8cead9f01cb251f887391acba5a6cf722966b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:45:26 -0500
-Subject: [PATCH 06/12] fix bootanimation
+Subject: [PATCH 06/13] fix bootanimation
 
 ---
  blueline.mk | 3 +++
@@ -16528,7 +16528,7 @@ index d5ccf61..5b3265d 100644
 From df6223e7d0a3109133ad146d0d998cb694dd43f8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:49:11 -0500
-Subject: [PATCH 07/12] Add ro.build.version.real_security_patch
+Subject: [PATCH 07/13] Add ro.build.version.real_security_patch
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16554,7 +16554,7 @@ index 9f975c7..243d251 100644
 From ab83788acee67e8390b7bbc00ead17147116c327 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
-Subject: [PATCH 08/12] Remove restarting surfaceflinger
+Subject: [PATCH 08/13] Remove restarting surfaceflinger
 
 - stop boot animation restarting
 - lcd density seems to be set correctly without it
@@ -16585,7 +16585,7 @@ index d1fffde..0991f3a 100644
 From ce9fae0ecce69b89bc6b6abc8f5030f233f940bf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
-Subject: [PATCH 09/12] Remove twrp files
+Subject: [PATCH 09/13] Remove twrp files
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29586,7 +29586,7 @@ index cb67b71..0000000
 From 318bd9c85301059dcb194d7ea67802d25e1d71be Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:47:06 -0500
-Subject: [PATCH 10/12] Remove ota
+Subject: [PATCH 10/13] Remove ota
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29845,7 +29845,7 @@ index 0991f3a..4b9c16d 100644
 From fe4b9c9e1fff54390d3bab1900a6c5a64026c3ae Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:00:25 -0500
-Subject: [PATCH 11/12] Remove unused remote files, functionality already
+Subject: [PATCH 11/13] Remove unused remote files, functionality already
  removed
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -31958,7 +31958,7 @@ index 87f2f96..0000000
 From 8168a4f83546ae6d9081b644fad607d911288d35 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:12:45 -0500
-Subject: [PATCH 12/12] fix adb by removing ctl.restart adbd
+Subject: [PATCH 12/13] fix adb by removing ctl.restart adbd
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32028,6 +32028,32 @@ index 155936b..877b59c 100644
      # Hide system/xbin/su
      mount /mnt/phh/empty_dir /system/xbin
      mount /mnt/phh/empty_dir /system/app/me.phh.superuser
+-- 
+2.34.1
+
+
+From d34d8b2464f79c315d8b477f00c87b51d5b6faf8 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Tue, 27 Dec 2022 15:16:35 -0500
+Subject: [PATCH 13/13] Add Wellbeing as priv-app
+
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ overrides/Android.mk | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/overrides/Android.mk b/overrides/Android.mk
+index 813d66b..96a0a7a 100644
+--- a/overrides/Android.mk
++++ b/overrides/Android.mk
+@@ -42,7 +42,6 @@ PACKAGES.$(LOCAL_MODULE).OVERRIDES := \
+ 	Videos \
+ 	Duo \
+ 	Traceur \
+-	Wellbeing \
+ 	YouTube \
+ 	Photos \
+ 	Maps \
 -- 
 2.34.1
 

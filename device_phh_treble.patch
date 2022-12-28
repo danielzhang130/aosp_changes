@@ -1,4 +1,4 @@
-From f881608c5de981b077e13ad9736dd1b0ad378691 Mon Sep 17 00:00:00 2001
+From a7ed0180c5f12154a1054e5796e1773dcf638e9e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
 Subject: [PATCH 01/14] Various updates to phh treble device
@@ -6467,7 +6467,7 @@ index db7c86d..4797b06 100644
 2.34.1
 
 
-From 9ee58845677fcb450a53675f9b0c85d22545274e Mon Sep 17 00:00:00 2001
+From 39568ff9bd48608d111f93e689d324b82b09dd26 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
 Subject: [PATCH 02/14] Passes safetynet out of the box
@@ -6507,7 +6507,7 @@ index 42d315f..155936b 100644
 2.34.1
 
 
-From 77411992afa88f4d18cd9d517acb8cb669464140 Mon Sep 17 00:00:00 2001
+From 47ef4c9fee12df054743c3c2867bf11cc1b3533b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
 Subject: [PATCH 03/14] Fix adb not connecting when device first starts
@@ -6551,7 +6551,7 @@ index 55b3311..0000000
 2.34.1
 
 
-From aeead67cfae6b5eef4b942cb8d9286fa8963cdd4 Mon Sep 17 00:00:00 2001
+From c63bad7ff044c6f1d811aa93b48ffc4e07028196 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
 Subject: [PATCH 04/14] Add FP3 boot animation
@@ -14909,7 +14909,7 @@ index 738b96f..516377a 100644
 2.34.1
 
 
-From dbb55c399209237fb77c4683bf09f2275124322a Mon Sep 17 00:00:00 2001
+From 1d4f405dd4b44ea06caa662547f7583d5a72155e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
 Subject: [PATCH 05/14] Add fp3 boot animation
@@ -16498,7 +16498,7 @@ index 516377a..0000000
 2.34.1
 
 
-From e1a8cead9f01cb251f887391acba5a6cf722966b Mon Sep 17 00:00:00 2001
+From 141fc38461ed04deb8a3a7f84d517b4e9e89e0b9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:45:26 -0500
 Subject: [PATCH 06/14] fix bootanimation
@@ -16525,7 +16525,7 @@ index d5ccf61..5b3265d 100644
 2.34.1
 
 
-From df6223e7d0a3109133ad146d0d998cb694dd43f8 Mon Sep 17 00:00:00 2001
+From ace666938663d413ef79f467698cf09055f8a808 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:49:11 -0500
 Subject: [PATCH 07/14] Add ro.build.version.real_security_patch
@@ -16551,7 +16551,7 @@ index 9f975c7..243d251 100644
 2.34.1
 
 
-From ab83788acee67e8390b7bbc00ead17147116c327 Mon Sep 17 00:00:00 2001
+From e531d5629a5b4895db55ee0b4b51c4c84226872f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
 Subject: [PATCH 08/14] Remove restarting surfaceflinger
@@ -16582,7 +16582,7 @@ index d1fffde..0991f3a 100644
 2.34.1
 
 
-From ce9fae0ecce69b89bc6b6abc8f5030f233f940bf Mon Sep 17 00:00:00 2001
+From 672ff2c567e8359d5d1b0ff79becd6b838f06e95 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
 Subject: [PATCH 09/14] Remove twrp files
@@ -29583,7 +29583,7 @@ index cb67b71..0000000
 2.34.1
 
 
-From 318bd9c85301059dcb194d7ea67802d25e1d71be Mon Sep 17 00:00:00 2001
+From 73f6d473c911016272212bdab4002c1f21a1b528 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:47:06 -0500
 Subject: [PATCH 10/14] Remove ota
@@ -29842,7 +29842,7 @@ index 0991f3a..4b9c16d 100644
 2.34.1
 
 
-From fe4b9c9e1fff54390d3bab1900a6c5a64026c3ae Mon Sep 17 00:00:00 2001
+From d56f9784785193ae132f53b3ba323a1d4e39d6a3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:00:25 -0500
 Subject: [PATCH 11/14] Remove unused remote files, functionality already
@@ -31955,7 +31955,7 @@ index 87f2f96..0000000
 2.34.1
 
 
-From 8168a4f83546ae6d9081b644fad607d911288d35 Mon Sep 17 00:00:00 2001
+From cf4849098ca9b7a72102ae29bb4979256dae6bd1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:12:45 -0500
 Subject: [PATCH 12/14] fix adb by removing ctl.restart adbd
@@ -32032,7 +32032,7 @@ index 155936b..877b59c 100644
 2.34.1
 
 
-From d34d8b2464f79c315d8b477f00c87b51d5b6faf8 Mon Sep 17 00:00:00 2001
+From c021399e6ade1a3aae62a8f7695d22bf9388a677 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 27 Dec 2022 15:16:35 -0500
 Subject: [PATCH 13/14] Add Wellbeing as priv-app
@@ -32058,30 +32058,28 @@ index 813d66b..96a0a7a 100644
 2.34.1
 
 
-From b22dae7a305e6d6ae5e2b1f244c27fd40951f837 Mon Sep 17 00:00:00 2001
+From 1997d23162c7d3608a8a23fb3a2918ad514c1c01 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Tue, 27 Dec 2022 18:10:31 -0500
-Subject: [PATCH 14/14] Add themepicker to pixel 3
+Date: Wed, 28 Dec 2022 18:02:33 -0500
+Subject: [PATCH 14/14] Add themepicker to build
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- blueline.mk | 3 +++
- 1 file changed, 3 insertions(+)
+ base.mk | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/blueline.mk b/blueline.mk
-index 5b3265d..0a1697c 100644
---- a/blueline.mk
-+++ b/blueline.mk
-@@ -5,6 +5,9 @@ PRODUCT_COPY_FILES += device/phh/treble/empty:system/phh/secure
- PRODUCT_COPY_FILES += \
- 	device/phh/treble/bootanimation.zip:system/media/bootanimation.zip \
+diff --git a/base.mk b/base.mk
+index b385581..49f6bdc 100644
+--- a/base.mk
++++ b/base.mk
+@@ -230,3 +230,7 @@ PRODUCT_PACKAGES += \
+ 	NovaLauncher \
+ 	NovaCompanion
  
 +PRODUCT_PACKAGES += \
 +	ThemePicker \
++	ThemesStub \
 +
- PRODUCT_NAME := blueline
- PRODUCT_DEVICE := blueline
- PRODUCT_BRAND := Google
 -- 
 2.34.1
 

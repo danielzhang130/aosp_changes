@@ -1,7 +1,7 @@
-From b6fcc58cfff82c5920a176b4b9925f7485815839 Mon Sep 17 00:00:00 2001
+From db8bc74ae7a0a95acf732e4675bb8e6c2c138ac3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 1/3] pass safetynet and gpay
+Subject: [PATCH 1/4] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -14,7 +14,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  create mode 100644 core/java/com/android/internal/gmscompat/AttestationHooks.java
 
 diff --git a/core/java/android/app/Instrumentation.java b/core/java/android/app/Instrumentation.java
-index 8984c429..58258aca 100644
+index 556058b5..44449588 100644
 --- a/core/java/android/app/Instrumentation.java
 +++ b/core/java/android/app/Instrumentation.java
 @@ -57,6 +57,8 @@ import android.view.WindowManagerGlobal;
@@ -26,7 +26,7 @@ index 8984c429..58258aca 100644
  import java.io.File;
  import java.lang.annotation.Retention;
  import java.lang.annotation.RetentionPolicy;
-@@ -1231,6 +1233,7 @@ public class Instrumentation {
+@@ -1242,6 +1244,7 @@ public class Instrumentation {
          Application app = getFactory(context.getPackageName())
                  .instantiateApplication(cl, className);
          app.attach(context);
@@ -34,7 +34,7 @@ index 8984c429..58258aca 100644
          return app;
      }
      
-@@ -1248,6 +1251,7 @@ public class Instrumentation {
+@@ -1259,6 +1262,7 @@ public class Instrumentation {
              ClassNotFoundException {
          Application app = (Application)clazz.newInstance();
          app.attach(context);
@@ -172,10 +172,10 @@ index 33411e1e..133a4094 100644
 2.34.1
 
 
-From 140041e1e17fbf095f424ec56f4c6ccb987a330a Mon Sep 17 00:00:00 2001
+From ae544d297be0d9562625355474e733a2440de599 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 2/3] Set auto brightness on by default
+Subject: [PATCH 2/4] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index 7732da40..5d4190a6 100644
 2.34.1
 
 
-From 3f759da38d1da7653cb05747b3f59f8ec5bb8e24 Mon Sep 17 00:00:00 2001
+From a073f0723f60fccf0cd7bb71df53bd518849ee25 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 3/3] Add support for left side volume dialog
+Subject: [PATCH 3/4] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -671,10 +671,10 @@ index 00000000..8025a780
 +
 +</FrameLayout>
 diff --git a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-index c94a915b..aa6704e7 100644
+index 3094a8c2..928d9c4e 100644
 --- a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
 +++ b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-@@ -164,6 +164,7 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -165,6 +165,7 @@ public class VolumeDialogImpl implements VolumeDialog,
      private final int mDialogShowAnimationDurationMs;
      private final int mDialogHideAnimationDurationMs;
      private int mDialogWidth;
@@ -682,7 +682,7 @@ index c94a915b..aa6704e7 100644
      private int mDialogCornerRadius;
      private int mRingerDrawerItemSize;
      private int mRingerRowsPadding;
-@@ -375,21 +376,24 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -379,21 +380,24 @@ public class VolumeDialogImpl implements VolumeDialog,
  
          float x = locInWindow[0];
          float y = locInWindow[1];
@@ -709,7 +709,7 @@ index c94a915b..aa6704e7 100644
                  locInWindow[1] + view.getHeight(),
                  Region.Op.UNION);
      }
-@@ -419,18 +423,20 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -423,18 +427,20 @@ public class VolumeDialogImpl implements VolumeDialog,
          lp.format = PixelFormat.TRANSLUCENT;
          lp.setTitle(VolumeDialogImpl.class.getSimpleName());
          lp.windowAnimations = -1;
@@ -733,7 +733,7 @@ index c94a915b..aa6704e7 100644
              }
              mDialogView.setAlpha(0);
              mDialogView.animate()
-@@ -606,6 +612,7 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -610,6 +616,7 @@ public class VolumeDialogImpl implements VolumeDialog,
  
          // Normal, mute, and possibly vibrate.
          mRingerCount = mShowVibrate ? 3 : 2;
@@ -741,7 +741,7 @@ index c94a915b..aa6704e7 100644
      }
  
      protected ViewGroup getDialogView() {
-@@ -818,7 +825,7 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -822,7 +829,7 @@ public class VolumeDialogImpl implements VolumeDialog,
                      mDialogView.getPaddingTop(),
                      mDialogView.getPaddingRight(),
                      mDialogView.getPaddingBottom() + getRingerDrawerOpenExtraSize());
@@ -750,7 +750,7 @@ index c94a915b..aa6704e7 100644
              mDialogView.setPadding(
                      mDialogView.getPaddingLeft() + getRingerDrawerOpenExtraSize(),
                      mDialogView.getPaddingTop(),
-@@ -891,11 +898,19 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -895,11 +902,19 @@ public class VolumeDialogImpl implements VolumeDialog,
       * with the given mode in the drawer.
       */
      private float getTranslationInDrawerForRingerMode(int mode) {
@@ -775,7 +775,7 @@ index c94a915b..aa6704e7 100644
      }
  
      /** Animates in the ringer drawer. */
-@@ -930,8 +945,10 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -934,8 +949,10 @@ public class VolumeDialogImpl implements VolumeDialog,
          // icon.
          if (!isLandscape()) {
              mRingerDrawerContainer.setTranslationY(mRingerDrawerItemSize * (mRingerCount - 1));
@@ -787,7 +787,7 @@ index c94a915b..aa6704e7 100644
          }
          mRingerDrawerContainer.setAlpha(0f);
          mRingerDrawerContainer.setVisibility(VISIBLE);
-@@ -1011,10 +1028,14 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -1015,10 +1032,14 @@ public class VolumeDialogImpl implements VolumeDialog,
              mRingerDrawerContainer.animate()
                      .translationY(mRingerDrawerItemSize * 2)
                      .start();
@@ -803,7 +803,7 @@ index c94a915b..aa6704e7 100644
          }
  
          mAnimateUpBackgroundToMatchDrawer.setDuration(DRAWER_ANIMATION_DURATION);
-@@ -1381,7 +1402,10 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -1390,7 +1411,10 @@ public class VolumeDialogImpl implements VolumeDialog,
  
                      hideRingerDrawer();
                  }, 50));
@@ -815,7 +815,7 @@ index c94a915b..aa6704e7 100644
          animator.setListener(getJankListener(getDialogView(), TYPE_DISMISS,
                  mDialogHideAnimationDurationMs)).start();
          checkODICaptionsTooltip(true);
-@@ -1481,7 +1505,7 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -1490,7 +1514,7 @@ public class VolumeDialogImpl implements VolumeDialog,
              }
          }
  
@@ -824,7 +824,7 @@ index c94a915b..aa6704e7 100644
              final View lastVisibleChild = mDialogRowsView.getChildAt(rightmostVisibleRowIndex);
              final ViewGroup.LayoutParams layoutParams = lastVisibleChild.getLayoutParams();
              // Remove the spacing on the last row, and remove its background since the container is
-@@ -1976,8 +2000,11 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -1985,8 +2009,11 @@ public class VolumeDialogImpl implements VolumeDialog,
          final Rect bounds = mRingerAndDrawerContainerBackground.copyBounds();
          if (!isLandscape()) {
              bounds.top = (int) (mRingerDrawerClosedAmount * getRingerDrawerOpenExtraSize());
@@ -837,7 +837,7 @@ index c94a915b..aa6704e7 100644
          }
          mRingerAndDrawerContainerBackground.setBounds(bounds);
      }
-@@ -2018,7 +2045,8 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -2027,7 +2054,8 @@ public class VolumeDialogImpl implements VolumeDialog,
                          : mDialogRowsViewContainer.getTop() - mDialogCornerRadius);
  
          // Set gravity to top-right, since additional rows will be added on the left.
@@ -847,6 +847,34 @@ index c94a915b..aa6704e7 100644
  
          // In landscape, the ringer drawer animates out to the left (instead of down). Since the
          // drawer comes from the right (beyond the bounds of the dialog), we should clip it so it
+-- 
+2.34.1
+
+
+From c6beb74498195f4f7e1205feb03dd6cc7533be05 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Wed, 28 Dec 2022 21:02:38 -0500
+Subject: [PATCH 4/4] Remove max column limit on quick tiles under notification
+ shade
+
+Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ packages/SystemUI/src/com/android/systemui/qs/TileLayout.java | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java b/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java
+index 3d00dd49..4d107f81 100644
+--- a/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java
++++ b/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java
+@@ -91,7 +91,6 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
+ 
+     @Override
+     public boolean setMaxColumns(int maxColumns) {
+-        mMaxColumns = maxColumns;
+         return updateColumns();
+     }
+ 
 -- 
 2.34.1
 

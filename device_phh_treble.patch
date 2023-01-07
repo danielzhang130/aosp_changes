@@ -1,7 +1,7 @@
 From a7ed0180c5f12154a1054e5796e1773dcf638e9e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
-Subject: [PATCH 01/15] Various updates to phh treble device
+Subject: [PATCH 01/16] Various updates to phh treble device
 
 - make adb secure
 - remove su
@@ -6470,7 +6470,7 @@ index db7c86d..4797b06 100644
 From 39568ff9bd48608d111f93e689d324b82b09dd26 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
-Subject: [PATCH 02/15] Passes safetynet out of the box
+Subject: [PATCH 02/16] Passes safetynet out of the box
 
 remove unneeded system prop changes
 
@@ -6510,7 +6510,7 @@ index 42d315f..155936b 100644
 From 47ef4c9fee12df054743c3c2867bf11cc1b3533b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
-Subject: [PATCH 03/15] Fix adb not connecting when device first starts
+Subject: [PATCH 03/16] Fix adb not connecting when device first starts
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -6554,7 +6554,7 @@ index 55b3311..0000000
 From c63bad7ff044c6f1d811aa93b48ffc4e07028196 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
-Subject: [PATCH 04/15] Add FP3 boot animation
+Subject: [PATCH 04/16] Add FP3 boot animation
 
 - add nova launcher
 - remove unused packages
@@ -14912,7 +14912,7 @@ index 738b96f..516377a 100644
 From 1d4f405dd4b44ea06caa662547f7583d5a72155e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
-Subject: [PATCH 05/15] Add fp3 boot animation
+Subject: [PATCH 05/16] Add fp3 boot animation
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16501,7 +16501,7 @@ index 516377a..0000000
 From 141fc38461ed04deb8a3a7f84d517b4e9e89e0b9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:45:26 -0500
-Subject: [PATCH 06/15] fix bootanimation
+Subject: [PATCH 06/16] fix bootanimation
 
 ---
  blueline.mk | 3 +++
@@ -16528,7 +16528,7 @@ index d5ccf61..5b3265d 100644
 From ace666938663d413ef79f467698cf09055f8a808 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:49:11 -0500
-Subject: [PATCH 07/15] Add ro.build.version.real_security_patch
+Subject: [PATCH 07/16] Add ro.build.version.real_security_patch
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16554,7 +16554,7 @@ index 9f975c7..243d251 100644
 From e531d5629a5b4895db55ee0b4b51c4c84226872f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
-Subject: [PATCH 08/15] Remove restarting surfaceflinger
+Subject: [PATCH 08/16] Remove restarting surfaceflinger
 
 - stop boot animation restarting
 - lcd density seems to be set correctly without it
@@ -16585,7 +16585,7 @@ index d1fffde..0991f3a 100644
 From 672ff2c567e8359d5d1b0ff79becd6b838f06e95 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
-Subject: [PATCH 09/15] Remove twrp files
+Subject: [PATCH 09/16] Remove twrp files
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29586,7 +29586,7 @@ index cb67b71..0000000
 From 73f6d473c911016272212bdab4002c1f21a1b528 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:47:06 -0500
-Subject: [PATCH 10/15] Remove ota
+Subject: [PATCH 10/16] Remove ota
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29845,7 +29845,7 @@ index 0991f3a..4b9c16d 100644
 From d56f9784785193ae132f53b3ba323a1d4e39d6a3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:00:25 -0500
-Subject: [PATCH 11/15] Remove unused remote files, functionality already
+Subject: [PATCH 11/16] Remove unused remote files, functionality already
  removed
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -31958,7 +31958,7 @@ index 87f2f96..0000000
 From cf4849098ca9b7a72102ae29bb4979256dae6bd1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:12:45 -0500
-Subject: [PATCH 12/15] fix adb by removing ctl.restart adbd
+Subject: [PATCH 12/16] fix adb by removing ctl.restart adbd
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32035,7 +32035,7 @@ index 155936b..877b59c 100644
 From c021399e6ade1a3aae62a8f7695d22bf9388a677 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 27 Dec 2022 15:16:35 -0500
-Subject: [PATCH 13/15] Add Wellbeing as priv-app
+Subject: [PATCH 13/16] Add Wellbeing as priv-app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32061,7 +32061,7 @@ index 813d66b..96a0a7a 100644
 From 1997d23162c7d3608a8a23fb3a2918ad514c1c01 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 18:02:33 -0500
-Subject: [PATCH 14/15] Add themepicker to build
+Subject: [PATCH 14/16] Add themepicker to build
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32087,7 +32087,7 @@ index b385581..49f6bdc 100644
 From 564d7c6e4c3cc6687b36b6db9d74e5b765e02e3b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 29 Dec 2022 15:32:08 -0500
-Subject: [PATCH 15/15] Remove default browser, calendar and gallery app
+Subject: [PATCH 15/16] Remove default browser, calendar and gallery app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32110,6 +32110,30 @@ index 96a0a7a..dc9e985 100644
  
  LOCAL_MODULE_TAGS := optional
  LOCAL_MODULE_CLASS := ETC
+-- 
+2.34.1
+
+
+From db5d6c5168d5772647a38594a8cafe49432f8016 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sat, 7 Jan 2023 11:01:17 -0500
+Subject: [PATCH 16/16] Enable one handed mode
+
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ system.prop | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/system.prop b/system.prop
+index 4797b06..ab277ec 100644
+--- a/system.prop
++++ b/system.prop
+@@ -32,3 +32,5 @@ bluetooth.profile.pan.nap.enabled?=true
+ bluetooth.profile.pan.panu.enabled?=true
+ bluetooth.profile.pbap.server.enabled?=true
+ bluetooth.profile.sap.server.enabled?=true
++
++ro.support_one_handed_mode=true
 -- 
 2.34.1
 

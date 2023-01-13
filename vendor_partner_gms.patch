@@ -1,7 +1,7 @@
-From 822b8d1ea6001c42c6179f62efda2ec74093fffd Mon Sep 17 00:00:00 2001
+From bfa2df7a7eefb256f23029a516db461f11cb4b10 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 12:12:59 -0500
-Subject: [PATCH] Remove ununsed apps
+Subject: [PATCH 1/2] Remove ununsed apps
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -56,6 +56,36 @@ index bfdb8f6..0796a27 100644
 -    setupwizard.theme=glif_v3_light \
      ro.opa.eligible_device=true \
      ro.com.google.gmsversion=$(GMS_PACKAGE_VERSION_ID)
+-- 
+2.34.1
+
+
+From b49bb84842225c20f4f45b33947c9d444e86ef44 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 13 Jan 2023 17:49:03 -0500
+Subject: [PATCH 2/2] Remove conflicting override for default quick tiles
+
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../frameworks/base/packages/SystemUI/res/values/config.xml  | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/overlay/gms_overlay/frameworks/base/packages/SystemUI/res/values/config.xml b/overlay/gms_overlay/frameworks/base/packages/SystemUI/res/values/config.xml
+index 85bbbc4..f66b5fd 100644
+--- a/overlay/gms_overlay/frameworks/base/packages/SystemUI/res/values/config.xml
++++ b/overlay/gms_overlay/frameworks/base/packages/SystemUI/res/values/config.xml
+@@ -18,11 +18,6 @@
+ -->
+ 
+ <resources>
+-    <!-- The default tiles to display in QuickSettings -->
+-    <string name="quick_settings_tiles_default" translatable="false">
+-        wifi,bt,dnd,flashlight,rotation,battery,cell,airplane,night,screenrecord,custom(com.google.android.gms/.nearby.sharing.SharingTileService)
+-    </string>
+-
+     <!-- Controls can query 2 preferred applications for limited number of suggested controls.
+          This config value should contain a list of package names of thoses preferred applications.
+     -->
 -- 
 2.34.1
 

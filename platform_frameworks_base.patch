@@ -1,7 +1,7 @@
-From db8bc74ae7a0a95acf732e4675bb8e6c2c138ac3 Mon Sep 17 00:00:00 2001
+From e8609430769bd3a9f4ad66abda36deeefe424ce2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 1/4] pass safetynet and gpay
+Subject: [PATCH 1/5] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -172,10 +172,10 @@ index 33411e1e..133a4094 100644
 2.34.1
 
 
-From ae544d297be0d9562625355474e733a2440de599 Mon Sep 17 00:00:00 2001
+From c514272e2da07f9237841eadccf2cb1caafca019 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 2/4] Set auto brightness on by default
+Subject: [PATCH 2/5] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index 7732da40..5d4190a6 100644
 2.34.1
 
 
-From a073f0723f60fccf0cd7bb71df53bd518849ee25 Mon Sep 17 00:00:00 2001
+From fb088cb3e3dc30c16445ab8101712128418be41c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 3/4] Add support for left side volume dialog
+Subject: [PATCH 3/5] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -851,10 +851,10 @@ index 3094a8c2..928d9c4e 100644
 2.34.1
 
 
-From c6beb74498195f4f7e1205feb03dd6cc7533be05 Mon Sep 17 00:00:00 2001
+From 7afb6ba56874162e2391c5ee6e68114fc8b4d0ba Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 4/4] Remove max column limit on quick tiles under notification
+Subject: [PATCH 4/5] Remove max column limit on quick tiles under notification
  shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -875,6 +875,82 @@ index 3d00dd49..4d107f81 100644
          return updateColumns();
      }
  
+-- 
+2.34.1
+
+
+From a2955f1f82a1c9ee111d43090e6a8ba86f397ef0 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 13 Jan 2023 19:24:12 -0500
+Subject: [PATCH 5/5] Restore wifi and cell qs tiles
+
+Change-Id: I4aab18360753483de11de46e5e008a7bba765289
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ packages/SystemUI/res/values/config.xml             |  4 ++--
+ .../src/com/android/systemui/qs/QSTileHost.java     | 13 -------------
+ .../systemui/qs/customize/TileQueryHelper.java      |  2 --
+ 3 files changed, 2 insertions(+), 17 deletions(-)
+
+diff --git a/packages/SystemUI/res/values/config.xml b/packages/SystemUI/res/values/config.xml
+index 92b132a8..b3913c84 100644
+--- a/packages/SystemUI/res/values/config.xml
++++ b/packages/SystemUI/res/values/config.xml
+@@ -68,7 +68,7 @@
+ 
+     <!-- The default tiles to display in QuickSettings -->
+     <string name="quick_settings_tiles_default" translatable="false">
+-        internet,bt,flashlight,dnd,alarm,airplane,controls,wallet,rotation,battery,cast,screenrecord,mictoggle,cameratoggle,custom(com.android.permissioncontroller/.permission.service.SafetyCenterQsTileService)
++        wifi,cell,bt,flashlight,dnd,alarm,airplane,controls,wallet,rotation,battery,cast,screenrecord,mictoggle,cameratoggle,custom(com.android.permissioncontroller/.permission.service.SafetyCenterQsTileService)
+     </string>
+ 
+     <!-- The class path of the Safety Quick Settings Tile -->
+@@ -81,7 +81,7 @@
+ 
+     <!-- Tiles native to System UI. Order should match "quick_settings_tiles_default" -->
+     <string name="quick_settings_tiles_stock" translatable="false">
+-        internet,bt,flashlight,dnd,alarm,airplane,controls,wallet,rotation,battery,cast,screenrecord,mictoggle,cameratoggle,location,hotspot,inversion,saver,dark,work,night,reverse,reduce_brightness,qr_code_scanner,onehanded,color_correction,dream
++        wifi,cell,bt,flashlight,dnd,alarm,airplane,controls,wallet,rotation,battery,cast,screenrecord,mictoggle,cameratoggle,location,hotspot,inversion,saver,dark,work,night,reverse,reduce_brightness,qr_code_scanner,onehanded,color_correction,dream
+     </string>
+ 
+     <!-- The tiles to display in QuickSettings -->
+diff --git a/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java b/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java
+index ac46c85c..e9558b73 100644
+--- a/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java
++++ b/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java
+@@ -630,19 +630,6 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory>, D
+             }
+         }
+ 
+-        if (!tiles.contains("internet")) {
+-            if (tiles.contains("wifi")) {
+-                // Replace the WiFi with Internet, and remove the Cell
+-                tiles.set(tiles.indexOf("wifi"), "internet");
+-                tiles.remove("cell");
+-            } else if (tiles.contains("cell")) {
+-                // Replace the Cell with Internet
+-                tiles.set(tiles.indexOf("cell"), "internet");
+-            }
+-        } else {
+-            tiles.remove("wifi");
+-            tiles.remove("cell");
+-        }
+         return tiles;
+     }
+ 
+diff --git a/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java b/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java
+index 32a7916d..8a0f86b4 100644
+--- a/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java
++++ b/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java
+@@ -119,8 +119,6 @@ public class TileQueryHelper {
+         }
+ 
+         final ArrayList<QSTile> tilesToAdd = new ArrayList<>();
+-        possibleTiles.remove("cell");
+-        possibleTiles.remove("wifi");
+ 
+         for (String spec : possibleTiles) {
+             // Only add current and stock tiles that can be created from QSFactoryImpl.
 -- 
 2.34.1
 

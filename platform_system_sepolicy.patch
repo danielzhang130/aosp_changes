@@ -1,7 +1,7 @@
-From c577aea5cca5b21aa8cb14ef60fc5043c4245d0b Mon Sep 17 00:00:00 2001
+From 8057bd848e4ecf6d72f6a360730a24fdabcfdd83 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:57:31 -0500
-Subject: [PATCH] relax sepolicy
+Subject: [PATCH 1/2] relax sepolicy
 
 Change-Id: Ic3045fd9b1548fc3c82d221ca9bca05d094d9734
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -23,6 +23,226 @@ index 8fd90b0..7807cbe 100644
  $(warning Be careful when using the SELINUX_IGNORE_NEVERALLOWS flag. \
            It does not work in user builds and using it will \
            not stop you from failing CTS.)
+-- 
+2.34.1
+
+
+From c1f7e633cae1e6da6f1e78ecaff9ca4c50160b8c Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Wed, 8 Feb 2023 17:36:52 -0500
+Subject: [PATCH 2/2] Fix sdcard sepolicy
+
+Change-Id: I3c173b9fec21c3f8918af5d5ac07da690e86940d
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ prebuilts/api/33.0/private/mediaprovider_app.te | 6 ++++++
+ prebuilts/api/33.0/private/mls                  | 4 ++--
+ prebuilts/api/33.0/private/platform_app.te      | 1 +
+ prebuilts/api/33.0/private/untrusted_app.te     | 1 +
+ prebuilts/api/33.0/private/untrusted_app_30.te  | 4 ++++
+ prebuilts/api/33.0/public/file.te               | 1 +
+ prebuilts/api/33.0/public/fsck_untrusted.te     | 2 ++
+ prebuilts/api/33.0/public/vold.te               | 2 ++
+ private/mediaprovider_app.te                    | 6 ++++++
+ private/mls                                     | 4 ++--
+ private/platform_app.te                         | 1 +
+ private/untrusted_app.te                        | 1 +
+ private/untrusted_app_30.te                     | 4 ++++
+ public/file.te                                  | 1 +
+ public/fsck_untrusted.te                        | 2 ++
+ public/vold.te                                  | 2 ++
+ 16 files changed, 38 insertions(+), 4 deletions(-)
+
+diff --git a/prebuilts/api/33.0/private/mediaprovider_app.te b/prebuilts/api/33.0/private/mediaprovider_app.te
+index a9a52bb..e212ec8 100644
+--- a/prebuilts/api/33.0/private/mediaprovider_app.te
++++ b/prebuilts/api/33.0/private/mediaprovider_app.te
+@@ -68,3 +68,9 @@ dontaudit mediaprovider_app sysfs_vendor_sched:file w_file_perms;
+ # bpfprog access for FUSE BPF
+ allow mediaprovider_app fs_bpf:file read;
+ allow mediaprovider_app bpfloader:bpf { map_read map_write prog_run };
++
++allow mediaprovider_app unlabeled:file { open create read getattr execute write setattr append unlink link rename };
++allow mediaprovider_app unlabeled:file create;
++allow mediaprovider_app unlabeled:dir { open create read getattr search write setattr rename add_name remove_name reparent rmdir };
++allow mediaprovider_app unlabeled:dir create;
++allow mediaprovider_app unlabeled:filesystem { getattr mount unmount };
+diff --git a/prebuilts/api/33.0/private/mls b/prebuilts/api/33.0/private/mls
+index 955c27b..9a7e3f5 100644
+--- a/prebuilts/api/33.0/private/mls
++++ b/prebuilts/api/33.0/private/mls
+@@ -90,10 +90,10 @@ mlsconstrain { file lnk_file sock_file chr_file blk_file } { read getattr execut
+ # Write operations: Subject must be equivalent to the object unless the
+ # subject or the object is trusted.
+ mlsconstrain dir { write setattr rename add_name remove_name reparent rmdir }
+-	     (t2 == app_data_file_type or l1 eq l2 or t1 == mlstrustedsubject or t2 == mlstrustedobject);
++	     (t2 == unlabeled or t2 == app_data_file_type or l1 eq l2 or t1 == mlstrustedsubject or t2 == mlstrustedobject);
+ 
+ mlsconstrain { file lnk_file sock_file chr_file blk_file } { write setattr append unlink link rename }
+-	     (t2 == app_data_file_type or t2 == appdomain_tmpfs or l1 eq l2 or t1 == mlstrustedsubject or t2 == mlstrustedobject);
++	     (t2 == unlabeled or t2 == app_data_file_type or t2 == appdomain_tmpfs or l1 eq l2 or t1 == mlstrustedsubject or t2 == mlstrustedobject);
+ 
+ # Special case for FIFOs.
+ # These can be unnamed pipes, in which case they will be labeled with the
+diff --git a/prebuilts/api/33.0/private/platform_app.te b/prebuilts/api/33.0/private/platform_app.te
+index 6112ae0..3bab9bc 100644
+--- a/prebuilts/api/33.0/private/platform_app.te
++++ b/prebuilts/api/33.0/private/platform_app.te
+@@ -122,3 +122,4 @@ virtualizationservice_use(platform_app)
+ 
+ # app domains which access /dev/fuse should not run as platform_app
+ neverallow platform_app fuse_device:chr_file *;
++allow platform_app unlabeled:file getattr;
+diff --git a/prebuilts/api/33.0/private/untrusted_app.te b/prebuilts/api/33.0/private/untrusted_app.te
+index 63b095a..7d7fa10 100644
+--- a/prebuilts/api/33.0/private/untrusted_app.te
++++ b/prebuilts/api/33.0/private/untrusted_app.te
+@@ -19,5 +19,6 @@ bluetooth_domain(untrusted_app)
+ # TODO(b/229249719): Will not be supported in Android U
+ allow untrusted_app sdk_sandbox_data_file:fd use;
+ allow untrusted_app sdk_sandbox_data_file:file write;
++allow untrusted_app unlabeled:file read;
+ 
+ neverallow untrusted_app sdk_sandbox_data_file:file { open create };
+diff --git a/prebuilts/api/33.0/private/untrusted_app_30.te b/prebuilts/api/33.0/private/untrusted_app_30.te
+index e0a71ef..5ddf5cf 100644
+--- a/prebuilts/api/33.0/private/untrusted_app_30.te
++++ b/prebuilts/api/33.0/private/untrusted_app_30.te
+@@ -20,3 +20,7 @@ bluetooth_domain(untrusted_app_30)
+ # allow sending RTM_GETNEIGH{TBL} messages.
+ allow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
+ auditallow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
++
++allow untrusted_app_30 unlabeled:file read;
++allow untrusted_app_30 unlabeled:dir getattr;
++allow untrusted_app_30 unlabeled:filesystem getattr;
+diff --git a/prebuilts/api/33.0/public/file.te b/prebuilts/api/33.0/public/file.te
+index 2bfa282..b778963 100644
+--- a/prebuilts/api/33.0/public/file.te
++++ b/prebuilts/api/33.0/public/file.te
+@@ -620,3 +620,4 @@ type audiohal_data_file, file_type, data_file_type, core_data_file_type;
+ # Should be:
+ #   type apk_data_file, file_type, data_file_type;
+ neverallow fs_type file_type:filesystem associate;
++allow unlabeled self:filesystem associate;
+diff --git a/prebuilts/api/33.0/public/fsck_untrusted.te b/prebuilts/api/33.0/public/fsck_untrusted.te
+index 8510c94..579101f 100644
+--- a/prebuilts/api/33.0/public/fsck_untrusted.te
++++ b/prebuilts/api/33.0/public/fsck_untrusted.te
+@@ -25,6 +25,8 @@ allow fsck_untrusted proc_mounts:file r_file_perms;
+ # major/minor values.
+ allow fsck_untrusted dev_type:blk_file getattr;
+ 
++allow fsck_untrusted sysfs:file read;
++
+ ###
+ ### neverallow rules
+ ###
+diff --git a/prebuilts/api/33.0/public/vold.te b/prebuilts/api/33.0/public/vold.te
+index b0fb6d0..465504e 100644
+--- a/prebuilts/api/33.0/public/vold.te
++++ b/prebuilts/api/33.0/public/vold.te
+@@ -341,3 +341,5 @@ neverallow vold fsck_exec:file execute_no_trans;
+ neverallow { domain -init } vold:process { transition dyntransition };
+ neverallow vold *:process ptrace;
+ neverallow vold *:rawip_socket *;
++allow vold unlabeled:dir { getattr write };
++allow vold unlabeled:filesystem { getattr mount unmount };
+diff --git a/private/mediaprovider_app.te b/private/mediaprovider_app.te
+index a9a52bb..e212ec8 100644
+--- a/private/mediaprovider_app.te
++++ b/private/mediaprovider_app.te
+@@ -68,3 +68,9 @@ dontaudit mediaprovider_app sysfs_vendor_sched:file w_file_perms;
+ # bpfprog access for FUSE BPF
+ allow mediaprovider_app fs_bpf:file read;
+ allow mediaprovider_app bpfloader:bpf { map_read map_write prog_run };
++
++allow mediaprovider_app unlabeled:file { open create read getattr execute write setattr append unlink link rename };
++allow mediaprovider_app unlabeled:file create;
++allow mediaprovider_app unlabeled:dir { open create read getattr search write setattr rename add_name remove_name reparent rmdir };
++allow mediaprovider_app unlabeled:dir create;
++allow mediaprovider_app unlabeled:filesystem { getattr mount unmount };
+diff --git a/private/mls b/private/mls
+index 955c27b..9a7e3f5 100644
+--- a/private/mls
++++ b/private/mls
+@@ -90,10 +90,10 @@ mlsconstrain { file lnk_file sock_file chr_file blk_file } { read getattr execut
+ # Write operations: Subject must be equivalent to the object unless the
+ # subject or the object is trusted.
+ mlsconstrain dir { write setattr rename add_name remove_name reparent rmdir }
+-	     (t2 == app_data_file_type or l1 eq l2 or t1 == mlstrustedsubject or t2 == mlstrustedobject);
++	     (t2 == unlabeled or t2 == app_data_file_type or l1 eq l2 or t1 == mlstrustedsubject or t2 == mlstrustedobject);
+ 
+ mlsconstrain { file lnk_file sock_file chr_file blk_file } { write setattr append unlink link rename }
+-	     (t2 == app_data_file_type or t2 == appdomain_tmpfs or l1 eq l2 or t1 == mlstrustedsubject or t2 == mlstrustedobject);
++	     (t2 == unlabeled or t2 == app_data_file_type or t2 == appdomain_tmpfs or l1 eq l2 or t1 == mlstrustedsubject or t2 == mlstrustedobject);
+ 
+ # Special case for FIFOs.
+ # These can be unnamed pipes, in which case they will be labeled with the
+diff --git a/private/platform_app.te b/private/platform_app.te
+index 6112ae0..3bab9bc 100644
+--- a/private/platform_app.te
++++ b/private/platform_app.te
+@@ -122,3 +122,4 @@ virtualizationservice_use(platform_app)
+ 
+ # app domains which access /dev/fuse should not run as platform_app
+ neverallow platform_app fuse_device:chr_file *;
++allow platform_app unlabeled:file getattr;
+diff --git a/private/untrusted_app.te b/private/untrusted_app.te
+index 63b095a..7d7fa10 100644
+--- a/private/untrusted_app.te
++++ b/private/untrusted_app.te
+@@ -19,5 +19,6 @@ bluetooth_domain(untrusted_app)
+ # TODO(b/229249719): Will not be supported in Android U
+ allow untrusted_app sdk_sandbox_data_file:fd use;
+ allow untrusted_app sdk_sandbox_data_file:file write;
++allow untrusted_app unlabeled:file read;
+ 
+ neverallow untrusted_app sdk_sandbox_data_file:file { open create };
+diff --git a/private/untrusted_app_30.te b/private/untrusted_app_30.te
+index e0a71ef..5ddf5cf 100644
+--- a/private/untrusted_app_30.te
++++ b/private/untrusted_app_30.te
+@@ -20,3 +20,7 @@ bluetooth_domain(untrusted_app_30)
+ # allow sending RTM_GETNEIGH{TBL} messages.
+ allow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
+ auditallow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
++
++allow untrusted_app_30 unlabeled:file read;
++allow untrusted_app_30 unlabeled:dir getattr;
++allow untrusted_app_30 unlabeled:filesystem getattr;
+diff --git a/public/file.te b/public/file.te
+index 2bfa282..b778963 100644
+--- a/public/file.te
++++ b/public/file.te
+@@ -620,3 +620,4 @@ type audiohal_data_file, file_type, data_file_type, core_data_file_type;
+ # Should be:
+ #   type apk_data_file, file_type, data_file_type;
+ neverallow fs_type file_type:filesystem associate;
++allow unlabeled self:filesystem associate;
+diff --git a/public/fsck_untrusted.te b/public/fsck_untrusted.te
+index 8510c94..579101f 100644
+--- a/public/fsck_untrusted.te
++++ b/public/fsck_untrusted.te
+@@ -25,6 +25,8 @@ allow fsck_untrusted proc_mounts:file r_file_perms;
+ # major/minor values.
+ allow fsck_untrusted dev_type:blk_file getattr;
+ 
++allow fsck_untrusted sysfs:file read;
++
+ ###
+ ### neverallow rules
+ ###
+diff --git a/public/vold.te b/public/vold.te
+index b0fb6d0..465504e 100644
+--- a/public/vold.te
++++ b/public/vold.te
+@@ -341,3 +341,5 @@ neverallow vold fsck_exec:file execute_no_trans;
+ neverallow { domain -init } vold:process { transition dyntransition };
+ neverallow vold *:process ptrace;
+ neverallow vold *:rawip_socket *;
++allow vold unlabeled:dir { getattr write };
++allow vold unlabeled:filesystem { getattr mount unmount };
 -- 
 2.34.1
 

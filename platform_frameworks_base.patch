@@ -1,7 +1,7 @@
 From e8609430769bd3a9f4ad66abda36deeefe424ce2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 1/7] pass safetynet and gpay
+Subject: [PATCH 1/8] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -175,7 +175,7 @@ index 33411e1e..133a4094 100644
 From c514272e2da07f9237841eadccf2cb1caafca019 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 2/7] Set auto brightness on by default
+Subject: [PATCH 2/8] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -202,7 +202,7 @@ index 7732da40..5d4190a6 100644
 From fb088cb3e3dc30c16445ab8101712128418be41c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 3/7] Add support for left side volume dialog
+Subject: [PATCH 3/8] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -854,7 +854,7 @@ index 3094a8c2..928d9c4e 100644
 From 7afb6ba56874162e2391c5ee6e68114fc8b4d0ba Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 4/7] Remove max column limit on quick tiles under notification
+Subject: [PATCH 4/8] Remove max column limit on quick tiles under notification
  shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -882,7 +882,7 @@ index 3d00dd49..4d107f81 100644
 From a2955f1f82a1c9ee111d43090e6a8ba86f397ef0 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 13 Jan 2023 19:24:12 -0500
-Subject: [PATCH 5/7] Restore wifi and cell qs tiles
+Subject: [PATCH 5/8] Restore wifi and cell qs tiles
 
 Change-Id: I4aab18360753483de11de46e5e008a7bba765289
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -958,7 +958,7 @@ index 32a7916d..8a0f86b4 100644
 From 1dd565ccf9b52199853a33b50dec152a6053f80e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 15:34:11 -0500
-Subject: [PATCH 6/7] Add ripple to keyguard quick affordance buttons
+Subject: [PATCH 6/8] Add ripple to keyguard quick affordance buttons
 
 Change-Id: Idcbae41c9744036d733bee740616dc744795d04b
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1003,7 +1003,7 @@ index 41123c84..3c8048de 100644
 From 1acbe3aaa21db4494c852da2e4b0af14f200a405 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 17:08:25 -0500
-Subject: [PATCH 7/7] Move qr code scanner button to bottom left of lock screen
+Subject: [PATCH 7/8] Move qr code scanner button to bottom left of lock screen
 
 Change-Id: I494e8b9a6fbd889fa461267d951410da5d88875b
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1029,6 +1029,70 @@ index ad40ee7a..8d86d029 100644
                  ),
          )
      private val configByClass =
+-- 
+2.34.1
+
+
+From 34ab76bcf1631144a1e9c98df3818328b233291d Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Wed, 8 Feb 2023 17:39:55 -0500
+Subject: [PATCH 8/8] Update device config
+
+- Add more tracked permissions
+- Update permission history cutoff days
+
+Change-Id: I0c61451d766a9870b543c73a661abc39c5eb6bf3
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../server/appop/DiscreteRegistry.java        | 21 ++++++-------------
+ 1 file changed, 6 insertions(+), 15 deletions(-)
+
+diff --git a/services/core/java/com/android/server/appop/DiscreteRegistry.java b/services/core/java/com/android/server/appop/DiscreteRegistry.java
+index 158092f3..5e220607 100644
+--- a/services/core/java/com/android/server/appop/DiscreteRegistry.java
++++ b/services/core/java/com/android/server/appop/DiscreteRegistry.java
+@@ -132,9 +132,7 @@ final class DiscreteRegistry {
+             "discrete_history_quantization_millis";
+     private static final String PROPERTY_DISCRETE_FLAGS = "discrete_history_op_flags";
+     private static final String PROPERTY_DISCRETE_OPS_LIST = "discrete_history_ops_cslist";
+-    private static final String DEFAULT_DISCRETE_OPS = OP_FINE_LOCATION + "," + OP_COARSE_LOCATION
+-            + "," + OP_CAMERA + "," + OP_RECORD_AUDIO + "," + OP_PHONE_CALL_MICROPHONE + ","
+-            + OP_PHONE_CALL_CAMERA + "," + OP_RECEIVE_AMBIENT_TRIGGER_AUDIO;
++    private static final String DEFAULT_DISCRETE_OPS = "0,109,1,108,26,101,27,102,106,100,8,9,6,7,4,5,62,59,60,90,77,111,114,112,51,65,13,6,7,52,53,54,69,74,79,113,20,16,14,19,18,57";
+     private static final long DEFAULT_DISCRETE_HISTORY_CUTOFF = Duration.ofDays(7).toMillis();
+     private static final long MAXIMUM_DISCRETE_HISTORY_CUTOFF = Duration.ofDays(30).toMillis();
+     private static final long DEFAULT_DISCRETE_HISTORY_QUANTIZATION =
+@@ -213,15 +211,10 @@ final class DiscreteRegistry {
+     }
+ 
+     private void setDiscreteHistoryParameters(DeviceConfig.Properties p) {
+-        if (p.getKeyset().contains(PROPERTY_DISCRETE_HISTORY_CUTOFF)) {
+-            sDiscreteHistoryCutoff = p.getLong(PROPERTY_DISCRETE_HISTORY_CUTOFF,
+-                    DEFAULT_DISCRETE_HISTORY_CUTOFF);
+-            if (!Build.IS_DEBUGGABLE && !mDebugMode) {
+-                sDiscreteHistoryCutoff = min(MAXIMUM_DISCRETE_HISTORY_CUTOFF,
+-                        sDiscreteHistoryCutoff);
+-            }
+-        } else {
+-            sDiscreteHistoryCutoff = DEFAULT_DISCRETE_HISTORY_CUTOFF;
++        sDiscreteHistoryCutoff = DEFAULT_DISCRETE_HISTORY_CUTOFF;
++        if (!Build.IS_DEBUGGABLE && !mDebugMode) {
++            sDiscreteHistoryCutoff = min(MAXIMUM_DISCRETE_HISTORY_CUTOFF,
++                    sDiscreteHistoryCutoff);
+         }
+         if (p.getKeyset().contains(PROPERTY_DISCRETE_HISTORY_QUANTIZATION)) {
+             sDiscreteHistoryQuantization = p.getLong(PROPERTY_DISCRETE_HISTORY_QUANTIZATION,
+@@ -235,9 +228,7 @@ final class DiscreteRegistry {
+         }
+         sDiscreteFlags = p.getKeyset().contains(PROPERTY_DISCRETE_FLAGS) ? sDiscreteFlags =
+                 p.getInt(PROPERTY_DISCRETE_FLAGS, OP_FLAGS_DISCRETE) : OP_FLAGS_DISCRETE;
+-        sDiscreteOps = p.getKeyset().contains(PROPERTY_DISCRETE_OPS_LIST) ? parseOpsList(
+-                p.getString(PROPERTY_DISCRETE_OPS_LIST, DEFAULT_DISCRETE_OPS)) : parseOpsList(
+-                DEFAULT_DISCRETE_OPS);
++        sDiscreteOps = parseOpsList(DEFAULT_DISCRETE_OPS);
+     }
+ 
+     void recordDiscreteAccess(int uid, String packageName, int op, @Nullable String attributionTag,
 -- 
 2.34.1
 

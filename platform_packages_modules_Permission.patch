@@ -1,0 +1,41 @@
+From 9332f1c53c1bdf54496f07ea8172d94fe70a1e63 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Wed, 8 Feb 2023 17:38:37 -0500
+Subject: [PATCH] Update device config
+
+- enable precise location prompt
+- enable 7 day history in privacy dashboard
+
+Change-Id: I3e8487edc568209f1a674fcbbe817344d36f8178
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../permission/ui/handheld/v31/DashboardUtils.kt            | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/PermissionController/src/com/android/permissioncontroller/permission/ui/handheld/v31/DashboardUtils.kt b/PermissionController/src/com/android/permissioncontroller/permission/ui/handheld/v31/DashboardUtils.kt
+index fbb5164..b1ef0e3 100644
+--- a/PermissionController/src/com/android/permissioncontroller/permission/ui/handheld/v31/DashboardUtils.kt
++++ b/PermissionController/src/com/android/permissioncontroller/permission/ui/handheld/v31/DashboardUtils.kt
+@@ -80,8 +80,7 @@ fun shouldShowPermissionsDashboard(): Boolean {
+  * @return whether the flag is enabled
+  */
+ fun is7DayToggleEnabled(): Boolean {
+-    return DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_PRIVACY,
+-            PRIVACY_DASHBOARD_7_DAY_TOGGLE, false)
++    return true
+ }
+ 
+ /**
+@@ -144,8 +143,7 @@ fun shouldShowLocationIndicators(): Boolean {
+  * Whether the location accuracy feature is enabled
+  */
+ fun isLocationAccuracyEnabled(): Boolean {
+-    return DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_PRIVACY,
+-        PROPERTY_LOCATION_ACCURACY_ENABLED, true)
++    return true
+ }
+ 
+ /**
+-- 
+2.34.1
+

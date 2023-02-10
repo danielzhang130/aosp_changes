@@ -1,7 +1,7 @@
-From a7ed0180c5f12154a1054e5796e1773dcf638e9e Mon Sep 17 00:00:00 2001
+From 9c75be578073f05db8ea564b5cb87afac8c49992 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
-Subject: [PATCH 01/16] Various updates to phh treble device
+Subject: [PATCH 01/17] Various updates to phh treble device
 
 - make adb secure
 - remove su
@@ -6467,10 +6467,10 @@ index db7c86d..4797b06 100644
 2.34.1
 
 
-From 39568ff9bd48608d111f93e689d324b82b09dd26 Mon Sep 17 00:00:00 2001
+From aa47602f0138c08968c9958dee2876e32eaa851a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
-Subject: [PATCH 02/16] Passes safetynet out of the box
+Subject: [PATCH 02/17] Passes safetynet out of the box
 
 remove unneeded system prop changes
 
@@ -6480,10 +6480,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 6 deletions(-)
 
 diff --git a/rw-system.sh b/rw-system.sh
-index 42d315f..155936b 100644
+index e1ad994..c167961 100644
 --- a/rw-system.sh
 +++ b/rw-system.sh
-@@ -729,8 +729,6 @@ copyprop() {
+@@ -737,8 +737,6 @@ copyprop() {
  }
  if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
      copyprop ro.build.device ro.vendor.build.device
@@ -6492,7 +6492,7 @@ index 42d315f..155936b 100644
      copyprop ro.build.fingerprint ro.vendor.build.fingerprint
      copyprop ro.build.device ro.vendor.product.device
      copyprop ro.product.system.device ro.vendor.product.device
-@@ -749,10 +747,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
+@@ -757,10 +755,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
      copyprop ro.product.model ro.product.vendor.model
      copyprop ro.build.product ro.vendor.product.model
      copyprop ro.build.product ro.product.vendor.model
@@ -6507,10 +6507,10 @@ index 42d315f..155936b 100644
 2.34.1
 
 
-From 47ef4c9fee12df054743c3c2867bf11cc1b3533b Mon Sep 17 00:00:00 2001
+From 1d5771dfa4aa9346f6f06247c389b6104bae8e23 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
-Subject: [PATCH 03/16] Fix adb not connecting when device first starts
+Subject: [PATCH 03/17] Fix adb not connecting when device first starts
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -6551,10 +6551,10 @@ index 55b3311..0000000
 2.34.1
 
 
-From c63bad7ff044c6f1d811aa93b48ffc4e07028196 Mon Sep 17 00:00:00 2001
+From e4da00b212fdcd95ea2f62545878f65e0051e5bf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
-Subject: [PATCH 04/16] Add FP3 boot animation
+Subject: [PATCH 04/17] Add FP3 boot animation
 
 - add nova launcher
 - remove unused packages
@@ -14909,10 +14909,10 @@ index 738b96f..516377a 100644
 2.34.1
 
 
-From 1d4f405dd4b44ea06caa662547f7583d5a72155e Mon Sep 17 00:00:00 2001
+From 7ecb9e469c6620ec455ad84afe67e796603ba81a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
-Subject: [PATCH 05/16] Add fp3 boot animation
+Subject: [PATCH 05/17] Add fp3 boot animation
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16498,10 +16498,10 @@ index 516377a..0000000
 2.34.1
 
 
-From 141fc38461ed04deb8a3a7f84d517b4e9e89e0b9 Mon Sep 17 00:00:00 2001
+From 31b47cf2bd89ac2158aa98fd2a3737c185075d61 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:45:26 -0500
-Subject: [PATCH 06/16] fix bootanimation
+Subject: [PATCH 06/17] fix bootanimation
 
 ---
  blueline.mk | 3 +++
@@ -16525,10 +16525,10 @@ index d5ccf61..5b3265d 100644
 2.34.1
 
 
-From ace666938663d413ef79f467698cf09055f8a808 Mon Sep 17 00:00:00 2001
+From bdc08edc25255e0bc1fe97f2716e286fb45b3256 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:49:11 -0500
-Subject: [PATCH 07/16] Add ro.build.version.real_security_patch
+Subject: [PATCH 07/17] Add ro.build.version.real_security_patch
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16551,10 +16551,10 @@ index 9f975c7..243d251 100644
 2.34.1
 
 
-From e531d5629a5b4895db55ee0b4b51c4c84226872f Mon Sep 17 00:00:00 2001
+From ab802c8515446ebcba01e79625adb7c93f191ebe Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
-Subject: [PATCH 08/16] Remove restarting surfaceflinger
+Subject: [PATCH 08/17] Remove restarting surfaceflinger
 
 - stop boot animation restarting
 - lcd density seems to be set correctly without it
@@ -16582,10 +16582,10 @@ index d1fffde..0991f3a 100644
 2.34.1
 
 
-From 672ff2c567e8359d5d1b0ff79becd6b838f06e95 Mon Sep 17 00:00:00 2001
+From fc12e79f6a52ca672a89d32268915b037d10535e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
-Subject: [PATCH 09/16] Remove twrp files
+Subject: [PATCH 09/17] Remove twrp files
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29583,10 +29583,10 @@ index cb67b71..0000000
 2.34.1
 
 
-From 73f6d473c911016272212bdab4002c1f21a1b528 Mon Sep 17 00:00:00 2001
+From e4a8df21931e50f9439f495bcd0015b839250563 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:47:06 -0500
-Subject: [PATCH 10/16] Remove ota
+Subject: [PATCH 10/17] Remove ota
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29842,10 +29842,10 @@ index 0991f3a..4b9c16d 100644
 2.34.1
 
 
-From d56f9784785193ae132f53b3ba323a1d4e39d6a3 Mon Sep 17 00:00:00 2001
+From 263c8bfadf0ec465561e13ca22b32d2eedc21d51 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:00:25 -0500
-Subject: [PATCH 11/16] Remove unused remote files, functionality already
+Subject: [PATCH 11/17] Remove unused remote files, functionality already
  removed
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -31955,10 +31955,10 @@ index 87f2f96..0000000
 2.34.1
 
 
-From cf4849098ca9b7a72102ae29bb4979256dae6bd1 Mon Sep 17 00:00:00 2001
+From 6ef930e2badabf3b2026e5b2f2a48024912cedc1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:12:45 -0500
-Subject: [PATCH 12/16] fix adb by removing ctl.restart adbd
+Subject: [PATCH 12/17] fix adb by removing ctl.restart adbd
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -31966,7 +31966,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 45 deletions(-)
 
 diff --git a/rw-system.sh b/rw-system.sh
-index 155936b..877b59c 100644
+index c167961..bc92624 100644
 --- a/rw-system.sh
 +++ b/rw-system.sh
 @@ -10,48 +10,6 @@ else
@@ -32018,7 +32018,7 @@ index 155936b..877b59c 100644
  vndk="$(getprop persist.sys.vndk)"
  [ -z "$vndk" ] && vndk="$(getprop ro.vndk.version |grep -oE '^[0-9]+')"
  
-@@ -763,9 +721,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
+@@ -771,9 +729,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
      resetprop_phh ro.build.type user
      resetprop_phh ro.build.selinux 0
  
@@ -32032,10 +32032,10 @@ index 155936b..877b59c 100644
 2.34.1
 
 
-From c021399e6ade1a3aae62a8f7695d22bf9388a677 Mon Sep 17 00:00:00 2001
+From d70453b139445e723b902a164278384d0a614b0c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 27 Dec 2022 15:16:35 -0500
-Subject: [PATCH 13/16] Add Wellbeing as priv-app
+Subject: [PATCH 13/17] Add Wellbeing as priv-app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32058,10 +32058,10 @@ index 813d66b..96a0a7a 100644
 2.34.1
 
 
-From 1997d23162c7d3608a8a23fb3a2918ad514c1c01 Mon Sep 17 00:00:00 2001
+From c915787ffbf3ad7569be5badfa2648e0e327ddd1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 18:02:33 -0500
-Subject: [PATCH 14/16] Add themepicker to build
+Subject: [PATCH 14/17] Add themepicker to build
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32084,10 +32084,10 @@ index b385581..49f6bdc 100644
 2.34.1
 
 
-From 564d7c6e4c3cc6687b36b6db9d74e5b765e02e3b Mon Sep 17 00:00:00 2001
+From f66252e3ac2930fd9b6e41113b58b79a4bf34c89 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 29 Dec 2022 15:32:08 -0500
-Subject: [PATCH 15/16] Remove default browser, calendar and gallery app
+Subject: [PATCH 15/17] Remove default browser, calendar and gallery app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32114,10 +32114,10 @@ index 96a0a7a..dc9e985 100644
 2.34.1
 
 
-From db5d6c5168d5772647a38594a8cafe49432f8016 Mon Sep 17 00:00:00 2001
+From 5aa107005c65681cb343c50678dbb09d707a070a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 11:01:17 -0500
-Subject: [PATCH 16/16] Enable one handed mode
+Subject: [PATCH 16/17] Enable one handed mode
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32134,6 +32134,46 @@ index 4797b06..ab277ec 100644
  bluetooth.profile.sap.server.enabled?=true
 +
 +ro.support_one_handed_mode=true
+-- 
+2.34.1
+
+
+From 60aa16d3346a4976ecfe9a458f3006df09c05b17 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Thu, 9 Feb 2023 22:43:22 -0500
+Subject: [PATCH 17/17] Add changelist generation on each build
+
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ base.mk | 2 ++
+ genCL   | 8 ++++++++
+ 2 files changed, 10 insertions(+)
+ create mode 100755 genCL
+
+diff --git a/base.mk b/base.mk
+index 49f6bdc..247332b 100644
+--- a/base.mk
++++ b/base.mk
+@@ -234,3 +234,5 @@ PRODUCT_PACKAGES += \
+ 	ThemePicker \
+ 	ThemesStub \
+ 
++CUR_DIR := $(shell pwd)
++$(shell /usr/bin/python3.10 /usr/bin/repo forall -c '$(CUR_DIR)/device/phh/treble/genCL $$REPO_PROJECT $$REPO_RREV' > vendor/hardware_overlay/Settings/res/raw/cl.txt)
+diff --git a/genCL b/genCL
+new file mode 100755
+index 0000000..4e3d648
+--- /dev/null
++++ b/genCL
+@@ -0,0 +1,8 @@
++#!/bin/env bash
++BASE=$2
++LOG=$(git log --format="%an %h %s" $BASE..HEAD | wc -l)
++if [[ $LOG -ne 0 ]]; then
++    echo $1
++    git log --format="%an %h %s" $BASE..HEAD
++    echo
++fi
 -- 
 2.34.1
 

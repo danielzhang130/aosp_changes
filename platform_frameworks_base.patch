@@ -1,7 +1,7 @@
-From e8609430769bd3a9f4ad66abda36deeefe424ce2 Mon Sep 17 00:00:00 2001
+From 4464a2bb57c41d6c8e3878031eb74e480e0d09fc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 1/8] pass safetynet and gpay
+Subject: [PATCH 1/9] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -172,10 +172,10 @@ index 33411e1e..133a4094 100644
 2.34.1
 
 
-From c514272e2da07f9237841eadccf2cb1caafca019 Mon Sep 17 00:00:00 2001
+From 00e96c1d8ce6b8867cf51e43bfe20ba9c5102e3a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 2/8] Set auto brightness on by default
+Subject: [PATCH 2/9] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index 7732da40..5d4190a6 100644
 2.34.1
 
 
-From fb088cb3e3dc30c16445ab8101712128418be41c Mon Sep 17 00:00:00 2001
+From b05b14a31e5d76d0551c9a258be4fc9b7bc63f0a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 3/8] Add support for left side volume dialog
+Subject: [PATCH 3/9] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -851,10 +851,10 @@ index 3094a8c2..928d9c4e 100644
 2.34.1
 
 
-From 7afb6ba56874162e2391c5ee6e68114fc8b4d0ba Mon Sep 17 00:00:00 2001
+From 9776b203258fb3c64d1b18ec813210e93be10fa9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 4/8] Remove max column limit on quick tiles under notification
+Subject: [PATCH 4/9] Remove max column limit on quick tiles under notification
  shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -879,10 +879,10 @@ index 3d00dd49..4d107f81 100644
 2.34.1
 
 
-From a2955f1f82a1c9ee111d43090e6a8ba86f397ef0 Mon Sep 17 00:00:00 2001
+From f60df4d3bb20084bcab250268804bbd2047f0d98 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 13 Jan 2023 19:24:12 -0500
-Subject: [PATCH 5/8] Restore wifi and cell qs tiles
+Subject: [PATCH 5/9] Restore wifi and cell qs tiles
 
 Change-Id: I4aab18360753483de11de46e5e008a7bba765289
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -955,10 +955,10 @@ index 32a7916d..8a0f86b4 100644
 2.34.1
 
 
-From 1dd565ccf9b52199853a33b50dec152a6053f80e Mon Sep 17 00:00:00 2001
+From 4bcf1bcc056fdf66913dbda6f0b2c84451c14d46 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 15:34:11 -0500
-Subject: [PATCH 6/8] Add ripple to keyguard quick affordance buttons
+Subject: [PATCH 6/9] Add ripple to keyguard quick affordance buttons
 
 Change-Id: Idcbae41c9744036d733bee740616dc744795d04b
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1000,10 +1000,10 @@ index 41123c84..3c8048de 100644
 2.34.1
 
 
-From 1acbe3aaa21db4494c852da2e4b0af14f200a405 Mon Sep 17 00:00:00 2001
+From fa18ba2ba00ab2815339c92f0b33da23222527b8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 17:08:25 -0500
-Subject: [PATCH 7/8] Move qr code scanner button to bottom left of lock screen
+Subject: [PATCH 7/9] Move qr code scanner button to bottom left of lock screen
 
 Change-Id: I494e8b9a6fbd889fa461267d951410da5d88875b
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1033,10 +1033,10 @@ index ad40ee7a..8d86d029 100644
 2.34.1
 
 
-From 34ab76bcf1631144a1e9c98df3818328b233291d Mon Sep 17 00:00:00 2001
+From 1e92f3182d8a2e96b6fd72524f21c689f282446c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 8/8] Update device config
+Subject: [PATCH 8/9] Update device config
 
 - Add more tracked permissions
 - Update permission history cutoff days
@@ -1093,6 +1093,33 @@ index 158092f3..5e220607 100644
      }
  
      void recordDiscreteAccess(int uid, String packageName, int op, @Nullable String attributionTag,
+-- 
+2.34.1
+
+
+From 0f7fa86198af70ed4efb5a3c921adeecc5647173 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sun, 12 Feb 2023 14:40:38 -0500
+Subject: [PATCH 9/9] Add launcher icon for android 10 easter egg
+
+Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ packages/EasterEgg/AndroidManifest.xml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/packages/EasterEgg/AndroidManifest.xml b/packages/EasterEgg/AndroidManifest.xml
+index cc7bb4a3..48a08231 100644
+--- a/packages/EasterEgg/AndroidManifest.xml
++++ b/packages/EasterEgg/AndroidManifest.xml
+@@ -28,6 +28,7 @@
+             android:theme="@style/QuaresTheme">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
++                <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
+         <activity
 -- 
 2.34.1
 

@@ -1,7 +1,7 @@
-From 4464a2bb57c41d6c8e3878031eb74e480e0d09fc Mon Sep 17 00:00:00 2001
+From adc69ad1ab6012ef255966f281dd1d353b5b77b0 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 1/9] pass safetynet and gpay
+Subject: [PATCH 1/8] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -14,7 +14,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  create mode 100644 core/java/com/android/internal/gmscompat/AttestationHooks.java
 
 diff --git a/core/java/android/app/Instrumentation.java b/core/java/android/app/Instrumentation.java
-index 556058b5..44449588 100644
+index 556058b56..44449588b 100644
 --- a/core/java/android/app/Instrumentation.java
 +++ b/core/java/android/app/Instrumentation.java
 @@ -57,6 +57,8 @@ import android.view.WindowManagerGlobal;
@@ -43,7 +43,7 @@ index 556058b5..44449588 100644
      }
  
 diff --git a/core/java/android/security/net/config/ManifestConfigSource.java b/core/java/android/security/net/config/ManifestConfigSource.java
-index b885e726..5fe0ab24 100644
+index b885e7269..5fe0ab24a 100644
 --- a/core/java/android/security/net/config/ManifestConfigSource.java
 +++ b/core/java/android/security/net/config/ManifestConfigSource.java
 @@ -57,7 +57,7 @@ public class ManifestConfigSource implements ConfigSource {
@@ -57,7 +57,7 @@ index b885e726..5fe0ab24 100644
                  if (DBG) {
 diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
 new file mode 100644
-index 00000000..77101541
+index 000000000..77101541f
 --- /dev/null
 +++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
 @@ -0,0 +1,86 @@
@@ -148,7 +148,7 @@ index 00000000..77101541
 +}
 +
 diff --git a/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java b/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java
-index 33411e1e..133a4094 100644
+index 33411e1ec..133a4094d 100644
 --- a/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java
 +++ b/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java
 @@ -42,6 +42,7 @@ import android.system.keystore2.ResponseCode;
@@ -172,10 +172,10 @@ index 33411e1e..133a4094 100644
 2.34.1
 
 
-From 00e96c1d8ce6b8867cf51e43bfe20ba9c5102e3a Mon Sep 17 00:00:00 2001
+From 83e4c8db145423a185258141215acf35803b806e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 2/9] Set auto brightness on by default
+Subject: [PATCH 2/8] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -183,7 +183,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/packages/SettingsProvider/res/values/defaults.xml b/packages/SettingsProvider/res/values/defaults.xml
-index 7732da40..5d4190a6 100644
+index 99b15db78..5ba768959 100644
 --- a/packages/SettingsProvider/res/values/defaults.xml
 +++ b/packages/SettingsProvider/res/values/defaults.xml
 @@ -31,7 +31,7 @@
@@ -199,10 +199,10 @@ index 7732da40..5d4190a6 100644
 2.34.1
 
 
-From b05b14a31e5d76d0551c9a258be4fc9b7bc63f0a Mon Sep 17 00:00:00 2001
+From f03a5485f3d4a23a9b733068dfb7471c6d422bf4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 3/9] Add support for left side volume dialog
+Subject: [PATCH 3/8] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -218,7 +218,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 
 diff --git a/packages/SystemUI/res/layout-land/volume_dialog_left.xml b/packages/SystemUI/res/layout-land/volume_dialog_left.xml
 new file mode 100644
-index 00000000..1c3b9891
+index 000000000..1c3b98918
 --- /dev/null
 +++ b/packages/SystemUI/res/layout-land/volume_dialog_left.xml
 @@ -0,0 +1,152 @@
@@ -376,7 +376,7 @@ index 00000000..1c3b9891
 +</FrameLayout>
 diff --git a/packages/SystemUI/res/layout/volume_dialog_left.xml b/packages/SystemUI/res/layout/volume_dialog_left.xml
 new file mode 100644
-index 00000000..e6978f95
+index 000000000..e6978f954
 --- /dev/null
 +++ b/packages/SystemUI/res/layout/volume_dialog_left.xml
 @@ -0,0 +1,151 @@
@@ -533,7 +533,7 @@ index 00000000..e6978f95
 +</FrameLayout>
 diff --git a/packages/SystemUI/res/layout/volume_ringer_drawer_left.xml b/packages/SystemUI/res/layout/volume_ringer_drawer_left.xml
 new file mode 100644
-index 00000000..8025a780
+index 000000000..8025a7807
 --- /dev/null
 +++ b/packages/SystemUI/res/layout/volume_ringer_drawer_left.xml
 @@ -0,0 +1,133 @@
@@ -671,10 +671,10 @@ index 00000000..8025a780
 +
 +</FrameLayout>
 diff --git a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-index 3094a8c2..928d9c4e 100644
+index db3fd41cc..941690c8c 100644
 --- a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
 +++ b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-@@ -165,6 +165,7 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -167,6 +167,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
      private final int mDialogShowAnimationDurationMs;
      private final int mDialogHideAnimationDurationMs;
      private int mDialogWidth;
@@ -682,7 +682,7 @@ index 3094a8c2..928d9c4e 100644
      private int mDialogCornerRadius;
      private int mRingerDrawerItemSize;
      private int mRingerRowsPadding;
-@@ -379,21 +380,24 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -384,21 +385,24 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
  
          float x = locInWindow[0];
          float y = locInWindow[1];
@@ -709,7 +709,7 @@ index 3094a8c2..928d9c4e 100644
                  locInWindow[1] + view.getHeight(),
                  Region.Op.UNION);
      }
-@@ -423,18 +427,20 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -428,18 +432,20 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
          lp.format = PixelFormat.TRANSLUCENT;
          lp.setTitle(VolumeDialogImpl.class.getSimpleName());
          lp.windowAnimations = -1;
@@ -733,7 +733,7 @@ index 3094a8c2..928d9c4e 100644
              }
              mDialogView.setAlpha(0);
              mDialogView.animate()
-@@ -610,6 +616,7 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -615,6 +621,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
  
          // Normal, mute, and possibly vibrate.
          mRingerCount = mShowVibrate ? 3 : 2;
@@ -741,7 +741,7 @@ index 3094a8c2..928d9c4e 100644
      }
  
      protected ViewGroup getDialogView() {
-@@ -822,7 +829,7 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -830,7 +837,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
                      mDialogView.getPaddingTop(),
                      mDialogView.getPaddingRight(),
                      mDialogView.getPaddingBottom() + getRingerDrawerOpenExtraSize());
@@ -750,7 +750,7 @@ index 3094a8c2..928d9c4e 100644
              mDialogView.setPadding(
                      mDialogView.getPaddingLeft() + getRingerDrawerOpenExtraSize(),
                      mDialogView.getPaddingTop(),
-@@ -895,11 +902,19 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -903,11 +910,19 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
       * with the given mode in the drawer.
       */
      private float getTranslationInDrawerForRingerMode(int mode) {
@@ -775,7 +775,7 @@ index 3094a8c2..928d9c4e 100644
      }
  
      /** Animates in the ringer drawer. */
-@@ -934,8 +949,10 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -942,8 +957,10 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
          // icon.
          if (!isLandscape()) {
              mRingerDrawerContainer.setTranslationY(mRingerDrawerItemSize * (mRingerCount - 1));
@@ -787,7 +787,7 @@ index 3094a8c2..928d9c4e 100644
          }
          mRingerDrawerContainer.setAlpha(0f);
          mRingerDrawerContainer.setVisibility(VISIBLE);
-@@ -1015,10 +1032,14 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -1023,10 +1040,14 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
              mRingerDrawerContainer.animate()
                      .translationY(mRingerDrawerItemSize * 2)
                      .start();
@@ -803,7 +803,7 @@ index 3094a8c2..928d9c4e 100644
          }
  
          mAnimateUpBackgroundToMatchDrawer.setDuration(DRAWER_ANIMATION_DURATION);
-@@ -1390,7 +1411,10 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -1401,7 +1422,10 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
  
                      hideRingerDrawer();
                  }, 50));
@@ -815,7 +815,7 @@ index 3094a8c2..928d9c4e 100644
          animator.setListener(getJankListener(getDialogView(), TYPE_DISMISS,
                  mDialogHideAnimationDurationMs)).start();
          checkODICaptionsTooltip(true);
-@@ -1490,7 +1514,7 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -1501,7 +1525,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
              }
          }
  
@@ -824,7 +824,7 @@ index 3094a8c2..928d9c4e 100644
              final View lastVisibleChild = mDialogRowsView.getChildAt(rightmostVisibleRowIndex);
              final ViewGroup.LayoutParams layoutParams = lastVisibleChild.getLayoutParams();
              // Remove the spacing on the last row, and remove its background since the container is
-@@ -1985,8 +2009,11 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -2000,8 +2024,11 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
          final Rect bounds = mRingerAndDrawerContainerBackground.copyBounds();
          if (!isLandscape()) {
              bounds.top = (int) (mRingerDrawerClosedAmount * getRingerDrawerOpenExtraSize());
@@ -837,7 +837,7 @@ index 3094a8c2..928d9c4e 100644
          }
          mRingerAndDrawerContainerBackground.setBounds(bounds);
      }
-@@ -2027,7 +2054,8 @@ public class VolumeDialogImpl implements VolumeDialog,
+@@ -2042,7 +2069,8 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
                          : mDialogRowsViewContainer.getTop() - mDialogCornerRadius);
  
          // Set gravity to top-right, since additional rows will be added on the left.
@@ -851,10 +851,10 @@ index 3094a8c2..928d9c4e 100644
 2.34.1
 
 
-From 9776b203258fb3c64d1b18ec813210e93be10fa9 Mon Sep 17 00:00:00 2001
+From c239db55fa529e212b25fde9deced541e7a31175 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 4/9] Remove max column limit on quick tiles under notification
+Subject: [PATCH 4/8] Remove max column limit on quick tiles under notification
  shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -864,7 +864,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 deletion(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java b/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java
-index 3d00dd49..4d107f81 100644
+index 7ee404756..ccdcaa7bd 100644
 --- a/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java
 +++ b/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java
 @@ -91,7 +91,6 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
@@ -879,10 +879,10 @@ index 3d00dd49..4d107f81 100644
 2.34.1
 
 
-From f60df4d3bb20084bcab250268804bbd2047f0d98 Mon Sep 17 00:00:00 2001
+From 63272f4b91f4b6a915e0fd041a89f7d142107c3d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 13 Jan 2023 19:24:12 -0500
-Subject: [PATCH 5/9] Restore wifi and cell qs tiles
+Subject: [PATCH 5/8] Restore wifi and cell qs tiles
 
 Change-Id: I4aab18360753483de11de46e5e008a7bba765289
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -893,7 +893,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  3 files changed, 2 insertions(+), 17 deletions(-)
 
 diff --git a/packages/SystemUI/res/values/config.xml b/packages/SystemUI/res/values/config.xml
-index 92b132a8..b3913c84 100644
+index e0da8b44d..cfa77dedd 100644
 --- a/packages/SystemUI/res/values/config.xml
 +++ b/packages/SystemUI/res/values/config.xml
 @@ -68,7 +68,7 @@
@@ -915,10 +915,10 @@ index 92b132a8..b3913c84 100644
  
      <!-- The tiles to display in QuickSettings -->
 diff --git a/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java b/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java
-index ac46c85c..e9558b73 100644
+index 100853caa..45eca154a 100644
 --- a/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java
 +++ b/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java
-@@ -630,19 +630,6 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory>, D
+@@ -632,19 +632,6 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory>, P
              }
          }
  
@@ -939,7 +939,7 @@ index ac46c85c..e9558b73 100644
      }
  
 diff --git a/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java b/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java
-index 32a7916d..8a0f86b4 100644
+index 32a7916da..8a0f86b45 100644
 --- a/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java
 +++ b/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java
 @@ -119,8 +119,6 @@ public class TileQueryHelper {
@@ -955,55 +955,10 @@ index 32a7916d..8a0f86b4 100644
 2.34.1
 
 
-From 4bcf1bcc056fdf66913dbda6f0b2c84451c14d46 Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Sat, 21 Jan 2023 15:34:11 -0500
-Subject: [PATCH 6/9] Add ripple to keyguard quick affordance buttons
-
-Change-Id: Idcbae41c9744036d733bee740616dc744795d04b
-Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
----
- .../keyguard_bottom_affordance_bg.xml         | 21 +++++++++++--------
- 1 file changed, 12 insertions(+), 9 deletions(-)
-
-diff --git a/packages/SystemUI/res/drawable/keyguard_bottom_affordance_bg.xml b/packages/SystemUI/res/drawable/keyguard_bottom_affordance_bg.xml
-index 41123c84..3c8048de 100644
---- a/packages/SystemUI/res/drawable/keyguard_bottom_affordance_bg.xml
-+++ b/packages/SystemUI/res/drawable/keyguard_bottom_affordance_bg.xml
-@@ -16,13 +16,16 @@
- * limitations under the License.
- */
- -->
--<shape
--    xmlns:android="http://schemas.android.com/apk/res/android"
-+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:androidprv="http://schemas.android.com/apk/prv/res/android"
--    android:shape="rectangle">
--  <solid android:color="?androidprv:attr/colorSurface"/>
--  <size
--      android:width="@dimen/keyguard_affordance_width"
--      android:height="@dimen/keyguard_affordance_height"/>
--  <corners android:radius="@dimen/keyguard_affordance_fixed_radius"/>
--</shape>
-+    android:color="?android:attr/colorControlHighlight">
-+    <item>
-+        <shape android:shape="rectangle">
-+          <solid android:color="?androidprv:attr/colorSurface"/>
-+          <size
-+              android:width="@dimen/keyguard_affordance_width"
-+              android:height="@dimen/keyguard_affordance_height"/>
-+          <corners android:radius="@dimen/keyguard_affordance_fixed_radius"/>
-+        </shape>
-+    </item>
-+</ripple>
--- 
-2.34.1
-
-
-From fa18ba2ba00ab2815339c92f0b33da23222527b8 Mon Sep 17 00:00:00 2001
+From 64fa5c9bf9c1fea734c9949fb340f7d322c69a24 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 17:08:25 -0500
-Subject: [PATCH 7/9] Move qr code scanner button to bottom left of lock screen
+Subject: [PATCH 6/8] Move qr code scanner button to bottom left of lock screen
 
 Change-Id: I494e8b9a6fbd889fa461267d951410da5d88875b
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1012,10 +967,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/keyguard/domain/quickaffordance/KeyguardQuickAffordanceRegistry.kt b/packages/SystemUI/src/com/android/systemui/keyguard/domain/quickaffordance/KeyguardQuickAffordanceRegistry.kt
-index ad40ee7a..8d86d029 100644
+index 8526ada69..140f1847c 100644
 --- a/packages/SystemUI/src/com/android/systemui/keyguard/domain/quickaffordance/KeyguardQuickAffordanceRegistry.kt
 +++ b/packages/SystemUI/src/com/android/systemui/keyguard/domain/quickaffordance/KeyguardQuickAffordanceRegistry.kt
-@@ -38,12 +38,12 @@ constructor(
+@@ -41,12 +41,12 @@ constructor(
          mapOf(
              KeyguardQuickAffordancePosition.BOTTOM_START to
                  listOf(
@@ -1028,15 +983,15 @@ index ad40ee7a..8d86d029 100644
 -                    qrCodeScanner,
                  ),
          )
-     private val configByClass =
+     private val configByKey =
 -- 
 2.34.1
 
 
-From 1e92f3182d8a2e96b6fd72524f21c689f282446c Mon Sep 17 00:00:00 2001
+From 8b218db9615203ff8e879a52058ddbc040610242 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 8/9] Update device config
+Subject: [PATCH 7/8] Update device config
 
 - Add more tracked permissions
 - Update permission history cutoff days
@@ -1048,7 +1003,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 6 insertions(+), 15 deletions(-)
 
 diff --git a/services/core/java/com/android/server/appop/DiscreteRegistry.java b/services/core/java/com/android/server/appop/DiscreteRegistry.java
-index 158092f3..5e220607 100644
+index 158092f33..5e2206079 100644
 --- a/services/core/java/com/android/server/appop/DiscreteRegistry.java
 +++ b/services/core/java/com/android/server/appop/DiscreteRegistry.java
 @@ -132,9 +132,7 @@ final class DiscreteRegistry {
@@ -1097,10 +1052,10 @@ index 158092f3..5e220607 100644
 2.34.1
 
 
-From 0f7fa86198af70ed4efb5a3c921adeecc5647173 Mon Sep 17 00:00:00 2001
+From c82d86988ea7958db3214b8c66f51c7828aebc07 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 9/9] Add launcher icon for android 10 easter egg
+Subject: [PATCH 8/8] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1109,7 +1064,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/packages/EasterEgg/AndroidManifest.xml b/packages/EasterEgg/AndroidManifest.xml
-index cc7bb4a3..48a08231 100644
+index cc7bb4a3f..48a08231b 100644
 --- a/packages/EasterEgg/AndroidManifest.xml
 +++ b/packages/EasterEgg/AndroidManifest.xml
 @@ -28,6 +28,7 @@

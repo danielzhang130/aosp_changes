@@ -1,7 +1,7 @@
-From c2d34ae1a13163141268cda13aa3941b4f088049 Mon Sep 17 00:00:00 2001
+From 74892a1e7beded6cd56cddc2f9afd87f33104568 Mon Sep 17 00:00:00 2001
 From: Luca Stefani <luca.stefani.ge1@gmail.com>
 Date: Fri, 1 Nov 2019 21:14:29 +0100
-Subject: [PATCH 1/5] Add wallpaper privapp whitelist
+Subject: [PATCH 1/4] Add wallpaper privapp whitelist
 
 Change-Id: I044b1d9201ac0b8780fc37a387f401f3dd0ddeac
 ---
@@ -11,10 +11,10 @@ Change-Id: I044b1d9201ac0b8780fc37a387f401f3dd0ddeac
  create mode 100644 privapp_whitelist_com.android.wallpaper.xml
 
 diff --git a/Android.bp b/Android.bp
-index c85fd2b..fdd7991 100644
+index 6d9ff8f..003f536 100644
 --- a/Android.bp
 +++ b/Android.bp
-@@ -105,4 +105,13 @@ android_app {
+@@ -118,4 +118,13 @@ android_app {
      manifest: "AndroidManifest.xml",
      additional_manifests: [":WallpaperPicker2_Manifest"],
      overrides: ["WallpaperPicker2"],
@@ -62,10 +62,10 @@ index 0000000..43a8ca3
 2.34.1
 
 
-From a127ec4042fed0ea09a0c71bc71d8ad533b637e3 Mon Sep 17 00:00:00 2001
+From 24bd1896a6c9a0c5bba6708cfd339e66a3ea5cf4 Mon Sep 17 00:00:00 2001
 From: LuK1337 <priv.luk@gmail.com>
 Date: Tue, 15 Sep 2020 03:27:19 +0200
-Subject: [PATCH 2/5] Add wallpaper default permissions
+Subject: [PATCH 2/4] Add wallpaper default permissions
 
 Change-Id: If43a594da31fbab9280ce45b049737f6c534b620
 ---
@@ -75,10 +75,10 @@ Change-Id: If43a594da31fbab9280ce45b049737f6c534b620
  create mode 100644 default_permissions_com.android.wallpaper.xml
 
 diff --git a/Android.bp b/Android.bp
-index fdd7991..aa3abde 100644
+index 003f536..772e723 100644
 --- a/Android.bp
 +++ b/Android.bp
-@@ -105,7 +105,18 @@ android_app {
+@@ -118,7 +118,18 @@ android_app {
      manifest: "AndroidManifest.xml",
      additional_manifests: [":WallpaperPicker2_Manifest"],
      overrides: ["WallpaperPicker2"],
@@ -145,10 +145,10 @@ index 0000000..41b23ce
 2.34.1
 
 
-From 4189bffec19ef4f234658ac7238ba5e856cded54 Mon Sep 17 00:00:00 2001
+From bf8e5a2ecdd782a382f5577a4568d47fdc684fcd Mon Sep 17 00:00:00 2001
 From: Luca Stefani <luca.stefani.ge1@gmail.com>
 Date: Fri, 1 Nov 2019 23:17:08 +0100
-Subject: [PATCH 3/5] Specify we read and write launcher settings
+Subject: [PATCH 3/4] Specify we read and write launcher settings
 
 Change-Id: Ifc8196588443b007602118389ca76d34ab531f14
 ---
@@ -156,10 +156,10 @@ Change-Id: Ifc8196588443b007602118389ca76d34ab531f14
  1 file changed, 3 insertions(+)
 
 diff --git a/AndroidManifest.xml b/AndroidManifest.xml
-index ff8f187..cace7db 100755
+index 4e71bcc..26f4fce 100755
 --- a/AndroidManifest.xml
 +++ b/AndroidManifest.xml
-@@ -37,6 +37,9 @@
+@@ -45,6 +45,9 @@
          </intent>
      </queries>
  
@@ -173,44 +173,10 @@ index ff8f187..cace7db 100755
 2.34.1
 
 
-From 922e02d74e847198db995993d651ca68364d9cac Mon Sep 17 00:00:00 2001
-From: Danny Lin <danny@kdrag0n.dev>
-Date: Tue, 5 Oct 2021 19:12:40 -0700
-Subject: [PATCH 4/5] Declare HOME query for launcher discovery
-
-ThemePicker needs to query the current launcher in order to render
-launcher/wallpaper previews, toggle themed icons, and change the app
-grid size.
-
-Change-Id: Id79fe1eaa4d09f775a37a1dfb1091ed08a1d3422
----
- AndroidManifest.xml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/AndroidManifest.xml b/AndroidManifest.xml
-index cace7db..85bf749 100755
---- a/AndroidManifest.xml
-+++ b/AndroidManifest.xml
-@@ -35,6 +35,11 @@
-         <intent>
-             <action android:name="com.android.launcher3.action.PARTNER_CUSTOMIZATION" />
-         </intent>
-+        <!-- Intent filter with action used to discover launcher -->
-+        <intent>
-+            <action android:name="android.intent.action.MAIN" />
-+            <category android:name="android.intent.category.HOME" />
-+        </intent>
-     </queries>
- 
-     <uses-permission android:name="com.android.launcher3.permission.READ_SETTINGS" />
--- 
-2.34.1
-
-
-From 39cc84fbfcf9b12cb0693c02388066028afed189 Mon Sep 17 00:00:00 2001
+From b0164a36fc6a22ff1b779c414d0f1e92b8c201eb Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Tue, 5 Oct 2021 22:40:58 -0700
-Subject: [PATCH 5/5] Add permission for launcher preview rendering
+Subject: [PATCH 4/4] Add permission for launcher preview rendering
 
 Change-Id: Ie707dcd98161e8f5993b0504295fddc3f395cd20
 ---
@@ -219,7 +185,7 @@ Change-Id: Ie707dcd98161e8f5993b0504295fddc3f395cd20
  2 files changed, 2 insertions(+)
 
 diff --git a/AndroidManifest.xml b/AndroidManifest.xml
-index 85bf749..897a21f 100755
+index 26f4fce..40281cf 100755
 --- a/AndroidManifest.xml
 +++ b/AndroidManifest.xml
 @@ -8,6 +8,7 @@
@@ -227,9 +193,9 @@ index 85bf749..897a21f 100755
      <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
      <uses-permission android:name="android.permission.SET_WALLPAPER_COMPONENT" />
 +    <uses-permission android:name="android.permission.BIND_WALLPAPER" />
- 
+     <uses-permission android:name="android.permission.READ_DEVICE_CONFIG" />
      <uses-permission android:name="android.permission.MODIFY_DAY_NIGHT_MODE" />
- 
+     <uses-permission android:name="android.permission.CUSTOMIZE_SYSTEM_UI" />
 diff --git a/privapp_whitelist_com.android.wallpaper.xml b/privapp_whitelist_com.android.wallpaper.xml
 index 43a8ca3..0ae3fbb 100644
 --- a/privapp_whitelist_com.android.wallpaper.xml

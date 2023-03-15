@@ -1,7 +1,7 @@
-From 9c75be578073f05db8ea564b5cb87afac8c49992 Mon Sep 17 00:00:00 2001
+From 6f86f11eb29fc82ebaece05147be4b289563402c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
-Subject: [PATCH 01/17] Various updates to phh treble device
+Subject: [PATCH 01/18] Various updates to phh treble device
 
 - make adb secure
 - remove su
@@ -6467,10 +6467,10 @@ index db7c86d..4797b06 100644
 2.34.1
 
 
-From aa47602f0138c08968c9958dee2876e32eaa851a Mon Sep 17 00:00:00 2001
+From 537d25f113336e71732c39b33ba6f4dc45c766f1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
-Subject: [PATCH 02/17] Passes safetynet out of the box
+Subject: [PATCH 02/18] Passes safetynet out of the box
 
 remove unneeded system prop changes
 
@@ -6507,10 +6507,10 @@ index e1ad994..c167961 100644
 2.34.1
 
 
-From 1d5771dfa4aa9346f6f06247c389b6104bae8e23 Mon Sep 17 00:00:00 2001
+From 4c12aedf309abec84d497b76c126761832725f2d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
-Subject: [PATCH 03/17] Fix adb not connecting when device first starts
+Subject: [PATCH 03/18] Fix adb not connecting when device first starts
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -6551,10 +6551,10 @@ index 55b3311..0000000
 2.34.1
 
 
-From e4da00b212fdcd95ea2f62545878f65e0051e5bf Mon Sep 17 00:00:00 2001
+From 3883651492293f8191130778cecf0fb4b3f2827e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
-Subject: [PATCH 04/17] Add FP3 boot animation
+Subject: [PATCH 04/18] Add FP3 boot animation
 
 - add nova launcher
 - remove unused packages
@@ -14909,10 +14909,10 @@ index 738b96f..516377a 100644
 2.34.1
 
 
-From 7ecb9e469c6620ec455ad84afe67e796603ba81a Mon Sep 17 00:00:00 2001
+From 9af593ba1240b019dcedf4f7a14bfbd5a4284e94 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
-Subject: [PATCH 05/17] Add fp3 boot animation
+Subject: [PATCH 05/18] Add fp3 boot animation
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16498,10 +16498,10 @@ index 516377a..0000000
 2.34.1
 
 
-From 31b47cf2bd89ac2158aa98fd2a3737c185075d61 Mon Sep 17 00:00:00 2001
+From dc4236b192e6fe1e2de16230f1097e4760b885a4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:45:26 -0500
-Subject: [PATCH 06/17] fix bootanimation
+Subject: [PATCH 06/18] fix bootanimation
 
 ---
  blueline.mk | 3 +++
@@ -16525,10 +16525,10 @@ index d5ccf61..5b3265d 100644
 2.34.1
 
 
-From bdc08edc25255e0bc1fe97f2716e286fb45b3256 Mon Sep 17 00:00:00 2001
+From 0a5d364cdaf013f0ec46ae87f9fa300544067283 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:49:11 -0500
-Subject: [PATCH 07/17] Add ro.build.version.real_security_patch
+Subject: [PATCH 07/18] Add ro.build.version.real_security_patch
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16551,10 +16551,10 @@ index 9f975c7..243d251 100644
 2.34.1
 
 
-From ab802c8515446ebcba01e79625adb7c93f191ebe Mon Sep 17 00:00:00 2001
+From 1a7c287e43e5f70383f91bd659f310f525a9d642 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
-Subject: [PATCH 08/17] Remove restarting surfaceflinger
+Subject: [PATCH 08/18] Remove restarting surfaceflinger
 
 - stop boot animation restarting
 - lcd density seems to be set correctly without it
@@ -16582,10 +16582,10 @@ index d1fffde..0991f3a 100644
 2.34.1
 
 
-From fc12e79f6a52ca672a89d32268915b037d10535e Mon Sep 17 00:00:00 2001
+From 3fc6cf066b069e563b6cf8d946af9df71e9ac21f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
-Subject: [PATCH 09/17] Remove twrp files
+Subject: [PATCH 09/18] Remove twrp files
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29583,10 +29583,10 @@ index cb67b71..0000000
 2.34.1
 
 
-From e4a8df21931e50f9439f495bcd0015b839250563 Mon Sep 17 00:00:00 2001
+From a728dcec418066c1ebb9e4d2dffb7c1b229df74b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:47:06 -0500
-Subject: [PATCH 10/17] Remove ota
+Subject: [PATCH 10/18] Remove ota
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29842,10 +29842,10 @@ index 0991f3a..4b9c16d 100644
 2.34.1
 
 
-From 263c8bfadf0ec465561e13ca22b32d2eedc21d51 Mon Sep 17 00:00:00 2001
+From 7be7fca3bea08bcce2b7770b0b71259a6c1df138 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:00:25 -0500
-Subject: [PATCH 11/17] Remove unused remote files, functionality already
+Subject: [PATCH 11/18] Remove unused remote files, functionality already
  removed
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -31955,10 +31955,10 @@ index 87f2f96..0000000
 2.34.1
 
 
-From 6ef930e2badabf3b2026e5b2f2a48024912cedc1 Mon Sep 17 00:00:00 2001
+From a60b4a6ff4e8d428dccf487987f946999b7839ac Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:12:45 -0500
-Subject: [PATCH 12/17] fix adb by removing ctl.restart adbd
+Subject: [PATCH 12/18] fix adb by removing ctl.restart adbd
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32032,10 +32032,10 @@ index c167961..bc92624 100644
 2.34.1
 
 
-From d70453b139445e723b902a164278384d0a614b0c Mon Sep 17 00:00:00 2001
+From e39e4949b2ca73bd949f46d8b14d01b3999db28f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 27 Dec 2022 15:16:35 -0500
-Subject: [PATCH 13/17] Add Wellbeing as priv-app
+Subject: [PATCH 13/18] Add Wellbeing as priv-app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32058,10 +32058,10 @@ index 813d66b..96a0a7a 100644
 2.34.1
 
 
-From c915787ffbf3ad7569be5badfa2648e0e327ddd1 Mon Sep 17 00:00:00 2001
+From 2b81392fe3350b070ad0d949cd6ecfde3a2c232e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 18:02:33 -0500
-Subject: [PATCH 14/17] Add themepicker to build
+Subject: [PATCH 14/18] Add themepicker to build
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32084,10 +32084,10 @@ index b385581..49f6bdc 100644
 2.34.1
 
 
-From f66252e3ac2930fd9b6e41113b58b79a4bf34c89 Mon Sep 17 00:00:00 2001
+From 41f75ce696a757ed50169230ac3c4f875ff7efc4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 29 Dec 2022 15:32:08 -0500
-Subject: [PATCH 15/17] Remove default browser, calendar and gallery app
+Subject: [PATCH 15/18] Remove default browser, calendar and gallery app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32114,10 +32114,10 @@ index 96a0a7a..dc9e985 100644
 2.34.1
 
 
-From 5aa107005c65681cb343c50678dbb09d707a070a Mon Sep 17 00:00:00 2001
+From ec77fed19ce1b45cde12ffd5959c3b7fc3503d7b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 11:01:17 -0500
-Subject: [PATCH 16/17] Enable one handed mode
+Subject: [PATCH 16/18] Enable one handed mode
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32138,10 +32138,10 @@ index 4797b06..ab277ec 100644
 2.34.1
 
 
-From 60aa16d3346a4976ecfe9a458f3006df09c05b17 Mon Sep 17 00:00:00 2001
+From 6502b321b4c3ae320b6959a1b69858f6da867129 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 22:43:22 -0500
-Subject: [PATCH 17/17] Add changelist generation on each build
+Subject: [PATCH 17/18] Add changelist generation on each build
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32174,6 +32174,31 @@ index 0000000..4e3d648
 +    git log --format="%an %h %s" $BASE..HEAD
 +    echo
 +fi
+-- 
+2.34.1
+
+
+From 4eceb711488fb27c03a63e76fe6e71a7d652d0bf Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Wed, 15 Mar 2023 15:02:46 -0400
+Subject: [PATCH 18/18] Disable fingerprint cleanup to prevent fingerprint from
+ disappearing
+
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ rw-system.sh | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/rw-system.sh b/rw-system.sh
+index bc92624..4ebbe7f 100644
+--- a/rw-system.sh
++++ b/rw-system.sh
+@@ -1086,3 +1086,5 @@ fi
+ 
+ mount -o bind /mnt/phh/empty_dir /vendor/app/qti-logkit
+ mount -o bind /mnt/phh/empty_dir /vendor/app/qti-logkit-lite
++
++setprop persist.sys.phh.fingerprint.nocleanup true
 -- 
 2.34.1
 

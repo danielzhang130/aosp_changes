@@ -1,4 +1,4 @@
-From 6f86f11eb29fc82ebaece05147be4b289563402c Mon Sep 17 00:00:00 2001
+From 8e0b419bc17eaa64755eda3c19dbc1dce8937f80 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
 Subject: [PATCH 01/18] Various updates to phh treble device
@@ -6467,7 +6467,7 @@ index db7c86d..4797b06 100644
 2.34.1
 
 
-From 537d25f113336e71732c39b33ba6f4dc45c766f1 Mon Sep 17 00:00:00 2001
+From 3d7be0f2c69838d6d3515d73fc479a99b95dee7e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
 Subject: [PATCH 02/18] Passes safetynet out of the box
@@ -6507,7 +6507,7 @@ index e1ad994..c167961 100644
 2.34.1
 
 
-From 4c12aedf309abec84d497b76c126761832725f2d Mon Sep 17 00:00:00 2001
+From feb060474cf38778b087f0b059eb63bd74c32dee Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
 Subject: [PATCH 03/18] Fix adb not connecting when device first starts
@@ -6551,7 +6551,7 @@ index 55b3311..0000000
 2.34.1
 
 
-From 3883651492293f8191130778cecf0fb4b3f2827e Mon Sep 17 00:00:00 2001
+From 7651ff5f07ff4ef0257ed71138dd046e003c6fed Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
 Subject: [PATCH 04/18] Add FP3 boot animation
@@ -14909,7 +14909,7 @@ index 738b96f..516377a 100644
 2.34.1
 
 
-From 9af593ba1240b019dcedf4f7a14bfbd5a4284e94 Mon Sep 17 00:00:00 2001
+From 064294bd099ef0526a6e6cfb97ca291aa7388875 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
 Subject: [PATCH 05/18] Add fp3 boot animation
@@ -16498,7 +16498,7 @@ index 516377a..0000000
 2.34.1
 
 
-From dc4236b192e6fe1e2de16230f1097e4760b885a4 Mon Sep 17 00:00:00 2001
+From 8201e0c3c83a816eb1c35f196074cf7240f87fa2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:45:26 -0500
 Subject: [PATCH 06/18] fix bootanimation
@@ -16525,7 +16525,7 @@ index d5ccf61..5b3265d 100644
 2.34.1
 
 
-From 0a5d364cdaf013f0ec46ae87f9fa300544067283 Mon Sep 17 00:00:00 2001
+From 39f926cb1781aeb9f1899f3147a38a7346ca96b1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:49:11 -0500
 Subject: [PATCH 07/18] Add ro.build.version.real_security_patch
@@ -16551,7 +16551,7 @@ index 9f975c7..243d251 100644
 2.34.1
 
 
-From 1a7c287e43e5f70383f91bd659f310f525a9d642 Mon Sep 17 00:00:00 2001
+From 6f0fdb5e79b775d9abb29019052feed2356567f8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
 Subject: [PATCH 08/18] Remove restarting surfaceflinger
@@ -16582,7 +16582,7 @@ index d1fffde..0991f3a 100644
 2.34.1
 
 
-From 3fc6cf066b069e563b6cf8d946af9df71e9ac21f Mon Sep 17 00:00:00 2001
+From 5addf891bd47bd71bda07d8910306d3414ec9e17 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
 Subject: [PATCH 09/18] Remove twrp files
@@ -29583,7 +29583,7 @@ index cb67b71..0000000
 2.34.1
 
 
-From a728dcec418066c1ebb9e4d2dffb7c1b229df74b Mon Sep 17 00:00:00 2001
+From a03f6cfccc1400dbeb48b4a2472b49f1bbeb2411 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:47:06 -0500
 Subject: [PATCH 10/18] Remove ota
@@ -29842,7 +29842,7 @@ index 0991f3a..4b9c16d 100644
 2.34.1
 
 
-From 7be7fca3bea08bcce2b7770b0b71259a6c1df138 Mon Sep 17 00:00:00 2001
+From 5019553c9ed6d1f2071441698cf0472aa1023737 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:00:25 -0500
 Subject: [PATCH 11/18] Remove unused remote files, functionality already
@@ -31955,7 +31955,7 @@ index 87f2f96..0000000
 2.34.1
 
 
-From a60b4a6ff4e8d428dccf487987f946999b7839ac Mon Sep 17 00:00:00 2001
+From 2ff98e58f1771c42a4202f147297e2c588fc1853 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:12:45 -0500
 Subject: [PATCH 12/18] fix adb by removing ctl.restart adbd
@@ -32032,7 +32032,7 @@ index c167961..bc92624 100644
 2.34.1
 
 
-From e39e4949b2ca73bd949f46d8b14d01b3999db28f Mon Sep 17 00:00:00 2001
+From 2022ca9e8f0b7df4f1975a0bd7382f778e2d8cd4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 27 Dec 2022 15:16:35 -0500
 Subject: [PATCH 13/18] Add Wellbeing as priv-app
@@ -32058,7 +32058,7 @@ index 813d66b..96a0a7a 100644
 2.34.1
 
 
-From 2b81392fe3350b070ad0d949cd6ecfde3a2c232e Mon Sep 17 00:00:00 2001
+From 6dfc0ce81b1eac42b3277f6e9995a0c9a713440c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 18:02:33 -0500
 Subject: [PATCH 14/18] Add themepicker to build
@@ -32084,7 +32084,7 @@ index b385581..49f6bdc 100644
 2.34.1
 
 
-From 41f75ce696a757ed50169230ac3c4f875ff7efc4 Mon Sep 17 00:00:00 2001
+From f9a0f6f931c3a5d1f61d6129d7f093bd546ca409 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 29 Dec 2022 15:32:08 -0500
 Subject: [PATCH 15/18] Remove default browser, calendar and gallery app
@@ -32114,7 +32114,7 @@ index 96a0a7a..dc9e985 100644
 2.34.1
 
 
-From ec77fed19ce1b45cde12ffd5959c3b7fc3503d7b Mon Sep 17 00:00:00 2001
+From d4ef7060ea0fa8c890fa69f98a2703d9d45eef11 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 11:01:17 -0500
 Subject: [PATCH 16/18] Enable one handed mode
@@ -32138,7 +32138,7 @@ index 4797b06..ab277ec 100644
 2.34.1
 
 
-From 6502b321b4c3ae320b6959a1b69858f6da867129 Mon Sep 17 00:00:00 2001
+From d186b346173c63113d3167ec73e43b6bafe16b62 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 22:43:22 -0500
 Subject: [PATCH 17/18] Add changelist generation on each build
@@ -32178,7 +32178,7 @@ index 0000000..4e3d648
 2.34.1
 
 
-From 4eceb711488fb27c03a63e76fe6e71a7d652d0bf Mon Sep 17 00:00:00 2001
+From e8ae2ac71d1859598f540643ff3678c7f085634d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 15 Mar 2023 15:02:46 -0400
 Subject: [PATCH 18/18] Disable fingerprint cleanup to prevent fingerprint from

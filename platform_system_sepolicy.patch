@@ -1,7 +1,7 @@
-From 7ec5035b6a6c77a6016c21c1f0c82e50592f743e Mon Sep 17 00:00:00 2001
+From 1a68b97e0e07c1f1d36ac194fbe5a7f9a3bebd74 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:57:31 -0500
-Subject: [PATCH 1/5] relax sepolicy
+Subject: [PATCH 1/2] relax sepolicy
 
 Change-Id: Ic3045fd9b1548fc3c82d221ca9bca05d094d9734
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -27,14 +27,15 @@ index 8fd90b0..7807cbe 100644
 2.34.1
 
 
-From 09f7879481e0b5050e01f3ee7d851870b2b87470 Mon Sep 17 00:00:00 2001
+From 4ce900388c5a204302d9893d03681fc697bc4932 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:36:52 -0500
-Subject: [PATCH 2/5] Fix sdcard sepolicy
+Subject: [PATCH 2/2] Fix sdcard sepolicy
 
 Change-Id: I3c173b9fec21c3f8918af5d5ac07da690e86940d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
+ prebuilts/api/33.0/private/bluetooth.te         | 2 ++
  prebuilts/api/33.0/private/mediaprovider_app.te | 6 ++++++
  prebuilts/api/33.0/private/mls                  | 4 ++--
  prebuilts/api/33.0/private/platform_app.te      | 1 +
@@ -42,7 +43,9 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  prebuilts/api/33.0/private/untrusted_app_30.te  | 4 ++++
  prebuilts/api/33.0/public/file.te               | 1 +
  prebuilts/api/33.0/public/fsck_untrusted.te     | 2 ++
+ prebuilts/api/33.0/public/mediaserver.te        | 2 ++
  prebuilts/api/33.0/public/vold.te               | 2 ++
+ private/bluetooth.te                            | 2 ++
  private/mediaprovider_app.te                    | 6 ++++++
  private/mls                                     | 4 ++--
  private/platform_app.te                         | 1 +
@@ -50,9 +53,23 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  private/untrusted_app_30.te                     | 4 ++++
  public/file.te                                  | 1 +
  public/fsck_untrusted.te                        | 2 ++
+ public/mediaserver.te                           | 2 ++
  public/vold.te                                  | 2 ++
- 16 files changed, 38 insertions(+), 4 deletions(-)
+ 20 files changed, 46 insertions(+), 4 deletions(-)
 
+diff --git a/prebuilts/api/33.0/private/bluetooth.te b/prebuilts/api/33.0/private/bluetooth.te
+index 0b001e2..bda33e6 100644
+--- a/prebuilts/api/33.0/private/bluetooth.te
++++ b/prebuilts/api/33.0/private/bluetooth.te
+@@ -86,6 +86,8 @@ hal_client_domain(bluetooth, hal_audio)
+ 
+ read_runtime_log_tags(bluetooth)
+ 
++allow bluetooth unlabeled:file { getattr read };
++
+ ###
+ ### Neverallow rules
+ ###
 diff --git a/prebuilts/api/33.0/private/mediaprovider_app.te b/prebuilts/api/33.0/private/mediaprovider_app.te
 index a9a52bb..e212ec8 100644
 --- a/prebuilts/api/33.0/private/mediaprovider_app.te
@@ -94,26 +111,26 @@ index 6112ae0..3bab9bc 100644
  neverallow platform_app fuse_device:chr_file *;
 +allow platform_app unlabeled:file getattr;
 diff --git a/prebuilts/api/33.0/private/untrusted_app.te b/prebuilts/api/33.0/private/untrusted_app.te
-index 63b095a..7d7fa10 100644
+index 63b095a..49a11d8 100644
 --- a/prebuilts/api/33.0/private/untrusted_app.te
 +++ b/prebuilts/api/33.0/private/untrusted_app.te
 @@ -19,5 +19,6 @@ bluetooth_domain(untrusted_app)
  # TODO(b/229249719): Will not be supported in Android U
  allow untrusted_app sdk_sandbox_data_file:fd use;
  allow untrusted_app sdk_sandbox_data_file:file write;
-+allow untrusted_app unlabeled:file read;
++allow untrusted_app unlabeled:file { read write getattr };
  
  neverallow untrusted_app sdk_sandbox_data_file:file { open create };
 diff --git a/prebuilts/api/33.0/private/untrusted_app_30.te b/prebuilts/api/33.0/private/untrusted_app_30.te
-index 7b23be7..9629c9d 100644
+index e0a71ef..764ae6b 100644
 --- a/prebuilts/api/33.0/private/untrusted_app_30.te
 +++ b/prebuilts/api/33.0/private/untrusted_app_30.te
-@@ -23,3 +23,7 @@ auditallow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
- 
- # Allow hidden build props
- get_prop({ untrusted_app_30 userdebug_or_eng(`-untrusted_app_30') }, userdebug_or_eng_prop)
+@@ -20,3 +20,7 @@ bluetooth_domain(untrusted_app_30)
+ # allow sending RTM_GETNEIGH{TBL} messages.
+ allow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
+ auditallow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
 +
-+allow untrusted_app_30 unlabeled:file read;
++allow untrusted_app_30 unlabeled:file {getattr read};
 +allow untrusted_app_30 unlabeled:dir getattr;
 +allow untrusted_app_30 unlabeled:filesystem getattr;
 diff --git a/prebuilts/api/33.0/public/file.te b/prebuilts/api/33.0/public/file.te
@@ -138,6 +155,19 @@ index 8510c94..579101f 100644
  ###
  ### neverallow rules
  ###
+diff --git a/prebuilts/api/33.0/public/mediaserver.te b/prebuilts/api/33.0/public/mediaserver.te
+index 621b6d7..5ae419d 100644
+--- a/prebuilts/api/33.0/public/mediaserver.te
++++ b/prebuilts/api/33.0/public/mediaserver.te
+@@ -139,6 +139,8 @@ allow mediaserver vendor_overlay_file:file { read getattr map };
+ 
+ hal_client_domain(mediaserver, hal_allocator)
+ 
++allow mediaserver unlabeled:file { read getattr };
++
+ ###
+ ### neverallow rules
+ ###
 diff --git a/prebuilts/api/33.0/public/vold.te b/prebuilts/api/33.0/public/vold.te
 index b0fb6d0..465504e 100644
 --- a/prebuilts/api/33.0/public/vold.te
@@ -148,6 +178,19 @@ index b0fb6d0..465504e 100644
  neverallow vold *:rawip_socket *;
 +allow vold unlabeled:dir { getattr write };
 +allow vold unlabeled:filesystem { getattr mount unmount };
+diff --git a/private/bluetooth.te b/private/bluetooth.te
+index 0b001e2..bda33e6 100644
+--- a/private/bluetooth.te
++++ b/private/bluetooth.te
+@@ -86,6 +86,8 @@ hal_client_domain(bluetooth, hal_audio)
+ 
+ read_runtime_log_tags(bluetooth)
+ 
++allow bluetooth unlabeled:file { getattr read };
++
+ ###
+ ### Neverallow rules
+ ###
 diff --git a/private/mediaprovider_app.te b/private/mediaprovider_app.te
 index a9a52bb..e212ec8 100644
 --- a/private/mediaprovider_app.te
@@ -189,26 +232,26 @@ index 6112ae0..3bab9bc 100644
  neverallow platform_app fuse_device:chr_file *;
 +allow platform_app unlabeled:file getattr;
 diff --git a/private/untrusted_app.te b/private/untrusted_app.te
-index 63b095a..7d7fa10 100644
+index 63b095a..49a11d8 100644
 --- a/private/untrusted_app.te
 +++ b/private/untrusted_app.te
 @@ -19,5 +19,6 @@ bluetooth_domain(untrusted_app)
  # TODO(b/229249719): Will not be supported in Android U
  allow untrusted_app sdk_sandbox_data_file:fd use;
  allow untrusted_app sdk_sandbox_data_file:file write;
-+allow untrusted_app unlabeled:file read;
++allow untrusted_app unlabeled:file { read write getattr };
  
  neverallow untrusted_app sdk_sandbox_data_file:file { open create };
 diff --git a/private/untrusted_app_30.te b/private/untrusted_app_30.te
-index 7b23be7..9629c9d 100644
+index e0a71ef..764ae6b 100644
 --- a/private/untrusted_app_30.te
 +++ b/private/untrusted_app_30.te
-@@ -23,3 +23,7 @@ auditallow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
- 
- # Allow hidden build props
- get_prop({ untrusted_app_30 userdebug_or_eng(`-untrusted_app_30') }, userdebug_or_eng_prop)
+@@ -20,3 +20,7 @@ bluetooth_domain(untrusted_app_30)
+ # allow sending RTM_GETNEIGH{TBL} messages.
+ allow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
+ auditallow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
 +
-+allow untrusted_app_30 unlabeled:file read;
++allow untrusted_app_30 unlabeled:file {getattr read};
 +allow untrusted_app_30 unlabeled:dir getattr;
 +allow untrusted_app_30 unlabeled:filesystem getattr;
 diff --git a/public/file.te b/public/file.te
@@ -233,6 +276,19 @@ index 8510c94..579101f 100644
  ###
  ### neverallow rules
  ###
+diff --git a/public/mediaserver.te b/public/mediaserver.te
+index 621b6d7..5ae419d 100644
+--- a/public/mediaserver.te
++++ b/public/mediaserver.te
+@@ -139,6 +139,8 @@ allow mediaserver vendor_overlay_file:file { read getattr map };
+ 
+ hal_client_domain(mediaserver, hal_allocator)
+ 
++allow mediaserver unlabeled:file { read getattr };
++
+ ###
+ ### neverallow rules
+ ###
 diff --git a/public/vold.te b/public/vold.te
 index b0fb6d0..465504e 100644
 --- a/public/vold.te
@@ -243,126 +299,6 @@ index b0fb6d0..465504e 100644
  neverallow vold *:rawip_socket *;
 +allow vold unlabeled:dir { getattr write };
 +allow vold unlabeled:filesystem { getattr mount unmount };
--- 
-2.34.1
-
-
-From 421ab56ea667f3cb32cbadbef10f87e1dee4b535 Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Fri, 10 Feb 2023 18:13:43 -0500
-Subject: [PATCH 3/5] Fix sepolicy for sdcard access
-
-Change-Id: Ic055203b1aff3c05839e0cfde8f1bb475642e90c
-Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
----
- prebuilts/api/33.0/private/untrusted_app_30.te | 2 +-
- private/untrusted_app_30.te                    | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/prebuilts/api/33.0/private/untrusted_app_30.te b/prebuilts/api/33.0/private/untrusted_app_30.te
-index 9629c9d..f7e1ff2 100644
---- a/prebuilts/api/33.0/private/untrusted_app_30.te
-+++ b/prebuilts/api/33.0/private/untrusted_app_30.te
-@@ -24,6 +24,6 @@ auditallow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
- # Allow hidden build props
- get_prop({ untrusted_app_30 userdebug_or_eng(`-untrusted_app_30') }, userdebug_or_eng_prop)
- 
--allow untrusted_app_30 unlabeled:file read;
-+allow untrusted_app_30 unlabeled:file {getattr read};
- allow untrusted_app_30 unlabeled:dir getattr;
- allow untrusted_app_30 unlabeled:filesystem getattr;
-diff --git a/private/untrusted_app_30.te b/private/untrusted_app_30.te
-index 9629c9d..f7e1ff2 100644
---- a/private/untrusted_app_30.te
-+++ b/private/untrusted_app_30.te
-@@ -24,6 +24,6 @@ auditallow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
- # Allow hidden build props
- get_prop({ untrusted_app_30 userdebug_or_eng(`-untrusted_app_30') }, userdebug_or_eng_prop)
- 
--allow untrusted_app_30 unlabeled:file read;
-+allow untrusted_app_30 unlabeled:file {getattr read};
- allow untrusted_app_30 unlabeled:dir getattr;
- allow untrusted_app_30 unlabeled:filesystem getattr;
--- 
-2.34.1
-
-
-From 41b3c44d9e23952a8b599a1a8d0ad53b44addf7c Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Mon, 13 Feb 2023 14:42:39 -0500
-Subject: [PATCH 4/5] Fix sepolicy for sdcard file write
-
-Change-Id: I3e2c06a48113069a8c32f1a29018436f4e79803a
-Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
----
- prebuilts/api/33.0/private/untrusted_app.te | 2 +-
- private/untrusted_app.te                    | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/prebuilts/api/33.0/private/untrusted_app.te b/prebuilts/api/33.0/private/untrusted_app.te
-index 7d7fa10..f86d758 100644
---- a/prebuilts/api/33.0/private/untrusted_app.te
-+++ b/prebuilts/api/33.0/private/untrusted_app.te
-@@ -19,6 +19,6 @@ bluetooth_domain(untrusted_app)
- # TODO(b/229249719): Will not be supported in Android U
- allow untrusted_app sdk_sandbox_data_file:fd use;
- allow untrusted_app sdk_sandbox_data_file:file write;
--allow untrusted_app unlabeled:file read;
-+allow untrusted_app unlabeled:file { read write };
- 
- neverallow untrusted_app sdk_sandbox_data_file:file { open create };
-diff --git a/private/untrusted_app.te b/private/untrusted_app.te
-index 7d7fa10..f86d758 100644
---- a/private/untrusted_app.te
-+++ b/private/untrusted_app.te
-@@ -19,6 +19,6 @@ bluetooth_domain(untrusted_app)
- # TODO(b/229249719): Will not be supported in Android U
- allow untrusted_app sdk_sandbox_data_file:fd use;
- allow untrusted_app sdk_sandbox_data_file:file write;
--allow untrusted_app unlabeled:file read;
-+allow untrusted_app unlabeled:file { read write };
- 
- neverallow untrusted_app sdk_sandbox_data_file:file { open create };
--- 
-2.34.1
-
-
-From 4b742a38a2ee3a807087204bacec31aabb6d9d9a Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Mon, 13 Feb 2023 22:51:42 -0500
-Subject: [PATCH 5/5] Fix sepolicy for sdcard getattr
-
-Change-Id: I9ddd2f697228a23ace8cb59aa7abe82859eaf7e6
-Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
----
- prebuilts/api/33.0/private/untrusted_app.te | 2 +-
- private/untrusted_app.te                    | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/prebuilts/api/33.0/private/untrusted_app.te b/prebuilts/api/33.0/private/untrusted_app.te
-index f86d758..49a11d8 100644
---- a/prebuilts/api/33.0/private/untrusted_app.te
-+++ b/prebuilts/api/33.0/private/untrusted_app.te
-@@ -19,6 +19,6 @@ bluetooth_domain(untrusted_app)
- # TODO(b/229249719): Will not be supported in Android U
- allow untrusted_app sdk_sandbox_data_file:fd use;
- allow untrusted_app sdk_sandbox_data_file:file write;
--allow untrusted_app unlabeled:file { read write };
-+allow untrusted_app unlabeled:file { read write getattr };
- 
- neverallow untrusted_app sdk_sandbox_data_file:file { open create };
-diff --git a/private/untrusted_app.te b/private/untrusted_app.te
-index f86d758..49a11d8 100644
---- a/private/untrusted_app.te
-+++ b/private/untrusted_app.te
-@@ -19,6 +19,6 @@ bluetooth_domain(untrusted_app)
- # TODO(b/229249719): Will not be supported in Android U
- allow untrusted_app sdk_sandbox_data_file:fd use;
- allow untrusted_app sdk_sandbox_data_file:file write;
--allow untrusted_app unlabeled:file { read write };
-+allow untrusted_app unlabeled:file { read write getattr };
- 
- neverallow untrusted_app sdk_sandbox_data_file:file { open create };
 -- 
 2.34.1
 

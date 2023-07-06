@@ -1,7 +1,7 @@
 From 8a1d3378ad8dccc92a608fa2408a836937b826c5 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/10] pass safetynet and gpay
+Subject: [PATCH 01/11] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -175,7 +175,7 @@ index 33411e1ec..133a4094d 100644
 From 5d88d62dae7dc73139c212fd1d74536d4f7acafb Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/10] Set auto brightness on by default
+Subject: [PATCH 02/11] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -202,7 +202,7 @@ index 99b15db78..5ba768959 100644
 From 9d00125270eb13e1a0be5f7ccf2310e6f4abf50b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 03/10] Add support for left side volume dialog
+Subject: [PATCH 03/11] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -854,7 +854,7 @@ index db3fd41cc..941690c8c 100644
 From bde0425b93a2018ab27ee73ced49e552df63d4a8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 04/10] Remove max column limit on quick tiles under
+Subject: [PATCH 04/11] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -882,7 +882,7 @@ index 7ee404756..ccdcaa7bd 100644
 From 146a7aedc818680d4b805eeb62252c63d9be5e73 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 13 Jan 2023 19:24:12 -0500
-Subject: [PATCH 05/10] Restore wifi and cell qs tiles
+Subject: [PATCH 05/11] Restore wifi and cell qs tiles
 
 Change-Id: I4aab18360753483de11de46e5e008a7bba765289
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -958,7 +958,7 @@ index 32a7916da..8a0f86b45 100644
 From 9f6c9b22974c2527c0008a0d022ecf7c3683bb58 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 17:08:25 -0500
-Subject: [PATCH 06/10] Move qr code scanner button to bottom left of lock
+Subject: [PATCH 06/11] Move qr code scanner button to bottom left of lock
  screen
 
 Change-Id: I494e8b9a6fbd889fa461267d951410da5d88875b
@@ -992,7 +992,7 @@ index 8526ada69..140f1847c 100644
 From b13da036a8a6c43da75d7ff87b06f27000dd35ec Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 07/10] Update device config
+Subject: [PATCH 07/11] Update device config
 
 - Add more tracked permissions
 - Update permission history cutoff days
@@ -1056,7 +1056,7 @@ index 158092f33..5e2206079 100644
 From a3fc8b263188f8d3c6d6a24bed6d3e356a3fe5af Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 08/10] Add launcher icon for android 10 easter egg
+Subject: [PATCH 08/11] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1083,7 +1083,7 @@ index cc7bb4a3f..48a08231b 100644
 From 4dbebcfc86be38f7c372337ce011a232b355cd2d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 09/10] Use system default vibration for fb messenger app
+Subject: [PATCH 09/11] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1112,7 +1112,7 @@ index 05c9fca5e..08250674c 100644
 From 75d8ec6ab723fb1867e253cd32214d7f0a617c42 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 10/10] Fix safetynet/play integrity
+Subject: [PATCH 10/11] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1138,6 +1138,66 @@ index 77101541f..84d767694 100644
      }
  
      public static void initApplicationBeforeOnCreate(Application app) {
+-- 
+2.34.1
+
+
+From ea13e2ecf08e8a5863f87a1f4f61a8637ff1c3dc Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Thu, 6 Jul 2023 15:55:19 -0400
+Subject: [PATCH 11/11] Get free photo storage for google pixel
+
+Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ core/java/android/app/Application.java | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/core/java/android/app/Application.java b/core/java/android/app/Application.java
+index 2767b43a1..bc3880a6e 100644
+--- a/core/java/android/app/Application.java
++++ b/core/java/android/app/Application.java
+@@ -32,6 +32,7 @@ import android.os.Bundle;
+ import android.util.Log;
+ import android.view.autofill.AutofillManager;
+ 
++import java.lang.reflect.Field;
+ import java.util.ArrayList;
+ 
+ /**
+@@ -262,8 +263,32 @@ public class Application extends ContextWrapper implements ComponentCallbacks2 {
+      */
+     @CallSuper
+     public void onCreate() {
++        if ((PACKAGE_G_PHOTO.equals(getPackageName()))) {
++            setBuildField(Build.class, "PRODUCT", "marlin");
++            setBuildField(Build.class, "DEVICE", "marlin");
++            setBuildField(Build.class, "MODEL", "Pixel XL");
++            setBuildField(Build.class, "MANUFACTURER", "Google");
++        }
+     }
+ 
++    private void setBuildField(Class clazz, String key, String value) {
++        try {
++            // Unlock
++            Field field = clazz.getDeclaredField(key);
++            field.setAccessible(true);
++
++            // Edit
++            field.set(null, value);
++
++            // Lock
++            field.setAccessible(false);
++        } catch (NoSuchFieldException | IllegalAccessException e) {
++            Log.e(TAG, "Failed to spoof Build." + key, e);
++        }
++    }
++
++    private static final String PACKAGE_G_PHOTO = "com.google.android.apps.photos";
++
+     /**
+      * This method is for use in emulated process environments.  It will
+      * never be called on a production Android device, where processes are
 -- 
 2.34.1
 

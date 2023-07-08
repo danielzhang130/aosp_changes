@@ -1,7 +1,7 @@
 From 35e4ec8e27b678dc33e4fa9a645f438b57981d19 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
-Subject: [PATCH 01/19] Various updates to phh treble device
+Subject: [PATCH 01/20] Various updates to phh treble device
 
 - make adb secure
 - remove su
@@ -6470,7 +6470,7 @@ index fa2a5c9..afe5f11 100644
 From e537d4758b76a779883fa08c7d29021719add9b3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
-Subject: [PATCH 02/19] Passes safetynet out of the box
+Subject: [PATCH 02/20] Passes safetynet out of the box
 
 remove unneeded system prop changes
 
@@ -6510,7 +6510,7 @@ index e986b03..7cfc5eb 100644
 From b6d0bb4d932801a13172c29d13b09369b928ff14 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
-Subject: [PATCH 03/19] Fix adb not connecting when device first starts
+Subject: [PATCH 03/20] Fix adb not connecting when device first starts
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -6554,7 +6554,7 @@ index 55b3311..0000000
 From 819f650d36ba052cf4c208130f76f173f11b27d8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
-Subject: [PATCH 04/19] Add FP3 boot animation
+Subject: [PATCH 04/20] Add FP3 boot animation
 
 - add nova launcher
 - remove unused packages
@@ -14912,7 +14912,7 @@ index 738b96f..516377a 100644
 From 26e73f88f578ecf8fd9acbec2cd9f989870997a7 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
-Subject: [PATCH 05/19] Add fp3 boot animation
+Subject: [PATCH 05/20] Add fp3 boot animation
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16501,7 +16501,7 @@ index 516377a..0000000
 From c68d19410e1bcaa8ceb9a70a4296bcb9a4c187e5 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:45:26 -0500
-Subject: [PATCH 06/19] fix bootanimation
+Subject: [PATCH 06/20] fix bootanimation
 
 ---
  blueline.mk | 3 +++
@@ -16528,7 +16528,7 @@ index d5ccf61..5b3265d 100644
 From f0ead5701e23f302262d51378001e0165e29b635 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:49:11 -0500
-Subject: [PATCH 07/19] Add ro.build.version.real_security_patch
+Subject: [PATCH 07/20] Add ro.build.version.real_security_patch
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16554,7 +16554,7 @@ index 5bac738..79b836a 100644
 From c207d26feae9f64d87e2a64f4704e1ebbff08d2d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
-Subject: [PATCH 08/19] Remove restarting surfaceflinger
+Subject: [PATCH 08/20] Remove restarting surfaceflinger
 
 - stop boot animation restarting
 - lcd density seems to be set correctly without it
@@ -16585,7 +16585,7 @@ index d319c9e..c0b46be 100644
 From f3e821c14c74344ca62066161436da19154e6e1c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
-Subject: [PATCH 09/19] Remove twrp files
+Subject: [PATCH 09/20] Remove twrp files
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29587,7 +29587,7 @@ index cb67b71..0000000
 From 5f72c75c7441ae4823c5e4183625e2f9f0e635f9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:47:06 -0500
-Subject: [PATCH 10/19] Remove ota
+Subject: [PATCH 10/20] Remove ota
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29846,7 +29846,7 @@ index c0b46be..e6bfc62 100644
 From 6bc7cf3bb3c67ed4bee297740d883a4621e7ccaf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:00:25 -0500
-Subject: [PATCH 11/19] Remove unused remote files, functionality already
+Subject: [PATCH 11/20] Remove unused remote files, functionality already
  removed
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -31959,7 +31959,7 @@ index 87f2f96..0000000
 From 3c8e0bbd4d88405927e9fcc516b530695f2308d3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:12:45 -0500
-Subject: [PATCH 12/19] fix adb by removing ctl.restart adbd
+Subject: [PATCH 12/20] fix adb by removing ctl.restart adbd
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32035,7 +32035,7 @@ index 7cfc5eb..19a2a20 100644
 From 2b26f3635ac25ee6396370e157aefbb6ee191635 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 27 Dec 2022 15:16:35 -0500
-Subject: [PATCH 13/19] Add Wellbeing as priv-app
+Subject: [PATCH 13/20] Add Wellbeing as priv-app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32061,7 +32061,7 @@ index 813d66b..96a0a7a 100644
 From 567a83485cf53a4aef9c2a93e2ce1a9c74edf21e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 18:02:33 -0500
-Subject: [PATCH 14/19] Add themepicker to build
+Subject: [PATCH 14/20] Add themepicker to build
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32087,7 +32087,7 @@ index 46a7425..ba319a5 100644
 From 07f1c54c1699eff1ac83d663981f61f0525fd552 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 29 Dec 2022 15:32:08 -0500
-Subject: [PATCH 15/19] Remove default browser, calendar and gallery app
+Subject: [PATCH 15/20] Remove default browser, calendar and gallery app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32117,7 +32117,7 @@ index 96a0a7a..dc9e985 100644
 From 0eed1f64afb92395994efb39e8bff4b22cea40f3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 11:01:17 -0500
-Subject: [PATCH 16/19] Enable one handed mode
+Subject: [PATCH 16/20] Enable one handed mode
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32142,7 +32142,7 @@ index afe5f11..b4e5c66 100644
 From 541e26646ae6081c1dcb7ab6fb322fc86213a267 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 22:43:22 -0500
-Subject: [PATCH 17/19] Add changelist generation on each build
+Subject: [PATCH 17/20] Add changelist generation on each build
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32182,7 +32182,7 @@ index 0000000..4e3d648
 From 3cc6f20fd08df9d47e3c97fb3756ac3917483da5 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 15 Mar 2023 15:02:46 -0400
-Subject: [PATCH 18/19] Disable fingerprint cleanup to prevent fingerprint from
+Subject: [PATCH 18/20] Disable fingerprint cleanup to prevent fingerprint from
  disappearing
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -32208,7 +32208,7 @@ index 19a2a20..b7a2dac 100644
 From 7b1c0abebeac41cc8776120a76fd686445d5fd0d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 13 Apr 2023 08:24:46 -0400
-Subject: [PATCH 19/19] Revert "treble: Import QcRilAm and sepolicies from PHH
+Subject: [PATCH 19/20] Revert "treble: Import QcRilAm and sepolicies from PHH
  & SonyXperiaDev"
 
 This reverts commit a83673f614c677b38020a2033f6dbef1893bdb6d.
@@ -32305,6 +32305,81 @@ index a390e3f..73c6722 100644
 -
 -# QcRilAm
 -me.phh.qcrilam                                                            u:object_r:qcrilam_service:s0
+-- 
+2.34.1
+
+
+From 99ec53f73bca4be6d215069aa6ef8fd6a91aee3d Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sat, 8 Jul 2023 09:11:02 -0400
+Subject: [PATCH 20/20] Remove unused proprietary dependencies
+
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ base.mk         |  3 ---
+ cmds/Android.bp | 38 --------------------------------------
+ 2 files changed, 41 deletions(-)
+
+diff --git a/base.mk b/base.mk
+index 936dd41..59bcd1d 100644
+--- a/base.mk
++++ b/base.mk
+@@ -228,9 +228,6 @@ include build/make/target/product/gsi_release.mk
+ PRODUCT_COPY_FILES += \
+ 	device/phh/treble/files/com.android.deskclock_whitelist.xml:system/etc/sysconfig/com.android.deskclock_whitelist.xml
+ 
+-PRODUCT_PACKAGES += \
+-	slsi-booted
+-
+ PRODUCT_PACKAGES += \
+ 	NovaLauncher \
+ 	NovaCompanion
+diff --git a/cmds/Android.bp b/cmds/Android.bp
+index a2f4b3d..b7a15d9 100644
+--- a/cmds/Android.bp
++++ b/cmds/Android.bp
+@@ -255,41 +255,3 @@ cc_binary {
+ 	],
+ }
+ 
+-cc_binary {
+-	name: "slsi-ddiscaler",
+-	srcs: [
+-		"slsi-ddiscaler.cpp",
+-	],
+-	shared_libs: [
+-		"vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0",
+-		"libutils",
+-		"libhidlbase",
+-	],
+-}
+-
+-cc_binary {
+-	name: "slsi-booted",
+-	srcs: [
+-		"slsi-booted.cpp",
+-	],
+-	shared_libs: [
+-		"vendor.samsung_slsi.hardware.ExynosHWCServiceTW@1.0",
+-		"libutils",
+-		"libhidlbase",
+-	],
+-	init_rc: [
+-		"slsi-booted.rc"
+-	],
+-}
+-
+-cc_binary {
+-	name: "mtk-power",
+-	srcs: [
+-		"mtk-power.cpp",
+-	],
+-	shared_libs: [
+-		"vendor.mediatek.hardware.mtkpower@1.0",
+-		"libutils",
+-		"libhidlbase",
+-	],
+-}
 -- 
 2.34.1
 

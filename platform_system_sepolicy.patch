@@ -1,4 +1,4 @@
-From 1a68b97e0e07c1f1d36ac194fbe5a7f9a3bebd74 Mon Sep 17 00:00:00 2001
+From 00d0ce10eb76acde72d61215c9413c92f6d9dd0d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:57:31 -0500
 Subject: [PATCH 1/2] relax sepolicy
@@ -27,7 +27,7 @@ index 8fd90b0..7807cbe 100644
 2.34.1
 
 
-From 4ce900388c5a204302d9893d03681fc697bc4932 Mon Sep 17 00:00:00 2001
+From bf59960a945fa1d89c42443895423b05c8eb5623 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:36:52 -0500
 Subject: [PATCH 2/2] Fix sdcard sepolicy
@@ -102,10 +102,10 @@ index 955c27b..9a7e3f5 100644
  # Special case for FIFOs.
  # These can be unnamed pipes, in which case they will be labeled with the
 diff --git a/prebuilts/api/33.0/private/platform_app.te b/prebuilts/api/33.0/private/platform_app.te
-index 6112ae0..3bab9bc 100644
+index 91149f4..435f7b9 100644
 --- a/prebuilts/api/33.0/private/platform_app.te
 +++ b/prebuilts/api/33.0/private/platform_app.te
-@@ -122,3 +122,4 @@ virtualizationservice_use(platform_app)
+@@ -132,3 +132,4 @@ virtualizationservice_use(platform_app)
  
  # app domains which access /dev/fuse should not run as platform_app
  neverallow platform_app fuse_device:chr_file *;
@@ -122,17 +122,19 @@ index 63b095a..49a11d8 100644
  
  neverallow untrusted_app sdk_sandbox_data_file:file { open create };
 diff --git a/prebuilts/api/33.0/private/untrusted_app_30.te b/prebuilts/api/33.0/private/untrusted_app_30.te
-index e0a71ef..764ae6b 100644
+index 7b23be7..6c31f7a 100644
 --- a/prebuilts/api/33.0/private/untrusted_app_30.te
 +++ b/prebuilts/api/33.0/private/untrusted_app_30.te
-@@ -20,3 +20,7 @@ bluetooth_domain(untrusted_app_30)
- # allow sending RTM_GETNEIGH{TBL} messages.
+@@ -21,5 +21,9 @@ bluetooth_domain(untrusted_app_30)
  allow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
  auditallow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
-+
+ 
 +allow untrusted_app_30 unlabeled:file {getattr read};
 +allow untrusted_app_30 unlabeled:dir getattr;
 +allow untrusted_app_30 unlabeled:filesystem getattr;
++
+ # Allow hidden build props
+ get_prop({ untrusted_app_30 userdebug_or_eng(`-untrusted_app_30') }, userdebug_or_eng_prop)
 diff --git a/prebuilts/api/33.0/public/file.te b/prebuilts/api/33.0/public/file.te
 index 2bfa282..b778963 100644
 --- a/prebuilts/api/33.0/public/file.te
@@ -169,10 +171,10 @@ index 621b6d7..5ae419d 100644
  ### neverallow rules
  ###
 diff --git a/prebuilts/api/33.0/public/vold.te b/prebuilts/api/33.0/public/vold.te
-index b0fb6d0..465504e 100644
+index 53b2c49..ac55b9f 100644
 --- a/prebuilts/api/33.0/public/vold.te
 +++ b/prebuilts/api/33.0/public/vold.te
-@@ -341,3 +341,5 @@ neverallow vold fsck_exec:file execute_no_trans;
+@@ -342,3 +342,5 @@ neverallow vold fsck_exec:file execute_no_trans;
  neverallow { domain -init } vold:process { transition dyntransition };
  neverallow vold *:process ptrace;
  neverallow vold *:rawip_socket *;
@@ -223,10 +225,10 @@ index 955c27b..9a7e3f5 100644
  # Special case for FIFOs.
  # These can be unnamed pipes, in which case they will be labeled with the
 diff --git a/private/platform_app.te b/private/platform_app.te
-index 6112ae0..3bab9bc 100644
+index 91149f4..435f7b9 100644
 --- a/private/platform_app.te
 +++ b/private/platform_app.te
-@@ -122,3 +122,4 @@ virtualizationservice_use(platform_app)
+@@ -132,3 +132,4 @@ virtualizationservice_use(platform_app)
  
  # app domains which access /dev/fuse should not run as platform_app
  neverallow platform_app fuse_device:chr_file *;
@@ -243,17 +245,19 @@ index 63b095a..49a11d8 100644
  
  neverallow untrusted_app sdk_sandbox_data_file:file { open create };
 diff --git a/private/untrusted_app_30.te b/private/untrusted_app_30.te
-index e0a71ef..764ae6b 100644
+index 7b23be7..6c31f7a 100644
 --- a/private/untrusted_app_30.te
 +++ b/private/untrusted_app_30.te
-@@ -20,3 +20,7 @@ bluetooth_domain(untrusted_app_30)
- # allow sending RTM_GETNEIGH{TBL} messages.
+@@ -21,5 +21,9 @@ bluetooth_domain(untrusted_app_30)
  allow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
  auditallow untrusted_app_30 self:netlink_route_socket nlmsg_getneigh;
-+
+ 
 +allow untrusted_app_30 unlabeled:file {getattr read};
 +allow untrusted_app_30 unlabeled:dir getattr;
 +allow untrusted_app_30 unlabeled:filesystem getattr;
++
+ # Allow hidden build props
+ get_prop({ untrusted_app_30 userdebug_or_eng(`-untrusted_app_30') }, userdebug_or_eng_prop)
 diff --git a/public/file.te b/public/file.te
 index 2bfa282..b778963 100644
 --- a/public/file.te
@@ -290,10 +294,10 @@ index 621b6d7..5ae419d 100644
  ### neverallow rules
  ###
 diff --git a/public/vold.te b/public/vold.te
-index b0fb6d0..465504e 100644
+index 53b2c49..ac55b9f 100644
 --- a/public/vold.te
 +++ b/public/vold.te
-@@ -341,3 +341,5 @@ neverallow vold fsck_exec:file execute_no_trans;
+@@ -342,3 +342,5 @@ neverallow vold fsck_exec:file execute_no_trans;
  neverallow { domain -init } vold:process { transition dyntransition };
  neverallow vold *:process ptrace;
  neverallow vold *:rawip_socket *;

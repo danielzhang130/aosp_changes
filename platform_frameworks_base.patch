@@ -1,4 +1,4 @@
-From 8a1d3378ad8dccc92a608fa2408a836937b826c5 Mon Sep 17 00:00:00 2001
+From b9aa468f047849ab103d022ee239448d5e4f906a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
 Subject: [PATCH 01/11] pass safetynet and gpay
@@ -172,7 +172,7 @@ index 33411e1ec..133a4094d 100644
 2.34.1
 
 
-From 5d88d62dae7dc73139c212fd1d74536d4f7acafb Mon Sep 17 00:00:00 2001
+From fd2edbb20d30694cff22d7f66795225fcb744456 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
 Subject: [PATCH 02/11] Set auto brightness on by default
@@ -199,7 +199,7 @@ index 99b15db78..5ba768959 100644
 2.34.1
 
 
-From 9d00125270eb13e1a0be5f7ccf2310e6f4abf50b Mon Sep 17 00:00:00 2001
+From d7b38078908ea961f587854fe782db3d0a08e67e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
 Subject: [PATCH 03/11] Add support for left side volume dialog
@@ -671,10 +671,10 @@ index 000000000..8025a7807
 +
 +</FrameLayout>
 diff --git a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-index db3fd41cc..941690c8c 100644
+index 1cfcf8cbb..e177f1267 100644
 --- a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
 +++ b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-@@ -167,6 +167,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -174,6 +174,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
      private final int mDialogShowAnimationDurationMs;
      private final int mDialogHideAnimationDurationMs;
      private int mDialogWidth;
@@ -682,7 +682,7 @@ index db3fd41cc..941690c8c 100644
      private int mDialogCornerRadius;
      private int mRingerDrawerItemSize;
      private int mRingerRowsPadding;
-@@ -384,21 +385,24 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -468,21 +469,24 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
  
          float x = locInWindow[0];
          float y = locInWindow[1];
@@ -709,7 +709,7 @@ index db3fd41cc..941690c8c 100644
                  locInWindow[1] + view.getHeight(),
                  Region.Op.UNION);
      }
-@@ -428,18 +432,20 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -512,18 +516,20 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
          lp.format = PixelFormat.TRANSLUCENT;
          lp.setTitle(VolumeDialogImpl.class.getSimpleName());
          lp.windowAnimations = -1;
@@ -733,7 +733,7 @@ index db3fd41cc..941690c8c 100644
              }
              mDialogView.setAlpha(0);
              mDialogView.animate()
-@@ -615,6 +621,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -707,6 +713,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
  
          // Normal, mute, and possibly vibrate.
          mRingerCount = mShowVibrate ? 3 : 2;
@@ -741,7 +741,7 @@ index db3fd41cc..941690c8c 100644
      }
  
      protected ViewGroup getDialogView() {
-@@ -830,7 +837,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -922,7 +929,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
                      mDialogView.getPaddingTop(),
                      mDialogView.getPaddingRight(),
                      mDialogView.getPaddingBottom() + getRingerDrawerOpenExtraSize());
@@ -750,7 +750,7 @@ index db3fd41cc..941690c8c 100644
              mDialogView.setPadding(
                      mDialogView.getPaddingLeft() + getRingerDrawerOpenExtraSize(),
                      mDialogView.getPaddingTop(),
-@@ -903,11 +910,19 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -995,11 +1002,19 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
       * with the given mode in the drawer.
       */
      private float getTranslationInDrawerForRingerMode(int mode) {
@@ -775,7 +775,7 @@ index db3fd41cc..941690c8c 100644
      }
  
      /** Animates in the ringer drawer. */
-@@ -942,8 +957,10 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -1034,8 +1049,10 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
          // icon.
          if (!isLandscape()) {
              mRingerDrawerContainer.setTranslationY(mRingerDrawerItemSize * (mRingerCount - 1));
@@ -787,7 +787,7 @@ index db3fd41cc..941690c8c 100644
          }
          mRingerDrawerContainer.setAlpha(0f);
          mRingerDrawerContainer.setVisibility(VISIBLE);
-@@ -1023,10 +1040,14 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -1115,10 +1132,14 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
              mRingerDrawerContainer.animate()
                      .translationY(mRingerDrawerItemSize * 2)
                      .start();
@@ -803,7 +803,7 @@ index db3fd41cc..941690c8c 100644
          }
  
          mAnimateUpBackgroundToMatchDrawer.setDuration(DRAWER_ANIMATION_DURATION);
-@@ -1401,7 +1422,10 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -1497,7 +1518,10 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
  
                      hideRingerDrawer();
                  }, 50));
@@ -815,7 +815,7 @@ index db3fd41cc..941690c8c 100644
          animator.setListener(getJankListener(getDialogView(), TYPE_DISMISS,
                  mDialogHideAnimationDurationMs)).start();
          checkODICaptionsTooltip(true);
-@@ -1501,7 +1525,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -1596,7 +1620,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
              }
          }
  
@@ -824,7 +824,7 @@ index db3fd41cc..941690c8c 100644
              final View lastVisibleChild = mDialogRowsView.getChildAt(rightmostVisibleRowIndex);
              final ViewGroup.LayoutParams layoutParams = lastVisibleChild.getLayoutParams();
              // Remove the spacing on the last row, and remove its background since the container is
-@@ -2000,8 +2024,11 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -2095,8 +2119,11 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
          final Rect bounds = mRingerAndDrawerContainerBackground.copyBounds();
          if (!isLandscape()) {
              bounds.top = (int) (mRingerDrawerClosedAmount * getRingerDrawerOpenExtraSize());
@@ -837,7 +837,7 @@ index db3fd41cc..941690c8c 100644
          }
          mRingerAndDrawerContainerBackground.setBounds(bounds);
      }
-@@ -2042,7 +2069,8 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -2137,7 +2164,8 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
                          : mDialogRowsViewContainer.getTop() - mDialogCornerRadius);
  
          // Set gravity to top-right, since additional rows will be added on the left.
@@ -851,7 +851,7 @@ index db3fd41cc..941690c8c 100644
 2.34.1
 
 
-From bde0425b93a2018ab27ee73ced49e552df63d4a8 Mon Sep 17 00:00:00 2001
+From 1198c08f644bfefac500d58f057ecb1670048aa8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
 Subject: [PATCH 04/11] Remove max column limit on quick tiles under
@@ -879,7 +879,7 @@ index 7ee404756..ccdcaa7bd 100644
 2.34.1
 
 
-From 146a7aedc818680d4b805eeb62252c63d9be5e73 Mon Sep 17 00:00:00 2001
+From faa4691f41088ff33c67706596ff93f945017ddc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 13 Jan 2023 19:24:12 -0500
 Subject: [PATCH 05/11] Restore wifi and cell qs tiles
@@ -893,7 +893,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  3 files changed, 2 insertions(+), 17 deletions(-)
 
 diff --git a/packages/SystemUI/res/values/config.xml b/packages/SystemUI/res/values/config.xml
-index e0da8b44d..cfa77dedd 100644
+index 58db73d49..97c70edc8 100644
 --- a/packages/SystemUI/res/values/config.xml
 +++ b/packages/SystemUI/res/values/config.xml
 @@ -68,7 +68,7 @@
@@ -909,16 +909,16 @@ index e0da8b44d..cfa77dedd 100644
  
      <!-- Tiles native to System UI. Order should match "quick_settings_tiles_default" -->
      <string name="quick_settings_tiles_stock" translatable="false">
--        internet,bt,flashlight,dnd,alarm,airplane,controls,wallet,rotation,battery,cast,screenrecord,mictoggle,cameratoggle,location,hotspot,inversion,saver,dark,work,night,reverse,reduce_brightness,qr_code_scanner,onehanded,color_correction,dream
-+        wifi,cell,bt,flashlight,dnd,alarm,airplane,controls,wallet,rotation,battery,cast,screenrecord,mictoggle,cameratoggle,location,hotspot,inversion,saver,dark,work,night,reverse,reduce_brightness,qr_code_scanner,onehanded,color_correction,dream
+-        internet,bt,flashlight,dnd,alarm,airplane,controls,wallet,rotation,battery,cast,screenrecord,mictoggle,cameratoggle,location,hotspot,inversion,saver,dark,work,night,reverse,reduce_brightness,qr_code_scanner,onehanded,color_correction,dream,font_scaling
++        wifi,cell,bt,flashlight,dnd,alarm,airplane,controls,wallet,rotation,battery,cast,screenrecord,mictoggle,cameratoggle,location,hotspot,inversion,saver,dark,work,night,reverse,reduce_brightness,qr_code_scanner,onehanded,color_correction,dream,font_scaling
      </string>
  
      <!-- The tiles to display in QuickSettings -->
 diff --git a/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java b/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java
-index 100853caa..45eca154a 100644
+index 0ead97976..e49aaa7c9 100644
 --- a/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java
 +++ b/packages/SystemUI/src/com/android/systemui/qs/QSTileHost.java
-@@ -632,19 +632,6 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory>, P
+@@ -617,19 +617,6 @@ public class QSTileHost implements QSHost, Tunable, PluginListener<QSFactory>, P
              }
          }
  
@@ -939,7 +939,7 @@ index 100853caa..45eca154a 100644
      }
  
 diff --git a/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java b/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java
-index 32a7916da..8a0f86b45 100644
+index d9f448493..ee92149bf 100644
 --- a/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java
 +++ b/packages/SystemUI/src/com/android/systemui/qs/customize/TileQueryHelper.java
 @@ -119,8 +119,6 @@ public class TileQueryHelper {
@@ -955,7 +955,7 @@ index 32a7916da..8a0f86b45 100644
 2.34.1
 
 
-From 9f6c9b22974c2527c0008a0d022ecf7c3683bb58 Mon Sep 17 00:00:00 2001
+From 6cb88e814d5d593860562d2374a3105a062f0fb8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 17:08:25 -0500
 Subject: [PATCH 06/11] Move qr code scanner button to bottom left of lock
@@ -989,7 +989,7 @@ index 8526ada69..140f1847c 100644
 2.34.1
 
 
-From b13da036a8a6c43da75d7ff87b06f27000dd35ec Mon Sep 17 00:00:00 2001
+From 1a9d0336f2728c0df383e757f97c6d00c8fd4404 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
 Subject: [PATCH 07/11] Update device config
@@ -1053,7 +1053,7 @@ index 158092f33..5e2206079 100644
 2.34.1
 
 
-From a3fc8b263188f8d3c6d6a24bed6d3e356a3fe5af Mon Sep 17 00:00:00 2001
+From 1ddf6212cee82baf478bf744902467ead77ada20 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
 Subject: [PATCH 08/11] Add launcher icon for android 10 easter egg
@@ -1080,7 +1080,7 @@ index cc7bb4a3f..48a08231b 100644
 2.34.1
 
 
-From 4dbebcfc86be38f7c372337ce011a232b355cd2d Mon Sep 17 00:00:00 2001
+From 4f8d1d94b5ca2f77f47f0aec3ad3b81cce1bd06b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
 Subject: [PATCH 09/11] Use system default vibration for fb messenger app
@@ -1109,7 +1109,7 @@ index 05c9fca5e..08250674c 100644
 2.34.1
 
 
-From 75d8ec6ab723fb1867e253cd32214d7f0a617c42 Mon Sep 17 00:00:00 2001
+From b4faf775b260b62458202dc91162f35edec99e5f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
 Subject: [PATCH 10/11] Fix safetynet/play integrity
@@ -1142,7 +1142,7 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From ea13e2ecf08e8a5863f87a1f4f61a8637ff1c3dc Mon Sep 17 00:00:00 2001
+From 0c2440a272551d84ea0ae38749c46c1ffa90088b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
 Subject: [PATCH 11/11] Get free photo storage for google pixel

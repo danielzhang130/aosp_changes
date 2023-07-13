@@ -27,7 +27,7 @@ index 8fd90b0..7807cbe 100644
 2.34.1
 
 
-From bf59960a945fa1d89c42443895423b05c8eb5623 Mon Sep 17 00:00:00 2001
+From dfd9b16dfbf3ca80d5e6aae0b4968dfc4c5480ad Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:36:52 -0500
 Subject: [PATCH 2/2] Fix sdcard sepolicy
@@ -36,6 +36,7 @@ Change-Id: I3c173b9fec21c3f8918af5d5ac07da690e86940d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
  prebuilts/api/33.0/private/bluetooth.te         | 2 ++
+ prebuilts/api/33.0/private/gmscore_app.te       | 2 ++
  prebuilts/api/33.0/private/mediaprovider_app.te | 6 ++++++
  prebuilts/api/33.0/private/mls                  | 4 ++--
  prebuilts/api/33.0/private/platform_app.te      | 1 +
@@ -46,6 +47,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  prebuilts/api/33.0/public/mediaserver.te        | 2 ++
  prebuilts/api/33.0/public/vold.te               | 2 ++
  private/bluetooth.te                            | 2 ++
+ private/gmscore_app.te                          | 2 ++
  private/mediaprovider_app.te                    | 6 ++++++
  private/mls                                     | 4 ++--
  private/platform_app.te                         | 1 +
@@ -55,7 +57,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  public/fsck_untrusted.te                        | 2 ++
  public/mediaserver.te                           | 2 ++
  public/vold.te                                  | 2 ++
- 20 files changed, 46 insertions(+), 4 deletions(-)
+ 22 files changed, 50 insertions(+), 4 deletions(-)
 
 diff --git a/prebuilts/api/33.0/private/bluetooth.te b/prebuilts/api/33.0/private/bluetooth.te
 index 0b001e2..bda33e6 100644
@@ -70,6 +72,19 @@ index 0b001e2..bda33e6 100644
  ###
  ### Neverallow rules
  ###
+diff --git a/prebuilts/api/33.0/private/gmscore_app.te b/prebuilts/api/33.0/private/gmscore_app.te
+index 8795798..c16db5a 100644
+--- a/prebuilts/api/33.0/private/gmscore_app.te
++++ b/prebuilts/api/33.0/private/gmscore_app.te
+@@ -142,6 +142,8 @@ allow gmscore_app anr_data_file:file r_file_perms;
+ # b/148974132: com.android.vending needs this
+ allow gmscore_app priv_app:tcp_socket { read write };
+ 
++allow gmscore_app unlabeled:file { open read getattr };
++
+ # b/168059475 Allow GMSCore to read Virtual AB properties to determine
+ # if device supports VAB.
+ get_prop(gmscore_app, virtual_ab_prop)
 diff --git a/prebuilts/api/33.0/private/mediaprovider_app.te b/prebuilts/api/33.0/private/mediaprovider_app.te
 index a9a52bb..e212ec8 100644
 --- a/prebuilts/api/33.0/private/mediaprovider_app.te
@@ -193,6 +208,19 @@ index 0b001e2..bda33e6 100644
  ###
  ### Neverallow rules
  ###
+diff --git a/private/gmscore_app.te b/private/gmscore_app.te
+index 8795798..c16db5a 100644
+--- a/private/gmscore_app.te
++++ b/private/gmscore_app.te
+@@ -142,6 +142,8 @@ allow gmscore_app anr_data_file:file r_file_perms;
+ # b/148974132: com.android.vending needs this
+ allow gmscore_app priv_app:tcp_socket { read write };
+ 
++allow gmscore_app unlabeled:file { open read getattr };
++
+ # b/168059475 Allow GMSCore to read Virtual AB properties to determine
+ # if device supports VAB.
+ get_prop(gmscore_app, virtual_ab_prop)
 diff --git a/private/mediaprovider_app.te b/private/mediaprovider_app.te
 index a9a52bb..e212ec8 100644
 --- a/private/mediaprovider_app.te

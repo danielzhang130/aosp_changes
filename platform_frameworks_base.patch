@@ -1,7 +1,7 @@
-From b9aa468f047849ab103d022ee239448d5e4f906a Mon Sep 17 00:00:00 2001
+From 64402d440ed0d825b1fa116a5d435a50638bb666 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/10] pass safetynet and gpay
+Subject: [PATCH 01/15] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -14,7 +14,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  create mode 100644 core/java/com/android/internal/gmscompat/AttestationHooks.java
 
 diff --git a/core/java/android/app/Instrumentation.java b/core/java/android/app/Instrumentation.java
-index 556058b56..44449588b 100644
+index 556058b567f9..44449588bbab 100644
 --- a/core/java/android/app/Instrumentation.java
 +++ b/core/java/android/app/Instrumentation.java
 @@ -57,6 +57,8 @@ import android.view.WindowManagerGlobal;
@@ -43,7 +43,7 @@ index 556058b56..44449588b 100644
      }
  
 diff --git a/core/java/android/security/net/config/ManifestConfigSource.java b/core/java/android/security/net/config/ManifestConfigSource.java
-index b885e7269..5fe0ab24a 100644
+index b885e726918d..5fe0ab24a76a 100644
 --- a/core/java/android/security/net/config/ManifestConfigSource.java
 +++ b/core/java/android/security/net/config/ManifestConfigSource.java
 @@ -57,7 +57,7 @@ public class ManifestConfigSource implements ConfigSource {
@@ -57,7 +57,7 @@ index b885e7269..5fe0ab24a 100644
                  if (DBG) {
 diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
 new file mode 100644
-index 000000000..77101541f
+index 000000000000..77101541f20a
 --- /dev/null
 +++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
 @@ -0,0 +1,86 @@
@@ -148,7 +148,7 @@ index 000000000..77101541f
 +}
 +
 diff --git a/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java b/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java
-index 33411e1ec..133a4094d 100644
+index 33411e1ec5b9..133a4094d434 100644
 --- a/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java
 +++ b/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java
 @@ -42,6 +42,7 @@ import android.system.keystore2.ResponseCode;
@@ -172,10 +172,10 @@ index 33411e1ec..133a4094d 100644
 2.34.1
 
 
-From fd2edbb20d30694cff22d7f66795225fcb744456 Mon Sep 17 00:00:00 2001
+From 1a809b82d6adf557ec6dc05a795529bfccb354c8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/10] Set auto brightness on by default
+Subject: [PATCH 02/15] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -183,7 +183,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/packages/SettingsProvider/res/values/defaults.xml b/packages/SettingsProvider/res/values/defaults.xml
-index 99b15db78..5ba768959 100644
+index 99b15db780dc..5ba7689593ce 100644
 --- a/packages/SettingsProvider/res/values/defaults.xml
 +++ b/packages/SettingsProvider/res/values/defaults.xml
 @@ -31,7 +31,7 @@
@@ -199,10 +199,10 @@ index 99b15db78..5ba768959 100644
 2.34.1
 
 
-From d7b38078908ea961f587854fe782db3d0a08e67e Mon Sep 17 00:00:00 2001
+From 00359a442bab99caf3c7567df6c21e470c4183fd Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 03/10] Add support for left side volume dialog
+Subject: [PATCH 03/15] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -218,7 +218,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 
 diff --git a/packages/SystemUI/res/layout-land/volume_dialog_left.xml b/packages/SystemUI/res/layout-land/volume_dialog_left.xml
 new file mode 100644
-index 000000000..1c3b98918
+index 000000000000..1c3b989185e0
 --- /dev/null
 +++ b/packages/SystemUI/res/layout-land/volume_dialog_left.xml
 @@ -0,0 +1,152 @@
@@ -376,7 +376,7 @@ index 000000000..1c3b98918
 +</FrameLayout>
 diff --git a/packages/SystemUI/res/layout/volume_dialog_left.xml b/packages/SystemUI/res/layout/volume_dialog_left.xml
 new file mode 100644
-index 000000000..e6978f954
+index 000000000000..e6978f954197
 --- /dev/null
 +++ b/packages/SystemUI/res/layout/volume_dialog_left.xml
 @@ -0,0 +1,151 @@
@@ -533,7 +533,7 @@ index 000000000..e6978f954
 +</FrameLayout>
 diff --git a/packages/SystemUI/res/layout/volume_ringer_drawer_left.xml b/packages/SystemUI/res/layout/volume_ringer_drawer_left.xml
 new file mode 100644
-index 000000000..8025a7807
+index 000000000000..8025a78071c2
 --- /dev/null
 +++ b/packages/SystemUI/res/layout/volume_ringer_drawer_left.xml
 @@ -0,0 +1,133 @@
@@ -671,7 +671,7 @@ index 000000000..8025a7807
 +
 +</FrameLayout>
 diff --git a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-index 1cfcf8cbb..e177f1267 100644
+index 1cfcf8cbbdcb..e177f1267acf 100644
 --- a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
 +++ b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
 @@ -174,6 +174,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
@@ -851,10 +851,10 @@ index 1cfcf8cbb..e177f1267 100644
 2.34.1
 
 
-From 1198c08f644bfefac500d58f057ecb1670048aa8 Mon Sep 17 00:00:00 2001
+From 20053186e5fbb8f00d584b67cdc0f8eaff0f35a3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 04/10] Remove max column limit on quick tiles under
+Subject: [PATCH 04/15] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -864,7 +864,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 deletion(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java b/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java
-index 7ee404756..ccdcaa7bd 100644
+index 7ee404756633..ccdcaa7bd99b 100644
 --- a/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java
 +++ b/packages/SystemUI/src/com/android/systemui/qs/TileLayout.java
 @@ -91,7 +91,6 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
@@ -879,10 +879,10 @@ index 7ee404756..ccdcaa7bd 100644
 2.34.1
 
 
-From a3d38aa6335b730394eb3b93416b2dca7008eb97 Mon Sep 17 00:00:00 2001
+From e774ed968aa0a85060cc2c5243fa135ae4587824 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 17:08:25 -0500
-Subject: [PATCH 05/10] Move qr code scanner button to bottom left of lock
+Subject: [PATCH 05/15] Move qr code scanner button to bottom left of lock
  screen
 
 Change-Id: I494e8b9a6fbd889fa461267d951410da5d88875b
@@ -892,7 +892,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/keyguard/domain/quickaffordance/KeyguardQuickAffordanceRegistry.kt b/packages/SystemUI/src/com/android/systemui/keyguard/domain/quickaffordance/KeyguardQuickAffordanceRegistry.kt
-index 8526ada69..140f1847c 100644
+index 8526ada69569..140f1847c9e5 100644
 --- a/packages/SystemUI/src/com/android/systemui/keyguard/domain/quickaffordance/KeyguardQuickAffordanceRegistry.kt
 +++ b/packages/SystemUI/src/com/android/systemui/keyguard/domain/quickaffordance/KeyguardQuickAffordanceRegistry.kt
 @@ -41,12 +41,12 @@ constructor(
@@ -913,10 +913,10 @@ index 8526ada69..140f1847c 100644
 2.34.1
 
 
-From 62675294d4a44bd7fcff4cae67c530ce2f50cefd Mon Sep 17 00:00:00 2001
+From 23624f59c8e7702b71b6db0c5bf75d4b8faa50bf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 06/10] Update device config
+Subject: [PATCH 06/15] Update device config
 
 - Add more tracked permissions
 - Update permission history cutoff days
@@ -928,7 +928,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 6 insertions(+), 15 deletions(-)
 
 diff --git a/services/core/java/com/android/server/appop/DiscreteRegistry.java b/services/core/java/com/android/server/appop/DiscreteRegistry.java
-index 158092f33..5e2206079 100644
+index 158092f33ee3..5e2206079ff3 100644
 --- a/services/core/java/com/android/server/appop/DiscreteRegistry.java
 +++ b/services/core/java/com/android/server/appop/DiscreteRegistry.java
 @@ -132,9 +132,7 @@ final class DiscreteRegistry {
@@ -977,10 +977,10 @@ index 158092f33..5e2206079 100644
 2.34.1
 
 
-From bbebdebb3e5e938171aa238edd03a3c2f15eb9aa Mon Sep 17 00:00:00 2001
+From 323398eeb6d2a33263dc80764ef69cf1b80887ec Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 07/10] Add launcher icon for android 10 easter egg
+Subject: [PATCH 07/15] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -989,7 +989,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/packages/EasterEgg/AndroidManifest.xml b/packages/EasterEgg/AndroidManifest.xml
-index cc7bb4a3f..48a08231b 100644
+index cc7bb4a3ff81..48a08231b19c 100644
 --- a/packages/EasterEgg/AndroidManifest.xml
 +++ b/packages/EasterEgg/AndroidManifest.xml
 @@ -28,6 +28,7 @@
@@ -1004,10 +1004,10 @@ index cc7bb4a3f..48a08231b 100644
 2.34.1
 
 
-From 8886bacb72be190936ea513fbcfc1b34db3eecdc Mon Sep 17 00:00:00 2001
+From aba9b7acca91677adbaeea1c6d0bc6cc1d0a8c6e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 08/10] Use system default vibration for fb messenger app
+Subject: [PATCH 08/15] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1016,7 +1016,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 3 insertions(+)
 
 diff --git a/core/java/android/app/NotificationChannel.java b/core/java/android/app/NotificationChannel.java
-index 05c9fca5e..08250674c 100644
+index 05c9fca5ed68..08250674cb15 100644
 --- a/core/java/android/app/NotificationChannel.java
 +++ b/core/java/android/app/NotificationChannel.java
 @@ -580,6 +580,9 @@ public final class NotificationChannel implements Parcelable {
@@ -1033,10 +1033,10 @@ index 05c9fca5e..08250674c 100644
 2.34.1
 
 
-From 1690ca218f5a0df36e493036e57baff511d9db0e Mon Sep 17 00:00:00 2001
+From be64f8ec5b20bd18a71942c95fb461fbe412ca47 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 09/10] Fix safetynet/play integrity
+Subject: [PATCH 09/15] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1045,7 +1045,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
-index 77101541f..84d767694 100644
+index 77101541f20a..84d7676943a6 100644
 --- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
 +++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
 @@ -57,9 +57,10 @@ public final class AttestationHooks {
@@ -1066,10 +1066,10 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From f8563d7c2b581f317442aba42576afdf0aee483d Mon Sep 17 00:00:00 2001
+From 127e26b6eabe33a2d362b7eb7d034edf1166b040 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 10/10] Get free photo storage for google pixel
+Subject: [PATCH 10/15] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1078,7 +1078,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 25 insertions(+)
 
 diff --git a/core/java/android/app/Application.java b/core/java/android/app/Application.java
-index 2767b43a1..bc3880a6e 100644
+index 2767b43a119c..bc3880a6e771 100644
 --- a/core/java/android/app/Application.java
 +++ b/core/java/android/app/Application.java
 @@ -32,6 +32,7 @@ import android.os.Bundle;
@@ -1122,6 +1122,1001 @@ index 2767b43a1..bc3880a6e 100644
      /**
       * This method is for use in emulated process environments.  It will
       * never be called on a production Android device, where processes are
+-- 
+2.34.1
+
+
+From 0602a7767a1a27ab169c21d065322d28f417c97b Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 13 Nov 2023 10:23:14 -0500
+Subject: [PATCH 11/15] Revert "Add Mediatek power hints on touch"
+
+This reverts commit 14e80feb74d5dd7291d4208070a34c4ab1a2e604.
+---
+ services/core/Android.bp                      |  1 -
+ .../com/android/server/wm/DisplayPolicy.java  | 50 -------------------
+ 2 files changed, 51 deletions(-)
+
+diff --git a/services/core/Android.bp b/services/core/Android.bp
+index b99d95713731..af069a4ccbe2 100644
+--- a/services/core/Android.bp
++++ b/services/core/Android.bp
+@@ -174,7 +174,6 @@ java_library_static {
+         "SurfaceFlingerProperties",
+         "com.android.sysprop.watchdog",
+         // HIDL
+-        "vendor.mediatek.hardware.mtkpower-V1.1-java",
+         "vendor.samsung.hardware.sysinput-V1.2-java",
+         "vendor.goodix.hardware.biometrics.fingerprint-V2.1-java",
+         "vendor.samsung.hardware.biometrics.fingerprint-V3.0-java",
+diff --git a/services/core/java/com/android/server/wm/DisplayPolicy.java b/services/core/java/com/android/server/wm/DisplayPolicy.java
+index 34d46f23d3b1..988e98f28d10 100644
+--- a/services/core/java/com/android/server/wm/DisplayPolicy.java
++++ b/services/core/java/com/android/server/wm/DisplayPolicy.java
+@@ -218,9 +218,6 @@ public class DisplayPolicy {
+     private boolean mCanSystemBarsBeShownByUser;
+     private boolean mNavButtonForcedVisible;
+ 
+-    private vendor.mediatek.hardware.mtkpower.V1_1.IMtkPerf mMtkPerf;
+-    private vendor.mediatek.hardware.mtkpower.V1_0.IMtkPower mOldMtkPerf;
+-
+     StatusBarManagerInternal getStatusBarManagerInternal() {
+         synchronized (mServiceAcquireLock) {
+             if (mStatusBarManagerInternal == null) {
+@@ -452,20 +449,6 @@ public class DisplayPolicy {
+             mScreenOnEarly = true;
+             mScreenOnFully = true;
+         }
+-        try {
+-            mMtkPerf = vendor.mediatek.hardware.mtkpower.V1_1.IMtkPerf.getService();
+-        } catch(Throwable t) {
+-            android.util.Log.d("PHH-Power", "Retrieving mtkpower 1.0", t);
+-            mMtkPerf = null;
+-        }
+-
+-        try {
+-            mOldMtkPerf = vendor.mediatek.hardware.mtkpower.V1_0.IMtkPower.getService();
+-        } catch(Throwable t) {
+-            android.util.Log.d("PHH-Power", "Retrieving mtkpower 1.0", t);
+-            mOldMtkPerf = null;
+-        }
+-
+ 
+         final Looper looper = UiThread.getHandler().getLooper();
+         mHandler = new PolicyHandler(looper);
+@@ -545,17 +528,6 @@ public class DisplayPolicy {
+                             mService.mPowerManagerInternal.setPowerBoost(
+                                     Boost.INTERACTION, duration);
+                         }
+-                        if(mOldMtkPerf != null) {
+-                            try {
+-                                android.util.Log.d("PHH-Power", "mtk1 fling power hint");
+-                                int hint = 36; // MTKPOWER_HINT_APP_TOUCH
+-                                if("rotate".equals(SystemProperties.get("persist.sys.phh.touch_hint")))
+-                                        hint = 35; // MTKPOWER_HINT_APP_ROTATE
+-                                mOldMtkPerf.mtkPowerHint(hint, duration);
+-                            } catch(Throwable t) {
+-                                android.util.Log.d("PHH-Power", "Failed sending touch power hint", t);
+-                            }
+-                        }
+                     }
+ 
+                     @Override
+@@ -574,28 +546,6 @@ public class DisplayPolicy {
+                         if (listener != null) {
+                             listener.onTouchStart();
+                         }
+-                        if(mMtkPerf != null) {
+-                            try {
+-                                android.util.Log.d("PHH-Power", "mtk power hint");
+-                                int hint = 25; //MTKPOWER_HINT_APP_TOUCH
+-                                if("rotate".equals(SystemProperties.get("persist.sys.phh.touch_hint")))
+-                                        hint = 24; // MTKPOWER_HINT_APP_ROTATE
+-                                mMtkPerf.perfCusLockHint(hint, 1000);
+-                            } catch(Throwable t) {
+-                                android.util.Log.d("PHH-Power", "Failed sending touch power hint", t);
+-                            }
+-                        }
+-                        if(mOldMtkPerf != null) {
+-                            try {
+-                                android.util.Log.d("PHH-Power", "mtk1 power hint");
+-                                int hint = 36; // MTKPOWER_HINT_APP_TOUCH
+-                                if("rotate".equals(SystemProperties.get("persist.sys.phh.touch_hint")))
+-                                        hint = 35; // MTKPOWER_HINT_APP_ROTATE
+-                                mOldMtkPerf.mtkPowerHint(hint, 1000);
+-                            } catch(Throwable t) {
+-                                android.util.Log.d("PHH-Power", "Failed sending touch power hint", t);
+-                            }
+-                        }
+                     }
+ 
+                     @Override
+-- 
+2.34.1
+
+
+From 6c958117e032769202a1f05daaf49f7b0228f8a8 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 13 Nov 2023 10:25:32 -0500
+Subject: [PATCH 12/15] Revert "Call Samsung's ISehSysInputDev to report screen
+ state to touchscreen driver"
+
+This reverts commit 43e7b0577b67781d17a3f7f8e8d73b4d04992905.
+---
+ .../server/display/LocalDisplayAdapter.java   | 32 -------------------
+ 1 file changed, 32 deletions(-)
+
+diff --git a/services/core/java/com/android/server/display/LocalDisplayAdapter.java b/services/core/java/com/android/server/display/LocalDisplayAdapter.java
+index 84c3982458ff..58a182a61e44 100644
+--- a/services/core/java/com/android/server/display/LocalDisplayAdapter.java
++++ b/services/core/java/com/android/server/display/LocalDisplayAdapter.java
+@@ -33,7 +33,6 @@ import android.os.Trace;
+ import android.util.DisplayUtils;
+ import android.util.LongSparseArray;
+ import android.util.Slog;
+-import android.util.Log;
+ import android.util.SparseArray;
+ import android.view.Display;
+ import android.view.DisplayAddress;
+@@ -49,8 +48,6 @@ import com.android.server.LocalServices;
+ import com.android.server.lights.LightsManager;
+ import com.android.server.lights.LogicalLight;
+ 
+-import vendor.samsung.hardware.sysinput.V1_1.ISehSysInputDev;
+-
+ import java.io.PrintWriter;
+ import java.util.ArrayList;
+ import java.util.Arrays;
+@@ -231,8 +228,6 @@ final class LocalDisplayAdapter extends DisplayAdapter {
+ 
+         private DisplayEventReceiver.FrameRateOverride[] mFrameRateOverrides =
+                 new DisplayEventReceiver.FrameRateOverride[0];
+-        private boolean triedSamsungHal = false;
+-        private ISehSysInputDev samsungSysinput = null;
+ 
+         LocalDisplayDevice(IBinder displayToken, long physicalDisplayId,
+                 SurfaceControl.StaticDisplayInfo staticDisplayInfo,
+@@ -820,44 +815,17 @@ final class LocalDisplayAdapter extends DisplayAdapter {
+                             }
+                             mSidekickActive = false;
+                         }
+-                        if (!triedSamsungHal) {
+-                            triedSamsungHal = true;
+-                            try {
+-                                samsungSysinput = ISehSysInputDev.getService();
+-                            } catch(Throwable t) {}
+-                        }
+                         final int mode = getPowerModeForState(state);
+                         Trace.traceBegin(Trace.TRACE_TAG_POWER, "setDisplayState("
+                                 + "id=" + physicalDisplayId
+                                 + ", state=" + Display.stateToString(state) + ")");
+-
+-                        if (samsungSysinput != null) {
+-                            try {
+-                                Log.d("PHH", "setTspEnable 1, " + state + ", true");
+-                                samsungSysinput.setTspEnable(1, state, true);
+-                            } catch(Throwable t) {
+-                                Log.d("PHH", "Failed settings tsp enable", t);
+-                            }
+-                        }
+-
+                         try {
+                             mSurfaceControlProxy.setDisplayPowerMode(token, mode);
+                             Trace.traceCounter(Trace.TRACE_TAG_POWER, "DisplayPowerMode", mode);
+                         } finally {
+                             Trace.traceEnd(Trace.TRACE_TAG_POWER);
+                         }
+-
+-                        if (samsungSysinput != null) {
+-                            try {
+-                                Log.d("PHH", "setTspEnable 1, " + state + ", false");
+-                                samsungSysinput.setTspEnable(1, state, false);
+-                            } catch(Throwable t) {
+-                                Log.d("PHH", "Failed settings tsp enable", t);
+-                            }
+-                        }
+-
+                         setCommittedState(state);
+-
+                         // If we're entering a suspended (but not OFF) power state and we
+                         // have a sidekick available, tell it now that it can take control.
+                         if (Display.isSuspendedState(state) && state != Display.STATE_OFF
+-- 
+2.34.1
+
+
+From 9a18e950c805efcb1a4cecd6a647a44cf378c492 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 13 Nov 2023 10:27:12 -0500
+Subject: [PATCH 13/15] Revert "Add initial Xiaomi FOD implementation for
+ recent Xiaomi devices"
+
+This reverts commit 65c002bf75d03a9c7feddc2380832cc577ded9d5.
+
+Change-Id: If3ecdaef5f5ff5a9a8fa8681d7b20993bf4927fa
+---
+ .../android/systemui/biometrics/UdfpsView.kt  | 43 -----------------
+ .../server/biometrics/AuthService.java        | 46 -------------------
+ 2 files changed, 89 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
+index 8ab00fc34f0d..6cc9ab3da570 100644
+--- a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
++++ b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
+@@ -37,12 +37,6 @@ import java.io.File
+ 
+ import vendor.goodix.hardware.biometrics.fingerprint.V2_1.IGoodixFingerprintDaemon
+ 
+-import vendor.xiaomi.hw.touchfeature.V1_0.ITouchFeature
+-import vendor.xiaomi.hardware.fingerprintextension.V1_0.IXiaomiFingerprint
+-
+-import android.os.Handler
+-import android.os.HandlerThread
+-
+ private const val TAG = "UdfpsView"
+ 
+ 
+@@ -226,12 +220,6 @@ Log.d("PHH", "Surface destroyed!")
+     val hasSamsungMask = File(samsungActualMaskBrightness).exists()
+     var fodFileObserver: FileObserver? = null
+ 
+-    val xiaomiDispParam = "/sys/class/mi_display/disp-DSI-0/disp_param"
+-    var hasXiaomiLhbm = File(xiaomiDispParam).exists()
+-
+-    private val handlerThread = HandlerThread("UDFPS").also { it.start() }
+-    val myHandler = Handler(handlerThread.looper)
+-
+     fun configureDisplay(onDisplayConfigured: Runnable) {
+         isDisplayConfigured = true
+         animationViewController?.onDisplayConfiguring()
+@@ -267,34 +255,6 @@ Log.d("PHH", "Surface destroyed!")
+         if(android.os.SystemProperties.get("ro.vendor.build.fingerprint").contains("ASUS")) {
+             goodixCmd(200001)
+         }
+-
+-        if(hasXiaomiLhbm){
+-            Log.d("PHH-Enroll", "Xiaomi scenario in UdfpsView reached!")
+-            mySurfaceView.setVisibility(INVISIBLE)
+-
+-            IXiaomiFingerprint.getService().extCmd(android.os.SystemProperties.getInt("persist.phh.xiaomi.fod.enrollment.id", 4), 1);
+-            var res = ITouchFeature.getService().setTouchMode(0, 10, 1);
+-            if(res != 0){
+-                Log.d("PHH-Enroll", "SetTouchMode 10,1 was NOT executed successfully. Res is " + res)
+-            }
+-
+-            myHandler.postDelayed({
+-                var ret200 = ITouchFeature.getService().setTouchMode(0, 10, 1);
+-
+-                if(ret200 != 0){
+-                    Log.d("PHH-Enroll", "myHandler.postDelayed 200ms -SetTouchMode was NOT executed successfully. Ret is " + ret200)
+-                }
+-
+-                myHandler.postDelayed({
+-                    Log.d("PHH-Enroll", "myHandler.postDelayed 600ms - line prior to setTouchMode 10,0")
+-                    var ret600 = ITouchFeature.getService().setTouchMode(0, 10, 0);
+-
+-                    if(ret600 != 0){
+-                        Log.d("PHH-Enroll", "myHandler.postDelayed 600ms -SetTouchMode 10,0 was NOT executed successfully. Ret is " + ret600)
+-                    }
+-                }, 600)
+-            }, 200)
+-        }
+     }
+ 
+     fun unconfigureDisplay() {
+@@ -336,9 +296,6 @@ Log.d("PHH", "Surface destroyed!")
+                 }
+             };
+             fodFileObserver?.startWatching();
+-        } else if(hasXiaomiLhbm) {
+-            IXiaomiFingerprint.getService().extCmd(android.os.SystemProperties.getInt("persist.phh.xiaomi.fod.enrollment.id", 4), 0);
+-            ITouchFeature.getService().setTouchMode(0, 10, 0);
+         } else {
+             dimUpdate(0.0f)
+         }
+diff --git a/services/core/java/com/android/server/biometrics/AuthService.java b/services/core/java/com/android/server/biometrics/AuthService.java
+index 696d5b42cd46..b47b47c41f76 100644
+--- a/services/core/java/com/android/server/biometrics/AuthService.java
++++ b/services/core/java/com/android/server/biometrics/AuthService.java
+@@ -64,7 +64,6 @@ import android.os.ServiceManager;
+ import android.os.SystemProperties;
+ import android.os.UserHandle;
+ import android.provider.Settings;
+-import android.text.TextUtils;
+ import android.util.Slog;
+ 
+ import com.android.internal.R;
+@@ -92,7 +91,6 @@ import vendor.samsung.hardware.biometrics.fingerprint.V3_0.ISehBiometricsFingerp
+ import vendor.goodix.hardware.biometrics.fingerprint.V2_1.IGoodixFingerprintDaemon;
+ import vendor.samsung.hardware.sysinput.V1_0.ISehSysInputDev;
+ 
+-import vendor.xiaomi.hardware.fingerprintextension.V1_0.IXiaomiFingerprint;
+ /**
+  * System service that provides an interface for authenticating with biometrics and
+  * PIN/pattern/password to BiometricPrompt and lock screen.
+@@ -114,7 +112,6 @@ public class AuthService extends SystemService {
+     private FileObserver fodFileObserver = null;
+     private ISehBiometricsFingerprint mSamsungFingerprint = null;
+ 
+-    private IXiaomiFingerprint mXiaomiFingerprint = null;
+     /**
+      * Class for injecting dependencies into AuthService.
+      * TODO(b/141025588): Replace with a dependency injection framework (e.g. Guice, Dagger).
+@@ -678,12 +675,6 @@ public class AuthService extends SystemService {
+         } catch(Exception e) {
+             android.util.Log.e("PHH", "Failed getting Samsung fingerprint HAL", e);
+         }
+-        try {
+-            mXiaomiFingerprint = IXiaomiFingerprint.getService();
+-            android.util.Log.e("PHH", "Got xiaomi fingerprint HAL");
+-        } catch(Exception e) {
+-            android.util.Log.e("PHH", "Failed getting xiaomi fingerprint HAL", e);
+-        }
+         if(samsungHasCmd("fod_enable") && mSamsungFingerprint != null) {
+             samsungCmd("fod_enable,1,1,0");
+             String actualMaskBrightnessPath = "/sys/class/lcd/panel/actual_mask_brightness";
+@@ -744,31 +735,6 @@ public class AuthService extends SystemService {
+             fodFileObserver.startWatching();
+         }
+ 
+-        String xiaomiFodPressedStatusPath = "/sys/class/touch/touch_dev/fod_press_status";
+-        if(new File(xiaomiFodPressedStatusPath).exists() && mXiaomiFingerprint != null) {
+-            fodFileObserver = new FileObserver(xiaomiFodPressedStatusPath, FileObserver.MODIFY) {
+-                @Override
+-                public void onEvent(int event, String path) {
+-                    String isFodPressed = readFile(xiaomiFodPressedStatusPath);
+-                    Slog.d("PHH-Enroll", "Fod pressed status: " + isFodPressed);
+-                    Slog.d("PHH-Enroll", "Within xiaomi scenario for FOD");
+-
+-                    try {
+-                    if("0".equals(isFodPressed)) {
+-                        Slog.d("PHH-Enroll", "Fod un-pressed!");
+-                        mXiaomiFingerprint.extCmd(android.os.SystemProperties.getInt("phh.xiaomi.fod.enrollment.id", 4), 0);
+-                    } else if("1".equals(isFodPressed)) {
+-                        Slog.d("PHH-Enroll", "Fod pressed!");
+-                        mXiaomiFingerprint.extCmd(android.os.SystemProperties.getInt("phh.xiaomi.fod.enrollment.id", 4), 1);
+-                    }
+-                    } catch(Exception e) {
+-                        Slog.d("PHH-Enroll", "Failed Xiaomi async extcmd", e);
+-                    }
+-                }
+-            };
+-            fodFileObserver.startWatching();
+-        }
+-
+     }
+ 
+     /**
+@@ -970,18 +936,6 @@ public class AuthService extends SystemService {
+             return udfpsProps;
+         }
+ 
+-        if(!TextUtils.isEmpty(android.os.SystemProperties.get("persist.vendor.sys.fp.fod.location.X_Y"))) {
+-            int[] udfpsProps = new int[3];
+-            String[] coordinates = android.os.SystemProperties.get("persist.vendor.sys.fp.fod.location.X_Y").split(",");
+-            udfpsProps[0] = displayRealSize.x/2;
+-            udfpsProps[1] = Integer.parseInt(coordinates[1]) + 100;
+-
+-            String[] widthHeight = android.os.SystemProperties.get("persist.vendor.sys.fp.fod.size.width_height").split(",");
+-
+-            udfpsProps[2] = (Integer.parseInt(widthHeight[0]) /2);
+-            return udfpsProps;
+-        }
+-
+         return new int[0];
+     }
+ 
+-- 
+2.34.1
+
+
+From 47bc440a3d3b7501249e871e935f5c7ee4d857e6 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 13 Nov 2023 10:43:19 -0500
+Subject: [PATCH 14/15] Revert "FOD support for Asus ZF8 and Samsung devices"
+
+This reverts commit 2d0da5abb422a0b668e5efaf56a14a0518a10ff3.
+
+Change-Id: I350bbf6e1d0cfb884adac7f695d4d3a46416f451
+---
+ packages/SystemUI/Android.bp                  |   3 -
+ packages/SystemUI/res/values/config.xml       |   2 +-
+ .../biometrics/UdfpsControllerOverlay.kt      |   7 +-
+ .../android/systemui/biometrics/UdfpsView.kt  | 149 -----------
+ services/core/Android.bp                      |   8 +-
+ .../server/biometrics/AuthService.java        | 238 +-----------------
+ 6 files changed, 5 insertions(+), 402 deletions(-)
+
+diff --git a/packages/SystemUI/Android.bp b/packages/SystemUI/Android.bp
+index 8927c967c7d0..ed62c5f012bc 100644
+--- a/packages/SystemUI/Android.bp
++++ b/packages/SystemUI/Android.bp
+@@ -177,9 +177,6 @@ android_library {
+         "lottie",
+         "LowLightDreamLib",
+         "motion_tool_lib",
+-        "vendor.goodix.hardware.biometrics.fingerprint-V2.1-java",
+-        "vendor.xiaomi.hw.touchfeature-V1.0-java",
+-        "vendor.xiaomi.hardware.fingerprintextension-V1.0-java"
+     ],
+     manifest: "AndroidManifest.xml",
+ 
+diff --git a/packages/SystemUI/res/values/config.xml b/packages/SystemUI/res/values/config.xml
+index 336cb1dcf306..58db73d49744 100644
+--- a/packages/SystemUI/res/values/config.xml
++++ b/packages/SystemUI/res/values/config.xml
+@@ -585,7 +585,7 @@
+ 
+     <!-- The radius of the enrollment progress bar, in dp -->
+     <integer name="config_udfpsEnrollProgressBar" translatable="false">
+-        50
++        70
+     </integer>
+ 
+     <!-- The time (in ms) needed to trigger the lock icon view's long-press affordance -->
+diff --git a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsControllerOverlay.kt b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsControllerOverlay.kt
+index 88c2976d81ab..b6b5d26b398c 100644
+--- a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsControllerOverlay.kt
++++ b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsControllerOverlay.kt
+@@ -120,9 +120,7 @@ class UdfpsControllerOverlay @JvmOverloads constructor(
+         gravity = android.view.Gravity.TOP or android.view.Gravity.LEFT
+         layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS
+         flags = (Utils.FINGERPRINT_OVERLAY_LAYOUT_PARAM_FLAGS or
+-                WindowManager.LayoutParams.FLAG_SPLIT_TOUCH) or
+-                WindowManager.LayoutParams.FLAG_DIM_BEHIND
+-        dimAmount = 0.0f
++                WindowManager.LayoutParams.FLAG_SPLIT_TOUCH)
+         privateFlags = WindowManager.LayoutParams.PRIVATE_FLAG_TRUSTED_OVERLAY
+         // Avoid announcing window title.
+         accessibilityTitle = " "
+@@ -191,9 +189,6 @@ class UdfpsControllerOverlay @JvmOverloads constructor(
+                     windowManager.addView(this, coreLayoutParams.updateDimensions(animation))
+                     sensorRect = sensorBounds
+                     touchExplorationEnabled = accessibilityManager.isTouchExplorationEnabled
+-                    dimUpdate = {
+-                        windowManager.updateViewLayout(this, coreLayoutParams.updateDimensions(animation).apply { dimAmount = it })
+-                    }
+                     overlayTouchListener = TouchExplorationStateChangeListener {
+                         if (accessibilityManager.isTouchExplorationEnabled) {
+                             setOnHoverListener { v, event -> onTouch(v, event, true) }
+diff --git a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
+index 6cc9ab3da570..e61c614f0292 100644
+--- a/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
++++ b/packages/SystemUI/src/com/android/systemui/biometrics/UdfpsView.kt
+@@ -19,27 +19,18 @@ import android.content.Context
+ import android.graphics.Canvas
+ import android.graphics.Color
+ import android.graphics.Paint
+-import android.graphics.PixelFormat
+ import android.graphics.PointF
+ import android.graphics.Rect
+ import android.graphics.RectF
+-import android.os.FileObserver
+ import android.util.AttributeSet
+ import android.util.Log
+ import android.view.MotionEvent
+-import android.view.SurfaceHolder
+-import android.view.SurfaceView
+-import android.view.ViewGroup
+ import android.widget.FrameLayout
+ import com.android.systemui.R
+ import com.android.systemui.doze.DozeReceiver
+-import java.io.File
+-
+-import vendor.goodix.hardware.biometrics.fingerprint.V2_1.IGoodixFingerprintDaemon
+ 
+ private const val TAG = "UdfpsView"
+ 
+-
+ /**
+  * The main view group containing all UDFPS animations.
+  */
+@@ -47,54 +38,6 @@ class UdfpsView(
+     context: Context,
+     attrs: AttributeSet?
+ ) : FrameLayout(context, attrs), DozeReceiver {
+-    private var currentOnIlluminatedRunnable: Runnable? = null
+-    private val mySurfaceView = SurfaceView(context)
+-    init {
+-        mySurfaceView.setVisibility(INVISIBLE)
+-        mySurfaceView.setZOrderOnTop(true)
+-        addView(mySurfaceView, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+-        mySurfaceView.holder.addCallback(object: SurfaceHolder.Callback{
+-            override fun surfaceCreated(p0: SurfaceHolder) {
+-                Log.d("PHH", "Surface created!")
+-                val paint = Paint(0 /* flags */);
+-                paint.setAntiAlias(true);
+-                paint.setStyle(Paint.Style.FILL);
+-                val colorStr = android.os.SystemProperties.get("persist.sys.phh.fod_color", "00ff00");
+-                try {
+-                    val parsedColor = Color.parseColor("#" + colorStr);
+-                    val r = (parsedColor shr 16) and 0xff;
+-                    val g = (parsedColor shr  8) and 0xff;
+-                    val b = (parsedColor shr  0) and 0xff;
+-                    paint.setARGB(255, r, g, b);
+-                } catch(t: Throwable) {
+-                    Log.d("PHH", "Failed parsing color #" + colorStr, t);
+-                }
+-                var canvas: Canvas? = null
+-                try {
+-                    canvas = p0.lockCanvas();
+-Log.d("PHH", "Surface dimensions ${canvas.getWidth()*1.0f} ${canvas.getHeight()*1.0f}")
+-                    canvas.drawOval(RectF(0.0f, 0.0f, canvas.getWidth()*1.0f, canvas.getHeight()*1.0f), paint);
+-                } finally {
+-                    // Make sure the surface is never left in a bad state.
+-                    if (canvas != null) {
+-                        p0.unlockCanvasAndPost(canvas);
+-                    }
+-                }
+-
+-                currentOnIlluminatedRunnable?.run()
+-            }
+-
+-            override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
+-Log.d("PHH", "Got surface size $p1 $p2 $p3")
+-            }
+-
+-            override fun surfaceDestroyed(p0: SurfaceHolder) {
+-Log.d("PHH", "Surface destroyed!")
+-            }
+-        })
+-        mySurfaceView.holder.setFormat(PixelFormat.RGBA_8888)
+-
+-    }
+ 
+     // Use expanded overlay when feature flag is true, set by UdfpsViewController
+     var useExpandedOverlay: Boolean = false
+@@ -123,8 +66,6 @@ Log.d("PHH", "Surface destroyed!")
+     /** Parameters that affect the position and size of the overlay. */
+     var overlayParams = UdfpsOverlayParams()
+ 
+-    var dimUpdate: (Float) -> Unit = {}
+-
+     /** Debug message. */
+     var debugMessage: String? = null
+         set(value) {
+@@ -205,105 +146,15 @@ Log.d("PHH", "Surface destroyed!")
+             !(animationViewController?.shouldPauseAuth() ?: false)
+     }
+ 
+-    fun goodixCmd(id: Int) {
+-        val goodixSvc = IGoodixFingerprintDaemon.getService()
+-        if(goodixSvc != null) {
+-            goodixSvc.sendCommand(id, ArrayList(), { returnCode, resultData -> {
+-                Log.e("PHH-Enroll", "Goodix send command returned code "+ returnCode);
+-            }});
+-        }
+-    }
+-
+-    val asusGhbmOnAchieved = "/sys/class/drm/ghbm_on_achieved"
+-    var hasAsusGhbm = File(asusGhbmOnAchieved).exists()
+-    var samsungActualMaskBrightness = "/sys/class/lcd/panel/actual_mask_brightness"
+-    val hasSamsungMask = File(samsungActualMaskBrightness).exists()
+-    var fodFileObserver: FileObserver? = null
+-
+     fun configureDisplay(onDisplayConfigured: Runnable) {
+         isDisplayConfigured = true
+         animationViewController?.onDisplayConfiguring()
+         mUdfpsDisplayMode?.enable(onDisplayConfigured)
+-
+-        mySurfaceView.setVisibility(VISIBLE)
+-        Log.d("PHH", "setting surface visible!")
+-
+-        val brightnessFile = File("/sys/class/backlight/panel/brightness")
+-        val maxBrightnessFile = File("/sys/class/backlight/panel/max_brightness")
+-
+-        var brightness: Double = 0.0
+-        var maxBrightness: Double = 0.0
+-
+-        if (brightnessFile.exists() && maxBrightnessFile.exists()) {
+-            brightness = brightnessFile.readText().toDouble()
+-            maxBrightness = maxBrightnessFile.readText().toDouble()
+-        } else {
+-            brightness = File("/sys/class/backlight/panel0-backlight/brightness").readText().toDouble()
+-            maxBrightness = File("/sys/class/backlight/panel0-backlight/max_brightness").readText().toDouble()
+-        }
+-
+-        // Assume HBM is max brightness
+-        val dim = 1.0 - Math.pow( (brightness / maxBrightness), 1/2.3);
+-        Log.d("PHH-Enroll", "Brightness is $brightness / $maxBrightness, setting dim to $dim")
+-        if (hasAsusGhbm) {
+-            dimUpdate(dim.toFloat())
+-        }
+-        if (hasSamsungMask) {
+-            dimUpdate(dim.toFloat())
+-        }
+-
+-        if(android.os.SystemProperties.get("ro.vendor.build.fingerprint").contains("ASUS")) {
+-            goodixCmd(200001)
+-        }
+     }
+ 
+     fun unconfigureDisplay() {
+         isDisplayConfigured = false
+         animationViewController?.onDisplayUnconfigured()
+         mUdfpsDisplayMode?.disable(null /* onDisabled */)
+-
+-        if (hasAsusGhbm) {
+-            fodFileObserver = object: FileObserver(asusGhbmOnAchieved, FileObserver.MODIFY) {
+-                override fun onEvent(event: Int, path: String): Unit {
+-                    Log.d("PHH-Enroll", "Asus ghbm event")
+-                    try {
+-                        val spotOn = File(asusGhbmOnAchieved).readText().toInt()
+-                        if(spotOn == 0) {
+-                            dimUpdate(0.0f)
+-                            fodFileObserver?.stopWatching()
+-                            fodFileObserver = null
+-                        }
+-                    } catch(e: Exception) {
+-                        Log.d("PHH-Enroll", "Failed dimpdate off", e)
+-                    }
+-                }
+-            };
+-            fodFileObserver?.startWatching();
+-        } else if (hasSamsungMask) {
+-            fodFileObserver = object: FileObserver(asusGhbmOnAchieved, FileObserver.MODIFY) {
+-                override fun onEvent(event: Int, path: String): Unit {
+-                    Log.d("PHH-Enroll", "samsung mask brightness event")
+-                    try {
+-                        val spotOn = File(samsungActualMaskBrightness).readText().toInt()
+-                        if(spotOn == 0) {
+-                            dimUpdate(0.0f)
+-                            fodFileObserver?.stopWatching()
+-                            fodFileObserver = null
+-                        }
+-                    } catch(e: Exception) {
+-                        Log.d("PHH-Enroll", "Failed dimpdate off", e)
+-                    }
+-                }
+-            };
+-            fodFileObserver?.startWatching();
+-        } else {
+-            dimUpdate(0.0f)
+-        }
+-
+-        mySurfaceView.setVisibility(INVISIBLE)
+-        Log.d("PHH", "setting surface invisible!")
+-        if(android.os.SystemProperties.get("ro.vendor.build.fingerprint").contains("ASUS")) {
+-            goodixCmd(200003)
+-        }
+     }
+ }
+diff --git a/services/core/Android.bp b/services/core/Android.bp
+index af069a4ccbe2..34a4579855ef 100644
+--- a/services/core/Android.bp
++++ b/services/core/Android.bp
+@@ -173,13 +173,7 @@ java_library_static {
+         "overlayable_policy_aidl-java",
+         "SurfaceFlingerProperties",
+         "com.android.sysprop.watchdog",
+-        // HIDL
+-        "vendor.samsung.hardware.sysinput-V1.2-java",
+-        "vendor.goodix.hardware.biometrics.fingerprint-V2.1-java",
+-        "vendor.samsung.hardware.biometrics.fingerprint-V3.0-java",
+-        "vendor.oplus.hardware.biometrics.fingerprint-V2.1-java",
+-        "vendor.oppo.hardware.biometrics.fingerprint-V2.1-java",
+-        "vendor.xiaomi.hardware.fingerprintextension-V1.0-java",
++        "vendor.samsung.hardware.sysinput-V1.2-java", // HIDL
+     ],
+     javac_shard_size: 50,
+ }
+diff --git a/services/core/java/com/android/server/biometrics/AuthService.java b/services/core/java/com/android/server/biometrics/AuthService.java
+index b47b47c41f76..48293576519b 100644
+--- a/services/core/java/com/android/server/biometrics/AuthService.java
++++ b/services/core/java/com/android/server/biometrics/AuthService.java
+@@ -75,22 +75,6 @@ import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.List;
+ 
+-import android.hardware.display.DisplayManager;
+-
+-import android.graphics.Point;
+-import android.util.DisplayMetrics;
+-import java.io.BufferedReader;
+-import java.io.File;
+-import java.io.FileReader;
+-import java.io.PrintWriter;
+-
+-import android.os.FileObserver;
+-import android.os.Build;
+-
+-import vendor.samsung.hardware.biometrics.fingerprint.V3_0.ISehBiometricsFingerprint;
+-import vendor.goodix.hardware.biometrics.fingerprint.V2_1.IGoodixFingerprintDaemon;
+-import vendor.samsung.hardware.sysinput.V1_0.ISehSysInputDev;
+-
+ /**
+  * System service that provides an interface for authenticating with biometrics and
+  * PIN/pattern/password to BiometricPrompt and lock screen.
+@@ -109,9 +93,6 @@ public class AuthService extends SystemService {
+     @VisibleForTesting
+     final IAuthService.Stub mImpl;
+ 
+-    private FileObserver fodFileObserver = null;
+-    private ISehBiometricsFingerprint mSamsungFingerprint = null;
+-
+     /**
+      * Class for injecting dependencies into AuthService.
+      * TODO(b/141025588): Replace with a dependency injection framework (e.g. Guice, Dagger).
+@@ -669,72 +650,6 @@ public class AuthService extends SystemService {
+         registerAuthenticators(hidlConfigs);
+ 
+         mInjector.publishBinderService(this, mImpl);
+-        try {
+-            mSamsungFingerprint = ISehBiometricsFingerprint.getService();
+-            android.util.Log.e("PHH", "Got samsung fingerprint HAL");
+-        } catch(Exception e) {
+-            android.util.Log.e("PHH", "Failed getting Samsung fingerprint HAL", e);
+-        }
+-        if(samsungHasCmd("fod_enable") && mSamsungFingerprint != null) {
+-            samsungCmd("fod_enable,1,1,0");
+-            String actualMaskBrightnessPath = "/sys/class/lcd/panel/actual_mask_brightness";
+-            android.util.Log.e("PHH-Enroll", "Reading actual brightness file gives " + readFile(actualMaskBrightnessPath));
+-            fodFileObserver = new FileObserver(actualMaskBrightnessPath, FileObserver.MODIFY) {
+-                @Override
+-                public void onEvent(int event, String path) {
+-                    String actualMask = readFile(actualMaskBrightnessPath);
+-                    try {
+-                        mSamsungFingerprint = ISehBiometricsFingerprint.getService();
+-                    } catch(Exception e) {}
+-                    Slog.d("PHH-Enroll", "New actual mask brightness is " + actualMask);
+-                    try {
+-                        int eventReq = 0;
+-                        if("0".equals(actualMask)) {
+-                            eventReq = 1; //released
+-                        } else {
+-                            eventReq = 2; //pressed
+-                        }
+-                        if(mSamsungFingerprint != null) {
+-                            mSamsungFingerprint.sehRequest(22 /* SEM_FINGER_STATE */, eventReq, new java.util.ArrayList<Byte>(),
+-                                    (int retval, java.util.ArrayList<Byte> out) -> {} );
+-                        }
+-                    } catch(Exception e) {
+-                        Slog.d("PHH-Enroll", "Failed setting samsung event for mask observer", e);
+-                    }
+-                }
+-            };
+-            fodFileObserver.startWatching();
+-        }
+-
+-        String asusGhbmOnAchieved = "/sys/class/drm/ghbm_on_achieved";
+-        if( (new File(asusGhbmOnAchieved)).exists()) {
+-            fodFileObserver = new FileObserver(asusGhbmOnAchieved, FileObserver.MODIFY) {
+-                boolean wasOn = false;
+-                @Override
+-                public void onEvent(int event, String path) {
+-                    String spotOn = readFile(asusGhbmOnAchieved);
+-                    if("1".equals(spotOn)) {
+-                        if(!wasOn) {
+-                            try {
+-                                IGoodixFingerprintDaemon goodixDaemon = IGoodixFingerprintDaemon.getService();
+-
+-                                //Send UI ready
+-                                goodixDaemon.sendCommand(200002, new java.util.ArrayList<Byte>(), (returnCode, resultData) -> {
+-                                    Slog.e(TAG, "Goodix send command touch pressed returned code "+ returnCode);
+-                                });
+-                            } catch(Throwable t) {
+-                                Slog.d("PHH-Enroll", "Failed sending goodix command", t);
+-                            }
+-                        }
+-                        wasOn = true;
+-                    } else {
+-                        wasOn = false;
+-                    }
+-                }
+-            };
+-            fodFileObserver.startWatching();
+-        }
+-
+     }
+ 
+     /**
+@@ -858,100 +773,14 @@ public class AuthService extends SystemService {
+                 ? modality : (modality & ~BiometricAuthenticator.TYPE_CREDENTIAL);
+     }
+ 
+-    private int[] dynamicUdfpsProps() {
+-        DisplayManager mDM = (DisplayManager) getContext().getSystemService(Context.DISPLAY_SERVICE);
+-        Point displayRealSize = new Point();
+-        DisplayMetrics displayMetrics = new DisplayMetrics();
+-        mDM.getDisplay(0).getRealSize(displayRealSize);
+-        mDM.getDisplay(0).getMetrics(displayMetrics);
+-
+-        if(readFile("/sys/class/fingerprint/fingerprint/position") != null) {
+-            try {
+-            ISehSysInputDev s = ISehSysInputDev.getService();
+-            s.getTspFodInformation(0, (a, b) -> {
+-                Slog.d("PHH-Enroll", "TspFod info " + a + ", " + b);
+-            });
+-            s.getTspFodPosition(0, (a, b) -> {
+-                Slog.d("PHH-Enroll", "TspFod info " + a + ", " + b);
+-            });
+-            }catch(Throwable t) {
+-                Slog.d("PHH-Enroll", "heya ", t);
+-            }
+-
+-
+-            android.util.Log.d("PHH", "Samsung fingerprint");
+-            String[] fodPositionArray = readFile("/sys/class/fingerprint/fingerprint/position").split(",");
+-            float bottomMM = Float.parseFloat(fodPositionArray[0]);
+-            float areaSizeMM = Float.parseFloat(fodPositionArray[5]);
+-            float heightMM = Float.parseFloat(fodPositionArray[2]);
+-            float bottomInch = bottomMM * 0.0393700787f;
+-            float areaSizeInch = areaSizeMM * 0.0393700787f;
+-            float heightInch = heightMM * 0.0393700787f;
+-            int bottomPx = (int)(bottomInch * displayMetrics.ydpi);
+-            int areaSizePx = (int)(areaSizeInch * displayMetrics.ydpi);
+-            int midDistPx = (int)(areaSizeInch * displayMetrics.ydpi / 2.0f);
+-
+-            float mW = areaSizePx/2;
+-            float mH = areaSizePx/2;
+-            float mX = displayRealSize.x/2;
+-            //float mY = displayRealSize.y - bottomPx - midDistPx;
+-            float mY = displayRealSize.y - (bottomInch * displayMetrics.ydpi) - (areaSizeInch * displayMetrics.ydpi / 2.0f);
+-
+-            samsungCmd(String.format("fod_rect,%d,%d,%d,%d", (int)(mX - mW/2), (int)(mY - mW/2), (int)(mX + mW/2), (int)(mY + mW/2)));
+-            Slog.d("PHH-Enroll", "Display real size is " + displayRealSize.y + ", dpy " + displayMetrics.ydpi);
+-
+-            int udfpsProps[] = new int[3];
+-            udfpsProps[0] = (int)mX;
+-            udfpsProps[1] = (int)mY;
+-            udfpsProps[2] = (int)mW;
+-
+-            try {
+-                mSamsungFingerprint = ISehBiometricsFingerprint.getService();
+-                Slog.d("PHH-Enroll", "Samsung ask for sensor status");
+-                mSamsungFingerprint.sehRequest(6, 0, new java.util.ArrayList(), (int retval, java.util.ArrayList<Byte> out) -> {
+-                    Slog.d("PHH-Enroll", "Result is " + retval);
+-                    for(int i=0; i<out.size(); i++) {
+-                        Slog.d("PHH-Enroll", "\t" + i + ":" + out.get(i));
+-                    }
+-                } );
+-                Slog.d("PHH-Enroll", "Samsung ask for sensor brightness value");
+-                mSamsungFingerprint.sehRequest(32, 0, new java.util.ArrayList(), (int retval, java.util.ArrayList<Byte> out) -> {
+-                    Slog.d("PHH-Enroll", "Result is " + retval);
+-                    for(int i=0; i<out.size(); i++) {
+-                        Slog.d("PHH-Enroll", "\t" + i + ":" + out.get(i));
+-                    }
+-                } );
+-
+-            } catch(Exception e) {
+-                Slog.d("PHH-Enroll", "Failed setting samsung3.0 fingerprint recognition", e);
+-            }
+-            return udfpsProps;
+-        }
+-
+-        if(android.os.SystemProperties.get("ro.vendor.build.fingerprint").contains("ASUS_I006D")) {
+-            int udfpsProps[] = new int[3];
+-            udfpsProps[0] = displayRealSize.x/2;
+-            udfpsProps[1] = 1741;
+-            udfpsProps[2] = 110;
+-            return udfpsProps;
+-        }
+-
+-        return new int[0];
+-    }
+ 
+     private FingerprintSensorPropertiesInternal getHidlFingerprintSensorProps(int sensorId,
+             @BiometricManager.Authenticators.Types int strength) {
+         // The existence of config_udfps_sensor_props indicates that the sensor is UDFPS.
+-        int[] udfpsProps = getContext().getResources().getIntArray(
++        final int[] udfpsProps = getContext().getResources().getIntArray(
+                 com.android.internal.R.array.config_udfps_sensor_props);
+ 
+-        boolean isUdfps = !ArrayUtils.isEmpty(udfpsProps);
+-        if(!isUdfps) udfpsProps = dynamicUdfpsProps();
+-        isUdfps = !ArrayUtils.isEmpty(udfpsProps);
+-
+-        if(udfpsProps.length > 0) {
+-            Slog.d("PHH-Enroll", "Got udfps infos " + udfpsProps[0] + ", " + udfpsProps[1] + ", " + udfpsProps[2]);
+-        }
++        final boolean isUdfps = !ArrayUtils.isEmpty(udfpsProps);
+ 
+         // config_is_powerbutton_fps indicates whether device has a power button fingerprint sensor.
+         final boolean isPowerbuttonFps = getContext().getResources().getBoolean(
+@@ -1013,67 +842,4 @@ public class AuthService extends SystemService {
+                 componentInfo, resetLockoutRequiresHardwareAuthToken,
+                 resetLockoutRequiresChallenge);
+     }
+-
+-    private static boolean samsungHasCmd(String cmd) {
+-        try {
+-            File f = new File("/sys/devices/virtual/sec/tsp/cmd_list");
+-            if(!f.exists()) return false;
+-
+-            android.util.Log.d("PHH", "Managed to grab cmd list, checking...");
+-            BufferedReader b = new BufferedReader(new FileReader(f));
+-            String line = null;
+-            while( (line = b.readLine()) != null) {
+-                if(line.equals(cmd)) return true;
+-            }
+-            android.util.Log.d("PHH", "... nope");
+-            return false;
+-        } catch(Exception e) {
+-            android.util.Log.d("PHH", "Failed reading cmd_list", e);
+-            return false;
+-        }
+-    }
+-
+-    public static void samsungCmd(String cmd) {
+-        try {
+-            writeFile("/sys/devices/virtual/sec/tsp/cmd", cmd);
+-
+-            String status = readFile("/sys/devices/virtual/sec/tsp/cmd_status");
+-            String ret = readFile("/sys/devices/virtual/sec/tsp/cmd_result");
+-
+-            android.util.Log.d("PHH", "Sending command " + cmd + " returned " + ret + ":" + status);
+-        } catch(Exception e) {
+-            android.util.Log.d("PHH", "Failed sending command " + cmd, e);
+-        }
+-    }
+-
+-    private static void writeFile(String path, String value) {
+-        try {
+-            PrintWriter writer = new PrintWriter(path, "UTF-8");
+-            writer.println(value);
+-            writer.close();
+-        } catch(Exception e) {
+-            android.util.Log.d("PHH", "Failed writing to " + path + ": " + value);
+-        }
+-    }
+-
+-    private static void writeFile(File file, String value) {
+-        try {
+-            PrintWriter writer = new PrintWriter(file, "UTF-8");
+-            writer.println(value);
+-            writer.close();
+-        } catch(Exception e) {
+-            android.util.Log.d("PHH", "Failed writing to " + file + ": " + value);
+-        }
+-    }
+-
+-    private static String readFile(String path) {
+-        try {
+-            File f = new File(path);
+-
+-            BufferedReader b = new BufferedReader(new FileReader(f));
+-            return b.readLine();
+-        } catch(Exception e) {
+-            return null;
+-        }
+-    }
+ }
+-- 
+2.34.1
+
+
+From dff5fd79d0da77b4b16dcbc01d29693029a7d812 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 13 Nov 2023 16:34:44 -0500
+Subject: [PATCH 15/15] Fix play integrity
+
+Change-Id: I355bca588d9d6edba5f5a2aacc3683c203e7ccd4
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../android/internal/gmscompat/AttestationHooks.java   | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+index 84d7676943a6..99bb71e1c62a 100644
+--- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
++++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+@@ -57,10 +57,12 @@ public final class AttestationHooks {
+     }
+ 
+     private static void spoofBuildGms() {
+-        setBuildField(Build.class, "PRODUCT", "marlin");
+-        setBuildField(Build.class, "DEVICE", "marlin");
+-        setBuildField(Build.class, "MODEL", "Pixel XL");
+-        setBuildField(Build.class, "FINGERPRINT", "google/marlin/marlin:7.1.2/NJH47F/4146041:user/release-keys");
++        setBuildField(Build.class, "PRODUCT", "WW_Phone");
++        setBuildField(Build.class, "DEVICE", "ASUS_X00HD_4");
++        setBuildField(Build.class, "MANUFACTURER", "Asus");
++        setBuildField(Build.class, "BRAND", "Asus");
++        setBuildField(Build.class, "MODEL", "ASUS_X00HD");
++        setBuildField(Build.class, "FINGERPRINT", "asus/WW_Phone/ASUS_X00HD_4:7.1.1/NMF26F/14.2016.1801.372-20180119:user/release-keys");
+     }
+ 
+     public static void initApplicationBeforeOnCreate(Application app) {
 -- 
 2.34.1
 

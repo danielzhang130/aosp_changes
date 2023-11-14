@@ -1,7 +1,7 @@
-From 0d0b3e1db084c60a438554dc93aa6f08954dff18 Mon Sep 17 00:00:00 2001
+From 219d2fa4fa78890dfa3d2f2bc70fb5840d67a2ae Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
-Subject: [PATCH 01/20] Various updates to phh treble device
+Subject: [PATCH 01/19] Various updates to phh treble device
 
 - make adb secure
 - remove su
@@ -6470,10 +6470,10 @@ index f3c0c45..b2bcf63 100644
 2.34.1
 
 
-From 945f4058370abe5d48c664ea7ee50c92d92188f0 Mon Sep 17 00:00:00 2001
+From a59e9c9e8cb7b673c23f81ad0b54021f41c97d71 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
-Subject: [PATCH 02/20] Passes safetynet out of the box
+Subject: [PATCH 02/19] Passes safetynet out of the box
 
 remove unneeded system prop changes
 
@@ -6510,10 +6510,10 @@ index ecb3f66..36e3de6 100644
 2.34.1
 
 
-From cec3a300f2a43cbbd75a78b0189c2aef41424a63 Mon Sep 17 00:00:00 2001
+From e69a55ada378a47e439abfdb33cc2736d0d9b4a4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
-Subject: [PATCH 03/20] Fix adb not connecting when device first starts
+Subject: [PATCH 03/19] Fix adb not connecting when device first starts
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -6554,10 +6554,10 @@ index 55b3311..0000000
 2.34.1
 
 
-From f849243734982f0c51045ee64fa213c0ace4dcf0 Mon Sep 17 00:00:00 2001
+From ffd02d34929dc4aeac57d9b9499ec30022ea0a76 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
-Subject: [PATCH 04/20] Add FP3 boot animation
+Subject: [PATCH 04/19] Add FP3 boot animation
 
 - add nova launcher
 - remove unused packages
@@ -14914,10 +14914,10 @@ index 738b96f..516377a 100644
 2.34.1
 
 
-From 3bd6fb2701e41b5c760a642f6996d0b618bed5cb Mon Sep 17 00:00:00 2001
+From c0b43596d4a0cd53dbbbcac6d250d15300ef8043 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
-Subject: [PATCH 05/20] Add fp3 boot animation
+Subject: [PATCH 05/19] Add fp3 boot animation
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16506,10 +16506,10 @@ index 516377a..0000000
 2.34.1
 
 
-From e3f4da8372929037800ad20df00f04bba1ee7fe8 Mon Sep 17 00:00:00 2001
+From 28ecbd9930866ef63db775e11ded3bf8f24bd690 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:45:26 -0500
-Subject: [PATCH 06/20] fix bootanimation
+Subject: [PATCH 06/19] fix bootanimation
 
 ---
  blueline.mk | 3 +++
@@ -16533,10 +16533,10 @@ index d5ccf61..5b3265d 100644
 2.34.1
 
 
-From 7c41001d9e1190f2020210a4a4ec895dfc0e30ae Mon Sep 17 00:00:00 2001
+From 6d53a046a89755042be1ba2f4d73a5f342ca1ab2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:49:11 -0500
-Subject: [PATCH 07/20] Add ro.build.version.real_security_patch
+Subject: [PATCH 07/19] Add ro.build.version.real_security_patch
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -16559,10 +16559,10 @@ index ebc83f3..2da3fd2 100644
 2.34.1
 
 
-From 33905948dd05aea48e03bc1451f28d3375a25554 Mon Sep 17 00:00:00 2001
+From 3b36a64bdf927fb38812b7253f154dfcee618152 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
-Subject: [PATCH 08/20] Remove restarting surfaceflinger
+Subject: [PATCH 08/19] Remove restarting surfaceflinger
 
 - stop boot animation restarting
 - lcd density seems to be set correctly without it
@@ -16590,10 +16590,10 @@ index 823456a..d099a1d 100644
 2.34.1
 
 
-From 729146150fce9d01efe4490322d82041084a5c86 Mon Sep 17 00:00:00 2001
+From 3e5c9b86faf607a04b148b5dbda8e21d36d1e548 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
-Subject: [PATCH 09/20] Remove twrp files
+Subject: [PATCH 09/19] Remove twrp files
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29592,10 +29592,10 @@ index cb67b71..0000000
 2.34.1
 
 
-From c283d60cf09c73d88802a73a90ed20a0b369d44c Mon Sep 17 00:00:00 2001
+From c2b74e953fa0095ef7749144c2b63663b0dc0439 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:47:06 -0500
-Subject: [PATCH 10/20] Remove ota
+Subject: [PATCH 10/19] Remove ota
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -29851,10 +29851,10 @@ index d099a1d..fdf847c 100644
 2.34.1
 
 
-From e3c42af461c62d1273b35296007473780980cb2d Mon Sep 17 00:00:00 2001
+From 8d763009799433cf8b547d0cde636880d33a89ad Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:00:25 -0500
-Subject: [PATCH 11/20] Remove unused remote files, functionality already
+Subject: [PATCH 11/19] Remove unused remote files, functionality already
  removed
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -31964,10 +31964,10 @@ index 87f2f96..0000000
 2.34.1
 
 
-From d0b52e9f61126664de82bc0fd2e318540e007e14 Mon Sep 17 00:00:00 2001
+From 80df2e0353ca8fe12d4ed2387497f1790c17da3c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:12:45 -0500
-Subject: [PATCH 12/20] fix adb by removing ctl.restart adbd
+Subject: [PATCH 12/19] fix adb by removing ctl.restart adbd
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32040,10 +32040,10 @@ index 36e3de6..e0e57ac 100644
 2.34.1
 
 
-From 36d915837274b38036579952eaa3674fe4f0dada Mon Sep 17 00:00:00 2001
+From 5be72dd17192844d18d022fe75332f7e7b1b0bd7 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 27 Dec 2022 15:16:35 -0500
-Subject: [PATCH 13/20] Add Wellbeing as priv-app
+Subject: [PATCH 13/19] Add Wellbeing as priv-app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32066,10 +32066,10 @@ index 813d66b..96a0a7a 100644
 2.34.1
 
 
-From 176ea28a1357b3b0ca1e1724640d9404028d853d Mon Sep 17 00:00:00 2001
+From dc4943ba8bc3a06a6b2812ff861818364aa7a94f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 18:02:33 -0500
-Subject: [PATCH 14/20] Add themepicker to build
+Subject: [PATCH 14/19] Add themepicker to build
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32095,10 +32095,10 @@ index adc697e..a2cc6a6 100644
 2.34.1
 
 
-From 0d842849a90fb672f94ef9b3b46512f125ed2f89 Mon Sep 17 00:00:00 2001
+From 712cab30802821bdeadcdd3d7282f7d59cd21cd9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 29 Dec 2022 15:32:08 -0500
-Subject: [PATCH 15/20] Remove default browser, calendar and gallery app
+Subject: [PATCH 15/19] Remove default browser, calendar and gallery app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32125,10 +32125,10 @@ index 96a0a7a..dc9e985 100644
 2.34.1
 
 
-From be2cad9cca3f8e68868ddf2989b2136776d58379 Mon Sep 17 00:00:00 2001
+From f49f441b730e0723dec44d8f41f0c6e968165ae4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 11:01:17 -0500
-Subject: [PATCH 16/20] Enable one handed mode
+Subject: [PATCH 16/19] Enable one handed mode
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32150,10 +32150,10 @@ index b2bcf63..ce18f21 100644
 2.34.1
 
 
-From 368e67a9f479a3b14afe44e4ca80b66a373e0ee6 Mon Sep 17 00:00:00 2001
+From fc8b76db9ef0124914dc691347cdef11e5380247 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 22:43:22 -0500
-Subject: [PATCH 17/20] Add changelist generation on each build
+Subject: [PATCH 17/19] Add changelist generation on each build
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32192,10 +32192,10 @@ index 0000000..4e3d648
 2.34.1
 
 
-From a1774e3ba5dbc90a93d16936c62e2c65a094a9a9 Mon Sep 17 00:00:00 2001
+From cd19e9d71a178538640c8e0f094e91038eb665d3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 15 Mar 2023 15:02:46 -0400
-Subject: [PATCH 18/20] Disable fingerprint cleanup to prevent fingerprint from
+Subject: [PATCH 18/19] Disable fingerprint cleanup to prevent fingerprint from
  disappearing
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -32218,114 +32218,10 @@ index e0e57ac..0954ee5 100644
 2.34.1
 
 
-From 9db1171be7b27474216917a74ef07de417bd98ba Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Thu, 13 Apr 2023 08:24:46 -0400
-Subject: [PATCH 19/20] Revert "treble: Import QcRilAm and sepolicies from PHH
- & SonyXperiaDev"
-
-This reverts commit a83673f614c677b38020a2033f6dbef1893bdb6d.
----
- base.mk                   |  8 ++------
- sepolicy/qcrilam_app.te   | 22 ----------------------
- sepolicy/seapp_contexts   |  1 -
- sepolicy/service.te       |  1 -
- sepolicy/service_contexts |  3 ---
- 5 files changed, 2 insertions(+), 33 deletions(-)
- delete mode 100644 sepolicy/qcrilam_app.te
- delete mode 100644 sepolicy/seapp_contexts
- delete mode 100644 sepolicy/service.te
-
-diff --git a/base.mk b/base.mk
-index 08fc0ab..043b2ba 100644
---- a/base.mk
-+++ b/base.mk
-@@ -40,11 +40,11 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
- 	ro.build.version.real_security_patch=$(PLATFORM_SECURITY_PATCH) \
- 	ro.logd.auditd=true \
- 	ro.logd.kernel=true \
--
-+	
- #Huawei HiSuite (also other OEM custom programs I guess) it's of no use in AOSP builds
- PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
- 	persist.sys.usb.config=adb \
--	ro.cust.cdrom=/dev/null
-+	ro.cust.cdrom=/dev/null	
- 
- #VNDK config files
- PRODUCT_COPY_FILES += \
-@@ -231,10 +231,6 @@ PRODUCT_COPY_FILES += \
- PRODUCT_PACKAGES += \
- 	evgrab \
- 
--# QCOM in-call audio fix as a standalone app
--PRODUCT_PACKAGES += \
--    QcRilAm
--
- PRODUCT_PACKAGES += \
- 	slsi-booted
- 
-diff --git a/sepolicy/qcrilam_app.te b/sepolicy/qcrilam_app.te
-deleted file mode 100644
-index 2b8e76e..0000000
---- a/sepolicy/qcrilam_app.te
-+++ /dev/null
-@@ -1,22 +0,0 @@
--type qcrilam_app, domain;
--
--app_domain(qcrilam_app)
--
--# Needed to get access to /data/data/me.phh.qcrilam
--# Only getattr and search are requested since qcrilam does not write to its own directory
--# /data/data/me.phh.qcrilam only has two empty subdirs
--dontaudit qcrilam_app app_data_file:dir { getattr search };
--
--# Access services that should be available to all apps
--allow qcrilam_app app_api_service:service_manager find;
--
--# Find media.audio_flinger
--allow qcrilam_app audioserver_service:service_manager find;
--# Find isub
--allow qcrilam_app radio_service:service_manager find;
--
--# Find the vendor.qti.hardware.radio.am::IQcRilAudio HIDL service
--# And grant binder access to the host (`rild`)
--hal_client_domain(qcrilam_app, hal_telephony)
--
--allow qcrilam_app cgroup:file w_file_perms;
-diff --git a/sepolicy/seapp_contexts b/sepolicy/seapp_contexts
-deleted file mode 100644
-index 3a704a6..0000000
---- a/sepolicy/seapp_contexts
-+++ /dev/null
-@@ -1 +0,0 @@
--user=_app seinfo=platform name=me.phh.qcrilam domain=qcrilam_app type=app_data_file
-diff --git a/sepolicy/service.te b/sepolicy/service.te
-deleted file mode 100644
-index a9120f9..0000000
---- a/sepolicy/service.te
-+++ /dev/null
-@@ -1 +0,0 @@
--type qcrilam_service,    service_manager_type;
-diff --git a/sepolicy/service_contexts b/sepolicy/service_contexts
-index a390e3f..73c6722 100644
---- a/sepolicy/service_contexts
-+++ b/sepolicy/service_contexts
-@@ -11,6 +11,3 @@ mtkIms                                    u:object_r:radio_service:s0
- 
- # Audio AIDL interface
- android.hardware.bluetooth.audio.IBluetoothAudioProviderFactory/sysbta    u:object_r:hal_audio_service:s0
--
--# QcRilAm
--me.phh.qcrilam                                                            u:object_r:qcrilam_service:s0
--- 
-2.34.1
-
-
-From b47538f53048a2f5a74814b10bfa51f844ac3f54 Mon Sep 17 00:00:00 2001
+From 124cd5d7ea2ef192cb6daa930932fc507ab925ed Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 8 Jul 2023 09:11:02 -0400
-Subject: [PATCH 20/20] Remove unused proprietary dependencies
+Subject: [PATCH 19/19] Remove unused proprietary dependencies
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -32334,12 +32230,12 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  2 files changed, 42 deletions(-)
 
 diff --git a/base.mk b/base.mk
-index 043b2ba..cf70e2b 100644
+index 08fc0ab..06ec8b0 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -231,9 +231,6 @@ PRODUCT_COPY_FILES += \
+@@ -235,9 +235,6 @@ PRODUCT_PACKAGES += \
  PRODUCT_PACKAGES += \
- 	evgrab \
+     QcRilAm
  
 -PRODUCT_PACKAGES += \
 -	slsi-booted

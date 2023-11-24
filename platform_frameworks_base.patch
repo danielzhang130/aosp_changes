@@ -1,7 +1,7 @@
-From 64402d440ed0d825b1fa116a5d435a50638bb666 Mon Sep 17 00:00:00 2001
+From a48d598e4e92dec3da7e5100bc4c9e4b0930d13d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/15] pass safetynet and gpay
+Subject: [PATCH 01/16] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -172,10 +172,10 @@ index 33411e1ec5b9..133a4094d434 100644
 2.34.1
 
 
-From 1a809b82d6adf557ec6dc05a795529bfccb354c8 Mon Sep 17 00:00:00 2001
+From 596c0445b772dcfc2ccbbe1dc7ea4612480d546f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/15] Set auto brightness on by default
+Subject: [PATCH 02/16] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index 99b15db780dc..5ba7689593ce 100644
 2.34.1
 
 
-From 00359a442bab99caf3c7567df6c21e470c4183fd Mon Sep 17 00:00:00 2001
+From b6abcd6b4f8d35e4482c156a46e90637e7f2ecee Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 03/15] Add support for left side volume dialog
+Subject: [PATCH 03/16] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -851,10 +851,10 @@ index 1cfcf8cbbdcb..e177f1267acf 100644
 2.34.1
 
 
-From 20053186e5fbb8f00d584b67cdc0f8eaff0f35a3 Mon Sep 17 00:00:00 2001
+From 82edb02b4d7a94e22539eddfa83fb4a0c2a2adfc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 04/15] Remove max column limit on quick tiles under
+Subject: [PATCH 04/16] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -879,10 +879,10 @@ index 7ee404756633..ccdcaa7bd99b 100644
 2.34.1
 
 
-From e774ed968aa0a85060cc2c5243fa135ae4587824 Mon Sep 17 00:00:00 2001
+From 26533996c81d856fe754487a837f2ebedbc38038 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 17:08:25 -0500
-Subject: [PATCH 05/15] Move qr code scanner button to bottom left of lock
+Subject: [PATCH 05/16] Move qr code scanner button to bottom left of lock
  screen
 
 Change-Id: I494e8b9a6fbd889fa461267d951410da5d88875b
@@ -913,10 +913,10 @@ index 8526ada69569..140f1847c9e5 100644
 2.34.1
 
 
-From 23624f59c8e7702b71b6db0c5bf75d4b8faa50bf Mon Sep 17 00:00:00 2001
+From e8832160dd40371ad2a441d3dda0ab57d32cdbcb Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 06/15] Update device config
+Subject: [PATCH 06/16] Update device config
 
 - Add more tracked permissions
 - Update permission history cutoff days
@@ -977,10 +977,10 @@ index 158092f33ee3..5e2206079ff3 100644
 2.34.1
 
 
-From 323398eeb6d2a33263dc80764ef69cf1b80887ec Mon Sep 17 00:00:00 2001
+From 54784b86a713c0aad29150798074f978fbf90a24 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 07/15] Add launcher icon for android 10 easter egg
+Subject: [PATCH 07/16] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1004,10 +1004,10 @@ index cc7bb4a3ff81..48a08231b19c 100644
 2.34.1
 
 
-From aba9b7acca91677adbaeea1c6d0bc6cc1d0a8c6e Mon Sep 17 00:00:00 2001
+From 9ded368b9fa1f0dde4b5c8f5d04c0dd96309fcd5 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 08/15] Use system default vibration for fb messenger app
+Subject: [PATCH 08/16] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1033,10 +1033,10 @@ index 05c9fca5ed68..08250674cb15 100644
 2.34.1
 
 
-From be64f8ec5b20bd18a71942c95fb461fbe412ca47 Mon Sep 17 00:00:00 2001
+From 66b995fb1d50b458cbe35763c075de8d3e36edf3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 09/15] Fix safetynet/play integrity
+Subject: [PATCH 09/16] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1066,10 +1066,10 @@ index 77101541f20a..84d7676943a6 100644
 2.34.1
 
 
-From 127e26b6eabe33a2d362b7eb7d034edf1166b040 Mon Sep 17 00:00:00 2001
+From c390d35f8f136147a745d15a732604da0f0a05bc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 10/15] Get free photo storage for google pixel
+Subject: [PATCH 10/16] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1126,10 +1126,10 @@ index 2767b43a119c..bc3880a6e771 100644
 2.34.1
 
 
-From 0602a7767a1a27ab169c21d065322d28f417c97b Mon Sep 17 00:00:00 2001
+From fc17b9ff6497238e67aa144f31b833c2570efcd2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 13 Nov 2023 10:23:14 -0500
-Subject: [PATCH 11/15] Revert "Add Mediatek power hints on touch"
+Subject: [PATCH 11/16] Revert "Add Mediatek power hints on touch"
 
 This reverts commit 14e80feb74d5dd7291d4208070a34c4ab1a2e604.
 ---
@@ -1235,10 +1235,10 @@ index 34d46f23d3b1..988e98f28d10 100644
 2.34.1
 
 
-From 6c958117e032769202a1f05daaf49f7b0228f8a8 Mon Sep 17 00:00:00 2001
+From 21fbe576a67e7188980bd8b57dc24f7cfe81cd5b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 13 Nov 2023 10:25:32 -0500
-Subject: [PATCH 12/15] Revert "Call Samsung's ISehSysInputDev to report screen
+Subject: [PATCH 12/16] Revert "Call Samsung's ISehSysInputDev to report screen
  state to touchscreen driver"
 
 This reverts commit 43e7b0577b67781d17a3f7f8e8d73b4d04992905.
@@ -1325,10 +1325,10 @@ index 84c3982458ff..58a182a61e44 100644
 2.34.1
 
 
-From 9a18e950c805efcb1a4cecd6a647a44cf378c492 Mon Sep 17 00:00:00 2001
+From 51aee54faba8c739ff55f39d4aff0da26cafd789 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 13 Nov 2023 10:27:12 -0500
-Subject: [PATCH 13/15] Revert "Add initial Xiaomi FOD implementation for
+Subject: [PATCH 13/16] Revert "Add initial Xiaomi FOD implementation for
  recent Xiaomi devices"
 
 This reverts commit 65c002bf75d03a9c7feddc2380832cc577ded9d5.
@@ -1510,10 +1510,10 @@ index 696d5b42cd46..b47b47c41f76 100644
 2.34.1
 
 
-From 47bc440a3d3b7501249e871e935f5c7ee4d857e6 Mon Sep 17 00:00:00 2001
+From b443cd55eea0314bdb195c72b7430f3f5efa860b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 13 Nov 2023 10:43:19 -0500
-Subject: [PATCH 14/15] Revert "FOD support for Asus ZF8 and Samsung devices"
+Subject: [PATCH 14/16] Revert "FOD support for Asus ZF8 and Samsung devices"
 
 This reverts commit 2d0da5abb422a0b668e5efaf56a14a0518a10ff3.
 
@@ -2085,10 +2085,10 @@ index b47b47c41f76..48293576519b 100644
 2.34.1
 
 
-From dff5fd79d0da77b4b16dcbc01d29693029a7d812 Mon Sep 17 00:00:00 2001
+From 9ee815d9081f11d83a6d72d4f60a4f462db29f48 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 13 Nov 2023 16:34:44 -0500
-Subject: [PATCH 15/15] Fix play integrity
+Subject: [PATCH 15/16] Fix play integrity
 
 Change-Id: I355bca588d9d6edba5f5a2aacc3683c203e7ccd4
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -2114,6 +2114,50 @@ index 84d7676943a6..99bb71e1c62a 100644
 +        setBuildField(Build.class, "BRAND", "Asus");
 +        setBuildField(Build.class, "MODEL", "ASUS_X00HD");
 +        setBuildField(Build.class, "FINGERPRINT", "asus/WW_Phone/ASUS_X00HD_4:7.1.1/NMF26F/14.2016.1801.372-20180119:user/release-keys");
+     }
+ 
+     public static void initApplicationBeforeOnCreate(Application app) {
+-- 
+2.34.1
+
+
+From ba076700b83536857fbf0a7cd24265be7c2b547b Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 24 Nov 2023 13:16:36 -0500
+Subject: [PATCH 16/16] Add ability to change fingerprint from persist prop
+
+Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../internal/gmscompat/AttestationHooks.java   | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
+
+diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+index 99bb71e1c62a..3a928f54b626 100644
+--- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
++++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+@@ -57,12 +57,18 @@ public final class AttestationHooks {
+     }
+ 
+     private static void spoofBuildGms() {
+-        setBuildField(Build.class, "PRODUCT", "WW_Phone");
+-        setBuildField(Build.class, "DEVICE", "ASUS_X00HD_4");
+-        setBuildField(Build.class, "MANUFACTURER", "Asus");
+-        setBuildField(Build.class, "BRAND", "Asus");
+-        setBuildField(Build.class, "MODEL", "ASUS_X00HD");
+-        setBuildField(Build.class, "FINGERPRINT", "asus/WW_Phone/ASUS_X00HD_4:7.1.1/NMF26F/14.2016.1801.372-20180119:user/release-keys");
++        setBuildField(Build.class, "PRODUCT", 
++                SystemProperties.get("persist.product", "WW_Phone"));
++        setBuildField(Build.class, "DEVICE",
++                SystemProperties.get("persist.device", "ASUS_X00HD_4"));
++        setBuildField(Build.class, "MANUFACTURER",
++                SystemProperties.get("persist.manufacturer", "Asus"));
++        setBuildField(Build.class, "BRAND",
++                SystemProperties.get("persist.brand", "Asus"));
++        setBuildField(Build.class, "MODEL",
++                SystemProperties.get("persist.model", "ASUS_X00HD"));
++        setBuildField(Build.class, "FINGERPRINT",
++                SystemProperties.get("persist.fingerprint", "asus/WW_Phone/ASUS_X00HD_4:7.1.1/NMF26F/14.2016.1801.372-20180119:user/release-keys"));
      }
  
      public static void initApplicationBeforeOnCreate(Application app) {

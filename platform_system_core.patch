@@ -1,0 +1,37 @@
+From 693532d153f4400e6a94b289e82f1e4080e9df9e Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sat, 7 Oct 2023 14:40:11 -0400
+Subject: [PATCH] Revert "If Vboot2 fails, fall-back to Vboot1"
+
+This reverts commit 0040f9934ecbc59afcc2372d14a855b26e419227.
+---
+ init/first_stage_mount.cpp | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
+
+diff --git a/init/first_stage_mount.cpp b/init/first_stage_mount.cpp
+index 7b16c69..07ce458 100644
+--- a/init/first_stage_mount.cpp
++++ b/init/first_stage_mount.cpp
+@@ -820,17 +820,10 @@ bool DoFirstStageMount(bool create_devices) {
+     }
+ 
+     if (create_devices) {
+-        if (!(*fsm)->DoCreateDevices()) LOG(ERROR) << "Failed to create devices";
++        if (!(*fsm)->DoCreateDevices()) return false;
+     }
+ 
+-    if(!(*fsm)->DoFirstStageMount()) {
+-	    *fsm = nullptr;
+-	    auto fstab = ReadFirstStageFstab();
+-	    auto v = std::make_unique<FirstStageMountVBootV1>(std::move(*fstab));
+-	    v->DoCreateDevices();
+-	    return v->DoFirstStageMount();
+-    }
+-    return true;
++    return (*fsm)->DoFirstStageMount();
+ }
+ 
+ void SetInitAvbVersionInRecovery() {
+-- 
+2.34.1
+

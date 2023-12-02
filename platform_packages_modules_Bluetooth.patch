@@ -1,0 +1,27 @@
+From c703af2d273852a29422b9d3cec89ebab7ef9752 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 3 Nov 2023 20:46:56 -0400
+Subject: [PATCH] Fix compile error
+
+Change-Id: Ia0c87d2463bc9e2d71e91013d216623f645ea21f
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ system/gd/hci/controller.cc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/system/gd/hci/controller.cc b/system/gd/hci/controller.cc
+index f6fc6ab..cfa928a 100644
+--- a/system/gd/hci/controller.cc
++++ b/system/gd/hci/controller.cc
+@@ -540,7 +540,7 @@ struct Controller::impl {
+       vendor_capabilities_.is_supported_ = 0x01;
+ 
+       int vendor_cap_max = 0xffff;
+-      std::string vendor_cap_max_prop = GetSystemProperty("persist.sys.bt.max_vendor_cap").value_or("");
++      std::string vendor_cap_max_prop = os::GetSystemProperty("persist.sys.bt.max_vendor_cap").value_or("");
+       if (vendor_cap_max_prop != "") {
+           vendor_cap_max = std::stoi(vendor_cap_max_prop);
+       }
+-- 
+2.34.1
+

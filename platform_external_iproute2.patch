@@ -1,0 +1,41 @@
+From 521cd5da3919f6374c5e6e9ef9ff278e84f6b905 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 6 Oct 2023 20:33:45 -0400
+Subject: [PATCH] fix compile error
+
+Change-Id: I56777ff40d0144b7e9f90a96bb6704f0097635c0
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ tc/Android.bp | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/tc/Android.bp b/tc/Android.bp
+index 1838acf..20cfbde 100644
+--- a/tc/Android.bp
++++ b/tc/Android.bp
+@@ -41,18 +41,18 @@ genrule {
+ 
+ genrule {
+     name: "emp_ematch.yacc.c",
+-    cmd: "$(location bison) -y --output=$(genDir)/emp_ematch.yacc.c $(in)",
++    cmd: "M4=$(location m4) $(location bison) -y --output=$(genDir)/emp_ematch.yacc.c $(in)",
+     out: ["emp_ematch.yacc.c"],
+     srcs: ["emp_ematch.y"],
+-    tools: ["bison"],
++    tools: ["bison", "m4"],
+ }
+ 
+ genrule {
+     name: "emp_ematch.yacc.h",
+-    cmd: "$(location bison) -y --defines=$(genDir)/emp_ematch.yacc.h --output=$(genDir)/emp_ematch.yacc.c $(in)",
++    cmd: "M4=$(location m4) $(location bison) -y --defines=$(genDir)/emp_ematch.yacc.h --output=$(genDir)/emp_ematch.yacc.c $(in)",
+     out: ["emp_ematch.yacc.h"],
+     srcs: ["emp_ematch.y"],
+-    tools: ["bison"],
++    tools: ["bison", "m4"],
+ }
+ 
+ cc_binary {
+-- 
+2.34.1
+

@@ -1,0 +1,78 @@
+From 54989edb5eff933b74d7af409c230068637e2189 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 1 Dec 2023 21:06:02 -0500
+Subject: [PATCH] Continue loading BPF after fail and add more BPF debug
+ logging
+
+Change-Id: Ib7e4fb684580cde595fec81d1400a755ac387b5d
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ bpfloader/BpfLoader.cpp | 22 ++++++++++++++++------
+ 1 file changed, 16 insertions(+), 6 deletions(-)
+
+diff --git a/bpfloader/BpfLoader.cpp b/bpfloader/BpfLoader.cpp
+index 0af23c9..46a435a 100644
+--- a/bpfloader/BpfLoader.cpp
++++ b/bpfloader/BpfLoader.cpp
+@@ -247,6 +247,8 @@ int writeProcSysFile(const char *filename, const char *value) {
+     return 0;
+ }
+ 
++void fail(int);
++
+ int main(int argc, char** argv) {
+     (void)argc;
+     android::base::InitLogging(argv, &android::base::KernelLogger);
+@@ -285,7 +287,7 @@ int main(int argc, char** argv) {
+     //  due to ordering issues)
+     for (const auto& location : locations) {
+         if (createSysFsBpfSubDir(location.prefix)) {
+-            goto fail;
++            fail(290);
+         }
+     }
+ 
+@@ -295,14 +297,18 @@ int main(int argc, char** argv) {
+     // and as such this will likely always be the case.
+     // Thus we need to manually create the /sys/fs/bpf/loader subdirectory.
+     if (createSysFsBpfSubDir("loader")) {
+-        goto fail;
+-        return 1;
++        fail(300);
+     }
+ 
+     // Load all ELF objects, create programs and maps, and pin them
+     for (const auto& location : locations) {
+         if (loadAllElfObjects(location) != 0) {
+-            goto fail;
++            ALOGE("=== CRITICAL FAILURE LOADING BPF PROGRAMS %s %s ===", location.dir, location.prefix);
++            ALOGE("If this triggers reliably, you're probably missing kernel options or patches.");
++            ALOGE("If this triggers randomly, you might be hitting some memory allocation "
++                    "problems or startup script race.");
++            ALOGE("--- DO NOT EXPECT SYSTEM TO BOOT SUCCESSFULLY ---");
++            continue;
+         }
+     }
+ 
+@@ -312,12 +318,16 @@ int main(int argc, char** argv) {
+     }
+ 
+     return 0;
+-fail:
++}
++
++void fail(int i)
++{
+     ALOGE("=== CRITICAL FAILURE LOADING BPF PROGRAMS ===");
++    ALOGE("FROM %d", i);
+     ALOGE("If this triggers reliably, you're probably missing kernel options or patches.");
+     ALOGE("If this triggers randomly, you might be hitting some memory allocation "
+             "problems or startup script race.");
+     ALOGE("--- DO NOT EXPECT SYSTEM TO BOOT SUCCESSFULLY ---");
+     android::base::SetProperty("bpf.progs_loaded", "1");
+-    return 0;
++    exit(0);
+ }
+-- 
+2.34.1
+

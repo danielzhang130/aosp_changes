@@ -1,7 +1,7 @@
 From cd44d4f3d88b634a408df9ef26fa991552bb29f4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/12] pass safetynet and gpay
+Subject: [PATCH 01/13] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -175,7 +175,7 @@ index 25f5dec9de40..b34351585c4b 100644
 From 586aa52d89deaa162c78af9bfc5da1a42ca08edb Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/12] Set auto brightness on by default
+Subject: [PATCH 02/13] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -202,7 +202,7 @@ index a93cd62e6301..6655634e4383 100644
 From 9db727e876a54e3b362cbe7a29a5c024118f2ed2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 03/12] Add support for left side volume dialog
+Subject: [PATCH 03/13] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -867,7 +867,7 @@ index 93622200ad46..531ba305426a 100644
 From 0bbf8ffb928f483376ea184a6b6a43a5188d98a3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 04/12] Remove max column limit on quick tiles under
+Subject: [PATCH 04/13] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -895,7 +895,7 @@ index 19bf0188c9d2..65e5b65333ec 100644
 From 31cfb84f8a61b4b432546dc3e8e4e005c2cc822b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 17:08:25 -0500
-Subject: [PATCH 05/12] Move qr code scanner button to bottom left of lock
+Subject: [PATCH 05/13] Move qr code scanner button to bottom left of lock
  screen
 
 Change-Id: I494e8b9a6fbd889fa461267d951410da5d88875b
@@ -929,7 +929,7 @@ index 8526ada69569..140f1847c9e5 100644
 From 8a9087b46cb329eabca21ead0d1e6a48276214a2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 06/12] Update device config
+Subject: [PATCH 06/13] Update device config
 
 - Add more tracked permissions
 - Update permission history cutoff days
@@ -993,7 +993,7 @@ index 10243e28f0f4..5b48371cbeec 100644
 From acb96e1bee368c7ab2a7fc3473e284076d61c9b0 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 07/12] Add launcher icon for android 10 easter egg
+Subject: [PATCH 07/13] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1020,7 +1020,7 @@ index d1db237966d5..f6b4877b8467 100644
 From 85d77a9cf4f4d683faacd4877236bf5d1559155e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 08/12] Use system default vibration for fb messenger app
+Subject: [PATCH 08/13] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1049,7 +1049,7 @@ index d8cedb8fa5d2..a52a7e89e399 100644
 From 8f3f045b32db5ae287e094fb981aeadf6a6f9d3e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 09/12] Fix safetynet/play integrity
+Subject: [PATCH 09/13] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1082,7 +1082,7 @@ index 77101541f20a..84d7676943a6 100644
 From 5f12c2b9f6ada17eac81620437dc2137bb398ec2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 10/12] Get free photo storage for google pixel
+Subject: [PATCH 10/13] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1142,7 +1142,7 @@ index 2767b43a119c..bc3880a6e771 100644
 From 4545ce7b274c5f7ddf42d40cc161f620fc1e8f08 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 11/12] Add ability to change fingerprint from persist prop
+Subject: [PATCH 11/13] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1184,7 +1184,7 @@ index 84d7676943a6..3a928f54b626 100644
 From 1af3cc5ce15f2171cc4f14f4bab5ffc00832fa3a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 12/12] Update default spoof fingerprint
+Subject: [PATCH 12/13] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1220,6 +1220,38 @@ index 3a928f54b626..ee174dfb5ddd 100644
      }
  
      public static void initApplicationBeforeOnCreate(Application app) {
+-- 
+2.34.1
+
+
+From f5e55e4f46723b883a2dbc4c1bc99883ea7a961f Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 4 Dec 2023 13:56:49 -0500
+Subject: [PATCH 13/13] Change quick affordance click from long to short click
+
+Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../domain/interactor/KeyguardQuickAffordanceInteractor.kt  | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt b/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt
+index ea9c2b28742c..a375bda4a56b 100644
+--- a/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt
++++ b/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt
+@@ -91,11 +91,7 @@ constructor(
+      * If `false`, the UI goes back to using single taps.
+      */
+     fun useLongPress(): Flow<Boolean> =
+-        if (featureFlags.isEnabled(Flags.CUSTOMIZABLE_LOCK_SCREEN_QUICK_AFFORDANCES)) {
+-            dockManager.retrieveIsDocked().map { !it }
+-        } else {
+-            flowOf(false)
+-        }
++        flowOf(false)
+ 
+     /** Returns an observable for the quick affordance at the given position. */
+     suspend fun quickAffordance(
 -- 
 2.34.1
 

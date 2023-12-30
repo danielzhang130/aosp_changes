@@ -1,7 +1,7 @@
-From aff70cc64d19df9dddc4a1afd17ad68cc24f0fa8 Mon Sep 17 00:00:00 2001
+From 35c6aeb66982fbb85d85aca44f69af56ef7762a2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:38:37 -0500
-Subject: [PATCH] Update device config
+Subject: [PATCH 1/2] Update device config
 
 - enable precise location prompt
 - enable 7 day history in privacy dashboard
@@ -13,7 +13,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 2 insertions(+), 4 deletions(-)
 
 diff --git a/PermissionController/src/com/android/permissioncontroller/permission/utils/KotlinUtils.kt b/PermissionController/src/com/android/permissioncontroller/permission/utils/KotlinUtils.kt
-index f9345ef..949d044 100644
+index f9345ef58..949d04422 100644
 --- a/PermissionController/src/com/android/permissioncontroller/permission/utils/KotlinUtils.kt
 +++ b/PermissionController/src/com/android/permissioncontroller/permission/utils/KotlinUtils.kt
 @@ -238,8 +238,7 @@ object KotlinUtils {
@@ -36,6 +36,33 @@ index f9345ef..949d044 100644
      }
  
      /**
+-- 
+2.34.1
+
+
+From 7554a09b7c72187c5f432ad67f76f2a600ef2aec Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 29 Dec 2023 22:28:13 -0500
+Subject: [PATCH 2/2] Make FAKE_PACKAGE_SIGNATURE runtime permission
+
+Change-Id: If9ded0a8d6b8dd7044417e9319c413e4927fb23a
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../permissioncontroller/permission/utils/PermissionMapping.kt   | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/PermissionController/src/com/android/permissioncontroller/permission/utils/PermissionMapping.kt b/PermissionController/src/com/android/permissioncontroller/permission/utils/PermissionMapping.kt
+index b06a09b28..3b8967c30 100644
+--- a/PermissionController/src/com/android/permissioncontroller/permission/utils/PermissionMapping.kt
++++ b/PermissionController/src/com/android/permissioncontroller/permission/utils/PermissionMapping.kt
+@@ -175,6 +175,7 @@ object PermissionMapping {
+         }
+ 
+         PLATFORM_PERMISSIONS[Manifest.permission.BODY_SENSORS] = Manifest.permission_group.SENSORS
++        PLATFORM_PERMISSIONS[Manifest.permission.FAKE_PACKAGE_SIGNATURE] = Manifest.permission_group.FAKE_PACKAGE
+ 
+         if (SdkLevel.isAtLeastT()) {
+             PLATFORM_PERMISSIONS[Manifest.permission.POST_NOTIFICATIONS] =
 -- 
 2.34.1
 

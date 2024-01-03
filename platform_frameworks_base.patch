@@ -1,7 +1,7 @@
 From 4e8bc3ec4fd5e44ad7fd7d2b2fdd892aa40c39f6 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/13] pass safetynet and gpay
+Subject: [PATCH 01/14] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -175,7 +175,7 @@ index 25f5dec9de40..b34351585c4b 100644
 From 44fa2b806b55e7a1888d25e562301d88c0baf41b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/13] Set auto brightness on by default
+Subject: [PATCH 02/14] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -202,7 +202,7 @@ index a93cd62e6301..6655634e4383 100644
 From 5eb579240616525a5fcd32f052d200f59424e55d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 03/13] Add support for left side volume dialog
+Subject: [PATCH 03/14] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -867,7 +867,7 @@ index aafa16f4a5ed..0d977d929b08 100644
 From 3b8646ed7d2510747dae58c2bcf0133b6a7ec3a2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 04/13] Remove max column limit on quick tiles under
+Subject: [PATCH 04/14] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -895,7 +895,7 @@ index 19bf0188c9d2..65e5b65333ec 100644
 From b949fb44426d485779b4754c2a96693a8867fda2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 05/13] Update device config
+Subject: [PATCH 05/14] Update device config
 
 - Add more tracked permissions
 - Update permission history cutoff days
@@ -959,7 +959,7 @@ index 10243e28f0f4..5b48371cbeec 100644
 From ef29450233f267ed63f860016c1d1b54366747aa Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 06/13] Add launcher icon for android 10 easter egg
+Subject: [PATCH 06/14] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -986,7 +986,7 @@ index d1db237966d5..f6b4877b8467 100644
 From de2940ce4888121e3b1bcbbe0f5a9213ee83d8eb Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 07/13] Use system default vibration for fb messenger app
+Subject: [PATCH 07/14] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1015,7 +1015,7 @@ index 7ee1332ea76a..d3c1480e5125 100644
 From 5bfd265d05d532848dc4800ced54a8aef4ccf000 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 08/13] Fix safetynet/play integrity
+Subject: [PATCH 08/14] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1048,7 +1048,7 @@ index 77101541f20a..84d7676943a6 100644
 From 6cc9c4c898ab76996cb82475ff2684cfb5326f70 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 09/13] Get free photo storage for google pixel
+Subject: [PATCH 09/14] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1108,7 +1108,7 @@ index 2767b43a119c..bc3880a6e771 100644
 From 7f4f670f404a21e69333e1ecfdafb9369bb6bc9a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 10/13] Add ability to change fingerprint from persist prop
+Subject: [PATCH 10/14] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1150,7 +1150,7 @@ index 84d7676943a6..3a928f54b626 100644
 From a5355ccf4227604ac36eeeeb12fff529bf8bc4c5 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 11/13] Update default spoof fingerprint
+Subject: [PATCH 11/14] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1193,7 +1193,7 @@ index 3a928f54b626..ee174dfb5ddd 100644
 From d99bc44b4a80d4f5415449b0c8cf03cb9d5c89d6 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
-Subject: [PATCH 12/13] Change quick affordance click from long to short click
+Subject: [PATCH 12/14] Change quick affordance click from long to short click
 
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1221,7 +1221,7 @@ index 9c796f846994..5b6ad3331611 100644
 From 590a9418773c74cd7fe86ee849a612febb5899c5 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 29 Dec 2023 22:29:52 -0500
-Subject: [PATCH 13/13] Make FAKE_PACKAGE_SIGNATURE runtime permission
+Subject: [PATCH 13/14] Make FAKE_PACKAGE_SIGNATURE runtime permission
 
 Also fake new signature format
 
@@ -1363,6 +1363,36 @@ index d55f85cde5af..c5767ecc97b1 100644
                  // only return a valid SigningInfo if there is signing information to report
                  info.signingInfo = new SigningInfo(signingDetails);
              } else {
+-- 
+2.34.1
+
+
+From ec777a28f0350261d52475759679ab785ce195d7 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Wed, 3 Jan 2024 16:21:50 -0500
+Subject: [PATCH 14/14] Output certificate in pm dump
+
+Change-Id: I6c54ae43fecce81972b9b5f1239bb3ff8308e540
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ services/core/java/com/android/server/pm/Settings.java | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/services/core/java/com/android/server/pm/Settings.java b/services/core/java/com/android/server/pm/Settings.java
+index 677a5d11cc6b..03e3906aebeb 100644
+--- a/services/core/java/com/android/server/pm/Settings.java
++++ b/services/core/java/com/android/server/pm/Settings.java
+@@ -4990,6 +4990,10 @@ public final class Settings implements Watchable, Snappable, ResilientAtomicFile
+                     pw.println(ps.getVolumeUuid());
+         }
+         pw.print(prefix); pw.print("  signatures="); pw.println(ps.getSignatures());
++        Signature[] sig = ps.getSignatures().mSigningDetails.getSignatures();
++        if (sig != null && sig.length > 0) {
++            pw.print(prefix); pw.print("  certificate="); pw.println(sig[0].toCharsString());
++        }
+         pw.print(prefix); pw.print("  installPermissionsFixed=");
+                 pw.print(ps.isInstallPermissionsFixed());
+                 pw.println();
 -- 
 2.34.1
 

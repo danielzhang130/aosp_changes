@@ -1,0 +1,115 @@
+From 0cd16fd6c5b31ee54c5c8b99e98fe1261936a5c1 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Thu, 4 Jan 2024 20:51:38 -0500
+Subject: [PATCH] Add mitmproxy certificate
+
+Change-Id: I38fc3273e4a9180b7db271ef713d21be5f8c0f59
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ apex/Android.bp                       |  1 +
+ apex/ca-certificates/files/c8750f0d.0 | 81 +++++++++++++++++++++++++++
+ 2 files changed, 82 insertions(+)
+ create mode 100644 apex/ca-certificates/files/c8750f0d.0
+
+diff --git a/apex/Android.bp b/apex/Android.bp
+index 970752d4..bb5eab03 100644
+--- a/apex/Android.bp
++++ b/apex/Android.bp
+@@ -183,6 +183,7 @@ apex {
+         "target-cacert-apex-c491639e.0",
+         "target-cacert-apex-c559d742.0",
+         "target-cacert-apex-c7f1359b.0",
++        "target-cacert-apex-c8750f0d.0",
+         "target-cacert-apex-c90bc37d.0",
+         "target-cacert-apex-cb1c3204.0",
+         "target-cacert-apex-ccc52f49.0",
+diff --git a/apex/ca-certificates/files/c8750f0d.0 b/apex/ca-certificates/files/c8750f0d.0
+new file mode 100644
+index 00000000..88e50880
+--- /dev/null
++++ b/apex/ca-certificates/files/c8750f0d.0
+@@ -0,0 +1,81 @@
++-----BEGIN CERTIFICATE-----
++MIIDNTCCAh2gAwIBAgIUdymySdZPagGUCKaX500gX6alSAIwDQYJKoZIhvcNAQEL
++BQAwKDESMBAGA1UEAwwJbWl0bXByb3h5MRIwEAYDVQQKDAltaXRtcHJveHkwHhcN
++MjQwMTAyMTkzNjMxWhcNMzQwMTAxMTkzNjMxWjAoMRIwEAYDVQQDDAltaXRtcHJv
++eHkxEjAQBgNVBAoMCW1pdG1wcm94eTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
++AQoCggEBALTOJoO4Lf3s9nOjPFiNCAgcKtt09rpvjmFYYZUrJUp4SnU+hFJx3t3G
++9VdnfwMisqXvTNDu+bHps2f0At/T/8Z1OVD+YqHhJteSqKrU0T+EmgSXiR0hjPbP
++di6ARU4JJ3hulmdiIYFnf5I1sFurpRiyvyeIC+xTkjYFvH5FDHucXuFc6/oB/NPv
++o8ianYAYS0qKvut6GxiQhe3hhVSm0zzM5dUuXuyXVrDbQ+2I5JRjMxp/ZK0d6UG3
++rI3/Y5o2HrBEjGJLljqIbnlTxrrFbzWINySQBJXm7D8dAVvsj8tMrWaVcddEUSpN
++4kF3VwvEwhX2KLByDzjmr+fRvSdpu58CAwEAAaNXMFUwDwYDVR0TAQH/BAUwAwEB
++/zATBgNVHSUEDDAKBggrBgEFBQcDATAOBgNVHQ8BAf8EBAMCAQYwHQYDVR0OBBYE
++FNcDGPQCyZecyQ80/QKxeISkQ0bOMA0GCSqGSIb3DQEBCwUAA4IBAQASkZ7hRv+b
++t6lzGbWwFMHK/bG5bH3J810ymflCSJYabEK+vhbbqQDMoGHuwHmjN4arl4NHij+s
++vUFN5VD2rFfnX47iAn5UkjIOd8HU8Icl9n4gbkYrOpaHu72Y7S5vI4PWGAQX2ED0
++iXv3iuCAax5WXfKg1UM9CdgT4yYcv4KFOynv9AqihNnwas7qbI3qzcBR3wSSnJtH
++Dkcg5bKZS0MurHyuyP2XjrgYTCVutM276y0FqPtWoKvxJKhfV5IWNz8e+bC9sW8v
++Mm/wHL3Pu9MA2hAjaDjLnpopf9rQpTO1gIvysE5ulYxujIDDVvSIqhGGY6Fz/ii4
++s0RDLvHrscx7
++-----END CERTIFICATE-----
++Certificate:
++    Data:
++        Version: 3 (0x2)
++        Serial Number:
++            77:29:b2:49:d6:4f:6a:01:94:08:a6:97:e7:4d:20:5f:a6:a5:48:02
++        Signature Algorithm: sha256WithRSAEncryption
++        Issuer: CN=mitmproxy, O=mitmproxy
++        Validity
++            Not Before: Jan  2 19:36:31 2024 GMT
++            Not After : Jan  1 19:36:31 2034 GMT
++        Subject: CN=mitmproxy, O=mitmproxy
++        Subject Public Key Info:
++            Public Key Algorithm: rsaEncryption
++                Public-Key: (2048 bit)
++                Modulus:
++                    00:b4:ce:26:83:b8:2d:fd:ec:f6:73:a3:3c:58:8d:
++                    08:08:1c:2a:db:74:f6:ba:6f:8e:61:58:61:95:2b:
++                    25:4a:78:4a:75:3e:84:52:71:de:dd:c6:f5:57:67:
++                    7f:03:22:b2:a5:ef:4c:d0:ee:f9:b1:e9:b3:67:f4:
++                    02:df:d3:ff:c6:75:39:50:fe:62:a1:e1:26:d7:92:
++                    a8:aa:d4:d1:3f:84:9a:04:97:89:1d:21:8c:f6:cf:
++                    76:2e:80:45:4e:09:27:78:6e:96:67:62:21:81:67:
++                    7f:92:35:b0:5b:ab:a5:18:b2:bf:27:88:0b:ec:53:
++                    92:36:05:bc:7e:45:0c:7b:9c:5e:e1:5c:eb:fa:01:
++                    fc:d3:ef:a3:c8:9a:9d:80:18:4b:4a:8a:be:eb:7a:
++                    1b:18:90:85:ed:e1:85:54:a6:d3:3c:cc:e5:d5:2e:
++                    5e:ec:97:56:b0:db:43:ed:88:e4:94:63:33:1a:7f:
++                    64:ad:1d:e9:41:b7:ac:8d:ff:63:9a:36:1e:b0:44:
++                    8c:62:4b:96:3a:88:6e:79:53:c6:ba:c5:6f:35:88:
++                    37:24:90:04:95:e6:ec:3f:1d:01:5b:ec:8f:cb:4c:
++                    ad:66:95:71:d7:44:51:2a:4d:e2:41:77:57:0b:c4:
++                    c2:15:f6:28:b0:72:0f:38:e6:af:e7:d1:bd:27:69:
++                    bb:9f
++                Exponent: 65537 (0x10001)
++        X509v3 extensions:
++            X509v3 Basic Constraints: critical
++                CA:TRUE
++            X509v3 Extended Key Usage: 
++                TLS Web Server Authentication
++            X509v3 Key Usage: critical
++                Certificate Sign, CRL Sign
++            X509v3 Subject Key Identifier: 
++                D7:03:18:F4:02:C9:97:9C:C9:0F:34:FD:02:B1:78:84:A4:43:46:CE
++    Signature Algorithm: sha256WithRSAEncryption
++    Signature Value:
++        12:91:9e:e1:46:ff:9b:b7:a9:73:19:b5:b0:14:c1:ca:fd:b1:
++        b9:6c:7d:c9:f3:5d:32:99:f9:42:48:96:1a:6c:42:be:be:16:
++        db:a9:00:cc:a0:61:ee:c0:79:a3:37:86:ab:97:83:47:8a:3f:
++        ac:bd:41:4d:e5:50:f6:ac:57:e7:5f:8e:e2:02:7e:54:92:32:
++        0e:77:c1:d4:f0:87:25:f6:7e:20:6e:46:2b:3a:96:87:bb:bd:
++        98:ed:2e:6f:23:83:d6:18:04:17:d8:40:f4:89:7b:f7:8a:e0:
++        80:6b:1e:56:5d:f2:a0:d5:43:3d:09:d8:13:e3:26:1c:bf:82:
++        85:3b:29:ef:f4:0a:a2:84:d9:f0:6a:ce:ea:6c:8d:ea:cd:c0:
++        51:df:04:92:9c:9b:47:0e:47:20:e5:b2:99:4b:43:2e:ac:7c:
++        ae:c8:fd:97:8e:b8:18:4c:25:6e:b4:cd:bb:eb:2d:05:a8:fb:
++        56:a0:ab:f1:24:a8:5f:57:92:16:37:3f:1e:f9:b0:bd:b1:6f:
++        2f:32:6f:f0:1c:bd:cf:bb:d3:00:da:10:23:68:38:cb:9e:9a:
++        29:7f:da:d0:a5:33:b5:80:8b:f2:b0:4e:6e:95:8c:6e:8c:80:
++        c3:56:f4:88:aa:11:86:63:a1:73:fe:28:b8:b3:44:43:2e:f1:
++        eb:b1:cc:7b
++SHA1 Fingerprint=87:96:99:13:4A:7C:0C:E7:51:1D:49:A7:FA:45:FF:DF:B8:86:79:45
+-- 
+2.34.1
+

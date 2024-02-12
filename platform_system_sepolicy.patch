@@ -1,7 +1,7 @@
 From 7337dd7f648d4c63f89045fa67d0d17faa3238f1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:57:31 -0500
-Subject: [PATCH 1/2] relax sepolicy
+Subject: [PATCH 1/3] relax sepolicy
 
 Change-Id: Ic3045fd9b1548fc3c82d221ca9bca05d094d9734
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -30,7 +30,7 @@ index 618f7f0aa..f5f2ae73d 100644
 From 16d804001a3b8b7de414037b0a9ad382181a2cd2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:36:52 -0500
-Subject: [PATCH 2/2] Fix sdcard sepolicy
+Subject: [PATCH 2/3] Fix sdcard sepolicy
 
 Change-Id: I3c173b9fec21c3f8918af5d5ac07da690e86940d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -361,6 +361,50 @@ index 3d204e1b0..7008289de 100644
  neverallow vold *:rawip_socket *;
 +allow vold unlabeled:dir { getattr write };
 +allow vold unlabeled:filesystem { getattr mount unmount };
+-- 
+2.34.1
+
+
+From 3be54620c95d6a406908ba77a43a69664770b274 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 12 Feb 2024 16:14:29 -0500
+Subject: [PATCH 3/3] Update run-as sepolicy
+
+Change-Id: I7a8334a0fcdea8574e2caf52c8b415f7582babd6
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ prebuilts/api/34.0/public/runas.te | 3 +++
+ public/runas.te                    | 3 +++
+ 2 files changed, 6 insertions(+)
+
+diff --git a/prebuilts/api/34.0/public/runas.te b/prebuilts/api/34.0/public/runas.te
+index 356a0190c..66dcf4ae1 100644
+--- a/prebuilts/api/34.0/public/runas.te
++++ b/prebuilts/api/34.0/public/runas.te
+@@ -34,6 +34,9 @@ allow runas non_system_app_set:process dyntransition; # setcon
+ # determine which domain to transition to.
+ allow runas seapp_contexts_file:file r_file_perms;
+ 
++allow runas system_app_data_file:dir getattr;
++allow runas privapp_data_file:dir getattr;
++
+ ###
+ ### neverallow rules
+ ###
+diff --git a/public/runas.te b/public/runas.te
+index 356a0190c..66dcf4ae1 100644
+--- a/public/runas.te
++++ b/public/runas.te
+@@ -34,6 +34,9 @@ allow runas non_system_app_set:process dyntransition; # setcon
+ # determine which domain to transition to.
+ allow runas seapp_contexts_file:file r_file_perms;
+ 
++allow runas system_app_data_file:dir getattr;
++allow runas privapp_data_file:dir getattr;
++
+ ###
+ ### neverallow rules
+ ###
 -- 
 2.34.1
 

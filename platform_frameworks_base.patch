@@ -1,7 +1,7 @@
-From 4e8bc3ec4fd5e44ad7fd7d2b2fdd892aa40c39f6 Mon Sep 17 00:00:00 2001
+From 0dc8042b4890ce809250819008fe8040a617698d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/14] pass safetynet and gpay
+Subject: [PATCH 01/16] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -172,10 +172,10 @@ index 25f5dec9de40..b34351585c4b 100644
 2.34.1
 
 
-From 44fa2b806b55e7a1888d25e562301d88c0baf41b Mon Sep 17 00:00:00 2001
+From b8b1c150cacc4fe23e6fb68b6c776f0b8681711a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/14] Set auto brightness on by default
+Subject: [PATCH 02/16] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index a93cd62e6301..6655634e4383 100644
 2.34.1
 
 
-From 5eb579240616525a5fcd32f052d200f59424e55d Mon Sep 17 00:00:00 2001
+From 0a8d7dcbe84b64cc7826e3cfd3d5fadda60ea9d1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 03/14] Add support for left side volume dialog
+Subject: [PATCH 03/16] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -864,10 +864,10 @@ index aafa16f4a5ed..0d977d929b08 100644
 2.34.1
 
 
-From 3b8646ed7d2510747dae58c2bcf0133b6a7ec3a2 Mon Sep 17 00:00:00 2001
+From a79fa21eb4cbeca48afef7500863e4498209f768 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 04/14] Remove max column limit on quick tiles under
+Subject: [PATCH 04/16] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -892,10 +892,10 @@ index 19bf0188c9d2..65e5b65333ec 100644
 2.34.1
 
 
-From b949fb44426d485779b4754c2a96693a8867fda2 Mon Sep 17 00:00:00 2001
+From fc21ee23faba033af2d0608b9101ec21ce57092a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 05/14] Update device config
+Subject: [PATCH 05/16] Update device config
 
 - Add more tracked permissions
 - Update permission history cutoff days
@@ -956,10 +956,10 @@ index 10243e28f0f4..5b48371cbeec 100644
 2.34.1
 
 
-From ef29450233f267ed63f860016c1d1b54366747aa Mon Sep 17 00:00:00 2001
+From 3ba17e57fff2ddaa434df30cafe00419118abd4f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 06/14] Add launcher icon for android 10 easter egg
+Subject: [PATCH 06/16] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -983,10 +983,10 @@ index d1db237966d5..f6b4877b8467 100644
 2.34.1
 
 
-From de2940ce4888121e3b1bcbbe0f5a9213ee83d8eb Mon Sep 17 00:00:00 2001
+From 4705f4f58129bf7cc3272d1a5d9fca239e64de24 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 07/14] Use system default vibration for fb messenger app
+Subject: [PATCH 07/16] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1012,10 +1012,10 @@ index 7ee1332ea76a..d3c1480e5125 100644
 2.34.1
 
 
-From 5bfd265d05d532848dc4800ced54a8aef4ccf000 Mon Sep 17 00:00:00 2001
+From f4447b0cb040ac46e9e0660fc016319402731fad Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 08/14] Fix safetynet/play integrity
+Subject: [PATCH 08/16] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1045,10 +1045,10 @@ index 77101541f20a..84d7676943a6 100644
 2.34.1
 
 
-From 6cc9c4c898ab76996cb82475ff2684cfb5326f70 Mon Sep 17 00:00:00 2001
+From 4f03c814fdfc12fa34ec4b993f950c5f6934d408 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 09/14] Get free photo storage for google pixel
+Subject: [PATCH 09/16] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1105,10 +1105,10 @@ index 2767b43a119c..bc3880a6e771 100644
 2.34.1
 
 
-From 7f4f670f404a21e69333e1ecfdafb9369bb6bc9a Mon Sep 17 00:00:00 2001
+From fe4e092bf2b0e01513158b97393675094a352305 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 10/14] Add ability to change fingerprint from persist prop
+Subject: [PATCH 10/16] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1147,10 +1147,10 @@ index 84d7676943a6..3a928f54b626 100644
 2.34.1
 
 
-From a5355ccf4227604ac36eeeeb12fff529bf8bc4c5 Mon Sep 17 00:00:00 2001
+From 5908124839e99ee8af03d6aa9914da558c1e68d8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 11/14] Update default spoof fingerprint
+Subject: [PATCH 11/16] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1190,10 +1190,10 @@ index 3a928f54b626..ee174dfb5ddd 100644
 2.34.1
 
 
-From d99bc44b4a80d4f5415449b0c8cf03cb9d5c89d6 Mon Sep 17 00:00:00 2001
+From c87f0c86af01cdf67673b51e48d3b273208ee4cc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
-Subject: [PATCH 12/14] Change quick affordance click from long to short click
+Subject: [PATCH 12/16] Change quick affordance click from long to short click
 
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1218,10 +1218,10 @@ index 9c796f846994..5b6ad3331611 100644
 2.34.1
 
 
-From 590a9418773c74cd7fe86ee849a612febb5899c5 Mon Sep 17 00:00:00 2001
+From 8c35032ca516513d54e5c29611a73ebb01850280 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 29 Dec 2023 22:29:52 -0500
-Subject: [PATCH 13/14] Make FAKE_PACKAGE_SIGNATURE runtime permission
+Subject: [PATCH 13/16] Make FAKE_PACKAGE_SIGNATURE runtime permission
 
 Also fake new signature format
 
@@ -1234,7 +1234,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  3 files changed, 36 insertions(+), 23 deletions(-)
 
 diff --git a/core/res/AndroidManifest.xml b/core/res/AndroidManifest.xml
-index 4a55643dc503..5df8903e578d 100644
+index 3df7a8000314..79b174cd7df4 100644
 --- a/core/res/AndroidManifest.xml
 +++ b/core/res/AndroidManifest.xml
 @@ -4261,7 +4261,7 @@
@@ -1367,10 +1367,10 @@ index d55f85cde5af..c5767ecc97b1 100644
 2.34.1
 
 
-From ec777a28f0350261d52475759679ab785ce195d7 Mon Sep 17 00:00:00 2001
+From 425783d2eee5c289c579c9a0156d0e5749175391 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
-Subject: [PATCH 14/14] Output certificate in pm dump
+Subject: [PATCH 14/16] Output certificate in pm dump
 
 Change-Id: I6c54ae43fecce81972b9b5f1239bb3ff8308e540
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1393,6 +1393,94 @@ index 677a5d11cc6b..03e3906aebeb 100644
          pw.print(prefix); pw.print("  installPermissionsFixed=");
                  pw.print(ps.isInstallPermissionsFixed());
                  pw.println();
+-- 
+2.34.1
+
+
+From 394ba491029ddf8d4ae8c4bc35026f86e3b508f4 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Wed, 14 Feb 2024 22:06:31 -0500
+Subject: [PATCH 15/16] Refactor fake signature
+
+Change-Id: Ifa9d5b06f14446818d514781fa19abac6b139a4c
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../android/server/pm/parsing/PackageInfoUtils.java | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/services/core/java/com/android/server/pm/parsing/PackageInfoUtils.java b/services/core/java/com/android/server/pm/parsing/PackageInfoUtils.java
+index c5767ecc97b1..5dbf01c3ef79 100644
+--- a/services/core/java/com/android/server/pm/parsing/PackageInfoUtils.java
++++ b/services/core/java/com/android/server/pm/parsing/PackageInfoUtils.java
+@@ -117,10 +117,14 @@ public class PackageInfoUtils {
+         try {
+             if (p.getMetaData() != null &&
+                     p.getTargetSdkVersion() > Build.VERSION_CODES.LOLLIPOP_MR1) {
+-                String sig = p.getMetaData().getString("fake-signature");
+-                if (sig != null &&
+-                        permissions.contains("android.permission.FAKE_PACKAGE_SIGNATURE")) {
+-                    return new Signature(sig);
++                if (permissions.contains("android.permission.FAKE_PACKAGE_SIGNATURE")) {
++                    String sig = p.getMetaData().getString("fake-signature");
++                    if (sig != null) {
++                        return new Signature(sig);
++                    } else {
++                        Slog.e(TAG, p.getPackageName() + " declared fake signature but not found");
++                        return null;
++                    }
+                 }
+             }
+         } catch (Throwable t) {
+@@ -262,6 +266,7 @@ public class PackageInfoUtils {
+             if (fake != null) {
+                 info.signatures = new Signature[1];
+                 info.signatures[0] = fake;
++                Slog.w(TAG, "fake signature for package " + info.packageName + " = " + info.signatures[0]);
+             } else if (signingDetails.hasPastSigningCertificates()) {
+                 // Package has included signing certificate rotation information.  Return the oldest
+                 // cert so that programmatic checks keep working even if unaware of key rotation.
+-- 
+2.34.1
+
+
+From 1c1f3d416af168cd16789f3fd782609dc8a9e58c Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Thu, 15 Feb 2024 21:38:00 -0500
+Subject: [PATCH 16/16] Add permission for Nova launcher pro
+
+Change-Id: I79670eb2b11018568ee7b115d92cf2482e56d717
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ core/api/current.txt         | 1 +
+ core/res/AndroidManifest.xml | 3 +++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/core/api/current.txt b/core/api/current.txt
+index 2124d89c6e6f..37fc7ca71e4a 100644
+--- a/core/api/current.txt
++++ b/core/api/current.txt
+@@ -228,6 +228,7 @@ package android {
+     field public static final String PROVIDE_OWN_AUTOFILL_SUGGESTIONS = "android.permission.PROVIDE_OWN_AUTOFILL_SUGGESTIONS";
+     field public static final String PROVIDE_REMOTE_CREDENTIALS = "android.permission.PROVIDE_REMOTE_CREDENTIALS";
+     field public static final String QUERY_ALL_PACKAGES = "android.permission.QUERY_ALL_PACKAGES";
++    field public static final String RAZER_DEVICE_POWER = "razer.permission.RAZER_DEVICE_POWER";
+     field public static final String READ_ASSISTANT_APP_SEARCH_DATA = "android.permission.READ_ASSISTANT_APP_SEARCH_DATA";
+     field public static final String READ_BASIC_PHONE_STATE = "android.permission.READ_BASIC_PHONE_STATE";
+     field public static final String READ_CALENDAR = "android.permission.READ_CALENDAR";
+diff --git a/core/res/AndroidManifest.xml b/core/res/AndroidManifest.xml
+index 79b174cd7df4..397feb7d0028 100644
+--- a/core/res/AndroidManifest.xml
++++ b/core/res/AndroidManifest.xml
+@@ -7687,6 +7687,9 @@
+     <permission android:name="android.permission.WRITE_FLAGS"
+         android:protectionLevel="signature" />
+ 
++    <permission android:name="razer.permission.RAZER_DEVICE_POWER"
++        android:protectionLevel="normal" />
++
+     <!-- Attribution for Geofencing service. -->
+     <attribution android:tag="GeofencingService" android:label="@string/geofencing_service"/>
+     <!-- Attribution for Country Detector. -->
 -- 
 2.34.1
 

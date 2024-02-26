@@ -1,0 +1,106 @@
+From 41f3e49e97fdc828de4657ede78e4822c8bd31af Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 26 Feb 2024 17:00:25 -0500
+Subject: [PATCH] add java keystore and script
+
+Change-Id: Iab094a74a58aef7a7da2d389e8688de1d9f1729b
+---
+ target/product/security/platform.keystore | Bin 0 -> 3082 bytes
+ target/product/security/to_key_store.sh   |  17 +++++++++++++++++
+ 2 files changed, 17 insertions(+)
+ create mode 100644 target/product/security/platform.keystore
+ create mode 100755 target/product/security/to_key_store.sh
+
+diff --git a/target/product/security/platform.keystore b/target/product/security/platform.keystore
+new file mode 100644
+index 0000000000000000000000000000000000000000..6d80cc8b4644cce3afbe8f0548d5bf8486ab7b50
+GIT binary patch
+literal 3082
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/target/product/security/to_key_store.sh b/target/product/security/to_key_store.sh
+new file mode 100755
+index 0000000000..580ffc34be
+--- /dev/null
++++ b/target/product/security/to_key_store.sh
+@@ -0,0 +1,17 @@
++#/bin/env bash
++
++openssl pkcs8 -inform DER -nocrypt                      \
++-in $1.pk8       \
++-out $1.pem
++
++openssl pkcs12 -export                                  \
++-in $1.x509.pem  \
++-inkey $1.pem -out $1.p12                       \
++-password pass:android -name AndroidDebugKey
++
++keytool -importkeystore -deststorepass android          \
++-destkeystore $1.keystore -srckeystore $1.p12   \
++-srcstoretype PKCS12 -srcstorepass android
++
++rm $1.pem $1.p12
++
+-- 
+2.34.1
+

@@ -1,0 +1,31 @@
+From 2000da7ef7dd23d5db8d604292e6e0044fd90f69 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 26 Feb 2024 16:56:53 -0500
+Subject: [PATCH] Update soong timer to flash on long duration
+
+Change-Id: Iae50d7b29a721387d0c2db81810eb21a0518a538
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ ui/terminal/smart_status.go | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/ui/terminal/smart_status.go b/ui/terminal/smart_status.go
+index 06a4064ff..d313beb97 100644
+--- a/ui/terminal/smart_status.go
++++ b/ui/terminal/smart_status.go
+@@ -371,7 +371,11 @@ func (s *smartStatusOutput) actionTable() {
+ 
+ 			color := ""
+ 			if seconds >= 60 {
+-				color = ansi.red() + ansi.bold()
++				if seconds % 2 == 0 {
++					color = ansi.red() + ansi.bold()
++				} else {
++					color = ansi.bold()
++				}
+ 			} else if seconds >= 30 {
+ 				color = ansi.yellow() + ansi.bold()
+ 			}
+-- 
+2.34.1
+

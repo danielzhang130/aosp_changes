@@ -1,131 +1,68 @@
-From 6fc49517217338ad5761529a0b0f6caa84ed3bb1 Mon Sep 17 00:00:00 2001
+From ee08cb37434cd3aa12f5aa828be693187aaaf37a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Fri, 1 Dec 2023 21:06:02 -0500
-Subject: [PATCH 1/2] Continue loading BPF after fail and add more BPF debug
- logging
+Date: Fri, 22 Mar 2024 20:42:21 -0400
+Subject: [PATCH] Fix bpf boot issue for kernel < 4.19
 
-Change-Id: Ib7e4fb684580cde595fec81d1400a755ac387b5d
+Change-Id: I36a8eb859775325b1568515e776a58e421da3976
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- bpfloader/BpfLoader.cpp | 22 ++++++++++++++++------
- 1 file changed, 16 insertions(+), 6 deletions(-)
+ bpfloader/BpfLoader.cpp   | 7 +++----
+ libbpf_android/Loader.cpp | 6 ++++--
+ 2 files changed, 7 insertions(+), 6 deletions(-)
 
 diff --git a/bpfloader/BpfLoader.cpp b/bpfloader/BpfLoader.cpp
-index 158dca6..6c057fb 100644
+index 036a9b9..7b18055 100644
 --- a/bpfloader/BpfLoader.cpp
 +++ b/bpfloader/BpfLoader.cpp
-@@ -247,6 +247,8 @@ int writeProcSysFile(const char *filename, const char *value) {
-     return 0;
- }
+@@ -183,8 +183,7 @@ int main(int argc, char** argv) {
+     // Linux 5.16-rc1 changed the default to 2 (disabled but changeable), but we need 0 (enabled)
+     // (this writeFile is known to fail on at least 4.19, but always defaults to 0 on pre-5.13,
+     // on 5.13+ it depends on CONFIG_BPF_UNPRIV_DEFAULT_OFF)
+-    if (writeProcSysFile("/proc/sys/kernel/unprivileged_bpf_disabled", "0\n") &&
+-        android::bpf::isAtLeastKernelVersion(5, 13, 0)) return 1;
++    writeProcSysFile("/proc/sys/kernel/unprivileged_bpf_disabled", "0\n");
  
-+void fail(int);
-+
- int main(int argc, char** argv) {
-     (void)argc;
-     android::base::InitLogging(argv, &android::base::KernelLogger);
-@@ -285,7 +287,7 @@ int main(int argc, char** argv) {
-     //  due to ordering issues)
-     for (const auto& location : locations) {
-         if (createSysFsBpfSubDir(location.prefix)) {
--            goto fail;
-+            fail(290);
-         }
-     }
+     // Enable the eBPF JIT -- but do note that on 64-bit kernels it is likely
+     // already force enabled by the kernel config option BPF_JIT_ALWAYS_ON.
+@@ -192,12 +191,12 @@ int main(int argc, char** argv) {
+     //  kernel does not have CONFIG_BPF_JIT=y)
+     // BPF_JIT is required by R VINTF (which means 4.14/4.19/5.4 kernels),
+     // but 4.14/4.19 were released with P & Q, and only 5.4 is new in R+.
+-    if (writeProcSysFile("/proc/sys/net/core/bpf_jit_enable", "1\n")) return 1;
++    writeProcSysFile("/proc/sys/net/core/bpf_jit_enable", "1\n");
  
-@@ -295,14 +297,18 @@ int main(int argc, char** argv) {
-     // and as such this will likely always be the case.
-     // Thus we need to manually create the /sys/fs/bpf/loader subdirectory.
-     if (createSysFsBpfSubDir("loader")) {
--        goto fail;
--        return 1;
-+        fail(300);
-     }
+     // Enable JIT kallsyms export for privileged users only
+     // (Note: this (open) will fail with ENOENT 'No such file or directory' if
+     //  kernel does not have CONFIG_HAVE_EBPF_JIT=y)
+-    if (writeProcSysFile("/proc/sys/net/core/bpf_jit_kallsyms", "1\n")) return 1;
++    writeProcSysFile("/proc/sys/net/core/bpf_jit_kallsyms", "1\n");
  
-     // Load all ELF objects, create programs and maps, and pin them
-     for (const auto& location : locations) {
-         if (loadAllElfObjects(location) != 0) {
--            goto fail;
-+            ALOGE("=== CRITICAL FAILURE LOADING BPF PROGRAMS %s %s ===", location.dir, location.prefix);
-+            ALOGE("If this triggers reliably, you're probably missing kernel options or patches.");
-+            ALOGE("If this triggers randomly, you might be hitting some memory allocation "
-+                    "problems or startup script race.");
-+            ALOGE("--- DO NOT EXPECT SYSTEM TO BOOT SUCCESSFULLY ---");
-+            continue;
-         }
-     }
- 
-@@ -321,12 +327,16 @@ int main(int argc, char** argv) {
-     }
- 
-     return 0;
--fail:
-+}
-+
-+void fail(int i)
-+{
-     ALOGE("=== CRITICAL FAILURE LOADING BPF PROGRAMS ===");
-+    ALOGE("FROM %d", i);
-     ALOGE("If this triggers reliably, you're probably missing kernel options or patches.");
-     ALOGE("If this triggers randomly, you might be hitting some memory allocation "
-             "problems or startup script race.");
-     ALOGE("--- DO NOT EXPECT SYSTEM TO BOOT SUCCESSFULLY ---");
-     android::base::SetProperty("bpf.progs_loaded", "1");
--    return 0;
-+    exit(0);
- }
--- 
-2.34.1
-
-
-From f4e093f7956c47b2875e48c089cb16e71baca00a Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Mon, 19 Feb 2024 18:21:16 -0500
-Subject: [PATCH 2/2] Revert "bpfloader - remove dead code"
-
-This reverts commit 90a866ed34d844a97559e0178b75d0ef2d8fbfe5.
-
-Change-Id: I4988a2dc3958b7c9f87391d168762f57459373d0
----
- libbpf_android/Loader.cpp | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
+     // Create all the pin subdirectories
+     // (this must be done first to allow selinux_context and pin_subdir functionality,
 diff --git a/libbpf_android/Loader.cpp b/libbpf_android/Loader.cpp
-index 7f6aae1..ef5a176 100644
+index 7cd383e..141c2cb 100644
 --- a/libbpf_android/Loader.cpp
 +++ b/libbpf_android/Loader.cpp
-@@ -689,6 +689,15 @@ static std::optional<unique_fd> getMapBtfInfo(const char* elfPath,
+@@ -795,7 +795,8 @@ static int createMaps(const char* elfPath, ifstream& elfFile, vector<unique_fd>&
+               .max_entries = max_entries,
+               .map_flags = md[i].map_flags,
+             };
+-            strlcpy(req.map_name, mapNames[i].c_str(), sizeof(req.map_name));
++            if (isAtLeastKernelVersion(4, 14, 0)) 
++                strlcpy(req.map_name, mapNames[i].c_str(), sizeof(req.map_name));
+             fd.reset(bpf(BPF_MAP_CREATE, req));
+             saved_errno = errno;
+             ALOGD("bpf_create_map name %s, ret: %d", mapNames[i].c_str(), fd.get());
+@@ -1047,7 +1048,8 @@ static int loadCodeSections(const char* elfPath, vector<codeSection>& cs, const
+               .log_size = static_cast<__u32>(log_buf.size()),
+               .expected_attach_type = cs[i].expected_attach_type,
+             };
+-            strlcpy(req.prog_name, cs[i].name.c_str(), sizeof(req.prog_name));
++            if (isAtLeastKernelVersion(4, 14, 0)) 
++                strlcpy(req.prog_name, cs[i].name.c_str(), sizeof(req.prog_name));
+             fd.reset(bpf(BPF_PROG_LOAD, req));
  
- static bool mapMatchesExpectations(const unique_fd& fd, const string& mapName,
-                                    const struct bpf_map_def& mapDef, const enum bpf_map_type type) {
-+    // bpfGetFd... family of functions require at minimum a 4.14 kernel,
-+    // so on 4.9 kernels just pretend the map matches our expectations.
-+    // This isn't really a problem as we only really support 4.14+ anyway...
-+    // Additionally we'll get almost equivalent test coverage on newer devices/kernels.
-+    // This is because the primary failure mode we're trying to detect here
-+    // is either a source code misconfiguration (which is likely kernel independent)
-+    // or a newly introduced kernel feature/bug (which is unlikely to get backported to 4.9).
-+    if (!isAtLeastKernelVersion(4, 14, 0)) return true;
-+
-     // Assuming fd is a valid Bpf Map file descriptor then
-     // all the following should always succeed on a 4.14+ kernel.
-     // If they somehow do fail, they'll return -1 (and set errno),
-@@ -828,6 +837,16 @@ static int createMaps(const char* elfPath, ifstream& elfFile, vector<unique_fd>&
-         }
- 
-         enum bpf_map_type type = md[i].type;
-+        if (type == BPF_MAP_TYPE_DEVMAP && !isAtLeastKernelVersion(4, 14, 0)) {
-+            // On Linux Kernels older than 4.14 this map type doesn't exist, but it can kind
-+            // of be approximated: ARRAY has the same userspace api, though it is not usable
-+            // by the same ebpf programs.  However, that's okay because the bpf_redirect_map()
-+            // helper doesn't exist on 4.9 anyway (so the bpf program would fail to load,
-+            // and thus needs to be tagged as 4.14+ either way), so there's nothing useful you
-+            // could do with a DEVMAP anyway (that isn't already provided by an ARRAY)...
-+            // Hence using an ARRAY instead of a DEVMAP simply makes life easier for userspace.
-+            type = BPF_MAP_TYPE_ARRAY;
-+        }
-         if (type == BPF_MAP_TYPE_DEVMAP_HASH && !isAtLeastKernelVersion(5, 4, 0)) {
-             // On Linux Kernels older than 5.4 this map type doesn't exist, but it can kind
-             // of be approximated: HASH has the same userspace visible api.
+             ALOGD("BPF_PROG_LOAD call for %s (%s) returned fd: %d (%s)", elfPath,
 -- 
 2.34.1
 

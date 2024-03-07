@@ -1,45 +1,7 @@
-From 3b564f8ffdcc6c880ca03b92beb53885ee0c1d61 Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Sat, 7 Oct 2023 14:40:11 -0400
-Subject: [PATCH 1/2] Revert "If Vboot2 fails, fall-back to Vboot1"
-
-This reverts commit 0040f9934ecbc59afcc2372d14a855b26e419227.
----
- init/first_stage_mount.cpp | 11 ++---------
- 1 file changed, 2 insertions(+), 9 deletions(-)
-
-diff --git a/init/first_stage_mount.cpp b/init/first_stage_mount.cpp
-index d0e00b316..c3033677b 100644
---- a/init/first_stage_mount.cpp
-+++ b/init/first_stage_mount.cpp
-@@ -886,17 +886,10 @@ bool DoFirstStageMount(bool create_devices) {
-     }
- 
-     if (create_devices) {
--        if (!(*fsm)->DoCreateDevices()) LOG(ERROR) << "Failed to create devices";
-+        if (!(*fsm)->DoCreateDevices()) return false;
-     }
- 
--    if(!(*fsm)->DoFirstStageMount()) {
--	    *fsm = nullptr;
--	    auto fstab = ReadFirstStageFstab();
--	    auto v = std::make_unique<FirstStageMountVBootV1>(std::move(*fstab));
--	    v->DoCreateDevices();
--	    return v->DoFirstStageMount();
--    }
--    return true;
-+    return (*fsm)->DoFirstStageMount();
- }
- 
- void SetInitAvbVersionInRecovery() {
--- 
-2.34.1
-
-
-From 7b1384f6582652aec2b42e91703531e156b1ce1c Mon Sep 17 00:00:00 2001
+From 168f57f98352a7d8a1afdfdfaea94ccafacd0779 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:23:50 -0500
-Subject: [PATCH 2/2] add force option in run-as
+Subject: [PATCH] add force option in run-as
 
 Change-Id: I9f929e85fed6414e474cc312b09ad709c20ab105
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -48,10 +10,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 21 insertions(+), 11 deletions(-)
 
 diff --git a/run-as/run-as.cpp b/run-as/run-as.cpp
-index cc92c68d0..060c5a503 100644
+index 32057b4..6a80653 100644
 --- a/run-as/run-as.cpp
 +++ b/run-as/run-as.cpp
-@@ -184,10 +184,18 @@ int main(int argc, char* argv[]) {
+@@ -181,10 +181,18 @@ int main(int argc, char* argv[]) {
  
    // Get user_id from command line if provided.
    int userId = 0;
@@ -74,7 +36,7 @@ index cc92c68d0..060c5a503 100644
    }
  
    // Retrieve package information from system, switching egid so we can read the file.
-@@ -221,14 +229,16 @@ int main(int argc, char* argv[]) {
+@@ -208,14 +216,16 @@ int main(int argc, char* argv[]) {
    // Calculate user app ID.
    uid_t userAppId = (AID_USER_OFFSET * userId) + info.uid;
  
@@ -83,21 +45,21 @@ index cc92c68d0..060c5a503 100644
 -    error(1, 0, "package not an application: %s", pkgname);
 -  }
 +  if (!force) {
-+    // Reject system packages.
-+    if (userAppId < AID_APP) {
-+      error(1, 0, "package not an application: %s", pkgname);
-+    }
++      // Reject system packages.
++      if (userAppId < AID_APP) {
++        error(1, 0, "package not an application: %s", pkgname);
++      }
  
 -  // Reject any non-debuggable package.
 -  if (!info.debuggable) {
 -    error(1, 0, "package not debuggable: %s", pkgname);
-+    // Reject any non-debuggable package.
-+    if (!info.debuggable) {
-+      error(1, 0, "package not debuggable: %s", pkgname);
-+    }
++      // Reject any non-debuggable package.
++      if (!info.debuggable) {
++        error(1, 0, "package not debuggable: %s", pkgname);
++      }
    }
  
-   // Check that the data directory path is valid.
+   // Ensure we have the right data path for the specific user.
 -- 
 2.34.1
 

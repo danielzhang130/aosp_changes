@@ -1,4 +1,4 @@
-From 7337dd7f648d4c63f89045fa67d0d17faa3238f1 Mon Sep 17 00:00:00 2001
+From 45ae2a521e5931a11a46fe867203553e172fe357 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:57:31 -0500
 Subject: [PATCH 1/3] relax sepolicy
@@ -10,12 +10,12 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 3 deletions(-)
 
 diff --git a/Android.mk b/Android.mk
-index 618f7f0aa..f5f2ae73d 100644
+index 63b74aa..f2f5185 100644
 --- a/Android.mk
 +++ b/Android.mk
-@@ -81,9 +81,6 @@ endif
+@@ -68,9 +68,6 @@ HAS_PRODUCT_SEPOLICY_DIR := true
+ endif
  
- NEVERALLOW_ARG :=
  ifeq ($(SELINUX_IGNORE_NEVERALLOWS),true)
 -ifeq ($(TARGET_BUILD_VARIANT),user)
 -$(error SELINUX_IGNORE_NEVERALLOWS := true cannot be used in user builds)
@@ -27,7 +27,7 @@ index 618f7f0aa..f5f2ae73d 100644
 2.34.1
 
 
-From 16d804001a3b8b7de414037b0a9ad382181a2cd2 Mon Sep 17 00:00:00 2001
+From 35b46924a1307332217169c8d63db35cdcd2cd79 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:36:52 -0500
 Subject: [PATCH 2/3] Fix sdcard sepolicy
@@ -62,7 +62,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  24 files changed, 60 insertions(+), 4 deletions(-)
 
 diff --git a/prebuilts/api/34.0/private/bluetooth.te b/prebuilts/api/34.0/private/bluetooth.te
-index 0b001e281..bda33e647 100644
+index 0b001e2..bda33e6 100644
 --- a/prebuilts/api/34.0/private/bluetooth.te
 +++ b/prebuilts/api/34.0/private/bluetooth.te
 @@ -86,6 +86,8 @@ hal_client_domain(bluetooth, hal_audio)
@@ -75,7 +75,7 @@ index 0b001e281..bda33e647 100644
  ### Neverallow rules
  ###
 diff --git a/prebuilts/api/34.0/private/gmscore_app.te b/prebuilts/api/34.0/private/gmscore_app.te
-index b662f4fe5..9ba3cfc28 100644
+index b662f4f..9ba3cfc 100644
 --- a/prebuilts/api/34.0/private/gmscore_app.te
 +++ b/prebuilts/api/34.0/private/gmscore_app.te
 @@ -143,6 +143,8 @@ allow gmscore_app anr_data_file:file r_file_perms;
@@ -88,7 +88,7 @@ index b662f4fe5..9ba3cfc28 100644
  # if device supports VAB.
  get_prop(gmscore_app, virtual_ab_prop)
 diff --git a/prebuilts/api/34.0/private/mediaprovider_app.te b/prebuilts/api/34.0/private/mediaprovider_app.te
-index 7ad8febf3..6d0c00b26 100644
+index 7ad8feb..6d0c00b 100644
 --- a/prebuilts/api/34.0/private/mediaprovider_app.te
 +++ b/prebuilts/api/34.0/private/mediaprovider_app.te
 @@ -73,3 +73,9 @@ dontaudit mediaprovider_app sysfs_vendor_sched:file w_file_perms;
@@ -102,7 +102,7 @@ index 7ad8febf3..6d0c00b26 100644
 +allow mediaprovider_app unlabeled:dir create;
 +allow mediaprovider_app unlabeled:filesystem { getattr mount unmount };
 diff --git a/prebuilts/api/34.0/private/mls b/prebuilts/api/34.0/private/mls
-index 955c27b00..9a7e3f518 100644
+index 955c27b..9a7e3f5 100644
 --- a/prebuilts/api/34.0/private/mls
 +++ b/prebuilts/api/34.0/private/mls
 @@ -90,10 +90,10 @@ mlsconstrain { file lnk_file sock_file chr_file blk_file } { read getattr execut
@@ -119,7 +119,7 @@ index 955c27b00..9a7e3f518 100644
  # Special case for FIFOs.
  # These can be unnamed pipes, in which case they will be labeled with the
 diff --git a/prebuilts/api/34.0/private/platform_app.te b/prebuilts/api/34.0/private/platform_app.te
-index 6d495020f..4da821574 100644
+index 6d49502..4da8215 100644
 --- a/prebuilts/api/34.0/private/platform_app.te
 +++ b/prebuilts/api/34.0/private/platform_app.te
 @@ -130,3 +130,4 @@ neverallow { domain -init userdebug_or_eng(`-shell -platform_app') } persist_sys
@@ -128,7 +128,7 @@ index 6d495020f..4da821574 100644
  neverallow platform_app fuse_device:chr_file *;
 +allow platform_app unlabeled:file getattr;
 diff --git a/prebuilts/api/34.0/private/untrusted_app.te b/prebuilts/api/34.0/private/untrusted_app.te
-index d0f9b2417..88ff08194 100644
+index d0f9b24..88ff081 100644
 --- a/prebuilts/api/34.0/private/untrusted_app.te
 +++ b/prebuilts/api/34.0/private/untrusted_app.te
 @@ -19,5 +19,6 @@ bluetooth_domain(untrusted_app)
@@ -139,7 +139,7 @@ index d0f9b2417..88ff08194 100644
  
  neverallow untrusted_app sdk_sandbox_data_file:file { open create };
 diff --git a/prebuilts/api/34.0/private/untrusted_app_30.te b/prebuilts/api/34.0/private/untrusted_app_30.te
-index c87548ef2..dc70dcd2a 100644
+index c87548e..dc70dcd 100644
 --- a/prebuilts/api/34.0/private/untrusted_app_30.te
 +++ b/prebuilts/api/34.0/private/untrusted_app_30.te
 @@ -28,6 +28,10 @@ userdebug_or_eng(`
@@ -154,7 +154,7 @@ index c87548ef2..dc70dcd2a 100644
  # for targetSdkVersion>=34 to remove a sidechannel.
  allow untrusted_app_30 apk_data_file:dir { watch watch_reads };
 diff --git a/prebuilts/api/34.0/private/untrusted_app_32.te b/prebuilts/api/34.0/private/untrusted_app_32.te
-index 6e95fd117..5edef5aeb 100644
+index 6e95fd1..5edef5a 100644
 --- a/prebuilts/api/34.0/private/untrusted_app_32.te
 +++ b/prebuilts/api/34.0/private/untrusted_app_32.te
 @@ -37,3 +37,8 @@ userdebug_or_eng(`
@@ -167,16 +167,16 @@ index 6e95fd117..5edef5aeb 100644
 +allow untrusted_app_32 unlabeled:filesystem getattr;
 +
 diff --git a/prebuilts/api/34.0/public/file.te b/prebuilts/api/34.0/public/file.te
-index 0ce5c3436..9a50a9ea0 100644
+index 7cfd8ad..7bdd5a2 100644
 --- a/prebuilts/api/34.0/public/file.te
 +++ b/prebuilts/api/34.0/public/file.te
-@@ -634,3 +634,4 @@ type audiohal_data_file, file_type, data_file_type, core_data_file_type;
+@@ -633,3 +633,4 @@ type audiohal_data_file, file_type, data_file_type, core_data_file_type;
  # Should be:
  #   type apk_data_file, file_type, data_file_type;
  neverallow fs_type file_type:filesystem associate;
 +allow unlabeled self:filesystem associate;
 diff --git a/prebuilts/api/34.0/public/fsck_untrusted.te b/prebuilts/api/34.0/public/fsck_untrusted.te
-index 7e981bf27..c34e3642e 100644
+index 7e981bf..c34e364 100644
 --- a/prebuilts/api/34.0/public/fsck_untrusted.te
 +++ b/prebuilts/api/34.0/public/fsck_untrusted.te
 @@ -25,6 +25,8 @@ allow fsck_untrusted proc_mounts:file r_file_perms;
@@ -189,7 +189,7 @@ index 7e981bf27..c34e3642e 100644
  ### neverallow rules
  ###
 diff --git a/prebuilts/api/34.0/public/mediaserver.te b/prebuilts/api/34.0/public/mediaserver.te
-index 367012c11..e4a592488 100644
+index 367012c..e4a5924 100644
 --- a/prebuilts/api/34.0/public/mediaserver.te
 +++ b/prebuilts/api/34.0/public/mediaserver.te
 @@ -143,6 +143,8 @@ allow mediaserver vendor_overlay_file:file { read getattr map };
@@ -202,7 +202,7 @@ index 367012c11..e4a592488 100644
  ### neverallow rules
  ###
 diff --git a/prebuilts/api/34.0/public/vold.te b/prebuilts/api/34.0/public/vold.te
-index 3d204e1b0..7008289de 100644
+index 3d204e1..7008289 100644
 --- a/prebuilts/api/34.0/public/vold.te
 +++ b/prebuilts/api/34.0/public/vold.te
 @@ -348,3 +348,5 @@ neverallow vold fsck_exec:file execute_no_trans;
@@ -212,7 +212,7 @@ index 3d204e1b0..7008289de 100644
 +allow vold unlabeled:dir { getattr write };
 +allow vold unlabeled:filesystem { getattr mount unmount };
 diff --git a/private/bluetooth.te b/private/bluetooth.te
-index 0b001e281..bda33e647 100644
+index 0b001e2..bda33e6 100644
 --- a/private/bluetooth.te
 +++ b/private/bluetooth.te
 @@ -86,6 +86,8 @@ hal_client_domain(bluetooth, hal_audio)
@@ -225,10 +225,10 @@ index 0b001e281..bda33e647 100644
  ### Neverallow rules
  ###
 diff --git a/private/gmscore_app.te b/private/gmscore_app.te
-index b662f4fe5..9ba3cfc28 100644
+index 859c2ec..69b5dbe 100644
 --- a/private/gmscore_app.te
 +++ b/private/gmscore_app.te
-@@ -143,6 +143,8 @@ allow gmscore_app anr_data_file:file r_file_perms;
+@@ -142,6 +142,8 @@ allow gmscore_app anr_data_file:file r_file_perms;
  # b/148974132: com.android.vending needs this
  allow gmscore_app priv_app:tcp_socket { read write };
  
@@ -238,7 +238,7 @@ index b662f4fe5..9ba3cfc28 100644
  # if device supports VAB.
  get_prop(gmscore_app, virtual_ab_prop)
 diff --git a/private/mediaprovider_app.te b/private/mediaprovider_app.te
-index 7ad8febf3..6d0c00b26 100644
+index 7ad8feb..6d0c00b 100644
 --- a/private/mediaprovider_app.te
 +++ b/private/mediaprovider_app.te
 @@ -73,3 +73,9 @@ dontaudit mediaprovider_app sysfs_vendor_sched:file w_file_perms;
@@ -252,7 +252,7 @@ index 7ad8febf3..6d0c00b26 100644
 +allow mediaprovider_app unlabeled:dir create;
 +allow mediaprovider_app unlabeled:filesystem { getattr mount unmount };
 diff --git a/private/mls b/private/mls
-index 955c27b00..9a7e3f518 100644
+index 955c27b..9a7e3f5 100644
 --- a/private/mls
 +++ b/private/mls
 @@ -90,10 +90,10 @@ mlsconstrain { file lnk_file sock_file chr_file blk_file } { read getattr execut
@@ -269,16 +269,16 @@ index 955c27b00..9a7e3f518 100644
  # Special case for FIFOs.
  # These can be unnamed pipes, in which case they will be labeled with the
 diff --git a/private/platform_app.te b/private/platform_app.te
-index 6d495020f..4da821574 100644
+index cd95353..a4b816d 100644
 --- a/private/platform_app.te
 +++ b/private/platform_app.te
-@@ -130,3 +130,4 @@ neverallow { domain -init userdebug_or_eng(`-shell -platform_app') } persist_sys
+@@ -136,3 +136,4 @@ neverallow { domain -init userdebug_or_eng(`-shell -platform_app') } persist_sys
  
  # app domains which access /dev/fuse should not run as platform_app
  neverallow platform_app fuse_device:chr_file *;
 +allow platform_app unlabeled:file getattr;
 diff --git a/private/untrusted_app.te b/private/untrusted_app.te
-index d0f9b2417..88ff08194 100644
+index d0f9b24..88ff081 100644
 --- a/private/untrusted_app.te
 +++ b/private/untrusted_app.te
 @@ -19,5 +19,6 @@ bluetooth_domain(untrusted_app)
@@ -289,7 +289,7 @@ index d0f9b2417..88ff08194 100644
  
  neverallow untrusted_app sdk_sandbox_data_file:file { open create };
 diff --git a/private/untrusted_app_30.te b/private/untrusted_app_30.te
-index c87548ef2..dc70dcd2a 100644
+index c87548e..dc70dcd 100644
 --- a/private/untrusted_app_30.te
 +++ b/private/untrusted_app_30.te
 @@ -28,6 +28,10 @@ userdebug_or_eng(`
@@ -304,7 +304,7 @@ index c87548ef2..dc70dcd2a 100644
  # for targetSdkVersion>=34 to remove a sidechannel.
  allow untrusted_app_30 apk_data_file:dir { watch watch_reads };
 diff --git a/private/untrusted_app_32.te b/private/untrusted_app_32.te
-index 6e95fd117..5edef5aeb 100644
+index 6e95fd1..5edef5a 100644
 --- a/private/untrusted_app_32.te
 +++ b/private/untrusted_app_32.te
 @@ -37,3 +37,8 @@ userdebug_or_eng(`
@@ -317,16 +317,16 @@ index 6e95fd117..5edef5aeb 100644
 +allow untrusted_app_32 unlabeled:filesystem getattr;
 +
 diff --git a/public/file.te b/public/file.te
-index 0ce5c3436..9a50a9ea0 100644
+index 01143f7..bd17f3b 100644
 --- a/public/file.te
 +++ b/public/file.te
-@@ -634,3 +634,4 @@ type audiohal_data_file, file_type, data_file_type, core_data_file_type;
+@@ -643,3 +643,4 @@ type audiohal_data_file, file_type, data_file_type, core_data_file_type;
  # Should be:
  #   type apk_data_file, file_type, data_file_type;
  neverallow fs_type file_type:filesystem associate;
 +allow unlabeled self:filesystem associate;
 diff --git a/public/fsck_untrusted.te b/public/fsck_untrusted.te
-index 7e981bf27..c34e3642e 100644
+index 7e981bf..c34e364 100644
 --- a/public/fsck_untrusted.te
 +++ b/public/fsck_untrusted.te
 @@ -25,6 +25,8 @@ allow fsck_untrusted proc_mounts:file r_file_perms;
@@ -339,7 +339,7 @@ index 7e981bf27..c34e3642e 100644
  ### neverallow rules
  ###
 diff --git a/public/mediaserver.te b/public/mediaserver.te
-index 367012c11..e4a592488 100644
+index 367012c..e4a5924 100644
 --- a/public/mediaserver.te
 +++ b/public/mediaserver.te
 @@ -143,6 +143,8 @@ allow mediaserver vendor_overlay_file:file { read getattr map };
@@ -352,10 +352,10 @@ index 367012c11..e4a592488 100644
  ### neverallow rules
  ###
 diff --git a/public/vold.te b/public/vold.te
-index 3d204e1b0..7008289de 100644
+index c0fdf50..e545320 100644
 --- a/public/vold.te
 +++ b/public/vold.te
-@@ -348,3 +348,5 @@ neverallow vold fsck_exec:file execute_no_trans;
+@@ -351,3 +351,5 @@ neverallow vold fsck_exec:file execute_no_trans;
  neverallow { domain -init } vold:process { transition dyntransition };
  neverallow vold *:process ptrace;
  neverallow vold *:rawip_socket *;
@@ -365,7 +365,7 @@ index 3d204e1b0..7008289de 100644
 2.34.1
 
 
-From 3be54620c95d6a406908ba77a43a69664770b274 Mon Sep 17 00:00:00 2001
+From f7608735471a4ed3dd6ef5d71f32e017c3138d82 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 12 Feb 2024 16:14:29 -0500
 Subject: [PATCH 3/3] Update run-as sepolicy
@@ -378,7 +378,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  2 files changed, 6 insertions(+)
 
 diff --git a/prebuilts/api/34.0/public/runas.te b/prebuilts/api/34.0/public/runas.te
-index 356a0190c..66dcf4ae1 100644
+index 356a019..66dcf4a 100644
 --- a/prebuilts/api/34.0/public/runas.te
 +++ b/prebuilts/api/34.0/public/runas.te
 @@ -34,6 +34,9 @@ allow runas non_system_app_set:process dyntransition; # setcon
@@ -392,7 +392,7 @@ index 356a0190c..66dcf4ae1 100644
  ### neverallow rules
  ###
 diff --git a/public/runas.te b/public/runas.te
-index 356a0190c..66dcf4ae1 100644
+index 356a019..66dcf4a 100644
 --- a/public/runas.te
 +++ b/public/runas.te
 @@ -34,6 +34,9 @@ allow runas non_system_app_set:process dyntransition; # setcon

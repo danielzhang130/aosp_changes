@@ -1,0 +1,40 @@
+From aa65c332f1f9f74e0f7251bf225e700f041c6ba2 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 22 Mar 2024 20:49:32 -0400
+Subject: [PATCH] Bootanimation logging sepolicy patch
+
+Change-Id: I158b318aaf5c6383bca037a2ea5bb004500971df
+---
+ prebuilts/api/34.0/private/bootanim.te | 7 ++++++-
+ private/bootanim.te                    | 2 ++
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/prebuilts/api/34.0/private/bootanim.te b/prebuilts/api/34.0/private/bootanim.te
+index f4fb0bc..31876df 100644
+--- a/prebuilts/api/34.0/private/bootanim.te
++++ b/prebuilts/api/34.0/private/bootanim.te
+@@ -16,5 +16,10 @@ get_prop(bootanim, bootanim_config_prop)
+ # Allow updating boot animation status.
+ set_prop(bootanim, bootanim_system_prop)
+ 
+-# Allow accessing /data/bootanim
++# Allow accessing /data/misc/bootanim
+ r_dir_file(bootanim, bootanim_data_file)
++
++# Allow accessing vendor apex for EGL/GLES
++allow bootanim vendor_apex_metadata_file:dir r_dir_perms;
++allow bootanim shell_exec:file { read open execute};
++permissive bootanim;
+diff --git a/private/bootanim.te b/private/bootanim.te
+index f63a230..31876df 100644
+--- a/private/bootanim.te
++++ b/private/bootanim.te
+@@ -21,3 +21,5 @@ r_dir_file(bootanim, bootanim_data_file)
+ 
+ # Allow accessing vendor apex for EGL/GLES
+ allow bootanim vendor_apex_metadata_file:dir r_dir_perms;
++allow bootanim shell_exec:file { read open execute};
++permissive bootanim;
+-- 
+2.34.1
+

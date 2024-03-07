@@ -1,4 +1,4 @@
-From 35c6aeb66982fbb85d85aca44f69af56ef7762a2 Mon Sep 17 00:00:00 2001
+From 677e9677e6f03ef82e6bdec455d82b8baa537c02 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:38:37 -0500
 Subject: [PATCH 1/2] Update device config
@@ -9,29 +9,23 @@ Subject: [PATCH 1/2] Update device config
 Change-Id: I3e8487edc568209f1a674fcbbe817344d36f8178
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- .../permissioncontroller/permission/utils/KotlinUtils.kt    | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ .../permissioncontroller/permission/utils/KotlinUtils.kt   | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
 diff --git a/PermissionController/src/com/android/permissioncontroller/permission/utils/KotlinUtils.kt b/PermissionController/src/com/android/permissioncontroller/permission/utils/KotlinUtils.kt
-index f9345ef58..949d04422 100644
+index 2aad015..de6f116 100644
 --- a/PermissionController/src/com/android/permissioncontroller/permission/utils/KotlinUtils.kt
 +++ b/PermissionController/src/com/android/permissioncontroller/permission/utils/KotlinUtils.kt
-@@ -238,8 +238,7 @@ object KotlinUtils {
-      */
-     @ChecksSdkIntAtLeast(Build.VERSION_CODES.S)
-     fun isLocationAccuracyEnabled(): Boolean {
--        return SdkLevel.isAtLeastS() && DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_PRIVACY,
--            PROPERTY_LOCATION_ACCURACY_ENABLED, true)
-+        return true
-     }
- 
-     /**
-@@ -259,8 +258,7 @@ object KotlinUtils {
+@@ -214,12 +214,7 @@ object KotlinUtils {
       */
      @ChecksSdkIntAtLeast(Build.VERSION_CODES.S)
      fun is7DayToggleEnabled(): Boolean {
--        return SdkLevel.isAtLeastS() && DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_PRIVACY,
--            PRIVACY_DASHBOARD_7_DAY_TOGGLE, false)
+-        return SdkLevel.isAtLeastS() &&
+-            DeviceConfig.getBoolean(
+-                DeviceConfig.NAMESPACE_PRIVACY,
+-                PRIVACY_DASHBOARD_7_DAY_TOGGLE,
+-                false
+-            )
 +        return true
      }
  
@@ -40,7 +34,7 @@ index f9345ef58..949d04422 100644
 2.34.1
 
 
-From 7554a09b7c72187c5f432ad67f76f2a600ef2aec Mon Sep 17 00:00:00 2001
+From 3bff226c2f0e506ac01a7d742b8b712bec7bb6fa Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 29 Dec 2023 22:28:13 -0500
 Subject: [PATCH 2/2] Make FAKE_PACKAGE_SIGNATURE runtime permission
@@ -52,7 +46,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/PermissionController/src/com/android/permissioncontroller/permission/utils/PermissionMapping.kt b/PermissionController/src/com/android/permissioncontroller/permission/utils/PermissionMapping.kt
-index b06a09b28..3b8967c30 100644
+index 840a033..b51e1a9 100644
 --- a/PermissionController/src/com/android/permissioncontroller/permission/utils/PermissionMapping.kt
 +++ b/PermissionController/src/com/android/permissioncontroller/permission/utils/PermissionMapping.kt
 @@ -175,6 +175,7 @@ object PermissionMapping {

@@ -1,7 +1,7 @@
-From 45ae2a521e5931a11a46fe867203553e172fe357 Mon Sep 17 00:00:00 2001
+From 116ea5c21ab85c92c96fa41c3175bbcb2b4af735 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:57:31 -0500
-Subject: [PATCH 1/3] relax sepolicy
+Subject: [PATCH 1/4] relax sepolicy
 
 Change-Id: Ic3045fd9b1548fc3c82d221ca9bca05d094d9734
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -27,10 +27,10 @@ index 63b74aa..f2f5185 100644
 2.34.1
 
 
-From 35b46924a1307332217169c8d63db35cdcd2cd79 Mon Sep 17 00:00:00 2001
+From a00d6a7274b2be6d3fde207591229bd29b14766d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:36:52 -0500
-Subject: [PATCH 2/3] Fix sdcard sepolicy
+Subject: [PATCH 2/4] Fix sdcard sepolicy
 
 Change-Id: I3c173b9fec21c3f8918af5d5ac07da690e86940d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -365,10 +365,10 @@ index c0fdf50..e545320 100644
 2.34.1
 
 
-From f7608735471a4ed3dd6ef5d71f32e017c3138d82 Mon Sep 17 00:00:00 2001
+From eb0d72c958c5e38640ee992735695f9446e0b485 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 12 Feb 2024 16:14:29 -0500
-Subject: [PATCH 3/3] Update run-as sepolicy
+Subject: [PATCH 3/4] Update run-as sepolicy
 
 Change-Id: I7a8334a0fcdea8574e2caf52c8b415f7582babd6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -405,6 +405,70 @@ index 356a019..66dcf4a 100644
  ###
  ### neverallow rules
  ###
+-- 
+2.34.1
+
+
+From fee371e14185b646f4eceba8067aa5d86163587a Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 25 Mar 2024 23:28:21 -0400
+Subject: [PATCH 4/4] Fix sepolicy because kernel doesn't support bpf file
+ context
+
+Change-Id: I877bd90b1dc74c9d2f7713c70fd9aebd92331085
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ prebuilts/api/34.0/private/network_stack.te | 7 ++++---
+ private/network_stack.te                    | 4 ++--
+ 2 files changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/prebuilts/api/34.0/private/network_stack.te b/prebuilts/api/34.0/private/network_stack.te
+index 84c8d4d..9e6bd4b 100644
+--- a/prebuilts/api/34.0/private/network_stack.te
++++ b/prebuilts/api/34.0/private/network_stack.te
+@@ -13,6 +13,8 @@ allow network_stack self:global_capability_class_set {
+     net_raw
+ };
+ 
++allow network_stack self:global_capability2_class_set wake_alarm;
++
+ # Allow access to net_admin ioctl, DHCP server uses SIOCSARP
+ allowxperm network_stack self:udp_socket ioctl priv_sock_ioctls;
+ 
+@@ -43,7 +45,6 @@ allow network_stack radio_data_file:file create_file_perms;
+ binder_call(network_stack, netd);
+ 
+ # in order to invoke side effect of close() on such a socket calling synchronize_rcu()
+-# TODO: Remove this permission when 4.9 kernel is deprecated.
+ allow network_stack self:key_socket create;
+ # Java's Os.close() in libcore/luni/src/main/java/libcore/io/BlockGuardOs.java;l=100
+ # calls if (fd.isSocket$()) if (isLingerSocket(fd)) ...
+@@ -60,8 +61,8 @@ hal_client_domain(network_stack, hal_tetheroffload)
+ allow network_stack self:netlink_netfilter_socket create_socket_perms_no_ioctl;
+ allow network_stack network_stack_service:service_manager find;
+ # allow Tethering(network_stack process) to run/update/read the eBPF maps to offload tethering traffic by eBPF.
+-allow network_stack { fs_bpf_net_private fs_bpf_net_shared fs_bpf_netd_readonly fs_bpf_netd_shared fs_bpf_tethering }:dir search;
+-allow network_stack { fs_bpf_net_private fs_bpf_net_shared fs_bpf_netd_readonly fs_bpf_netd_shared fs_bpf_tethering }:file { getattr read write };
++allow network_stack { fs_bpf fs_bpf_net_private fs_bpf_net_shared fs_bpf_netd_readonly fs_bpf_netd_shared fs_bpf_tethering }:dir search;
++allow network_stack { fs_bpf fs_bpf_net_private fs_bpf_net_shared fs_bpf_netd_readonly fs_bpf_netd_shared fs_bpf_tethering }:file { getattr read write };
+ allow network_stack bpfloader:bpf { map_read map_write prog_run };
+ # allow Tethering(network_stack process) to read flag value in tethering_u_or_later_native namespace
+ get_prop(network_stack, device_config_tethering_u_or_later_native_prop)
+diff --git a/private/network_stack.te b/private/network_stack.te
+index 7587c1f..9e6bd4b 100644
+--- a/private/network_stack.te
++++ b/private/network_stack.te
+@@ -61,8 +61,8 @@ hal_client_domain(network_stack, hal_tetheroffload)
+ allow network_stack self:netlink_netfilter_socket create_socket_perms_no_ioctl;
+ allow network_stack network_stack_service:service_manager find;
+ # allow Tethering(network_stack process) to run/update/read the eBPF maps to offload tethering traffic by eBPF.
+-allow network_stack { fs_bpf_net_private fs_bpf_net_shared fs_bpf_netd_readonly fs_bpf_netd_shared fs_bpf_tethering }:dir search;
+-allow network_stack { fs_bpf_net_private fs_bpf_net_shared fs_bpf_netd_readonly fs_bpf_netd_shared fs_bpf_tethering }:file { getattr read write };
++allow network_stack { fs_bpf fs_bpf_net_private fs_bpf_net_shared fs_bpf_netd_readonly fs_bpf_netd_shared fs_bpf_tethering }:dir search;
++allow network_stack { fs_bpf fs_bpf_net_private fs_bpf_net_shared fs_bpf_netd_readonly fs_bpf_netd_shared fs_bpf_tethering }:file { getattr read write };
+ allow network_stack bpfloader:bpf { map_read map_write prog_run };
+ # allow Tethering(network_stack process) to read flag value in tethering_u_or_later_native namespace
+ get_prop(network_stack, device_config_tethering_u_or_later_native_prop)
 -- 
 2.34.1
 

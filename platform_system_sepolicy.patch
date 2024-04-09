@@ -1,4 +1,4 @@
-From 116ea5c21ab85c92c96fa41c3175bbcb2b4af735 Mon Sep 17 00:00:00 2001
+From f6ac7570eb8dedcfc13a5ebcdabeaf3debf1f3e2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:57:31 -0500
 Subject: [PATCH 1/4] relax sepolicy
@@ -27,7 +27,7 @@ index 63b74aa..f2f5185 100644
 2.34.1
 
 
-From a00d6a7274b2be6d3fde207591229bd29b14766d Mon Sep 17 00:00:00 2001
+From a359a6fae4115078c18334c8f0eb68b8e87aae58 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:36:52 -0500
 Subject: [PATCH 2/4] Fix sdcard sepolicy
@@ -365,7 +365,7 @@ index c0fdf50..e545320 100644
 2.34.1
 
 
-From eb0d72c958c5e38640ee992735695f9446e0b485 Mon Sep 17 00:00:00 2001
+From 9f6ac03a94191f25a698484d9f90180ba3f08a32 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 12 Feb 2024 16:14:29 -0500
 Subject: [PATCH 3/4] Update run-as sepolicy
@@ -409,41 +409,24 @@ index 356a019..66dcf4a 100644
 2.34.1
 
 
-From fee371e14185b646f4eceba8067aa5d86163587a Mon Sep 17 00:00:00 2001
+From 0017e5152f9512263b139824f8d782cc88b2a399 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 25 Mar 2024 23:28:21 -0400
-Subject: [PATCH 4/4] Fix sepolicy because kernel doesn't support bpf file
- context
+Subject: [PATCH 4/4] Fix sepolicy for kernel < 5.10 that doesn't support bpf
+ file context
 
 Change-Id: I877bd90b1dc74c9d2f7713c70fd9aebd92331085
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- prebuilts/api/34.0/private/network_stack.te | 7 ++++---
+ prebuilts/api/34.0/private/network_stack.te | 4 ++--
  private/network_stack.te                    | 4 ++--
- 2 files changed, 6 insertions(+), 5 deletions(-)
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/prebuilts/api/34.0/private/network_stack.te b/prebuilts/api/34.0/private/network_stack.te
-index 84c8d4d..9e6bd4b 100644
+index 84c8d4d..fa5e066 100644
 --- a/prebuilts/api/34.0/private/network_stack.te
 +++ b/prebuilts/api/34.0/private/network_stack.te
-@@ -13,6 +13,8 @@ allow network_stack self:global_capability_class_set {
-     net_raw
- };
- 
-+allow network_stack self:global_capability2_class_set wake_alarm;
-+
- # Allow access to net_admin ioctl, DHCP server uses SIOCSARP
- allowxperm network_stack self:udp_socket ioctl priv_sock_ioctls;
- 
-@@ -43,7 +45,6 @@ allow network_stack radio_data_file:file create_file_perms;
- binder_call(network_stack, netd);
- 
- # in order to invoke side effect of close() on such a socket calling synchronize_rcu()
--# TODO: Remove this permission when 4.9 kernel is deprecated.
- allow network_stack self:key_socket create;
- # Java's Os.close() in libcore/luni/src/main/java/libcore/io/BlockGuardOs.java;l=100
- # calls if (fd.isSocket$()) if (isLingerSocket(fd)) ...
-@@ -60,8 +61,8 @@ hal_client_domain(network_stack, hal_tetheroffload)
+@@ -60,8 +60,8 @@ hal_client_domain(network_stack, hal_tetheroffload)
  allow network_stack self:netlink_netfilter_socket create_socket_perms_no_ioctl;
  allow network_stack network_stack_service:service_manager find;
  # allow Tethering(network_stack process) to run/update/read the eBPF maps to offload tethering traffic by eBPF.

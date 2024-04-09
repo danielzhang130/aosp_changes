@@ -1,7 +1,7 @@
-From 3e1ba979b47a1699c73310a12b70c03a9945fd39 Mon Sep 17 00:00:00 2001
+From 762e5293afbe117286387169f3e59b0413e1c956 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/18] pass safetynet and gpay
+Subject: [PATCH 01/17] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -172,10 +172,10 @@ index 2d8c5a380..caadbef65 100644
 2.34.1
 
 
-From aea6592b049245d722433819a6e6e1180527e2a3 Mon Sep 17 00:00:00 2001
+From d8f34ceadd3b4df9eb6f6f4f1afd0d38dba2f676 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/18] Set auto brightness on by default
+Subject: [PATCH 02/17] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index 89a8dd95d..b0bc53f2e 100644
 2.34.1
 
 
-From 0c1602cdda7d65d2998df8032b88432bd9f1128d Mon Sep 17 00:00:00 2001
+From 89e00f6822dc84b5a2703e7a708a201d9474efdc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 03/18] Add support for left side volume dialog
+Subject: [PATCH 03/17] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -853,10 +853,10 @@ index 404621d1f..b27249878 100644
 2.34.1
 
 
-From 8c6998092c8cca0073550a83488e3ec2c686d964 Mon Sep 17 00:00:00 2001
+From 30c0a038c79169be5b737c07f6b96a0d67bc8ce0 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 04/18] Remove max column limit on quick tiles under
+Subject: [PATCH 04/17] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -881,10 +881,10 @@ index 9d4eba5aa..a3606b846 100644
 2.34.1
 
 
-From 13a33ebec5539f027839e0edd5126386e1d7f11b Mon Sep 17 00:00:00 2001
+From 50dc043fcea9fdca38aed0f4ecb08862f074259c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 05/18] Update permission history cutoff days
+Subject: [PATCH 05/17] Update permission history cutoff days
 
 Change-Id: I0c61451d766a9870b543c73a661abc39c5eb6bf3
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -920,10 +920,10 @@ index b1a12f733..da48f8847 100644
 2.34.1
 
 
-From f2bc014921da80ee6ad24e6bd9c65243bd29b0ca Mon Sep 17 00:00:00 2001
+From 8e5c3ed3f32a716785a367c12278ce01cbd648a4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 06/18] Add launcher icon for android 10 easter egg
+Subject: [PATCH 06/17] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -947,10 +947,10 @@ index d1db23796..f6b4877b8 100644
 2.34.1
 
 
-From a5336232c01ea432d18687a5a886abc258b372d9 Mon Sep 17 00:00:00 2001
+From a02ada8a120c2db3223695bac9f4ae040e735896 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 07/18] Use system default vibration for fb messenger app
+Subject: [PATCH 07/17] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -976,10 +976,10 @@ index 15d692ab1..8ec63c58e 100644
 2.34.1
 
 
-From 4c3a384ab496354acc5742355175174cba5804b9 Mon Sep 17 00:00:00 2001
+From 6a791ed5c1cf57f06da265e1ad0f8caa73308b7b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 08/18] Fix safetynet/play integrity
+Subject: [PATCH 08/17] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1009,10 +1009,10 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From 3bc5f3a67abda0458658abaee22d74e4d9586030 Mon Sep 17 00:00:00 2001
+From 12fd5d31d639e5ce035c29b7deaf9634233fc202 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 09/18] Get free photo storage for google pixel
+Subject: [PATCH 09/17] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1069,10 +1069,10 @@ index 6a50e74ca..5051499a2 100644
 2.34.1
 
 
-From a88d59ff75c1dd44f70f3db68675baa4874a7abf Mon Sep 17 00:00:00 2001
+From 614c78d301fa91a42cc1ae4733e055923641fb76 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 10/18] Add ability to change fingerprint from persist prop
+Subject: [PATCH 10/17] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1111,10 +1111,10 @@ index 84d767694..3a928f54b 100644
 2.34.1
 
 
-From 22ba73273def616fd6d87887054f158266328b89 Mon Sep 17 00:00:00 2001
+From f37510579881e1558841fb9e2a85cff27ea78ef7 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 11/18] Update default spoof fingerprint
+Subject: [PATCH 11/17] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1154,10 +1154,10 @@ index 3a928f54b..ee174dfb5 100644
 2.34.1
 
 
-From eedeee0079bbf109b10eb10a550c652c66258024 Mon Sep 17 00:00:00 2001
+From d2a00799951ab883e49978a712c64bc4384ce857 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
-Subject: [PATCH 12/18] Change quick affordance click from long to short click
+Subject: [PATCH 12/17] Change quick affordance click from long to short click
 
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1182,10 +1182,10 @@ index 7882a9758..d2640e0f3 100644
 2.34.1
 
 
-From d459b061803ca786f0f279103d2567947b1e8e59 Mon Sep 17 00:00:00 2001
+From 81d65119ca25eb5b43bb9a6fa2bbf0bcc8743b92 Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Sat, 16 Oct 2021 05:27:57 -0700
-Subject: [PATCH 13/18] Add support for app signature spoofing
+Subject: [PATCH 13/17] Add support for app signature spoofing
 
 This is needed by microG GmsCore to pretend to be the official Google
 Play Services package, because client apps check the package signature
@@ -1428,10 +1428,10 @@ index d0fe96476..7623d0a2c 100644
 2.34.1
 
 
-From ecc156bd51579d7bd6e0df78ab2397176769b23d Mon Sep 17 00:00:00 2001
+From 2c33dae902571147a778187b4c442e004f6e41db Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
-Subject: [PATCH 14/18] Output certificate in pm dump
+Subject: [PATCH 14/17] Output certificate in pm dump
 
 Change-Id: I6c54ae43fecce81972b9b5f1239bb3ff8308e540
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1458,10 +1458,10 @@ index d6952262d..40de11758 100644
 2.34.1
 
 
-From 4a5cfa24512e0766b53f115a5f3ff87cf279444f Mon Sep 17 00:00:00 2001
+From b44d56e8caf34c2bec4f3409fbaff92ee35ab772 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:00 -0500
-Subject: [PATCH 15/18] Add permission for Nova launcher pro
+Subject: [PATCH 15/17] Add permission for Nova launcher pro
 
 Change-Id: I79670eb2b11018568ee7b115d92cf2482e56d717
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1514,10 +1514,10 @@ index 2aac8ce20..9126b4d95 100644
 2.34.1
 
 
-From 988d0123206440871697f2fb9edce55ad508b88c Mon Sep 17 00:00:00 2001
+From 7e2a1c7f8ce338e6b75cf3b80645248bf76275c3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 17 Mar 2024 14:08:02 -0400
-Subject: [PATCH 16/18] Revert "Include vendor.samsung.hardware.radio-V2.2-java
+Subject: [PATCH 16/17] Revert "Include vendor.samsung.hardware.radio-V2.2-java
  HIDL in base libs, will be used by f/o/telephony"
 
 This reverts commit 6c6ff345d6d38d1ca2ddd1e417438cd8fb4553a8.
@@ -1541,10 +1541,10 @@ index c65b3fe12..dd3648143 100644
 2.34.1
 
 
-From c456f4dc27351b9bcab438ddac6e2013acd745b4 Mon Sep 17 00:00:00 2001
+From bd3522d05f81b5b0e54dfb5050642cf18b22d123 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 17 Mar 2024 14:08:15 -0400
-Subject: [PATCH 17/18] Revert "Include
+Subject: [PATCH 17/17] Revert "Include
  vendor.samsung.hardware.radio.network-V1-java in base libs, will be used by
  f/o/telephony"
 
@@ -1565,95 +1565,6 @@ index dd3648143..676a0f51d 100644
          "android.hardware.radio.sim-V3-java",
          "android.hardware.radio.voice-V3-java",
          "android.hardware.thermal-V1.0-java-constants",
--- 
-2.34.1
-
-
-From b430c0a234904950dcb1dd2b8d7d4858a1797338 Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Sat, 30 Mar 2024 15:22:44 -0400
-Subject: [PATCH 18/18] Revert "Remove deprecated IRadio <1.4 APIs and
- references"
-
-This reverts commit 4d53aa0caec7029bf6c9b5789c1708bc4bb71b76.
----
- .../android/telephony/TelephonyManager.java   | 23 +++++++++++++++++++
- .../internal/telephony/ITelephony.aidl        | 11 +++++++++
- .../internal/telephony/RILConstants.java      |  5 ++++
- 3 files changed, 39 insertions(+)
-
-diff --git a/telephony/java/android/telephony/TelephonyManager.java b/telephony/java/android/telephony/TelephonyManager.java
-index bd5255d4a..859326ee0 100644
---- a/telephony/java/android/telephony/TelephonyManager.java
-+++ b/telephony/java/android/telephony/TelephonyManager.java
-@@ -11472,6 +11472,29 @@ public class TelephonyManager {
-         return false;
-     }
- 
-+    /**
-+     * Returns the result and response from RIL for oem request
-+     *
-+     * @param oemReq the data is sent to ril.
-+     * @param oemResp the respose data from RIL.
-+     * @return negative value request was not handled or get error
-+     *         0 request was handled succesfully, but no response data
-+     *         positive value success, data length of response
-+     * @hide
-+     * @deprecated OEM needs a vendor-extension hal and their apps should use that instead
-+     */
-+    @Deprecated
-+    public int invokeOemRilRequestRaw(byte[] oemReq, byte[] oemResp) {
-+        try {
-+            ITelephony telephony = getITelephony();
-+            if (telephony != null)
-+                return telephony.invokeOemRilRequestRaw(oemReq, oemResp);
-+        } catch (RemoteException ex) {
-+        } catch (NullPointerException ex) {
-+        }
-+        return -1;
-+    }
-+
-     /**
-      * @deprecated Use {@link android.telephony.ims.ImsMmTelManager#setVtSettingEnabled(boolean)}
-      * instead.
-diff --git a/telephony/java/com/android/internal/telephony/ITelephony.aidl b/telephony/java/com/android/internal/telephony/ITelephony.aidl
-index 397fb2d6d..192ead0fb 100644
---- a/telephony/java/com/android/internal/telephony/ITelephony.aidl
-+++ b/telephony/java/com/android/internal/telephony/ITelephony.aidl
-@@ -1194,6 +1194,17 @@ interface ITelephony {
-             in List<String> gsmNonRoamingList, in List<String> cdmaRoamingList,
-             in List<String> cdmaNonRoamingList);
- 
-+    /**
-+     * Returns the result and response from RIL for oem request
-+     *
-+     * @param oemReq the data is sent to ril.
-+     * @param oemResp the respose data from RIL.
-+     * @return negative value request was not handled or get error
-+     *         0 request was handled succesfully, but no response data
-+     *         positive value success, data length of response
-+     */
-+    int invokeOemRilRequestRaw(in byte[] oemReq, out byte[] oemResp);
-+
-     /**
-      * Check if any mobile Radios need to be shutdown.
-      *
-diff --git a/telephony/java/com/android/internal/telephony/RILConstants.java b/telephony/java/com/android/internal/telephony/RILConstants.java
-index 50590177f..69ea593a3 100644
---- a/telephony/java/com/android/internal/telephony/RILConstants.java
-+++ b/telephony/java/com/android/internal/telephony/RILConstants.java
-@@ -298,6 +298,11 @@ public interface RILConstants {
-     int SETUP_DATA_AUTH_CHAP      = 2;
-     int SETUP_DATA_AUTH_PAP_CHAP  = 3;
- 
-+    /* LCE service related constants. */
-+    int LCE_NOT_AVAILABLE = -1;
-+    int LCE_STOPPED = 0;
-+    int LCE_ACTIVE = 1;
-+
-     /**
-      * No restriction at all including voice/SMS/USSD/SS/AV64
-      * and packet data.
 -- 
 2.34.1
 

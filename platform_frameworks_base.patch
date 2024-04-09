@@ -1,4 +1,4 @@
-From 762e5293afbe117286387169f3e59b0413e1c956 Mon Sep 17 00:00:00 2001
+From 7b1503a9cd1042d75c4865c9cfeb7e40648dbf18 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
 Subject: [PATCH 01/17] pass safetynet and gpay
@@ -172,7 +172,7 @@ index 2d8c5a380..caadbef65 100644
 2.34.1
 
 
-From d8f34ceadd3b4df9eb6f6f4f1afd0d38dba2f676 Mon Sep 17 00:00:00 2001
+From 78a2074262d1f9316cb8a8a6eb3df834e9dd0916 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
 Subject: [PATCH 02/17] Set auto brightness on by default
@@ -199,7 +199,7 @@ index 89a8dd95d..b0bc53f2e 100644
 2.34.1
 
 
-From 89e00f6822dc84b5a2703e7a708a201d9474efdc Mon Sep 17 00:00:00 2001
+From 7d020c0e364a98dd63d8e987b2072f7e026cd00a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
 Subject: [PATCH 03/17] Add support for left side volume dialog
@@ -853,7 +853,7 @@ index 404621d1f..b27249878 100644
 2.34.1
 
 
-From 30c0a038c79169be5b737c07f6b96a0d67bc8ce0 Mon Sep 17 00:00:00 2001
+From d532d0628723ae3b759e250f51aa86c44e42333f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
 Subject: [PATCH 04/17] Remove max column limit on quick tiles under
@@ -881,7 +881,7 @@ index 9d4eba5aa..a3606b846 100644
 2.34.1
 
 
-From 50dc043fcea9fdca38aed0f4ecb08862f074259c Mon Sep 17 00:00:00 2001
+From 651d1a35ac19ba055e047874fb26fc73b47da480 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
 Subject: [PATCH 05/17] Update permission history cutoff days
@@ -920,7 +920,7 @@ index b1a12f733..da48f8847 100644
 2.34.1
 
 
-From 8e5c3ed3f32a716785a367c12278ce01cbd648a4 Mon Sep 17 00:00:00 2001
+From cf2b3f1f8a66aedbaaf74749ee6dd3fcb788cff6 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
 Subject: [PATCH 06/17] Add launcher icon for android 10 easter egg
@@ -947,7 +947,7 @@ index d1db23796..f6b4877b8 100644
 2.34.1
 
 
-From a02ada8a120c2db3223695bac9f4ae040e735896 Mon Sep 17 00:00:00 2001
+From e46f69ee0e1c0c79506d1c7ba51371c011ee2b37 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
 Subject: [PATCH 07/17] Use system default vibration for fb messenger app
@@ -976,7 +976,7 @@ index 15d692ab1..8ec63c58e 100644
 2.34.1
 
 
-From 6a791ed5c1cf57f06da265e1ad0f8caa73308b7b Mon Sep 17 00:00:00 2001
+From 03134b87a91e9bd1edd83189ce40da488b758665 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
 Subject: [PATCH 08/17] Fix safetynet/play integrity
@@ -1009,7 +1009,7 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From 12fd5d31d639e5ce035c29b7deaf9634233fc202 Mon Sep 17 00:00:00 2001
+From 8e61e17803754978becf117982bba0b20dd29c19 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
 Subject: [PATCH 09/17] Get free photo storage for google pixel
@@ -1069,7 +1069,7 @@ index 6a50e74ca..5051499a2 100644
 2.34.1
 
 
-From 614c78d301fa91a42cc1ae4733e055923641fb76 Mon Sep 17 00:00:00 2001
+From 6bdb245b09a1211652e51bbf5879c16c1bffd58a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
 Subject: [PATCH 10/17] Add ability to change fingerprint from persist prop
@@ -1111,7 +1111,7 @@ index 84d767694..3a928f54b 100644
 2.34.1
 
 
-From f37510579881e1558841fb9e2a85cff27ea78ef7 Mon Sep 17 00:00:00 2001
+From 92ef6f187b4a8e9e9459dfdc8d7e8e1f7ae357d3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
 Subject: [PATCH 11/17] Update default spoof fingerprint
@@ -1154,7 +1154,7 @@ index 3a928f54b..ee174dfb5 100644
 2.34.1
 
 
-From d2a00799951ab883e49978a712c64bc4384ce857 Mon Sep 17 00:00:00 2001
+From 752d6cf6919c44e1557a2c1aa4d371d7c1932281 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
 Subject: [PATCH 12/17] Change quick affordance click from long to short click
@@ -1182,7 +1182,7 @@ index 7882a9758..d2640e0f3 100644
 2.34.1
 
 
-From 81d65119ca25eb5b43bb9a6fa2bbf0bcc8743b92 Mon Sep 17 00:00:00 2001
+From 0d4aa0788d56fab8ded62f80ddb0ffa5a09aaf04 Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Sat, 16 Oct 2021 05:27:57 -0700
 Subject: [PATCH 13/17] Add support for app signature spoofing
@@ -1231,9 +1231,9 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  core/api/lint-baseline.txt                    |  4 ++
  core/res/AndroidManifest.xml                  | 15 ++++++
  core/res/res/values/strings.xml               | 12 +++++
- .../com/android/server/pm/ComputerEngine.java |  2 +-
+ .../com/android/server/pm/ComputerEngine.java | 10 +++-
  .../server/pm/parsing/PackageInfoUtils.java   | 47 +++++++++++++++++--
- 6 files changed, 76 insertions(+), 6 deletions(-)
+ 6 files changed, 83 insertions(+), 7 deletions(-)
 
 diff --git a/core/api/current.txt b/core/api/current.txt
 index 9b5316fb7..39365fa14 100644
@@ -1320,10 +1320,32 @@ index 4596ca74b..596218ad9 100644
      <string name="permlab_statusBar">disable or modify status bar</string>
      <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
 diff --git a/services/core/java/com/android/server/pm/ComputerEngine.java b/services/core/java/com/android/server/pm/ComputerEngine.java
-index b0d9be30e..43182f74d 100644
+index b0d9be30e..382c81a67 100644
 --- a/services/core/java/com/android/server/pm/ComputerEngine.java
 +++ b/services/core/java/com/android/server/pm/ComputerEngine.java
-@@ -1582,7 +1582,7 @@ public class ComputerEngine implements Computer {
+@@ -1505,6 +1505,11 @@ public class ComputerEngine implements Computer {
+         return Optional.of(fakeSignature);
+     }
+ 
++    private boolean requestsFakeSignatures(AndroidPackage p) {
++        return p.getMetaData() != null && 
++            p.getMetaData().getString("fake-signature") != null;
++    }
++
+     public final PackageInfo generatePackageInfo(PackageStateInternal ps,
+             @PackageManager.PackageInfoFlagsBits long flags, int userId) {
+         if (!mUserManager.exists(userId)) return null;
+@@ -1538,7 +1543,8 @@ public class ComputerEngine implements Computer {
+                     || ArrayUtils.isEmpty(p.getPermissions())) ? Collections.emptySet()
+                     : mPermissionManager.getInstalledPermissions(ps.getPackageName());
+             // Compute granted permissions only if package has requested permissions
+-            final Set<String> grantedPermissions = ((flags & PackageManager.GET_PERMISSIONS) == 0
++            final Set<String> grantedPermissions = (((flags & PackageManager.GET_PERMISSIONS) == 0
++                    && !requestsFakeSignatures(p))
+                     || ArrayUtils.isEmpty(p.getRequestedPermissions())) ? Collections.emptySet()
+                     : mPermissionManager.getGrantedPermissions(ps.getPackageName(), userId);
+ 
+@@ -1582,7 +1588,7 @@ public class ComputerEngine implements Computer {
              pi.applicationInfo = PackageInfoUtils.generateDelegateApplicationInfo(
                      ai, flags, state, userId);
              pi.signingInfo = ps.getSigningInfo();
@@ -1428,7 +1450,7 @@ index d0fe96476..7623d0a2c 100644
 2.34.1
 
 
-From 2c33dae902571147a778187b4c442e004f6e41db Mon Sep 17 00:00:00 2001
+From 113100cf7a07e52582b0e79f9729cbade9f8c0bf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
 Subject: [PATCH 14/17] Output certificate in pm dump
@@ -1458,7 +1480,7 @@ index d6952262d..40de11758 100644
 2.34.1
 
 
-From b44d56e8caf34c2bec4f3409fbaff92ee35ab772 Mon Sep 17 00:00:00 2001
+From 6cf6026308933d23c83c39c90d720bf5acafaec4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:00 -0500
 Subject: [PATCH 15/17] Add permission for Nova launcher pro
@@ -1514,7 +1536,7 @@ index 2aac8ce20..9126b4d95 100644
 2.34.1
 
 
-From 7e2a1c7f8ce338e6b75cf3b80645248bf76275c3 Mon Sep 17 00:00:00 2001
+From dfcdda551ca20c78eb007cf44d8f12621d47bb73 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 17 Mar 2024 14:08:02 -0400
 Subject: [PATCH 16/17] Revert "Include vendor.samsung.hardware.radio-V2.2-java
@@ -1541,7 +1563,7 @@ index c65b3fe12..dd3648143 100644
 2.34.1
 
 
-From bd3522d05f81b5b0e54dfb5050642cf18b22d123 Mon Sep 17 00:00:00 2001
+From 962449f159f4ec1625f62751a065cd036499db93 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 17 Mar 2024 14:08:15 -0400
 Subject: [PATCH 17/17] Revert "Include

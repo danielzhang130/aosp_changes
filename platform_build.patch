@@ -1,7 +1,7 @@
-From 41f3e49e97fdc828de4657ede78e4822c8bd31af Mon Sep 17 00:00:00 2001
+From cda037ea1a1bae8359bb3973b026b1a5ac6135cc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Feb 2024 17:00:25 -0500
-Subject: [PATCH] add java keystore and script
+Subject: [PATCH 1/2] add java keystore and script
 
 Change-Id: Iab094a74a58aef7a7da2d389e8688de1d9f1729b
 ---
@@ -101,6 +101,32 @@ index 0000000000..580ffc34be
 +
 +rm $1.pem $1.p12
 +
+-- 
+2.34.1
+
+
+From da8f8c4041654d546c48d077bd1073b9501b1ffd Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sun, 12 May 2024 11:40:48 -0400
+Subject: [PATCH 2/2] Revert "Include vndk v28 sepolicy support"
+
+This reverts commit c4b384d4275dc688163a3fd55a0b78384a36bdac.
+---
+ core/config.mk | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/core/config.mk b/core/config.mk
+index 750d5fb4cd..d0d7e6e4cf 100644
+--- a/core/config.mk
++++ b/core/config.mk
+@@ -927,7 +927,6 @@ endif
+ 
+ # A list of SEPolicy versions, besides PLATFORM_SEPOLICY_VERSION, that the framework supports.
+ PLATFORM_SEPOLICY_COMPAT_VERSIONS := $(filter-out $(PLATFORM_SEPOLICY_VERSION), \
+-    28.0 \
+     29.0 \
+     30.0 \
+     31.0 \
 -- 
 2.34.1
 

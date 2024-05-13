@@ -1,4 +1,4 @@
-From ef541f6dbde173020575035d6691bfc165b1cd97 Mon Sep 17 00:00:00 2001
+From 5f602763745dd9b55ba8bf9f45517d8991963032 Mon Sep 17 00:00:00 2001
 From: danielzhang130 <danielzhang130@gmail.com>
 Date: Sat, 13 Aug 2022 13:32:22 -0400
 Subject: [PATCH 1/5] Add Build and Build.VERSION info to about phone screen
@@ -170,7 +170,7 @@ index 00000000000..36056827841
 2.34.1
 
 
-From 1165a23ef69473b53e952b80acd72c7076a3677e Mon Sep 17 00:00:00 2001
+From 78c06b02c0430b3d19c581003ec3f498d5468dd2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:51:09 -0500
 Subject: [PATCH 2/5] Change about android screen to show real security patch
@@ -218,7 +218,7 @@ index 1df78a80817..946aa7a4bc0 100644
 2.34.1
 
 
-From 474714f87ad284c42e6775dbced8e9214e5451ab Mon Sep 17 00:00:00 2001
+From 574ab54e4f3543c8f2861a08dd4c4591a7e93e87 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 10:58:52 -0500
 Subject: [PATCH 3/5] Add settings animations files
@@ -2179,7 +2179,7 @@ index e69de29bb2d..0fddbf8ea72 100644
 2.34.1
 
 
-From ca8bf0a05b791e642361f2354870487ee0c31ad1 Mon Sep 17 00:00:00 2001
+From d3161863212ed82420d9e57b5a838229673fe244 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 21:49:17 -0500
 Subject: [PATCH 4/5] Add changelist to about phone screen
@@ -2338,7 +2338,7 @@ index 36056827841..c108909b410 100644
 2.34.1
 
 
-From b4535ca5d2ef623e14f15712e064abd3799cd55f Mon Sep 17 00:00:00 2001
+From f125e85a2d66ad1edff4225345c62d76274acf63 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 30 Dec 2023 15:52:29 -0500
 Subject: [PATCH 5/5] Add memory usage quick tile
@@ -2387,14 +2387,14 @@ index 8afb851ad03..2aebb98ca81 100644
      <!-- Summary of User settings [CHAR LIMIT=NONE] -->
      <string name="users_summary">Signed in as <xliff:g id="user_name" example="Jason">%1$s</xliff:g></string>
 diff --git a/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java b/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
-index b52409db192..7a7f8fd4800 100644
+index b52409db192..1e69dc452e0 100644
 --- a/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
 +++ b/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
 @@ -56,6 +56,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
  import com.android.settings.R;
  import com.android.settings.SettingsActivity;
  import com.android.settings.Utils;
-+import com.android.settings.applications.ProcessStatsSummary;
++import com.android.settings.applications.RunningServices;
  import com.android.settings.core.SubSettingLauncher;
  import com.android.settings.dashboard.RestrictedDashboardFragment;
  import com.android.settings.development.autofill.AutofillCategoryController;
@@ -2405,7 +2405,7 @@ index b52409db192..7a7f8fd4800 100644
 +        } else if (DevelopmentTiles.MemoryUsage.class.getName().equals(
 +                componentName.getClassName())) {
 +            new SubSettingLauncher(getContext())
-+                    .setDestination(ProcessStatsSummary.class.getName())
++                    .setDestination(RunningServices.class.getName())
 +                    .setSourceMetricsCategory(SettingsEnums.DEVELOPMENT)
 +                    .launch();
          }

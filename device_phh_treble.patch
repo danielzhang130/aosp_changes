@@ -1,4 +1,4 @@
-From 907d73bf098e89cc8be027d3e54af4b248ffcc0e Mon Sep 17 00:00:00 2001
+From 52199780f3abf9ffda66d1ac0d563fe822e7f52e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
 Subject: [PATCH 01/25] Various updates to phh treble device
@@ -25,7 +25,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  delete mode 100644 su/su.rc
 
 diff --git a/base.mk b/base.mk
-index 22525cd..6f850e8 100644
+index 43e261b..beec8b4 100644
 --- a/base.mk
 +++ b/base.mk
 @@ -33,7 +33,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -6441,7 +6441,7 @@ index f3c0c45..b2bcf63 100644
 2.34.1
 
 
-From 6ee1f1f746c2806dd5656a98b755cc9a3bbb1fa3 Mon Sep 17 00:00:00 2001
+From 2e0254f22ea84e16a19ca45fa000620ae1605659 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
 Subject: [PATCH 02/25] Passes safetynet out of the box
@@ -6454,10 +6454,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 6 deletions(-)
 
 diff --git a/rw-system.sh b/rw-system.sh
-index c13506d..9821ff1 100644
+index 378d5e8..cf89a05 100644
 --- a/rw-system.sh
 +++ b/rw-system.sh
-@@ -770,8 +770,6 @@ copyprop() {
+@@ -780,8 +780,6 @@ copyprop() {
  }
  if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
      copyprop ro.build.device ro.vendor.build.device
@@ -6466,7 +6466,7 @@ index c13506d..9821ff1 100644
      copyprop ro.build.fingerprint ro.vendor.build.fingerprint
      copyprop ro.build.device ro.vendor.product.device
      copyprop ro.product.system.device ro.vendor.product.device
-@@ -790,10 +788,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
+@@ -800,10 +798,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
      copyprop ro.product.model ro.product.vendor.model
      copyprop ro.build.product ro.vendor.product.model
      copyprop ro.build.product ro.product.vendor.model
@@ -6481,7 +6481,7 @@ index c13506d..9821ff1 100644
 2.34.1
 
 
-From 56b04b885fee061d220ebf56535811a2d29e71a8 Mon Sep 17 00:00:00 2001
+From 3fb0f93b509c391260915d54925507550ef98f4d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
 Subject: [PATCH 03/25] Fix adb not connecting when device first starts
@@ -6494,10 +6494,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  delete mode 100644 files/adbd.rc
 
 diff --git a/base.mk b/base.mk
-index 6f850e8..e370b04 100644
+index beec8b4..ea69649 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -157,9 +157,6 @@ PRODUCT_PACKAGES += \
+@@ -156,9 +156,6 @@ PRODUCT_PACKAGES += \
      lightsctl-aidl \
      uevent
  
@@ -6525,7 +6525,7 @@ index 55b3311..0000000
 2.34.1
 
 
-From 14392da91036b0941091a1ecb803d785bdb9db8d Mon Sep 17 00:00:00 2001
+From f6db5d7006aff5ef6fa06ba66a6bdc4cc27459bc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
 Subject: [PATCH 04/25] add nova launcher and remove unused packages
@@ -6538,10 +6538,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  delete mode 100644 phh.mk
 
 diff --git a/base.mk b/base.mk
-index e370b04..5aebc8f 100644
+index ea69649..25c34b4 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -189,16 +189,6 @@ PRODUCT_COPY_FILES += \
+@@ -188,16 +188,6 @@ PRODUCT_COPY_FILES += \
  PRODUCT_PACKAGES += \
      asus-motor
  
@@ -6558,7 +6558,7 @@ index e370b04..5aebc8f 100644
  PRODUCT_PACKAGES += \
  	android.hardware.biometrics.fingerprint@2.1-service.oppo.compat \
  	android.hardware.biometrics.fingerprint@2.1-service.oplus.compat \
-@@ -230,11 +220,6 @@ PRODUCT_COPY_FILES += \
+@@ -229,11 +219,6 @@ PRODUCT_COPY_FILES += \
  	device/phh/treble/proprietary-files/gome/fs16xx_01s_right.preset:system/phh/gome/fs16xx_01s_right.preset \
  	device/phh/treble/proprietary-files/umidigi/fs16xx_01s_mono.preset:system/phh/umidigi/fs16xx_01s_mono.preset
  
@@ -6570,7 +6570,7 @@ index e370b04..5aebc8f 100644
  PRODUCT_COPY_FILES += \
  	frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration_7_0.xml:system/etc/a2dp_audio_policy_configuration_7_0.xml \
  	frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:system/etc/a2dp_audio_policy_configuration.xml \
-@@ -258,6 +243,10 @@ PRODUCT_PACKAGES += \
+@@ -257,6 +242,10 @@ PRODUCT_PACKAGES += \
  	QualifiedNetworksService \
  	MtkInCallService \
  
@@ -6579,8 +6579,8 @@ index e370b04..5aebc8f 100644
 +	NovaCompanion
 +
  # Two-pane layout in Settings
- PRODUCT_PACKAGES += \
-     androidx.window.extensions
+ $(call inherit-product, $(SRC_TARGET_DIR)/product/window_extensions.mk)
+ PRODUCT_PRODUCT_PROPERTIES += \
 diff --git a/phh.mk b/phh.mk
 deleted file mode 100644
 index 738b96f..0000000
@@ -6594,7 +6594,7 @@ index 738b96f..0000000
 2.34.1
 
 
-From 11832e5f119bcda498f402f60a7aa637ea73d985 Mon Sep 17 00:00:00 2001
+From 9f42c8eef847ed0a49ccbad7077b38fedcd00ba7 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
 Subject: [PATCH 05/25] Add fp3 boot animation
@@ -6633,11 +6633,11 @@ index 0000000..3060485
 +PRODUCT_MANUFACTURER := My Custom
 +
 diff --git a/base.mk b/base.mk
-index 5aebc8f..7ebf010 100644
+index 25c34b4..fea4407 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -252,3 +252,6 @@ PRODUCT_PACKAGES += \
-     androidx.window.extensions
+@@ -252,3 +252,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
+     persist.settings.large_screen_opt.enabled=true
  
  PRODUCT_EXTRA_VNDK_VERSIONS += 28 29
 +
@@ -6647,7 +6647,7 @@ index 5aebc8f..7ebf010 100644
 2.34.1
 
 
-From aec23d6ff1bff0851cb5dadaf3776281d0cdb05f Mon Sep 17 00:00:00 2001
+From 5a811f472d606f89971910276ad3cb5144df188b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:49:11 -0500
 Subject: [PATCH 06/25] Add ro.build.version.real_security_patch
@@ -6658,7 +6658,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/base.mk b/base.mk
-index 7ebf010..379b1d4 100644
+index fea4407..e152a0f 100644
 --- a/base.mk
 +++ b/base.mk
 @@ -33,6 +33,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -6673,7 +6673,7 @@ index 7ebf010..379b1d4 100644
 2.34.1
 
 
-From b48f66bb1dc95776dea03ea22fd2ed6209eaafee Mon Sep 17 00:00:00 2001
+From 9faf944b6f639817eb0a560318cb28d8373abf68 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
 Subject: [PATCH 07/25] Remove restarting surfaceflinger
@@ -6687,7 +6687,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 3 deletions(-)
 
 diff --git a/vndk.rc b/vndk.rc
-index 8e46013..5d21942 100644
+index 6bd3950..3a1c319 100644
 --- a/vndk.rc
 +++ b/vndk.rc
 @@ -64,9 +64,6 @@ on property:persist.sys.phh.backlight.scale=*
@@ -6704,7 +6704,7 @@ index 8e46013..5d21942 100644
 2.34.1
 
 
-From f3e40c69181960a4f6b2bd2af7e39a41a83d7a39 Mon Sep 17 00:00:00 2001
+From 9219772e3b23bfb9e31256ea5058613c3b790ba9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
 Subject: [PATCH 08/25] Remove twrp files
@@ -6721,7 +6721,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  delete mode 100644 twrp/twrp.sh
 
 diff --git a/base.mk b/base.mk
-index 379b1d4..fb3de79 100644
+index e152a0f..c38091d 100644
 --- a/base.mk
 +++ b/base.mk
 @@ -88,12 +88,6 @@ PRODUCT_PACKAGES += \
@@ -19706,7 +19706,7 @@ index cb67b71..0000000
 2.34.1
 
 
-From d7752137ccc874a80e09818cdec5b56d94f9eb21 Mon Sep 17 00:00:00 2001
+From 5fbbfeede8148e85cfb36c0b07ce1ae80a777115 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:47:06 -0500
 Subject: [PATCH 09/25] Remove ota
@@ -19726,10 +19726,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  delete mode 100644 ota/phh-ota.rc
 
 diff --git a/base.mk b/base.mk
-index fb3de79..7cd2323 100644
+index c38091d..de31a1c 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -169,7 +169,6 @@ PRODUCT_PACKAGES += \
+@@ -168,7 +168,6 @@ PRODUCT_PACKAGES += \
  
  PRODUCT_COPY_FILES += \
  	device/phh/treble/phh-securize.sh:system/bin/phh-securize.sh \
@@ -19948,7 +19948,7 @@ index c6c5814..0000000
 -on property:sys.boot_completed=1
 -    exec u:r:phhsu_daemon:s0 root -- /system/bin/phh-ota delete-other-slot
 diff --git a/vndk.rc b/vndk.rc
-index 5d21942..e7b738a 100644
+index 3a1c319..7a8f06b 100644
 --- a/vndk.rc
 +++ b/vndk.rc
 @@ -82,9 +82,6 @@ on property:persist.sys.phh.restart_ril=true
@@ -19965,7 +19965,7 @@ index 5d21942..e7b738a 100644
 2.34.1
 
 
-From 9d4b8d412f242f47f6d59484ea15021c4668bedd Mon Sep 17 00:00:00 2001
+From a5a7645c30f5feb35c47d223f56f54a8f2874d08 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:00:25 -0500
 Subject: [PATCH 10/25] Remove unused remote files, functionality already
@@ -22078,7 +22078,7 @@ index 87f2f96..0000000
 2.34.1
 
 
-From e84635b40844c85c44e675a679d07c8067549237 Mon Sep 17 00:00:00 2001
+From 5cfc2c7a64043512275016bb671425a8996b1b3f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:12:45 -0500
 Subject: [PATCH 11/25] fix adb by removing ctl.restart adbd
@@ -22089,7 +22089,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 44 deletions(-)
 
 diff --git a/rw-system.sh b/rw-system.sh
-index 9821ff1..311c254 100644
+index cf89a05..9ab7c01 100644
 --- a/rw-system.sh
 +++ b/rw-system.sh
 @@ -10,48 +10,6 @@ else
@@ -22141,7 +22141,7 @@ index 9821ff1..311c254 100644
  vndk="$(getprop persist.sys.vndk)"
  [ -z "$vndk" ] && vndk="$(getprop ro.vndk.version |grep -oE '^[0-9]+')"
  
-@@ -804,8 +762,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
+@@ -814,8 +772,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
      resetprop_phh ro.build.type user
      resetprop_phh --delete ro.build.selinux
  
@@ -22154,7 +22154,7 @@ index 9821ff1..311c254 100644
 2.34.1
 
 
-From 42252a23e524fabc706bb5fd78d4d4a9b78e7684 Mon Sep 17 00:00:00 2001
+From d3fbfea175ab5b5c975bbffcf74d4e8cb35870cc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 27 Dec 2022 15:16:35 -0500
 Subject: [PATCH 12/25] Add Wellbeing as priv-app
@@ -22180,7 +22180,7 @@ index 813d66b..96a0a7a 100644
 2.34.1
 
 
-From 254dc4b1844c4265fc257f77945f62300bace707 Mon Sep 17 00:00:00 2001
+From d183b4789093bb5b89bd4cd99703b8bb1940a5ac Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 18:02:33 -0500
 Subject: [PATCH 13/25] Add themepicker to build
@@ -22191,10 +22191,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 4 insertions(+)
 
 diff --git a/base.mk b/base.mk
-index 7cd2323..251f843 100644
+index de31a1c..13b59fd 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -241,6 +241,10 @@ PRODUCT_PACKAGES += \
+@@ -240,6 +240,10 @@ PRODUCT_PACKAGES += \
  	NovaLauncher \
  	NovaCompanion
  
@@ -22203,13 +22203,13 @@ index 7cd2323..251f843 100644
 +	ThemesStub \
 +
  # Two-pane layout in Settings
- PRODUCT_PACKAGES += \
-     androidx.window.extensions
+ $(call inherit-product, $(SRC_TARGET_DIR)/product/window_extensions.mk)
+ PRODUCT_PRODUCT_PROPERTIES += \
 -- 
 2.34.1
 
 
-From ccd0f7ccba2d9a985871edc8ce449831b3601ad5 Mon Sep 17 00:00:00 2001
+From e0ebe813f13c3841a1aa5fd6d25ee6df3b4353a1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 29 Dec 2022 15:32:08 -0500
 Subject: [PATCH 14/25] Remove default browser, calendar and gallery app
@@ -22239,7 +22239,7 @@ index 96a0a7a..dc9e985 100644
 2.34.1
 
 
-From 3408af13c0ea90fd7680813a8b8e9b69756218a7 Mon Sep 17 00:00:00 2001
+From 07a2961fd5fa8caea48a81f59b347e30935e47f6 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 11:01:17 -0500
 Subject: [PATCH 15/25] Enable one handed mode
@@ -22264,7 +22264,7 @@ index b2bcf63..ce18f21 100644
 2.34.1
 
 
-From 662c52f5114a07258542b08d413f8967914a970b Mon Sep 17 00:00:00 2001
+From 504a168dce2bc312263c85105b1c509dc2536560 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 22:43:22 -0500
 Subject: [PATCH 16/25] Add changelist generation on each build
@@ -22277,7 +22277,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  create mode 100755 genCL
 
 diff --git a/base.mk b/base.mk
-index 251f843..d481e83 100644
+index 13b59fd..9f4b78c 100644
 --- a/base.mk
 +++ b/base.mk
 @@ -253,3 +253,6 @@ PRODUCT_EXTRA_VNDK_VERSIONS += 28 29
@@ -22305,7 +22305,7 @@ index 0000000..4e3d648
 2.34.1
 
 
-From 85d4075828854543c4fcf5edb2202bad8c67cfaf Mon Sep 17 00:00:00 2001
+From 7f40257e1e1df5c44e2525ef6b5a1d1c73b33aef Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 15 Mar 2023 15:02:46 -0400
 Subject: [PATCH 17/25] Disable fingerprint cleanup to prevent fingerprint from
@@ -22317,10 +22317,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/rw-system.sh b/rw-system.sh
-index 311c254..e0f42d2 100644
+index 9ab7c01..9a0068c 100644
 --- a/rw-system.sh
 +++ b/rw-system.sh
-@@ -1148,6 +1148,8 @@ fi
+@@ -1142,6 +1142,8 @@ fi
  resetprop_phh ro.config.media_vol_steps 25
  resetprop_phh ro.config.media_vol_default 8
  
@@ -22333,7 +22333,7 @@ index 311c254..e0f42d2 100644
 2.34.1
 
 
-From a98a58c62e35f5b05a858511dacebf0c565fad07 Mon Sep 17 00:00:00 2001
+From 90bda50015878293222ce079dd5223c46d24baf6 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 8 Jul 2023 09:11:02 -0400
 Subject: [PATCH 18/25] Remove unused proprietary dependencies
@@ -22345,10 +22345,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  2 files changed, 40 deletions(-)
 
 diff --git a/base.mk b/base.mk
-index d481e83..ca6ea38 100644
+index 9f4b78c..d7e2e17 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -232,7 +232,6 @@ PRODUCT_PACKAGES += \
+@@ -231,7 +231,6 @@ PRODUCT_PACKAGES += \
      QcRilAm
  
  PRODUCT_PACKAGES += \
@@ -22410,7 +22410,7 @@ index 18788e9..eed1bbc 100644
 2.34.1
 
 
-From 2e965c58a3486fa52cb1e5a42c6ac9fd59c1c543 Mon Sep 17 00:00:00 2001
+From 53bb7e49919f2b634c590f85d05a05d7e649ee94 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 25 Mar 2024 23:10:21 -0400
 Subject: [PATCH 19/25] clocks: Add clocks for customization
@@ -22420,7 +22420,7 @@ Subject: [PATCH 19/25] clocks: Add clocks for customization
  1 file changed, 2 insertions(+)
 
 diff --git a/base.mk b/base.mk
-index ca6ea38..9deda58 100644
+index d7e2e17..d99f7cc 100644
 --- a/base.mk
 +++ b/base.mk
 @@ -255,3 +255,5 @@ $(call inherit-product, vendor/bootanim/bootanim.mk)
@@ -22433,7 +22433,7 @@ index ca6ea38..9deda58 100644
 2.34.1
 
 
-From 568a3a7e52d7a4df1f2c916a515cafea863fda79 Mon Sep 17 00:00:00 2001
+From c7582f2e5b36022c05a9cb1d1387a37bd901cadf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:47:46 -0500
 Subject: [PATCH 20/25] Remove unused prop changes
@@ -22444,10 +22444,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 23 deletions(-)
 
 diff --git a/rw-system.sh b/rw-system.sh
-index e0f42d2..96cea90 100644
+index 9a0068c..19a4768 100644
 --- a/rw-system.sh
 +++ b/rw-system.sh
-@@ -727,29 +727,6 @@ copyprop() {
+@@ -737,29 +737,6 @@ copyprop() {
      fi
  }
  if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
@@ -22481,7 +22481,7 @@ index e0f42d2..96cea90 100644
 2.34.1
 
 
-From e05048e5409a7efc934f4e5fbaa57838e68c2385 Mon Sep 17 00:00:00 2001
+From 491e677108c9395c7bb7473e83faea2b4a45b9bc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 2 Feb 2024 15:53:35 -0500
 Subject: [PATCH 21/25] Revert "Include vndk v28"
@@ -22492,12 +22492,12 @@ This reverts commit bbe9520e9e18e83f0733732d41f245af637028f6.
  1 file changed, 2 deletions(-)
 
 diff --git a/base.mk b/base.mk
-index 9deda58..052d3b4 100644
+index d99f7cc..216aebd 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -248,8 +248,6 @@ PRODUCT_PACKAGES += \
- PRODUCT_PACKAGES += \
-     androidx.window.extensions
+@@ -248,8 +248,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/window_extensions.mk)
+ PRODUCT_PRODUCT_PROPERTIES += \
+     persist.settings.large_screen_opt.enabled=true
  
 -PRODUCT_EXTRA_VNDK_VERSIONS += 28 29
 -
@@ -22508,7 +22508,7 @@ index 9deda58..052d3b4 100644
 2.34.1
 
 
-From 0fa03c0cf394b29f41d4f9f510916a281ef27250 Mon Sep 17 00:00:00 2001
+From f1bdd980e9756e66f5865c681357ba3cd87e8d08 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 13 Feb 2024 10:56:20 -0500
 Subject: [PATCH 22/25] Make generate.sh executable
@@ -22525,7 +22525,7 @@ new mode 100755
 2.34.1
 
 
-From d1a103e101cc9cc2926f36b7c83287355711581f Mon Sep 17 00:00:00 2001
+From bec6ae601f8294a244f428a4af2cff07aca012c9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:40 -0500
 Subject: [PATCH 23/25] Add system props for Nova launcher pro
@@ -22536,10 +22536,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 3 insertions(+)
 
 diff --git a/base.mk b/base.mk
-index 052d3b4..9acbb90 100644
+index 216aebd..f28abd6 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -200,6 +200,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+@@ -199,6 +199,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
  PRODUCT_PRODUCT_PROPERTIES += \
  	ro.setupwizard.mode=OPTIONAL \
  
@@ -22553,7 +22553,7 @@ index 052d3b4..9acbb90 100644
 2.34.1
 
 
-From 29b521cc9d5f5d5c9d4f5373b51f7ae97bf16321 Mon Sep 17 00:00:00 2001
+From 2adec8ad7c26e61cf9e43f0f465e1b1f77bec031 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 17 Feb 2024 15:51:20 -0500
 Subject: [PATCH 24/25] Add relax uses library check
@@ -22563,7 +22563,7 @@ Subject: [PATCH 24/25] Add relax uses library check
  1 file changed, 1 insertion(+)
 
 diff --git a/base.mk b/base.mk
-index 9acbb90..0b58b53 100644
+index f28abd6..eec8d47 100644
 --- a/base.mk
 +++ b/base.mk
 @@ -258,3 +258,4 @@ $(shell /usr/bin/python3.10 /usr/bin/repo forall -c '$(CUR_DIR)/device/phh/trebl
@@ -22575,7 +22575,7 @@ index 9acbb90..0b58b53 100644
 2.34.1
 
 
-From bd4e0721a779f1534187b6b76ac15a5df10a6594 Mon Sep 17 00:00:00 2001
+From b6be9946c776900bb599f38ffe8aa896780c15a3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 23 Feb 2024 21:39:03 -0500
 Subject: [PATCH 25/25] simplify hardware overlay mk
@@ -22585,7 +22585,7 @@ Subject: [PATCH 25/25] simplify hardware overlay mk
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/base.mk b/base.mk
-index 0b58b53..2675ab6 100644
+index eec8d47..f6df01f 100644
 --- a/base.mk
 +++ b/base.mk
 @@ -20,7 +20,7 @@ PRODUCT_COPY_FILES += \

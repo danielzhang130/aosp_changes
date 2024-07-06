@@ -1,4 +1,4 @@
-From 5f602763745dd9b55ba8bf9f45517d8991963032 Mon Sep 17 00:00:00 2001
+From 231e1c339c8ea03438d486b8c813113bc7a730ed Mon Sep 17 00:00:00 2001
 From: danielzhang130 <danielzhang130@gmail.com>
 Date: Sat, 13 Aug 2022 13:32:22 -0400
 Subject: [PATCH 1/5] Add Build and Build.VERSION info to about phone screen
@@ -170,7 +170,7 @@ index 00000000000..36056827841
 2.34.1
 
 
-From 78c06b02c0430b3d19c581003ec3f498d5468dd2 Mon Sep 17 00:00:00 2001
+From 32697230725464395ea5e71f5d10e6e135f06d0f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 20 Dec 2022 18:51:09 -0500
 Subject: [PATCH 2/5] Change about android screen to show real security patch
@@ -182,7 +182,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java b/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java
-index 1df78a80817..946aa7a4bc0 100644
+index dcb5a37ffa0..11f4b6289cb 100644
 --- a/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java
 +++ b/src/com/android/settings/deviceinfo/firmwareversion/SecurityPatchLevelPreferenceController.java
 @@ -20,17 +20,18 @@ import android.content.Context;
@@ -203,7 +203,7 @@ index 1df78a80817..946aa7a4bc0 100644
      private static final String TAG = "SecurityPatchCtrl";
 +    private static final String SECURITY_PATCH = "ro.build.version.real_security_patch";
      private static final Uri INTENT_URI_DATA = Uri.parse(
-             "https://source.android.com/security/bulletin/");
+             "https://source.android.com/docs/security/bulletin/");
  
 @@ -40,7 +41,7 @@ public class SecurityPatchLevelPreferenceController extends BasePreferenceContro
      public SecurityPatchLevelPreferenceController(Context context, String key) {
@@ -218,7 +218,7 @@ index 1df78a80817..946aa7a4bc0 100644
 2.34.1
 
 
-From 574ab54e4f3543c8f2861a08dd4c4591a7e93e87 Mon Sep 17 00:00:00 2001
+From b339722d0b9c003b54f1e2ffd0847bb882251747 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 10:58:52 -0500
 Subject: [PATCH 3/5] Add settings animations files
@@ -2179,7 +2179,7 @@ index e69de29bb2d..0fddbf8ea72 100644
 2.34.1
 
 
-From d3161863212ed82420d9e57b5a838229673fe244 Mon Sep 17 00:00:00 2001
+From ddc1665aeff94983b23c3fc4d531655630c1a8b4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 21:49:17 -0500
 Subject: [PATCH 4/5] Add changelist to about phone screen
@@ -2338,7 +2338,7 @@ index 36056827841..c108909b410 100644
 2.34.1
 
 
-From f125e85a2d66ad1edff4225345c62d76274acf63 Mon Sep 17 00:00:00 2001
+From 5448a1865080dbf302755d6414021997569e6223 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 30 Dec 2023 15:52:29 -0500
 Subject: [PATCH 5/5] Add memory usage quick tile
@@ -2353,10 +2353,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  4 files changed, 68 insertions(+)
 
 diff --git a/AndroidManifest.xml b/AndroidManifest.xml
-index 2d3b3fd2575..0439b64213b 100644
+index aed51f3e0eb..7fc70c7fd7e 100644
 --- a/AndroidManifest.xml
 +++ b/AndroidManifest.xml
-@@ -4393,6 +4393,17 @@
+@@ -4523,6 +4523,17 @@
              <meta-data android:name="android.service.quicksettings.TOGGLEABLE_TILE"
                         android:value="true"/>
          </service>
@@ -2375,10 +2375,10 @@ index 2d3b3fd2575..0439b64213b 100644
              android:name=".development.qstile.DevelopmentTiles$GPUProfiling"
              android:label="@string/track_frame_time"
 diff --git a/res/values/strings.xml b/res/values/strings.xml
-index 8afb851ad03..2aebb98ca81 100644
+index 0622daa859c..503c88f224e 100644
 --- a/res/values/strings.xml
 +++ b/res/values/strings.xml
-@@ -9621,6 +9621,7 @@
+@@ -9806,6 +9806,7 @@
  
      <!-- Summary of memory screen [CHAR LIMIT=NONE] -->
      <string name="memory_summary">Avg <xliff:g id="used_memory" example="1.7GB">%1$s</xliff:g> of <xliff:g id="total_memory" example="2GB">%2$s</xliff:g> memory used</string>
@@ -2387,7 +2387,7 @@ index 8afb851ad03..2aebb98ca81 100644
      <!-- Summary of User settings [CHAR LIMIT=NONE] -->
      <string name="users_summary">Signed in as <xliff:g id="user_name" example="Jason">%1$s</xliff:g></string>
 diff --git a/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java b/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
-index b52409db192..1e69dc452e0 100644
+index cfa4a589cd0..54e81f8b486 100644
 --- a/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
 +++ b/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
 @@ -56,6 +56,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -2398,7 +2398,7 @@ index b52409db192..1e69dc452e0 100644
  import com.android.settings.core.SubSettingLauncher;
  import com.android.settings.dashboard.RestrictedDashboardFragment;
  import com.android.settings.development.autofill.AutofillCategoryController;
-@@ -305,6 +306,12 @@ public class DevelopmentSettingsDashboardFragment extends RestrictedDashboardFra
+@@ -312,6 +313,12 @@ public class DevelopmentSettingsDashboardFragment extends RestrictedDashboardFra
                      .setDestination(WirelessDebuggingFragment.class.getName())
                      .setSourceMetricsCategory(SettingsEnums.SETTINGS_ADB_WIRELESS)
                      .launch();

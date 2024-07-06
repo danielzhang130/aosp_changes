@@ -1,4 +1,4 @@
-From aa7943016e5ede0440bd9d846bea5128a4bc06e1 Mon Sep 17 00:00:00 2001
+From d659f1dfd86683f2889b9f58b76c41f2174b8e71 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:57:31 -0500
 Subject: [PATCH 1/4] relax sepolicy
@@ -10,7 +10,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 3 deletions(-)
 
 diff --git a/Android.mk b/Android.mk
-index 63b74aa..f2f5185 100644
+index 37acb75..78ff9e1 100644
 --- a/Android.mk
 +++ b/Android.mk
 @@ -68,9 +68,6 @@ HAS_PRODUCT_SEPOLICY_DIR := true
@@ -27,7 +27,7 @@ index 63b74aa..f2f5185 100644
 2.34.1
 
 
-From 5fa30ab96b93dae648b2e612244a46bc8f88c443 Mon Sep 17 00:00:00 2001
+From 9d2ef83e0c3a1dda72a00047260e3a246bb37c54 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:36:52 -0500
 Subject: [PATCH 2/4] Fix sdcard sepolicy
@@ -238,19 +238,21 @@ index 859c2ec..69b5dbe 100644
  # if device supports VAB.
  get_prop(gmscore_app, virtual_ab_prop)
 diff --git a/private/mediaprovider_app.te b/private/mediaprovider_app.te
-index 7ad8feb..6d0c00b 100644
+index 064d0d9..f027b78 100644
 --- a/private/mediaprovider_app.te
 +++ b/private/mediaprovider_app.te
-@@ -73,3 +73,9 @@ dontaudit mediaprovider_app sysfs_vendor_sched:file w_file_perms;
- # bpfprog access for FUSE BPF
+@@ -74,5 +74,11 @@ dontaudit mediaprovider_app sysfs_vendor_sched:file w_file_perms;
  allow mediaprovider_app fs_bpf:file read;
  allow mediaprovider_app bpfloader:bpf { map_read map_write prog_run };
-+
+ 
 +allow mediaprovider_app unlabeled:file { open create read getattr execute write setattr append unlink link rename };
 +allow mediaprovider_app unlabeled:file create;
 +allow mediaprovider_app unlabeled:dir { open create read getattr search write setattr rename add_name remove_name reparent rmdir };
 +allow mediaprovider_app unlabeled:dir create;
 +allow mediaprovider_app unlabeled:filesystem { getattr mount unmount };
++
+ # boot animations on oem are stored with specific label
+ allow mediaprovider_app bootanim_oem_file:file r_file_perms;
 diff --git a/private/mls b/private/mls
 index 955c27b..9a7e3f5 100644
 --- a/private/mls
@@ -317,10 +319,10 @@ index 6e95fd1..5edef5a 100644
 +allow untrusted_app_32 unlabeled:filesystem getattr;
 +
 diff --git a/public/file.te b/public/file.te
-index 01143f7..bd17f3b 100644
+index 209fdb1..81eec07 100644
 --- a/public/file.te
 +++ b/public/file.te
-@@ -643,3 +643,4 @@ type audiohal_data_file, file_type, data_file_type, core_data_file_type;
+@@ -649,3 +649,4 @@ type audiohal_data_file, file_type, data_file_type, core_data_file_type;
  # Should be:
  #   type apk_data_file, file_type, data_file_type;
  neverallow fs_type file_type:filesystem associate;
@@ -339,10 +341,10 @@ index 7e981bf..c34e364 100644
  ### neverallow rules
  ###
 diff --git a/public/mediaserver.te b/public/mediaserver.te
-index 367012c..e4a5924 100644
+index 9b86c86..39c7685 100644
 --- a/public/mediaserver.te
 +++ b/public/mediaserver.te
-@@ -143,6 +143,8 @@ allow mediaserver vendor_overlay_file:file { read getattr map };
+@@ -146,6 +146,8 @@ allow mediaserver vendor_overlay_file:file { read getattr map };
  
  hal_client_domain(mediaserver, hal_allocator)
  
@@ -352,10 +354,10 @@ index 367012c..e4a5924 100644
  ### neverallow rules
  ###
 diff --git a/public/vold.te b/public/vold.te
-index c0fdf50..e545320 100644
+index ad6ef83..8e3b46f 100644
 --- a/public/vold.te
 +++ b/public/vold.te
-@@ -351,3 +351,5 @@ neverallow vold fsck_exec:file execute_no_trans;
+@@ -352,3 +352,5 @@ neverallow vold fsck_exec:file execute_no_trans;
  neverallow { domain -init } vold:process { transition dyntransition };
  neverallow vold *:process ptrace;
  neverallow vold *:rawip_socket *;
@@ -365,7 +367,7 @@ index c0fdf50..e545320 100644
 2.34.1
 
 
-From c908462aaf00449d6133ad172760ac7cc50a67ca Mon Sep 17 00:00:00 2001
+From e720b2b08c200b6125e7679a4a41de074e21c734 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 12 Feb 2024 16:14:29 -0500
 Subject: [PATCH 3/4] Update run-as sepolicy
@@ -409,7 +411,7 @@ index 356a019..66dcf4a 100644
 2.34.1
 
 
-From a9d1f26f335e59810877c76cca5718a22d8cb2bc Mon Sep 17 00:00:00 2001
+From 97cfe7730487afde48a4d0467d86c7e8c47cb621 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 May 2024 11:42:17 -0400
 Subject: [PATCH 4/4] Revert "Revert "Remove 28.0 compat support""

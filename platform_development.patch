@@ -1,4 +1,4 @@
-From 06929a6d619909d3729451ab29433cc794b14e5d Mon Sep 17 00:00:00 2001
+From f98fee19b1b47422f3577df2c9f7baaef0550572 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 3 Nov 2023 20:43:57 -0400
 Subject: [PATCH] Faster dump generation
@@ -10,11 +10,11 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/vndk/tools/header-checker/utils/create_reference_dumps.py b/vndk/tools/header-checker/utils/create_reference_dumps.py
-index ec7dc7e..6dc4887 100755
+index 6cba65a..8b2f321 100755
 --- a/vndk/tools/header-checker/utils/create_reference_dumps.py
 +++ b/vndk/tools/header-checker/utils/create_reference_dumps.py
 @@ -10,7 +10,7 @@ from utils import (
-     make_libraries, make_tree, read_lsdump_paths)
+     make_libraries, make_targets, read_lsdump_paths)
  
  
 -PRODUCTS_DEFAULT = ['aosp_arm', 'aosp_arm64', 'aosp_x86', 'aosp_x86_64']

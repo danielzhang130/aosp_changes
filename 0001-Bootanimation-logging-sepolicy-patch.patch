@@ -1,4 +1,4 @@
-From aa65c332f1f9f74e0f7251bf225e700f041c6ba2 Mon Sep 17 00:00:00 2001
+From 94a6f2e00bc140c3313d905b6e9fe6e100d5e8e5 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 22 Mar 2024 20:49:32 -0400
 Subject: [PATCH] Bootanimation logging sepolicy patch
@@ -6,8 +6,8 @@ Subject: [PATCH] Bootanimation logging sepolicy patch
 Change-Id: I158b318aaf5c6383bca037a2ea5bb004500971df
 ---
  prebuilts/api/34.0/private/bootanim.te | 7 ++++++-
- private/bootanim.te                    | 2 ++
- 2 files changed, 8 insertions(+), 1 deletion(-)
+ private/bootanim.te                    | 5 +++++
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
 diff --git a/prebuilts/api/34.0/private/bootanim.te b/prebuilts/api/34.0/private/bootanim.te
 index f4fb0bc..31876df 100644
@@ -26,15 +26,18 @@ index f4fb0bc..31876df 100644
 +allow bootanim shell_exec:file { read open execute};
 +permissive bootanim;
 diff --git a/private/bootanim.te b/private/bootanim.te
-index f63a230..31876df 100644
+index f63a230..b8bcb28 100644
 --- a/private/bootanim.te
 +++ b/private/bootanim.te
-@@ -21,3 +21,5 @@ r_dir_file(bootanim, bootanim_data_file)
+@@ -21,3 +21,8 @@ r_dir_file(bootanim, bootanim_data_file)
  
  # Allow accessing vendor apex for EGL/GLES
  allow bootanim vendor_apex_metadata_file:dir r_dir_perms;
-+allow bootanim shell_exec:file { read open execute};
-+permissive bootanim;
++allow bootanim shell_exec:file { read open execute execute_no_trans getattr };
++allow bootanim kmsg_device:chr_file { getattr open read };
++allow bootanim kernel:system syslog_read;
++allow bootanim toolbox_exec:file { execute execute_no_trans getattr open read };
++
 -- 
 2.34.1
 

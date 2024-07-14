@@ -1,4 +1,4 @@
-From 666f3e0a34c497b4561b9f7a42995da73819c27f Mon Sep 17 00:00:00 2001
+From b10d4254462605ab65f061473ffc710360dbc575 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 22 Mar 2024 20:51:59 -0400
 Subject: [PATCH] Add logging screen to boot animation
@@ -6,14 +6,14 @@ Subject: [PATCH] Add logging screen to boot animation
 Change-Id: I6c409060399d2938b45c29a16a14956e8adf5ee7
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- cmds/bootanimation/BootAnimation.cpp     | 148 +++++++++++++++++------
+ cmds/bootanimation/BootAnimation.cpp     | 146 +++++++++++++++++------
  cmds/bootanimation/BootAnimation.h       |   2 +-
  cmds/bootanimation/bootanim.rc           |   7 +-
  core/res/assets/images/progress_font.png | Bin 17515 -> 13973 bytes
- 4 files changed, 119 insertions(+), 38 deletions(-)
+ 4 files changed, 118 insertions(+), 37 deletions(-)
 
 diff --git a/cmds/bootanimation/BootAnimation.cpp b/cmds/bootanimation/BootAnimation.cpp
-index ba14cc03f..f114849c6 100644
+index 56dfa8af3..035739f58 100644
 --- a/cmds/bootanimation/BootAnimation.cpp
 +++ b/cmds/bootanimation/BootAnimation.cpp
 @@ -36,6 +36,7 @@
@@ -145,15 +145,25 @@ index ba14cc03f..f114849c6 100644
 -        glScissor(updateRect.left, mHeight - updateRect.bottom, updateRect.width(),
 -                updateRect.height());
  
--        nsecs_t now = systemTime();
+         nsecs_t now = systemTime();
 -        double time = now - startTime;
 -        float t = 4.0f * float(time / us2ns(16667)) / mAndroid[1].w;
 -        GLint offset = (1 - (t - floorf(t))) * mAndroid[1].w;
 -        GLint x = xc - offset;
--
+ 
 -        glDisable(GL_SCISSOR_TEST);
 +        glClearColor(0,0,0,1);
          glClear(GL_COLOR_BUFFER_BIT);
+-
+-        glEnable(GL_SCISSOR_TEST);
+-        glDisable(GL_BLEND);
+-        glBindTexture(GL_TEXTURE_2D, mAndroid[1].name);
+-        drawTexturedQuad(x,                 yc, mAndroid[1].w, mAndroid[1].h);
+-        drawTexturedQuad(x + mAndroid[1].w, yc, mAndroid[1].w, mAndroid[1].h);
+-
+-        glEnable(GL_BLEND);
+-        glBindTexture(GL_TEXTURE_2D, mAndroid[0].name);
+-        drawTexturedQuad(xc, yc, mAndroid[0].w, mAndroid[0].h);
 +        auto messages = dmesg();
 +        int y_text = mInitHeight - text_font.char_height;
 +        if (messages.size() > 0) {
@@ -165,17 +175,6 @@ index ba14cc03f..f114849c6 100644
 +        } else {
 +            drawText("nothing read", text_font, false, &x_text, &y_text);
 +        }
- 
--        glEnable(GL_SCISSOR_TEST);
--        glDisable(GL_BLEND);
--        glBindTexture(GL_TEXTURE_2D, mAndroid[1].name);
--        drawTexturedQuad(x,                 yc, mAndroid[1].w, mAndroid[1].h);
--        drawTexturedQuad(x + mAndroid[1].w, yc, mAndroid[1].w, mAndroid[1].h);
--
--        glEnable(GL_BLEND);
--        glBindTexture(GL_TEXTURE_2D, mAndroid[0].name);
--        drawTexturedQuad(xc, yc, mAndroid[0].w, mAndroid[0].h);
-+        nsecs_t now = systemTime();
  
          EGLBoolean res = eglSwapBuffers(mDisplay, mSurface);
          if (res == EGL_FALSE)
@@ -190,7 +189,7 @@ index ba14cc03f..f114849c6 100644
  
 -        checkExit();
 +        if (e) {
-+            if (++c == 30) {
++            if (++c == 90) {
 +                requestExit();
 +            }
 +        } else {

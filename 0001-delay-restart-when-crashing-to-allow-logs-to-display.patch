@@ -1,0 +1,25 @@
+From 2c517925f5f23515e140a909181ea31405f8b436 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sun, 14 Jul 2024 17:23:18 -0400
+Subject: [PATCH] delay restart when crashing to allow logs to display
+
+Change-Id: Ib81faab8286d09b42566864bde6251c22059b618
+---
+ init/service.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/init/service.cpp b/init/service.cpp
+index 4dfaf31..15d659f 100644
+--- a/init/service.cpp
++++ b/init/service.cpp
+@@ -287,6 +287,7 @@ void Service::Reap(const siginfo_t& siginfo) {
+     if ((siginfo.si_code != CLD_EXITED || siginfo.si_status != 0) && on_failure_reboot_target_) {
+         LOG(ERROR) << "Service " << name_
+                    << " has 'reboot_on_failure' option and failed, shutting down system.";
++        std::this_thread::sleep_for(5s);
+         trigger_shutdown(*on_failure_reboot_target_);
+     }
+ 
+-- 
+2.34.1
+

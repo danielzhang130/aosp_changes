@@ -1,15 +1,28 @@
-From 2c517925f5f23515e140a909181ea31405f8b436 Mon Sep 17 00:00:00 2001
+From 9b14099ac18080d20baa370e5197c08f360192ce Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 14 Jul 2024 17:23:18 -0400
 Subject: [PATCH] delay restart when crashing to allow logs to display
 
 Change-Id: Ib81faab8286d09b42566864bde6251c22059b618
 ---
+ init/reboot.cpp  | 1 +
  init/service.cpp | 1 +
- 1 file changed, 1 insertion(+)
+ 2 files changed, 2 insertions(+)
 
+diff --git a/init/reboot.cpp b/init/reboot.cpp
+index 1a26c4d3c..478577323 100644
+--- a/init/reboot.cpp
++++ b/init/reboot.cpp
+@@ -1031,6 +1031,7 @@ void HandlePowerctlMessage(const std::string& command) {
+     bool run_fsck = false;
+     bool command_invalid = false;
+     bool userspace_reboot = false;
++    std::this_thread::sleep_for(5s);
+ 
+     if (cmd_params[0] == "shutdown") {
+         cmd = ANDROID_RB_POWEROFF;
 diff --git a/init/service.cpp b/init/service.cpp
-index 4dfaf31..15d659f 100644
+index 4dfaf3137..15d659fdc 100644
 --- a/init/service.cpp
 +++ b/init/service.cpp
 @@ -287,6 +287,7 @@ void Service::Reap(const siginfo_t& siginfo) {

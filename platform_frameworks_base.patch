@@ -1,7 +1,7 @@
-From 4ae4e48ae7cebcaf10fc641ff920cd5e39dc4f32 Mon Sep 17 00:00:00 2001
+From 332d7afda51bd57f7253efc98a289907f1b7ca6a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/17] pass safetynet and gpay
+Subject: [PATCH 01/18] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -172,10 +172,10 @@ index e6a63b9c4..6a80c14c9 100644
 2.34.1
 
 
-From 10e5a9497cd40979f402b0959b94a7f5d10b9ed7 Mon Sep 17 00:00:00 2001
+From 0dfc4ab006117368ec1a1fafc9560f04fadcfb7f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/17] Set auto brightness on by default
+Subject: [PATCH 02/18] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index 17d9f1b87..03ca164ad 100644
 2.34.1
 
 
-From 94750f0027a10580e92fcda011a9339d6e27c987 Mon Sep 17 00:00:00 2001
+From 828fe3e329d760487b6a8c96bf42addfb8d804fb Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 03/17] Add support for left side volume dialog
+Subject: [PATCH 03/18] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -853,10 +853,10 @@ index 404563087..edae62367 100644
 2.34.1
 
 
-From 74f17b2f1a977e50269140a1c7df2c6f4210d9cb Mon Sep 17 00:00:00 2001
+From f652c3ba7f710af9597709b3a1023e7d4c367831 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 04/17] Remove max column limit on quick tiles under
+Subject: [PATCH 04/18] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -881,10 +881,10 @@ index 9d4eba5aa..a3606b846 100644
 2.34.1
 
 
-From 87200e30c8a3997eef1374db4ec791e505091bb1 Mon Sep 17 00:00:00 2001
+From 5ddc24b7792545af9b6ee4a085fe42bd87f54d31 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 05/17] Update permission history cutoff days
+Subject: [PATCH 05/18] Update permission history cutoff days
 
 Change-Id: I0c61451d766a9870b543c73a661abc39c5eb6bf3
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -920,10 +920,10 @@ index b1a12f733..da48f8847 100644
 2.34.1
 
 
-From 75ff3fa57de73ddf1439ae7f4adbfc3f896d8a6a Mon Sep 17 00:00:00 2001
+From e0e9db50a009b363340d89eabfca59f65360f46f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 06/17] Add launcher icon for android 10 easter egg
+Subject: [PATCH 06/18] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -947,10 +947,10 @@ index d1db23796..f6b4877b8 100644
 2.34.1
 
 
-From f26bf013a073e56a6c4da6a344c869f2a94ee273 Mon Sep 17 00:00:00 2001
+From c46fe6ce2bf7d66d2b43ffcdc92d5a0e32787ef9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 07/17] Use system default vibration for fb messenger app
+Subject: [PATCH 07/18] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -976,10 +976,10 @@ index ab5395e81..966c971d4 100644
 2.34.1
 
 
-From f455f4626795e6b61c156f596a72ed8967986961 Mon Sep 17 00:00:00 2001
+From c265b68e2be1a296b20bcd2d7a881434a8e541cf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 08/17] Fix safetynet/play integrity
+Subject: [PATCH 08/18] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1009,10 +1009,10 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From 1b0730c1c28151d6c5b4215bcf2457f4eb77cae9 Mon Sep 17 00:00:00 2001
+From 2e34aad9b3fc29935861b88c0caedb62ecf039cd Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 09/17] Get free photo storage for google pixel
+Subject: [PATCH 09/18] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1069,10 +1069,10 @@ index 6a50e74ca..5051499a2 100644
 2.34.1
 
 
-From 6cba69b7d29bf93fa94bb84fde030891a6ad413e Mon Sep 17 00:00:00 2001
+From 6cbd68da92dbb7f132808f2b5bc6fbbb453dccc8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 10/17] Add ability to change fingerprint from persist prop
+Subject: [PATCH 10/18] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1111,10 +1111,10 @@ index 84d767694..3a928f54b 100644
 2.34.1
 
 
-From 7b4d1529bdd5af4884bfffd5a4b5e7bbbed0d0d7 Mon Sep 17 00:00:00 2001
+From f8091591eb993bf67aaa4d19157db47d99212f4b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 11/17] Update default spoof fingerprint
+Subject: [PATCH 11/18] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1154,10 +1154,10 @@ index 3a928f54b..ee174dfb5 100644
 2.34.1
 
 
-From 3982308c74c36aaad6848d704050a89f13e04e53 Mon Sep 17 00:00:00 2001
+From 9d55802e33f94a70c99634ce7386824fd3df8a35 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
-Subject: [PATCH 12/17] Change quick affordance click from long to short click
+Subject: [PATCH 12/18] Change quick affordance click from long to short click
 
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1182,10 +1182,10 @@ index 8eb1a5008..64f5fe007 100644
 2.34.1
 
 
-From 15e438e80e141573bcab24b53a4e2f3e66352915 Mon Sep 17 00:00:00 2001
+From 7d9bb187216430cbef062150b83055d52f72b77e Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Sat, 16 Oct 2021 05:27:57 -0700
-Subject: [PATCH 13/17] Add support for app signature spoofing
+Subject: [PATCH 13/18] Add support for app signature spoofing
 
 This is needed by microG GmsCore to pretend to be the official Google
 Play Services package, because client apps check the package signature
@@ -1450,10 +1450,10 @@ index 1c70af0a5..353bcf571 100644
 2.34.1
 
 
-From 50ae11cd10f78cde09fefe38b3301ccc5f0c570c Mon Sep 17 00:00:00 2001
+From b213e503e871864040acd13690834ae0ecfbdf1a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
-Subject: [PATCH 14/17] Output certificate in pm dump
+Subject: [PATCH 14/18] Output certificate in pm dump
 
 Change-Id: I6c54ae43fecce81972b9b5f1239bb3ff8308e540
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1480,10 +1480,10 @@ index fe65010b7..7dea64da3 100644
 2.34.1
 
 
-From 56ed5609ae51ea3adf9a6e63c34fe98b4fc0177c Mon Sep 17 00:00:00 2001
+From 334c254b12385cbaf6af8389f04111be3f092729 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:00 -0500
-Subject: [PATCH 15/17] Add permission for Nova launcher pro
+Subject: [PATCH 15/18] Add permission for Nova launcher pro
 
 Change-Id: I79670eb2b11018568ee7b115d92cf2482e56d717
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1536,10 +1536,10 @@ index baa779cf3..9b09ca6b8 100644
 2.34.1
 
 
-From 26bd143b46f0fe8f04475c2ae84e96b62da715e5 Mon Sep 17 00:00:00 2001
+From 4970c6834d9260ca665d3b5eca86b0f5c2d19b7f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 17 Mar 2024 14:08:02 -0400
-Subject: [PATCH 16/17] Revert "Include vendor.samsung.hardware.radio-V2.2-java
+Subject: [PATCH 16/18] Revert "Include vendor.samsung.hardware.radio-V2.2-java
  HIDL in base libs, will be used by f/o/telephony"
 
 This reverts commit 6c6ff345d6d38d1ca2ddd1e417438cd8fb4553a8.
@@ -1563,10 +1563,10 @@ index 31ef1907c..3539553a9 100644
 2.34.1
 
 
-From c34812c696c7fff54b81de1a9c3f19e558aa5efb Mon Sep 17 00:00:00 2001
+From 693d01bea7ba3781ee298dbd740473e4005a3107 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 17 Mar 2024 14:08:15 -0400
-Subject: [PATCH 17/17] Revert "Include
+Subject: [PATCH 17/18] Revert "Include
  vendor.samsung.hardware.radio.network-V1-java in base libs, will be used by
  f/o/telephony"
 
@@ -1587,6 +1587,78 @@ index 3539553a9..8d7ab9835 100644
          "android.hardware.radio.sim-V3-java",
          "android.hardware.radio.voice-V3-java",
          "android.hardware.thermal-V1.0-java-constants",
+-- 
+2.34.1
+
+
+From 4c8fd5b845b7b3112199c8a8752e6f6ba1c011c8 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sat, 31 Aug 2024 16:52:01 -0400
+Subject: [PATCH 18/18] init setting values in NotificationAttentionHelper
+
+- fix: settings was incorrect because not initialized
+- same approach is already used in NotificationManagerService
+
+Test: manual, LED would not flash when settings is turned on
+
+Change-Id: Ic972c5010fa6e5cdff35ff4571172f395d1db8c7
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../notification/NotificationAttentionHelper.java   | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/services/core/java/com/android/server/notification/NotificationAttentionHelper.java b/services/core/java/com/android/server/notification/NotificationAttentionHelper.java
+index 097daf2e5..10fd6a939 100644
+--- a/services/core/java/com/android/server/notification/NotificationAttentionHelper.java
++++ b/services/core/java/com/android/server/notification/NotificationAttentionHelper.java
+@@ -301,6 +301,7 @@ public final class NotificationAttentionHelper {
+                     SettingsObserver.NOTIFICATION_COOLDOWN_VIBRATE_UNLOCKED_URI, false,
+                     mSettingsObserver, UserHandle.USER_ALL);
+         }
++        mSettingsObserver.update(null);
+     }
+ 
+     private void loadUserSettings() {
+@@ -1515,7 +1516,11 @@ public final class NotificationAttentionHelper {
+ 
+         @Override
+         public void onChange(boolean selfChange, Uri uri) {
+-            if (NOTIFICATION_LIGHT_PULSE_URI.equals(uri)) {
++            update(uri);
++        }
++
++        void update(Uri uri) {
++            if (uri == null || NOTIFICATION_LIGHT_PULSE_URI.equals(uri)) {
+                 boolean pulseEnabled = Settings.System.getIntForUser(
+                         mContext.getContentResolver(),
+                         Settings.System.NOTIFICATION_LIGHT_PULSE, 0,
+@@ -1527,7 +1532,7 @@ public final class NotificationAttentionHelper {
+                 }
+             }
+             if (Flags.politeNotifications()) {
+-                if (NOTIFICATION_COOLDOWN_ENABLED_URI.equals(uri)) {
++                if (uri == null || NOTIFICATION_COOLDOWN_ENABLED_URI.equals(uri)) {
+                     mNotificationCooldownEnabled = Settings.System.getIntForUser(
+                             mContext.getContentResolver(),
+                             Settings.System.NOTIFICATION_COOLDOWN_ENABLED,
+@@ -1545,7 +1550,7 @@ public final class NotificationAttentionHelper {
+                         mNotificationCooldownForWorkEnabled = false;
+                     }
+                 }
+-                if (NOTIFICATION_COOLDOWN_ALL_URI.equals(uri)) {
++                if (uri == null || NOTIFICATION_COOLDOWN_ALL_URI.equals(uri)) {
+                     mNotificationCooldownApplyToAll = Settings.System.getIntForUser(
+                             mContext.getContentResolver(),
+                             Settings.System.NOTIFICATION_COOLDOWN_ALL,
+@@ -1554,7 +1559,7 @@ public final class NotificationAttentionHelper {
+                     mStrategy.setApplyCooldownPerPackage(mNotificationCooldownApplyToAll);
+                 }
+                 if (Flags.vibrateWhileUnlocked()) {
+-                    if (NOTIFICATION_COOLDOWN_VIBRATE_UNLOCKED_URI.equals(uri)) {
++                    if (uri == null || NOTIFICATION_COOLDOWN_VIBRATE_UNLOCKED_URI.equals(uri)) {
+                         mNotificationCooldownVibrateUnlocked = Settings.System.getIntForUser(
+                             mContext.getContentResolver(),
+                             Settings.System.NOTIFICATION_COOLDOWN_VIBRATE_UNLOCKED,
 -- 
 2.34.1
 

@@ -2290,7 +2290,7 @@ index 3605682..c108909 100644
 2.34.1
 
 
-From de0b675a81c78151ca2b3f46a905fa9e7b6bc037 Mon Sep 17 00:00:00 2001
+From 2faa6e3321d4ef9647bcd4c0e545ec830e89fe55 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 30 Dec 2023 15:52:29 -0500
 Subject: [PATCH 4/4] Add memory cpu usage quick tile
@@ -2301,8 +2301,8 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  AndroidManifest.xml                           |  11 ++
  res/values/strings.xml                        |   2 +
  .../DevelopmentSettingsDashboardFragment.java |   7 +
- .../development/qstile/DevelopmentTiles.java  | 161 ++++++++++++++++++
- 4 files changed, 181 insertions(+)
+ .../development/qstile/DevelopmentTiles.java  | 159 ++++++++++++++++++
+ 4 files changed, 179 insertions(+)
 
 diff --git a/AndroidManifest.xml b/AndroidManifest.xml
 index aed51f3..7fc70c7 100644
@@ -2365,7 +2365,7 @@ index cfa4a58..54e81f8 100644
          // Add other qstiles here
      }
 diff --git a/src/com/android/settings/development/qstile/DevelopmentTiles.java b/src/com/android/settings/development/qstile/DevelopmentTiles.java
-index cf0d4d1..3ae5971 100644
+index cf0d4d1..f98150d 100644
 --- a/src/com/android/settings/development/qstile/DevelopmentTiles.java
 +++ b/src/com/android/settings/development/qstile/DevelopmentTiles.java
 @@ -21,9 +21,11 @@ import static com.android.settings.development.AdbPreferenceController.ADB_SETTI
@@ -2428,7 +2428,7 @@ index cf0d4d1..3ae5971 100644
      }
  
      @Override
-@@ -133,6 +150,150 @@ public abstract class DevelopmentTiles extends TileService {
+@@ -133,6 +150,148 @@ public abstract class DevelopmentTiles extends TileService {
          }
      }
  
@@ -2500,11 +2500,9 @@ index cf0d4d1..3ae5971 100644
 +                        try {
 +                            scanner = new Scanner(proc);
 +                            scanner.next();
-+                            String log = MemoryUsage.this.toString() + " /proc/stat";
 +                            for (int i = 0; i < 5; i++) {
 +                                old[i] = cur[i];
 +                                cur[i] = scanner.nextLong();
-+                                log += " " + cur[i];
 +                            }
 +                        } finally {
 +                            if (scanner != null) {

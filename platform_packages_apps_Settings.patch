@@ -1,4 +1,4 @@
-From d1c41af61c53c56d3b7248c55ea7cfb1b75dd354 Mon Sep 17 00:00:00 2001
+From 702d637d1c573208776fcca0f6eccb62d7e058ba Mon Sep 17 00:00:00 2001
 From: danielzhang130 <danielzhang130@gmail.com>
 Date: Sat, 13 Aug 2022 13:32:22 -0400
 Subject: [PATCH 1/4] Add Build and Build.VERSION info to about phone screen
@@ -170,7 +170,7 @@ index 0000000..3605682
 2.34.1
 
 
-From 2153f92621f304c87846d33730515a7ac32c10df Mon Sep 17 00:00:00 2001
+From 70afd7292ac7304c421000c5b0cb30f36eea96bb Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 10:58:52 -0500
 Subject: [PATCH 2/4] Add settings animations files
@@ -2131,7 +2131,7 @@ index e69de29..0fddbf8 100644
 2.34.1
 
 
-From f6d71ddde1fe4f5ecffb60d9726b472c4c9e92af Mon Sep 17 00:00:00 2001
+From f738fc47e0a28c6333529d14f70b0d92f570d535 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 21:49:17 -0500
 Subject: [PATCH 3/4] Add changelist to about phone screen
@@ -2290,19 +2290,19 @@ index 3605682..c108909 100644
 2.34.1
 
 
-From 1be1dc9eba5d430099fa377d9bdb853baa01a08e Mon Sep 17 00:00:00 2001
+From de0b675a81c78151ca2b3f46a905fa9e7b6bc037 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 30 Dec 2023 15:52:29 -0500
-Subject: [PATCH 4/4] Add memory usage quick tile
+Subject: [PATCH 4/4] Add memory cpu usage quick tile
 
 Change-Id: Icfee54b3434215c8a1e5fa0988fa1745e1db2da8
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- AndroidManifest.xml                           | 11 +++++
- res/values/strings.xml                        |  1 +
- .../DevelopmentSettingsDashboardFragment.java |  7 +++
- .../development/qstile/DevelopmentTiles.java  | 49 +++++++++++++++++++
- 4 files changed, 68 insertions(+)
+ AndroidManifest.xml                           |  11 ++
+ res/values/strings.xml                        |   2 +
+ .../DevelopmentSettingsDashboardFragment.java |   7 +
+ .../development/qstile/DevelopmentTiles.java  | 161 ++++++++++++++++++
+ 4 files changed, 181 insertions(+)
 
 diff --git a/AndroidManifest.xml b/AndroidManifest.xml
 index aed51f3..7fc70c7 100644
@@ -2327,14 +2327,15 @@ index aed51f3..7fc70c7 100644
              android:name=".development.qstile.DevelopmentTiles$GPUProfiling"
              android:label="@string/track_frame_time"
 diff --git a/res/values/strings.xml b/res/values/strings.xml
-index 0622daa..503c88f 100644
+index 0622daa..050b5b6 100644
 --- a/res/values/strings.xml
 +++ b/res/values/strings.xml
-@@ -9806,6 +9806,7 @@
+@@ -9806,6 +9806,8 @@
  
      <!-- Summary of memory screen [CHAR LIMIT=NONE] -->
      <string name="memory_summary">Avg <xliff:g id="used_memory" example="1.7GB">%1$s</xliff:g> of <xliff:g id="total_memory" example="2GB">%2$s</xliff:g> memory used</string>
-+    <string name="memory_summary_short"><xliff:g id="used_memory" example="1.7GB">%1$s</xliff:g>/<xliff:g id="total_memory" example="2GB">%2$s</xliff:g></string>
++    <string name="memory_summary_short">%1$s RAM</string>
++    <string name="cpu_summary">%1$s CPU</string>
  
      <!-- Summary of User settings [CHAR LIMIT=NONE] -->
      <string name="users_summary">Signed in as <xliff:g id="user_name" example="Jason">%1$s</xliff:g></string>
@@ -2364,10 +2365,22 @@ index cfa4a58..54e81f8 100644
          // Add other qstiles here
      }
 diff --git a/src/com/android/settings/development/qstile/DevelopmentTiles.java b/src/com/android/settings/development/qstile/DevelopmentTiles.java
-index cf0d4d1..262ad18 100644
+index cf0d4d1..3ae5971 100644
 --- a/src/com/android/settings/development/qstile/DevelopmentTiles.java
 +++ b/src/com/android/settings/development/qstile/DevelopmentTiles.java
-@@ -37,6 +37,7 @@ import android.provider.Settings;
+@@ -21,9 +21,11 @@ import static com.android.settings.development.AdbPreferenceController.ADB_SETTI
+ 
+ import android.app.KeyguardManager;
+ import android.app.settings.SettingsEnums;
++import android.content.BroadcastReceiver;
+ import android.content.ComponentName;
+ import android.content.Context;
+ import android.content.Intent;
++import android.content.IntentFilter;
+ import android.content.pm.PackageManager;
+ import android.database.ContentObserver;
+ import android.hardware.SensorPrivacyManager;
+@@ -37,6 +39,7 @@ import android.provider.Settings;
  import android.service.quicksettings.Tile;
  import android.service.quicksettings.TileService;
  import android.sysprop.DisplayProperties;
@@ -2375,7 +2388,7 @@ index cf0d4d1..262ad18 100644
  import android.util.Log;
  import android.view.IWindowManager;
  import android.view.ThreadedRenderer;
-@@ -45,11 +46,15 @@ import android.widget.Toast;
+@@ -45,11 +48,21 @@ import android.widget.Toast;
  
  import com.android.internal.app.LocalePicker;
  import com.android.internal.statusbar.IStatusBarService;
@@ -2388,10 +2401,16 @@ index cf0d4d1..262ad18 100644
  import com.android.settingslib.development.DevelopmentSettingsEnabler;
  import com.android.settingslib.development.SystemPropPoker;
 +import com.android.settingslib.utils.ThreadUtils;
++
++import java.io.File;
++import java.io.FileNotFoundException;
++import java.lang.Thread;
++import java.util.concurrent.Future;
++import java.util.Scanner;
  
  public abstract class DevelopmentTiles extends TileService {
  
-@@ -74,6 +79,9 @@ public abstract class DevelopmentTiles extends TileService {
+@@ -74,6 +87,9 @@ public abstract class DevelopmentTiles extends TileService {
  
      protected abstract void setIsEnabled(boolean isEnabled);
  
@@ -2401,7 +2420,7 @@ index cf0d4d1..262ad18 100644
      @Override
      public void onStartListening() {
          super.onStartListening();
-@@ -108,6 +116,7 @@ public abstract class DevelopmentTiles extends TileService {
+@@ -108,6 +124,7 @@ public abstract class DevelopmentTiles extends TileService {
          }
          getQsTile().setState(state);
          getQsTile().updateTile();
@@ -2409,18 +2428,123 @@ index cf0d4d1..262ad18 100644
      }
  
      @Override
-@@ -133,6 +142,46 @@ public abstract class DevelopmentTiles extends TileService {
+@@ -133,6 +150,150 @@ public abstract class DevelopmentTiles extends TileService {
          }
      }
  
 +    public static class MemoryUsage extends DevelopmentTiles {
 +        private ProcStatsData data;
++        private Future<Void> task;
++        private ProcStatsData.MemInfo memInfo;
++        private String usedResult;
++        private String totalResult;
++        private BroadcastReceiver receiver = new BroadcastReceiver() {
++            @Override
++            public void onReceive(Context context, Intent intent) {
++                if (intent.getAction() == Intent.ACTION_SCREEN_OFF) {
++                    stopTask();
++                } else if (intent.getAction() == Intent.ACTION_SCREEN_ON) {
++                    startTask();
++                }
++            }
++        };
++        private long old[] = new long[5];
++        private long cur[] = new long[5];
++        private File proc = new File("/proc/stat");
++        private Scanner scanner;
++        private long totalHz;
++        private long cpuUsage;
++        private Handler handler = new Handler(Looper.getMainLooper());
++        private Tile tile;
++        private Runnable update = new Runnable() {
++            @Override
++            public void run() {
++                if (tile == null) {
++                    return;
++                }
++                tile.setLabel(getString(com.android.settings.R.string.cpu_summary,
++                            Utils.formatPercentage(cpuUsage, totalHz)));
++                tile.setSubtitle(getString(com.android.settings.R.string.memory_summary_short,
++                    Utils.formatPercentage((long) memInfo.realUsedRam, (long) memInfo.realTotalRam)));
++                tile.updateTile();
++
++                handler.postDelayed(update, 1000);
++            }
++        };
 +
 +        @Override
-+        protected void attachBaseContext(Context context) {
-+            super.attachBaseContext(context);
++        public void onCreate() {
 +            data = new ProcStatsData(this, false);
 +            data.setDuration(ProcessStatsBase.sDurations[0]);
++
++            IntentFilter intentFilter = new IntentFilter();
++            intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
++            intentFilter.addAction(Intent.ACTION_SCREEN_ON);
++            registerReceiver(receiver, intentFilter);
++
++            startTask();
++        }
++
++        private void startTask() {
++            if (task != null) {
++                return;
++            }
++            task = ThreadUtils.postOnBackgroundThread(() -> {
++                try {
++                    while (true) {
++                        data.refreshStats(true);
++                        memInfo = data.getMemInfo();
++                        usedResult = Formatter.formatShortFileSize(MemoryUsage.this, (long) memInfo.realUsedRam);
++                        totalResult = Formatter.formatShortFileSize(MemoryUsage.this, (long) memInfo.realTotalRam);
++
++                        try {
++                            scanner = new Scanner(proc);
++                            scanner.next();
++                            String log = MemoryUsage.this.toString() + " /proc/stat";
++                            for (int i = 0; i < 5; i++) {
++                                old[i] = cur[i];
++                                cur[i] = scanner.nextLong();
++                                log += " " + cur[i];
++                            }
++                        } finally {
++                            if (scanner != null) {
++                                scanner.close();
++                                scanner = null;
++                            }
++                        }
++
++                        totalHz = 0;
++                        for (int i = 0; i < 5; i++) {
++                            totalHz += cur[i] - old[i];
++                        }
++                        cpuUsage = totalHz - (cur[3] - old[3]);
++
++                        Thread.sleep(1000);
++                    }
++                } catch (InterruptedException ex) {
++                    Log.i(TAG, MemoryUsage.this.toString() + "background thread interrupted");
++                } catch (FileNotFoundException ex) {
++                    ex.printStackTrace();
++                } finally {
++                    task = null;
++                    if (scanner != null) {
++                        scanner.close();
++                        scanner = null;
++                    }
++                }
++            });
++        }
++
++        private void stopTask() {
++            if (task != null) {
++                task.cancel(true);
++            }
++        }
++
++        @Override
++        public void onDestroy() {
++            stopTask();
++            unregisterReceiver(receiver);
 +        }
 +
 +        @Override
@@ -2434,22 +2558,21 @@ index cf0d4d1..262ad18 100644
 +
 +        @Override
 +        protected void updateTile(Tile tile) {
-+            ThreadUtils.postOnBackgroundThread(() -> {
-+                data.refreshStats(true);
-+                final ProcStatsData.MemInfo memInfo = data.getMemInfo();
-+                final String usedResult = Formatter.formatShortFileSize(this,
-+                        (long) memInfo.realUsedRam);
-+                final String totalResult = Formatter.formatShortFileSize(this,
-+                        (long) memInfo.realTotalRam);
-+                ThreadUtils.postOnMainThread(
-+                        () -> {
-+                            tile.setLabel(Utils.formatPercentage((long) memInfo.realUsedRam, (long) memInfo.realTotalRam));
-+                            tile.setSubtitle(getString(com.android.settings.R.string.memory_summary_short,
-+                                usedResult, totalResult));
-+                            tile.updateTile();
-+                        });
-+            });
++        }
 +
++        @Override
++        public void onStartListening() {
++            super.onStartListening();
++
++            if (memInfo == null) return;
++            if (tile != null) return;
++            tile = getQsTile();
++            update.run();
++        }
++
++        @Override
++        public void onStopListening() {
++            tile = null;
 +        }
 +    }
 +

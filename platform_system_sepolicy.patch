@@ -1,7 +1,7 @@
-From d659f1dfd86683f2889b9f58b76c41f2174b8e71 Mon Sep 17 00:00:00 2001
+From 6f2531094c032127e5084bab70e8d299bf739eaf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:57:31 -0500
-Subject: [PATCH 1/4] relax sepolicy
+Subject: [PATCH 1/5] relax sepolicy
 
 Change-Id: Ic3045fd9b1548fc3c82d221ca9bca05d094d9734
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -27,10 +27,10 @@ index 37acb75..78ff9e1 100644
 2.34.1
 
 
-From 9d2ef83e0c3a1dda72a00047260e3a246bb37c54 Mon Sep 17 00:00:00 2001
+From d0cb9d41a85c9e10a1adc4132a9c5add8f55522b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:36:52 -0500
-Subject: [PATCH 2/4] Fix sdcard sepolicy
+Subject: [PATCH 2/5] Fix sdcard sepolicy
 
 Change-Id: I3c173b9fec21c3f8918af5d5ac07da690e86940d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -367,10 +367,10 @@ index ad6ef83..8e3b46f 100644
 2.34.1
 
 
-From e720b2b08c200b6125e7679a4a41de074e21c734 Mon Sep 17 00:00:00 2001
+From 0b2fff9a9f1df6f6ae7728f1e98412556c517c49 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 12 Feb 2024 16:14:29 -0500
-Subject: [PATCH 3/4] Update run-as sepolicy
+Subject: [PATCH 3/5] Update run-as sepolicy
 
 Change-Id: I7a8334a0fcdea8574e2caf52c8b415f7582babd6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -411,10 +411,10 @@ index 356a019..66dcf4a 100644
 2.34.1
 
 
-From 97cfe7730487afde48a4d0467d86c7e8c47cb621 Mon Sep 17 00:00:00 2001
+From d14ef24330f95376ad2f70a91113b50c6f42fbb0 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 May 2024 11:42:17 -0400
-Subject: [PATCH 4/4] Revert "Revert "Remove 28.0 compat support""
+Subject: [PATCH 4/5] Revert "Revert "Remove 28.0 compat support""
 
 This reverts commit 53176dc08e1e282439f60608fcd809a48a4149b5.
 ---
@@ -34835,6 +34835,34 @@ index 7213f95..0000000
 -    vndk_prop
 -    vrflinger_vsync_service
 -    watchdogd_tmpfs))
+-- 
+2.34.1
+
+
+From cb2ea4b4af5a1ddb604c5f8985255e9341e7ec5d Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sat, 5 Oct 2024 12:57:46 -0400
+Subject: [PATCH 5/5] Add sepolicy for cpu usage
+
+Change-Id: Iaa487e9e6439d79d04edb06ab828e75dc3d1925c
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ private/system_app.te | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/private/system_app.te b/private/system_app.te
+index 338d852..2ba8f7d 100644
+--- a/private/system_app.te
++++ b/private/system_app.te
+@@ -177,6 +177,8 @@ get_prop(system_app, usb_uvc_enabled_prop)
+ # Settings and Launcher apps read pm.archiving.enabled
+ get_prop(system_app, pm_archiving_enabled_prop)
+ 
++allow system_app proc_stat:file { open read getattr };
++
+ ###
+ ### Neverallow rules
+ ###
 -- 
 2.34.1
 

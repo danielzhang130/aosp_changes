@@ -1,4 +1,4 @@
-From 0cd16fd6c5b31ee54c5c8b99e98fe1261936a5c1 Mon Sep 17 00:00:00 2001
+From 08006b4100f859e22c88034eaf3668536cddea65 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 4 Jan 2024 20:51:38 -0500
 Subject: [PATCH] Add mitmproxy certificate
@@ -6,26 +6,13 @@ Subject: [PATCH] Add mitmproxy certificate
 Change-Id: I38fc3273e4a9180b7db271ef713d21be5f8c0f59
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- apex/Android.bp                       |  1 +
  apex/ca-certificates/files/c8750f0d.0 | 81 +++++++++++++++++++++++++++
- 2 files changed, 82 insertions(+)
+ 1 file changed, 81 insertions(+)
  create mode 100644 apex/ca-certificates/files/c8750f0d.0
 
-diff --git a/apex/Android.bp b/apex/Android.bp
-index 970752d4..bb5eab03 100644
---- a/apex/Android.bp
-+++ b/apex/Android.bp
-@@ -183,6 +183,7 @@ apex {
-         "target-cacert-apex-c491639e.0",
-         "target-cacert-apex-c559d742.0",
-         "target-cacert-apex-c7f1359b.0",
-+        "target-cacert-apex-c8750f0d.0",
-         "target-cacert-apex-c90bc37d.0",
-         "target-cacert-apex-cb1c3204.0",
-         "target-cacert-apex-ccc52f49.0",
 diff --git a/apex/ca-certificates/files/c8750f0d.0 b/apex/ca-certificates/files/c8750f0d.0
 new file mode 100644
-index 00000000..88e50880
+index 0000000..88e5088
 --- /dev/null
 +++ b/apex/ca-certificates/files/c8750f0d.0
 @@ -0,0 +1,81 @@

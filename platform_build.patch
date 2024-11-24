@@ -1,7 +1,7 @@
-From cda037ea1a1bae8359bb3973b026b1a5ac6135cc Mon Sep 17 00:00:00 2001
+From 259bcc662cb60c33be00c2142330feb567e81c4e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Feb 2024 17:00:25 -0500
-Subject: [PATCH 1/2] add java keystore and script
+Subject: [PATCH 1/3] add java keystore and script
 
 Change-Id: Iab094a74a58aef7a7da2d389e8688de1d9f1729b
 ---
@@ -80,7 +80,7 @@ HcmV?d00001
 
 diff --git a/target/product/security/to_key_store.sh b/target/product/security/to_key_store.sh
 new file mode 100755
-index 0000000000..580ffc34be
+index 0000000..580ffc3
 --- /dev/null
 +++ b/target/product/security/to_key_store.sh
 @@ -0,0 +1,17 @@
@@ -105,10 +105,10 @@ index 0000000000..580ffc34be
 2.34.1
 
 
-From da8f8c4041654d546c48d077bd1073b9501b1ffd Mon Sep 17 00:00:00 2001
+From 1d47203becadb3a7e9ae86840968c36759a5056a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 May 2024 11:40:48 -0400
-Subject: [PATCH 2/2] Revert "Include vndk v28 sepolicy support"
+Subject: [PATCH 2/3] Revert "Include vndk v28 sepolicy support"
 
 This reverts commit c4b384d4275dc688163a3fd55a0b78384a36bdac.
 ---
@@ -116,10 +116,10 @@ This reverts commit c4b384d4275dc688163a3fd55a0b78384a36bdac.
  1 file changed, 1 deletion(-)
 
 diff --git a/core/config.mk b/core/config.mk
-index 750d5fb4cd..d0d7e6e4cf 100644
+index c275b90..4bb9a42 100644
 --- a/core/config.mk
 +++ b/core/config.mk
-@@ -927,7 +927,6 @@ endif
+@@ -868,7 +868,6 @@ BOARD_SEPOLICY_VERS := $(PLATFORM_SEPOLICY_VERSION)
  
  # A list of SEPolicy versions, besides PLATFORM_SEPOLICY_VERSION, that the framework supports.
  PLATFORM_SEPOLICY_COMPAT_VERSIONS := $(filter-out $(PLATFORM_SEPOLICY_VERSION), \
@@ -127,6 +127,35 @@ index 750d5fb4cd..d0d7e6e4cf 100644
      29.0 \
      30.0 \
      31.0 \
+-- 
+2.34.1
+
+
+From c795c018941e3b76723ec38c1aee06eae82f3e56 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Tue, 12 Nov 2024 22:34:23 -0500
+Subject: [PATCH 3/3] Revert "core: sysprop: Write build display id to product
+ prop"
+
+This reverts commit 49979d6318e44e35d0e8f31b536343860189ce0b.
+---
+ core/sysprop.mk | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/core/sysprop.mk b/core/sysprop.mk
+index 2cb1fdd..47d8a41 100644
+--- a/core/sysprop.mk
++++ b/core/sysprop.mk
+@@ -74,9 +74,6 @@ define generate-common-build-props
+             echo "ro.$(1).product.cpu.abilist64=$(TARGET_CPU_ABI_LIST_64_BIT)" >> $(2);\
+         )\
+     )\
+-    $(if $(filter product,$(1)),\
+-        echo "ro.build.display.id=$(BUILD_DISPLAY_ID)" >> $(2);\
+-    )\
+     echo "ro.$(1).build.date=`$(DATE_FROM_FILE)`" >> $(2);\
+     echo "ro.$(1).build.date.utc=`$(DATE_FROM_FILE) +%s`" >> $(2);\
+     # Allow optional assignments for ARC forward-declarations (b/249168657)
 -- 
 2.34.1
 

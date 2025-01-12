@@ -1,4 +1,4 @@
-From 702d637d1c573208776fcca0f6eccb62d7e058ba Mon Sep 17 00:00:00 2001
+From a94c2887f5a4b9ecdc778fd3930f9291fabc642d Mon Sep 17 00:00:00 2001
 From: danielzhang130 <danielzhang130@gmail.com>
 Date: Sat, 13 Aug 2022 13:32:22 -0400
 Subject: [PATCH 1/4] Add Build and Build.VERSION info to about phone screen
@@ -6,22 +6,24 @@ Subject: [PATCH 1/4] Add Build and Build.VERSION info to about phone screen
 Signed-off-by: danielzhang130 <danielzhang130@gmail.com>
 Change-Id: I0ad77dbe06acd451dc153b14b0443e3fd914c08f
 ---
- .../FirmwareVersionSettings.java              | 57 ++++++++++++++++
+ .../FirmwareVersionSettings.java              | 56 +++++++++++++++
  .../SimplePreferenceController.java           | 68 +++++++++++++++++++
- 2 files changed, 125 insertions(+)
+ 2 files changed, 124 insertions(+)
  create mode 100644 src/com/android/settings/deviceinfo/firmwareversion/SimplePreferenceController.java
 
 diff --git a/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java b/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java
-index e2d3d8a..a87af62 100644
+index d447c98..324774e 100644
 --- a/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java
 +++ b/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java
-@@ -17,12 +17,20 @@
- package com.android.settings.deviceinfo.firmwareversion;
+@@ -18,6 +18,7 @@ package com.android.settings.deviceinfo.firmwareversion;
  
  import android.app.settings.SettingsEnums;
-+import android.content.Context;
+ import android.content.Context;
 +import android.os.Build;
  
+ import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
+@@ -25,8 +26,14 @@ import androidx.annotation.Nullable;
  import com.android.settings.R;
  import com.android.settings.dashboard.DashboardFragment;
  import com.android.settings.search.BaseSearchIndexProvider;
@@ -36,7 +38,7 @@ index e2d3d8a..a87af62 100644
  @SearchIndexable
  public class FirmwareVersionSettings extends DashboardFragment {
  
-@@ -41,6 +49,55 @@ public class FirmwareVersionSettings extends DashboardFragment {
+@@ -50,6 +57,55 @@ public class FirmwareVersionSettings extends DashboardFragment {
          return SettingsEnums.DIALOG_FIRMWARE_VERSION;
      }
  
@@ -170,7 +172,7 @@ index 0000000..3605682
 2.34.1
 
 
-From 70afd7292ac7304c421000c5b0cb30f36eea96bb Mon Sep 17 00:00:00 2001
+From 789645ff6434596a7f0066aa394d87abe6bfdafb Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 10:58:52 -0500
 Subject: [PATCH 2/4] Add settings animations files
@@ -2131,7 +2133,7 @@ index e69de29..0fddbf8 100644
 2.34.1
 
 
-From f738fc47e0a28c6333529d14f70b0d92f570d535 Mon Sep 17 00:00:00 2001
+From 9ab6e09927237405d59c0f4a4269b0c72b823599 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 21:49:17 -0500
 Subject: [PATCH 3/4] Add changelist to about phone screen
@@ -2153,10 +2155,10 @@ index 0000000..8b13789
 @@ -0,0 +1 @@
 +
 diff --git a/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java b/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java
-index a87af62..44cdc4d 100644
+index 324774e..f5948f4 100644
 --- a/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java
 +++ b/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java
-@@ -26,6 +26,9 @@ import com.android.settings.search.BaseSearchIndexProvider;
+@@ -29,6 +29,9 @@ import com.android.settings.search.BaseSearchIndexProvider;
  import com.android.settingslib.core.AbstractPreferenceController;
  import com.android.settingslib.search.SearchIndexable;
  
@@ -2166,7 +2168,7 @@ index a87af62..44cdc4d 100644
  import java.lang.reflect.Field;
  import java.util.ArrayList;
  import java.util.Arrays;
-@@ -52,6 +55,8 @@ public class FirmwareVersionSettings extends DashboardFragment {
+@@ -60,6 +63,8 @@ public class FirmwareVersionSettings extends DashboardFragment {
      @Override
      protected List<AbstractPreferenceController> createPreferenceControllers(Context context) {
          List<AbstractPreferenceController> controllers = new ArrayList<>();
@@ -2175,7 +2177,7 @@ index a87af62..44cdc4d 100644
          Field[] versionFields = Build.VERSION.class.getDeclaredFields();
  
          for (Field field : versionFields) {
-@@ -61,7 +66,7 @@ public class FirmwareVersionSettings extends DashboardFragment {
+@@ -69,7 +74,7 @@ public class FirmwareVersionSettings extends DashboardFragment {
                  continue;
              }
  
@@ -2184,7 +2186,7 @@ index a87af62..44cdc4d 100644
          }
  
          Field[] buildFields = Build.class.getDeclaredFields();
-@@ -78,12 +83,39 @@ public class FirmwareVersionSettings extends DashboardFragment {
+@@ -86,12 +91,39 @@ public class FirmwareVersionSettings extends DashboardFragment {
                  continue;
              }
  
@@ -2290,7 +2292,7 @@ index 3605682..c108909 100644
 2.34.1
 
 
-From 2faa6e3321d4ef9647bcd4c0e545ec830e89fe55 Mon Sep 17 00:00:00 2001
+From dca64c359325185d2c71fd587865440e21a98a3d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 30 Dec 2023 15:52:29 -0500
 Subject: [PATCH 4/4] Add memory cpu usage quick tile
@@ -2305,10 +2307,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  4 files changed, 179 insertions(+)
 
 diff --git a/AndroidManifest.xml b/AndroidManifest.xml
-index aed51f3..7fc70c7 100644
+index cc4d898..7903655 100644
 --- a/AndroidManifest.xml
 +++ b/AndroidManifest.xml
-@@ -4523,6 +4523,17 @@
+@@ -4674,6 +4674,17 @@
              <meta-data android:name="android.service.quicksettings.TOGGLEABLE_TILE"
                         android:value="true"/>
          </service>
@@ -2327,10 +2329,10 @@ index aed51f3..7fc70c7 100644
              android:name=".development.qstile.DevelopmentTiles$GPUProfiling"
              android:label="@string/track_frame_time"
 diff --git a/res/values/strings.xml b/res/values/strings.xml
-index 0622daa..050b5b6 100644
+index d74c416..8b67487 100644
 --- a/res/values/strings.xml
 +++ b/res/values/strings.xml
-@@ -9806,6 +9806,8 @@
+@@ -10397,6 +10397,8 @@
  
      <!-- Summary of memory screen [CHAR LIMIT=NONE] -->
      <string name="memory_summary">Avg <xliff:g id="used_memory" example="1.7GB">%1$s</xliff:g> of <xliff:g id="total_memory" example="2GB">%2$s</xliff:g> memory used</string>
@@ -2340,18 +2342,18 @@ index 0622daa..050b5b6 100644
      <!-- Summary of User settings [CHAR LIMIT=NONE] -->
      <string name="users_summary">Signed in as <xliff:g id="user_name" example="Jason">%1$s</xliff:g></string>
 diff --git a/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java b/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
-index cfa4a58..54e81f8 100644
+index 09b7503..fc02b3c 100644
 --- a/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
 +++ b/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
-@@ -56,6 +56,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+@@ -57,6 +57,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
  import com.android.settings.R;
  import com.android.settings.SettingsActivity;
  import com.android.settings.Utils;
 +import com.android.settings.applications.RunningServices;
+ import com.android.settings.biometrics.IdentityCheckBiometricErrorDialog;
  import com.android.settings.core.SubSettingLauncher;
  import com.android.settings.dashboard.RestrictedDashboardFragment;
- import com.android.settings.development.autofill.AutofillCategoryController;
-@@ -312,6 +313,12 @@ public class DevelopmentSettingsDashboardFragment extends RestrictedDashboardFra
+@@ -319,6 +320,12 @@ public class DevelopmentSettingsDashboardFragment extends RestrictedDashboardFra
                      .setDestination(WirelessDebuggingFragment.class.getName())
                      .setSourceMetricsCategory(SettingsEnums.SETTINGS_ADB_WIRELESS)
                      .launch();

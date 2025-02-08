@@ -1,7 +1,7 @@
-From 93cb0a776780ee1d465e7d18711e74daa20a33ff Mon Sep 17 00:00:00 2001
+From 20cd8eac9578df30fd1d06c2d32ade0788541fe0 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/17] pass safetynet and gpay
+Subject: [PATCH 01/18] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -172,10 +172,10 @@ index e6a63b9c4..6a80c14c9 100644
 2.34.1
 
 
-From 46e0cfbedba781c6bd659d69f43055413942958a Mon Sep 17 00:00:00 2001
+From ea9b53dc694beca6ca28406e70846b0e72154356 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/17] Set auto brightness on by default
+Subject: [PATCH 02/18] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index 5ddf005d9..c812f10a6 100644
 2.34.1
 
 
-From 536a5751e8c9ef0bc68ecf972e9a9e538e98117f Mon Sep 17 00:00:00 2001
+From 7255edaf0969466f59f6398af6311e4e47b5f857 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 03/17] Add support for left side volume dialog
+Subject: [PATCH 03/18] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -853,10 +853,10 @@ index 7166428d8..af617efde 100644
 2.34.1
 
 
-From 070a23ed9a6a7183ce211edd09a742660fef3e6c Mon Sep 17 00:00:00 2001
+From 3ed13edbdb625684b90352cf2e8cd7fb5c466806 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 04/17] Remove max column limit on quick tiles under
+Subject: [PATCH 04/18] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -881,10 +881,10 @@ index ef44e5fb8..cf7e43d2a 100644
 2.34.1
 
 
-From 6261ae1b50792abd8b1467b979b2bcde7389e121 Mon Sep 17 00:00:00 2001
+From 9811535ed79e2e0ee01e2ae29d4a33afdec517e8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 05/17] Update permission history cutoff days
+Subject: [PATCH 05/18] Update permission history cutoff days
 
 Change-Id: I0c61451d766a9870b543c73a661abc39c5eb6bf3
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -920,10 +920,10 @@ index 7f161f618..c9d15e5b9 100644
 2.34.1
 
 
-From 25f93fa6cb52450a92a53fa352e705f0a80e5764 Mon Sep 17 00:00:00 2001
+From 2970807df275840f0c47b80a0a60bb5bb524ca9c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 06/17] Add launcher icon for android 10 easter egg
+Subject: [PATCH 06/18] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -947,10 +947,10 @@ index 754abb2f7..fe9a66c61 100644
 2.34.1
 
 
-From 8e31e1393879f913a653799ec0e3dd7984b43e98 Mon Sep 17 00:00:00 2001
+From 827d4a1bcad6fa5768988704e6c34c6f4044e6cb Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 07/17] Use system default vibration for fb messenger app
+Subject: [PATCH 07/18] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -976,10 +976,10 @@ index 4a2b01645..64ecac1e9 100644
 2.34.1
 
 
-From 54d3173a1f12dad767a018d2c4898f9e132b2de8 Mon Sep 17 00:00:00 2001
+From 44a2c9a00be198d9611c779df8a9638a95a0d132 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 08/17] Fix safetynet/play integrity
+Subject: [PATCH 08/18] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1009,10 +1009,10 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From 73b7c80d9535066813dd6e9321fdfaf604afcb17 Mon Sep 17 00:00:00 2001
+From 25216c2f435e19af1aab96d836fe3af59a7ad964 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 09/17] Get free photo storage for google pixel
+Subject: [PATCH 09/18] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1069,10 +1069,10 @@ index 6a50e74ca..5051499a2 100644
 2.34.1
 
 
-From c778eab87b86b691713759cac42e67608a8202b4 Mon Sep 17 00:00:00 2001
+From f2a47da0640fec72c504a95812d8769cc7a1031a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 10/17] Add ability to change fingerprint from persist prop
+Subject: [PATCH 10/18] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1111,10 +1111,10 @@ index 84d767694..3a928f54b 100644
 2.34.1
 
 
-From 954f12b6d46b6bb548848900e64fc7bbc93c985e Mon Sep 17 00:00:00 2001
+From 59140b7cb40bad89d0de040eab2d72918e0222da Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 11/17] Update default spoof fingerprint
+Subject: [PATCH 11/18] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1154,10 +1154,10 @@ index 3a928f54b..ee174dfb5 100644
 2.34.1
 
 
-From f5da1bf479882705cae6277699747841ff4a2869 Mon Sep 17 00:00:00 2001
+From c0f54d30df8321825896887f4903528461ca1f2b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
-Subject: [PATCH 12/17] Change quick affordance click from long to short click
+Subject: [PATCH 12/18] Change quick affordance click from long to short click
 
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1182,10 +1182,10 @@ index 2c3b481b9..069a20fe5 100644
 2.34.1
 
 
-From a3492529437a6b8c1b8c510c7dce553c2a97fc09 Mon Sep 17 00:00:00 2001
+From dd61cacaa0c5940707cc75cf90bb66e941f424da Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Sat, 16 Oct 2021 05:27:57 -0700
-Subject: [PATCH 13/17] Add support for app signature spoofing
+Subject: [PATCH 13/18] Add support for app signature spoofing
 
 This is needed by microG GmsCore to pretend to be the official Google
 Play Services package, because client apps check the package signature
@@ -1450,10 +1450,10 @@ index 5ca5fda19..caac7d6f9 100644
 2.34.1
 
 
-From 5fd86a3d923e348a0d15d9d4e031ae9fa8ad3143 Mon Sep 17 00:00:00 2001
+From 414c5dde235b16ee258dd40cc13270fd0ac14bfa Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
-Subject: [PATCH 14/17] Output certificate in pm dump
+Subject: [PATCH 14/18] Output certificate in pm dump
 
 Change-Id: I6c54ae43fecce81972b9b5f1239bb3ff8308e540
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1480,10 +1480,10 @@ index 1f672a093..84a787606 100644
 2.34.1
 
 
-From 5597b0ced17f3c0b4d99b27258255da27d45c2ea Mon Sep 17 00:00:00 2001
+From 8eee673bdf98c1d39d021077171962bb755ca1a2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:00 -0500
-Subject: [PATCH 15/17] Add permission for Nova launcher pro
+Subject: [PATCH 15/18] Add permission for Nova launcher pro
 
 Change-Id: I79670eb2b11018568ee7b115d92cf2482e56d717
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1536,10 +1536,10 @@ index 11750f555..b2207090e 100644
 2.34.1
 
 
-From 7f8f50612da2d0857fa5605d2981904468c8b78b Mon Sep 17 00:00:00 2001
+From a0439a142fab5f6201b97b69b113efeb5943e833 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 17 Mar 2024 14:08:02 -0400
-Subject: [PATCH 16/17] Revert "Include vendor.samsung.hardware.radio-V2.2-java
+Subject: [PATCH 16/18] Revert "Include vendor.samsung.hardware.radio-V2.2-java
  HIDL in base libs, will be used by f/o/telephony"
 
 This reverts commit 6c6ff345d6d38d1ca2ddd1e417438cd8fb4553a8.
@@ -1563,10 +1563,10 @@ index 624fa23de..e23db8b69 100644
 2.34.1
 
 
-From 76c9fb8cf75c221dd634b4bbfdcf68df0f667228 Mon Sep 17 00:00:00 2001
+From 7f4883b71936a2450be81e4dc5c104656e0fc7d4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 17 Mar 2024 14:08:15 -0400
-Subject: [PATCH 17/17] Revert "Include
+Subject: [PATCH 17/18] Revert "Include
  vendor.samsung.hardware.radio.network-V1-java in base libs, will be used by
  f/o/telephony"
 
@@ -1587,6 +1587,45 @@ index e23db8b69..8c0158549 100644
          "android.hardware.radio.sim-V3-java",
          "android.hardware.radio.voice-V3-java",
          "android.hardware.thermal-V1.0-java-constants",
+-- 
+2.34.1
+
+
+From b5e407554a5ff3d208e245abeb2be2dc351de512 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 7 Feb 2025 21:02:10 -0500
+Subject: [PATCH 18/18] Fix fingerprint sensor
+
+Change-Id: I9877def6c7e81902adbf5ae46c316fb8aa9333ae
+Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
+---
+ .../com/android/server/biometrics/AuthService.java     | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/services/core/java/com/android/server/biometrics/AuthService.java b/services/core/java/com/android/server/biometrics/AuthService.java
+index 7383afb19..63e88a5c7 100644
+--- a/services/core/java/com/android/server/biometrics/AuthService.java
++++ b/services/core/java/com/android/server/biometrics/AuthService.java
+@@ -1115,13 +1115,15 @@ public class AuthService extends SystemService {
+ 
+         handlerProvider.getFingerprintHandler().post(() -> {
+             final FingerprintSensorConfigurations mFingerprintSensorConfigurations =
+-                    new FingerprintSensorConfigurations(fingerprintAidlInstances != null
+-                            && fingerprintAidlInstances.length > 0);
++                    new FingerprintSensorConfigurations(!(hidlConfigStrings != null
++                            && hidlConfigStrings.length > 0));
++
++            if (hidlConfigStrings != null && hidlConfigStrings.length > 0) {
++                mFingerprintSensorConfigurations.addHidlSensors(hidlConfigStrings, context);
++            }
+ 
+             if (fingerprintAidlInstances != null && fingerprintAidlInstances.length > 0) {
+                 mFingerprintSensorConfigurations.addAidlSensors(fingerprintAidlInstances);
+-            } else if (hidlConfigStrings != null && hidlConfigStrings.length > 0) {
+-                mFingerprintSensorConfigurations.addHidlSensors(hidlConfigStrings, context);
+             }
+ 
+             if (fingerprintService != null) {
 -- 
 2.34.1
 

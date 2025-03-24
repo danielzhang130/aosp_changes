@@ -1,36 +1,7 @@
-From 6ca87753a5f25ad04f2f2b72d02bc51c7545b726 Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Fri, 16 Dec 2022 11:57:31 -0500
-Subject: [PATCH 1/5] relax sepolicy
-
-Change-Id: Ic3045fd9b1548fc3c82d221ca9bca05d094d9734
-Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
----
- Android.mk | 3 ---
- 1 file changed, 3 deletions(-)
-
-diff --git a/Android.mk b/Android.mk
-index dc62833..caaf17c 100644
---- a/Android.mk
-+++ b/Android.mk
-@@ -68,9 +68,6 @@ HAS_PRODUCT_SEPOLICY_DIR := true
- endif
- 
- ifeq ($(SELINUX_IGNORE_NEVERALLOWS),true)
--ifeq ($(TARGET_BUILD_VARIANT),user)
--$(error SELINUX_IGNORE_NEVERALLOWS := true cannot be used in user builds)
--endif
- $(warning Be careful when using the SELINUX_IGNORE_NEVERALLOWS flag. \
-           It does not work in user builds and using it will \
-           not stop you from failing CTS.)
--- 
-2.34.1
-
-
-From a75b8a3be90cf6bb89782a4a55ba8fc367de1311 Mon Sep 17 00:00:00 2001
+From 58b39baab92b586897cb3efd55a00cc7c2ea34e8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:36:52 -0500
-Subject: [PATCH 2/5] Fix sdcard sepolicy
+Subject: [PATCH 1/4] Fix sdcard sepolicy
 
 Change-Id: I3c173b9fec21c3f8918af5d5ac07da690e86940d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -63,10 +34,10 @@ index 0b001e2..bda33e6 100644
  ### Neverallow rules
  ###
 diff --git a/private/file.te b/private/file.te
-index f8a48cd..22938cf 100644
+index 189fb47..59a5d00 100644
 --- a/private/file.te
 +++ b/private/file.te
-@@ -200,6 +200,7 @@ allow proc_net proc:filesystem associate;
+@@ -212,6 +212,7 @@ allow proc_net proc:filesystem associate;
  # Should be:
  #   type apk_data_file, file_type, data_file_type;
  neverallow fs_type file_type:filesystem associate;
@@ -75,10 +46,10 @@ index f8a48cd..22938cf 100644
  type storage_area_app_dir, file_type, data_file_type, core_data_file_type, app_data_file_type;
  # app storage areas: /data/storage_area/userId/pkgName/storageAreaName
 diff --git a/private/fsck_untrusted.te b/private/fsck_untrusted.te
-index 682831f..364ba47 100644
+index 4b55a57..ab40ccc 100644
 --- a/private/fsck_untrusted.te
 +++ b/private/fsck_untrusted.te
-@@ -24,6 +24,8 @@ allow fsck_untrusted proc_mounts:file r_file_perms;
+@@ -26,6 +26,8 @@ allow fsck_untrusted proc_mounts:file r_file_perms;
  # major/minor values.
  allow fsck_untrusted dev_type:blk_file getattr;
  
@@ -88,10 +59,10 @@ index 682831f..364ba47 100644
  ### neverallow rules
  ###
 diff --git a/private/gmscore_app.te b/private/gmscore_app.te
-index f938ad5..0631574 100644
+index 148cb7e..ae96c7c 100644
 --- a/private/gmscore_app.te
 +++ b/private/gmscore_app.te
-@@ -146,6 +146,8 @@ allow gmscore_app anr_data_file:file r_file_perms;
+@@ -143,6 +143,8 @@ allow gmscore_app anr_data_file:file r_file_perms;
  # b/148974132: com.android.vending needs this
  allow gmscore_app priv_app:tcp_socket { read write };
  
@@ -146,10 +117,10 @@ index 955c27b..9a7e3f5 100644
  # Special case for FIFOs.
  # These can be unnamed pipes, in which case they will be labeled with the
 diff --git a/private/platform_app.te b/private/platform_app.te
-index eb1a7c7..2c4b5ef 100644
+index e60dcdd..e1a85c7 100644
 --- a/private/platform_app.te
 +++ b/private/platform_app.te
-@@ -150,3 +150,4 @@ neverallow { domain -init userdebug_or_eng(`-shell -platform_app') } persist_sys
+@@ -152,3 +152,4 @@ neverallow { domain -init userdebug_or_eng(`-shell -platform_app') } persist_sys
  
  # app domains which access /dev/fuse should not run as platform_app
  neverallow platform_app fuse_device:chr_file *;
@@ -194,10 +165,10 @@ index 6e95fd1..5edef5a 100644
 +allow untrusted_app_32 unlabeled:filesystem getattr;
 +
 diff --git a/private/vold.te b/private/vold.te
-index 2c1fb8f..2f3e640 100644
+index c242040..df25390 100644
 --- a/private/vold.te
 +++ b/private/vold.te
-@@ -476,3 +476,5 @@ neverallow vold fsck_exec:file execute_no_trans;
+@@ -478,3 +478,5 @@ neverallow vold fsck_exec:file execute_no_trans;
  neverallow { domain -init } vold:process { transition dyntransition };
  neverallow vold *:process ptrace;
  neverallow vold *:rawip_socket *;
@@ -207,10 +178,10 @@ index 2c1fb8f..2f3e640 100644
 2.34.1
 
 
-From b33b4870f5c3120f86c8b1db9de30f99bf8e4391 Mon Sep 17 00:00:00 2001
+From e280a2698a8e0dbfbdf55350c6548a17cbba3ff9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 12 Feb 2024 16:14:29 -0500
-Subject: [PATCH 3/5] Update run-as sepolicy
+Subject: [PATCH 2/4] Update run-as sepolicy
 
 Change-Id: I7a8334a0fcdea8574e2caf52c8b415f7582babd6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -236,10 +207,10 @@ index 1d9aed0..66708b5 100644
 2.34.1
 
 
-From 52acb7f5ab92465d5b8d8bccff860f17db51178f Mon Sep 17 00:00:00 2001
+From a132f8408d38245a8847278c604b130b05fb0b41 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 May 2024 11:42:17 -0400
-Subject: [PATCH 4/5] Revert "Revert "Remove 28.0 compat support""
+Subject: [PATCH 3/4] Revert "Revert "Remove 28.0 compat support""
 
 This reverts commit 53176dc08e1e282439f60608fcd809a48a4149b5.
 ---
@@ -939,7 +910,7 @@ This reverts commit 53176dc08e1e282439f60608fcd809a48a4149b5.
  delete mode 100644 private/compat/28.0/28.0.ignore.cil
 
 diff --git a/compat/Android.bp b/compat/Android.bp
-index a71a68b..f09fb21 100644
+index 72390fc..28936dd 100644
 --- a/compat/Android.bp
 +++ b/compat/Android.bp
 @@ -23,13 +23,6 @@ package {
@@ -34664,10 +34635,10 @@ index 7213f95..0000000
 2.34.1
 
 
-From d1d4b421fc647fc298d161aed7013bdff0a4ac7c Mon Sep 17 00:00:00 2001
+From a8b9dc7b291e135cc5d258a9c3c863951466ecd4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 5 Oct 2024 12:57:46 -0400
-Subject: [PATCH 5/5] Add sepolicy for cpu usage
+Subject: [PATCH 4/4] Add sepolicy for cpu usage
 
 Change-Id: Iaa487e9e6439d79d04edb06ab828e75dc3d1925c
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -34676,7 +34647,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/private/system_app.te b/private/system_app.te
-index e0ed8c3..57baeea 100644
+index 93be46f..b8ae863 100644
 --- a/private/system_app.te
 +++ b/private/system_app.te
 @@ -178,6 +178,8 @@ get_prop(system_app, usb_uvc_enabled_prop)

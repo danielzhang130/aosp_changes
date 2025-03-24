@@ -1,0 +1,24 @@
+From 7a46277cfc3c395a49d2f0304ab49ba349621b74 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 24 Mar 2025 19:39:35 -0400
+Subject: [PATCH] r23 add nfc apex
+
+Change-Id: I80c8f08682a0dce108742cbf320164cc8ccdf77b
+---
+ flag_values/bp1a/RELEASE_PACKAGE_NFC_STACK.textproto | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 flag_values/bp1a/RELEASE_PACKAGE_NFC_STACK.textproto
+
+diff --git a/flag_values/bp1a/RELEASE_PACKAGE_NFC_STACK.textproto b/flag_values/bp1a/RELEASE_PACKAGE_NFC_STACK.textproto
+new file mode 100644
+index 0000000..f0b126a
+--- /dev/null
++++ b/flag_values/bp1a/RELEASE_PACKAGE_NFC_STACK.textproto
+@@ -0,0 +1,4 @@
++name: "RELEASE_PACKAGE_NFC_STACK"
++value: {
++  string_value: "com.android.nfcservices"
++}
+-- 
+2.34.1
+

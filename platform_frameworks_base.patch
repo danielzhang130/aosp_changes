@@ -1,7 +1,7 @@
-From 20cd8eac9578df30fd1d06c2d32ade0788541fe0 Mon Sep 17 00:00:00 2001
+From 5d9e2eb07810019bdf59c38f635436a13b1dbd2a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/18] pass safetynet and gpay
+Subject: [PATCH 01/16] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -14,10 +14,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  create mode 100644 core/java/com/android/internal/gmscompat/AttestationHooks.java
 
 diff --git a/core/java/android/app/Instrumentation.java b/core/java/android/app/Instrumentation.java
-index 93a948984..1f19fd277 100644
+index 7eacaac29..c82abd14b 100644
 --- a/core/java/android/app/Instrumentation.java
 +++ b/core/java/android/app/Instrumentation.java
-@@ -63,6 +63,8 @@ import android.view.WindowManagerGlobal;
+@@ -66,6 +66,8 @@ import android.view.WindowManagerGlobal;
  
  import com.android.internal.content.ReferrerIntent;
  
@@ -26,7 +26,7 @@ index 93a948984..1f19fd277 100644
  import java.io.File;
  import java.lang.annotation.Retention;
  import java.lang.annotation.RetentionPolicy;
-@@ -1353,6 +1355,7 @@ public class Instrumentation {
+@@ -1356,6 +1358,7 @@ public class Instrumentation {
          Application app = getFactory(context.getPackageName())
                  .instantiateApplication(cl, className);
          app.attach(context);
@@ -34,7 +34,7 @@ index 93a948984..1f19fd277 100644
          return app;
      }
      
-@@ -1370,6 +1373,7 @@ public class Instrumentation {
+@@ -1373,6 +1376,7 @@ public class Instrumentation {
              ClassNotFoundException {
          Application app = (Application)clazz.newInstance();
          app.attach(context);
@@ -172,10 +172,10 @@ index e6a63b9c4..6a80c14c9 100644
 2.34.1
 
 
-From ea9b53dc694beca6ca28406e70846b0e72154356 Mon Sep 17 00:00:00 2001
+From 475ed14050b708231c3cf6dfe4c434a198584c47 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/18] Set auto brightness on by default
+Subject: [PATCH 02/16] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index 5ddf005d9..c812f10a6 100644
 2.34.1
 
 
-From 7255edaf0969466f59f6398af6311e4e47b5f857 Mon Sep 17 00:00:00 2001
+From 1af96c4a9581137a209a9c3ebee649be230cc279 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 03/18] Add support for left side volume dialog
+Subject: [PATCH 03/16] Add support for left side volume dialog
 
 Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -660,10 +660,10 @@ index 000000000..8025a7807
 +
 +</FrameLayout>
 diff --git a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-index 7166428d8..af617efde 100644
+index a4e46f667..daa46e1f3 100644
 --- a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
 +++ b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-@@ -191,6 +191,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -197,6 +197,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
      private final int mDialogShowAnimationDurationMs;
      private final int mDialogHideAnimationDurationMs;
      private int mDialogWidth;
@@ -671,7 +671,7 @@ index 7166428d8..af617efde 100644
      private int mDialogCornerRadius;
      private int mRingerDrawerItemSize;
      private int mRingerRowsPadding;
-@@ -307,7 +308,6 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -313,7 +314,6 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
      @VisibleForTesting
      final int mVolumeRingerMuteIconDrawableId = R.drawable.ic_speaker_mute;
  
@@ -679,7 +679,7 @@ index 7166428d8..af617efde 100644
      private final DevicePostureController.Callback mDevicePostureControllerCallback;
      private final DevicePostureController mDevicePostureController;
      private @DevicePostureController.DevicePostureInt int mDevicePosture;
-@@ -413,10 +413,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -422,10 +422,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
                  mDevicePosture == DevicePostureController.DEVICE_POSTURE_HALF_OPENED;
          final boolean isTabletop = isPortrait && isHalfOpen;
          WindowManager.LayoutParams lp =  mWindow.getAttributes();
@@ -691,7 +691,7 @@ index 7166428d8..af617efde 100644
      }
  
      @VisibleForTesting int getWindowGravity() {
-@@ -483,6 +480,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -492,6 +489,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
  
          float x = locInWindow[0];
          float y = locInWindow[1];
@@ -699,7 +699,7 @@ index 7166428d8..af617efde 100644
  
          // The ringer and rows container has extra height at the top to fit the expanded ringer
          // drawer. This area should not be touchable unless the ringer drawer is open.
-@@ -491,15 +489,17 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -500,15 +498,17 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
          if (view == mTopContainer && !mIsRingerDrawerOpen) {
              if (!isLandscape()) {
                  y += getRingerDrawerOpenExtraSize();
@@ -719,7 +719,7 @@ index 7166428d8..af617efde 100644
                  locInWindow[1] + view.getHeight(),
                  Region.Op.UNION);
      }
-@@ -529,15 +529,12 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -538,15 +538,12 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
          lp.format = PixelFormat.TRANSLUCENT;
          lp.setTitle(VolumeDialogImpl.class.getSimpleName());
          lp.windowAnimations = -1;
@@ -732,13 +732,13 @@ index 7166428d8..af617efde 100644
  
          mWindow.setAttributes(lp);
          mWindow.setLayout(WRAP_CONTENT, WRAP_CONTENT);
--        mDialog.setContentView(R.layout.volume_dialog);
+-        mDialog.setContentView(R.layout.volume_dialog_legacy);
 +        mDialog.setContentView((mDialogGravity & Gravity.LEFT) != Gravity.LEFT ?
-+                R.layout.volume_dialog : R.layout.volume_dialog_left);
++                R.layout.volume_dialog_legacy : R.layout.volume_dialog_left);
          mDialogView = mDialog.findViewById(R.id.volume_dialog);
          mDialogView.setAlpha(0);
          mDialogTimeoutMillis = mSecureSettings.get().getInt(
-@@ -718,7 +715,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -732,7 +729,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
      }
  
      private boolean isWindowGravityLeft() {
@@ -747,7 +747,7 @@ index 7166428d8..af617efde 100644
      }
  
      private void initDimens() {
-@@ -734,6 +731,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -748,6 +745,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
  
          // Normal, mute, and possibly vibrate.
          mRingerCount = mShowVibrate ? 3 : 2;
@@ -755,7 +755,7 @@ index 7166428d8..af617efde 100644
      }
  
      protected ViewGroup getDialogView() {
-@@ -969,7 +967,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -983,7 +981,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
                      mDialogView.getPaddingTop(),
                      mDialogView.getPaddingRight(),
                      mDialogView.getPaddingBottom() + getRingerDrawerOpenExtraSize());
@@ -764,7 +764,7 @@ index 7166428d8..af617efde 100644
              mDialogView.setPadding(
                      mDialogView.getPaddingLeft() + getRingerDrawerOpenExtraSize(),
                      mDialogView.getPaddingTop(),
-@@ -1043,11 +1041,19 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -1057,11 +1055,19 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
       * with the given mode in the drawer.
       */
      private float getTranslationInDrawerForRingerMode(int mode) {
@@ -789,7 +789,7 @@ index 7166428d8..af617efde 100644
      }
  
      @VisibleForTesting String getSelectedRingerContainerDescription() {
-@@ -1095,8 +1101,10 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -1109,8 +1115,10 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
          // icon.
          if (!isLandscape()) {
              mRingerDrawerContainer.setTranslationY(mRingerDrawerItemSize * (mRingerCount - 1));
@@ -801,7 +801,7 @@ index 7166428d8..af617efde 100644
          }
          mRingerDrawerContainer.setAlpha(0f);
          mRingerDrawerContainer.setVisibility(VISIBLE);
-@@ -1173,10 +1181,14 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -1187,10 +1195,14 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
              mRingerDrawerContainer.animate()
                      .translationY(mRingerDrawerItemSize * 2)
                      .start();
@@ -817,7 +817,7 @@ index 7166428d8..af617efde 100644
          }
  
          mAnimateUpBackgroundToMatchDrawer.setDuration(DRAWER_ANIMATION_DURATION);
-@@ -1746,7 +1758,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -1760,7 +1772,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
              }
          }
  
@@ -826,7 +826,7 @@ index 7166428d8..af617efde 100644
              final View lastVisibleChild = mDialogRowsView.getChildAt(rightmostVisibleRowIndex);
              final ViewGroup.LayoutParams layoutParams = lastVisibleChild.getLayoutParams();
              // Remove the spacing on the last row, and remove its background since the container is
-@@ -2316,8 +2328,11 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -2330,8 +2342,11 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
          final Rect bounds = mRingerAndDrawerContainerBackground.copyBounds();
          if (!isLandscape()) {
              bounds.top = (int) (mRingerDrawerClosedAmount * getRingerDrawerOpenExtraSize());
@@ -839,7 +839,7 @@ index 7166428d8..af617efde 100644
          }
          mRingerAndDrawerContainerBackground.setBounds(bounds);
      }
-@@ -2358,7 +2373,8 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -2393,7 +2408,8 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
                          : mDialogRowsViewContainer.getTop() - mDialogCornerRadius);
  
          // Set gravity to top-right, since additional rows will be added on the left.
@@ -853,10 +853,10 @@ index 7166428d8..af617efde 100644
 2.34.1
 
 
-From 3ed13edbdb625684b90352cf2e8cd7fb5c466806 Mon Sep 17 00:00:00 2001
+From b8682675b803583397e88c7216f7fe0be57e1008 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 04/18] Remove max column limit on quick tiles under
+Subject: [PATCH 04/16] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -881,10 +881,10 @@ index ef44e5fb8..cf7e43d2a 100644
 2.34.1
 
 
-From 9811535ed79e2e0ee01e2ae29d4a33afdec517e8 Mon Sep 17 00:00:00 2001
+From 46c4699787ba63c57884a23cd4a359fff700ec97 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 05/18] Update permission history cutoff days
+Subject: [PATCH 05/16] Update permission history cutoff days
 
 Change-Id: I0c61451d766a9870b543c73a661abc39c5eb6bf3
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -920,10 +920,10 @@ index 7f161f618..c9d15e5b9 100644
 2.34.1
 
 
-From 2970807df275840f0c47b80a0a60bb5bb524ca9c Mon Sep 17 00:00:00 2001
+From ee08d5cdd5fba575f815dc9873966306971bd465 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 06/18] Add launcher icon for android 10 easter egg
+Subject: [PATCH 06/16] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -947,10 +947,10 @@ index 754abb2f7..fe9a66c61 100644
 2.34.1
 
 
-From 827d4a1bcad6fa5768988704e6c34c6f4044e6cb Mon Sep 17 00:00:00 2001
+From b3e74926ad2d16b3cd2fd04ed7389e15972c9802 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 07/18] Use system default vibration for fb messenger app
+Subject: [PATCH 07/16] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -959,10 +959,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 3 insertions(+)
 
 diff --git a/core/java/android/app/NotificationChannel.java b/core/java/android/app/NotificationChannel.java
-index 4a2b01645..64ecac1e9 100644
+index 73d26b834..729867b3f 100644
 --- a/core/java/android/app/NotificationChannel.java
 +++ b/core/java/android/app/NotificationChannel.java
-@@ -714,6 +714,9 @@ public final class NotificationChannel implements Parcelable {
+@@ -718,6 +718,9 @@ public final class NotificationChannel implements Parcelable {
       * {@link NotificationManager#createNotificationChannel(NotificationChannel)}.
       */
      public void setVibrationPattern(long[] vibrationPattern) {
@@ -976,10 +976,10 @@ index 4a2b01645..64ecac1e9 100644
 2.34.1
 
 
-From 44a2c9a00be198d9611c779df8a9638a95a0d132 Mon Sep 17 00:00:00 2001
+From 449a54508d68b5ffade0f00ab7eb57cec4859d1f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 08/18] Fix safetynet/play integrity
+Subject: [PATCH 08/16] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1009,10 +1009,10 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From 25216c2f435e19af1aab96d836fe3af59a7ad964 Mon Sep 17 00:00:00 2001
+From d3637b8518f3d4abfc78475b709ed3af63f48d79 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 09/18] Get free photo storage for google pixel
+Subject: [PATCH 09/16] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1069,10 +1069,10 @@ index 6a50e74ca..5051499a2 100644
 2.34.1
 
 
-From f2a47da0640fec72c504a95812d8769cc7a1031a Mon Sep 17 00:00:00 2001
+From a2269818a971d95deb00efede95d33200e85e583 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 10/18] Add ability to change fingerprint from persist prop
+Subject: [PATCH 10/16] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1111,10 +1111,10 @@ index 84d767694..3a928f54b 100644
 2.34.1
 
 
-From 59140b7cb40bad89d0de040eab2d72918e0222da Mon Sep 17 00:00:00 2001
+From e5efb31377a289aedd8c9668f0de54db3aba4c0a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 11/18] Update default spoof fingerprint
+Subject: [PATCH 11/16] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1154,10 +1154,10 @@ index 3a928f54b..ee174dfb5 100644
 2.34.1
 
 
-From c0f54d30df8321825896887f4903528461ca1f2b Mon Sep 17 00:00:00 2001
+From 3d2fa6d0c75b67e2ae12ff5b154288c89c00974c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
-Subject: [PATCH 12/18] Change quick affordance click from long to short click
+Subject: [PATCH 12/16] Change quick affordance click from long to short click
 
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1166,10 +1166,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt b/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt
-index 2c3b481b9..069a20fe5 100644
+index ae55825c9..cf384868f 100644
 --- a/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt
 +++ b/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt
-@@ -97,7 +97,7 @@ constructor(
+@@ -105,7 +105,7 @@ constructor(
       *
       * If `false`, the UI goes back to using single taps.
       */
@@ -1182,10 +1182,10 @@ index 2c3b481b9..069a20fe5 100644
 2.34.1
 
 
-From dd61cacaa0c5940707cc75cf90bb66e941f424da Mon Sep 17 00:00:00 2001
+From baef6c54d4a9bdf82ecc3b2676e838ed9812e580 Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Sat, 16 Oct 2021 05:27:57 -0700
-Subject: [PATCH 13/18] Add support for app signature spoofing
+Subject: [PATCH 13/16] Add support for app signature spoofing
 
 This is needed by microG GmsCore to pretend to be the official Google
 Play Services package, because client apps check the package signature
@@ -1236,10 +1236,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  6 files changed, 83 insertions(+), 7 deletions(-)
 
 diff --git a/core/api/current.txt b/core/api/current.txt
-index f817241d8..7bb57a6c9 100644
+index 5efa74779..a1e241f31 100644
 --- a/core/api/current.txt
 +++ b/core/api/current.txt
-@@ -99,6 +99,7 @@ package android {
+@@ -100,6 +100,7 @@ package android {
      field public static final String EXECUTE_APP_ACTION = "android.permission.EXECUTE_APP_ACTION";
      field public static final String EXPAND_STATUS_BAR = "android.permission.EXPAND_STATUS_BAR";
      field public static final String FACTORY_TEST = "android.permission.FACTORY_TEST";
@@ -1247,7 +1247,7 @@ index f817241d8..7bb57a6c9 100644
      field public static final String FOREGROUND_SERVICE = "android.permission.FOREGROUND_SERVICE";
      field public static final String FOREGROUND_SERVICE_CAMERA = "android.permission.FOREGROUND_SERVICE_CAMERA";
      field public static final String FOREGROUND_SERVICE_CONNECTED_DEVICE = "android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE";
-@@ -342,6 +343,7 @@ package android {
+@@ -350,6 +351,7 @@ package android {
      field public static final String CALL_LOG = "android.permission-group.CALL_LOG";
      field public static final String CAMERA = "android.permission-group.CAMERA";
      field public static final String CONTACTS = "android.permission-group.CONTACTS";
@@ -1256,10 +1256,10 @@ index f817241d8..7bb57a6c9 100644
      field public static final String MICROPHONE = "android.permission-group.MICROPHONE";
      field public static final String NEARBY_DEVICES = "android.permission-group.NEARBY_DEVICES";
 diff --git a/core/api/lint-baseline.txt b/core/api/lint-baseline.txt
-index e6a7ca5bf..550ba8aaa 100644
+index e71dffaf1..c224f0cdb 100644
 --- a/core/api/lint-baseline.txt
 +++ b/core/api/lint-baseline.txt
-@@ -1093,6 +1093,10 @@ Todo: android.provider.ContactsContract.RawContacts#newEntityIterator(android.da
+@@ -1125,6 +1125,10 @@ Todo: android.provider.ContactsContract.RawContacts#newEntityIterator(android.da
      Documentation mentions 'TODO'
  
  
@@ -1271,10 +1271,10 @@ index e6a7ca5bf..550ba8aaa 100644
      New API must be flagged with @FlaggedApi: field android.R.color.on_surface_disabled_material
  UnflaggedApi: android.R.color#outline_disabled_material:
 diff --git a/core/res/AndroidManifest.xml b/core/res/AndroidManifest.xml
-index d35c66ed7..11750f555 100644
+index 6b8056c77..d52ff1c11 100644
 --- a/core/res/AndroidManifest.xml
 +++ b/core/res/AndroidManifest.xml
-@@ -4675,6 +4675,21 @@
+@@ -4873,6 +4873,21 @@
          android:description="@string/permdesc_getPackageSize"
          android:protectionLevel="normal" />
  
@@ -1297,10 +1297,10 @@ index d35c66ed7..11750f555 100644
           {@link android.content.pm.PackageManager#addPackageToPreferred}
           for details. -->
 diff --git a/core/res/res/values/strings.xml b/core/res/res/values/strings.xml
-index d63421057..be5c80efd 100644
+index cfc3ddca2..b2ba4b7f4 100644
 --- a/core/res/res/values/strings.xml
 +++ b/core/res/res/values/strings.xml
-@@ -1038,6 +1038,18 @@
+@@ -1053,6 +1053,18 @@
  
      <!--  Permissions -->
  
@@ -1320,10 +1320,10 @@ index d63421057..be5c80efd 100644
      <string name="permlab_statusBar">disable or modify status bar</string>
      <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
 diff --git a/services/core/java/com/android/server/pm/ComputerEngine.java b/services/core/java/com/android/server/pm/ComputerEngine.java
-index 878d10835..59217ea8e 100644
+index f9df4d3b1..a86582186 100644
 --- a/services/core/java/com/android/server/pm/ComputerEngine.java
 +++ b/services/core/java/com/android/server/pm/ComputerEngine.java
-@@ -1523,6 +1523,11 @@ public class ComputerEngine implements Computer {
+@@ -1525,6 +1525,11 @@ public class ComputerEngine implements Computer {
          return Optional.of(fakeSignature);
      }
  
@@ -1335,7 +1335,7 @@ index 878d10835..59217ea8e 100644
      public final PackageInfo generatePackageInfo(PackageStateInternal ps,
              @PackageManager.PackageInfoFlagsBits long flags, int userId) {
          if (!mUserManager.exists(userId)) return null;
-@@ -1556,7 +1561,8 @@ public class ComputerEngine implements Computer {
+@@ -1558,7 +1563,8 @@ public class ComputerEngine implements Computer {
                      || ArrayUtils.isEmpty(p.getPermissions())) ? Collections.emptySet()
                      : mPermissionManager.getInstalledPermissions(ps.getPackageName());
              // Compute granted permissions only if package has requested permissions
@@ -1345,7 +1345,7 @@ index 878d10835..59217ea8e 100644
                      || ArrayUtils.isEmpty(p.getRequestedPermissions())) ? Collections.emptySet()
                      : mPermissionManager.getGrantedPermissions(ps.getPackageName(), userId);
  
-@@ -1608,7 +1614,7 @@ public class ComputerEngine implements Computer {
+@@ -1610,7 +1616,7 @@ public class ComputerEngine implements Computer {
              pi.applicationInfo = PackageInfoUtils.generateDelegateApplicationInfo(
                      ai, flags, state, userId);
              pi.signingInfo = ps.getSigningInfo();
@@ -1450,10 +1450,10 @@ index 5ca5fda19..caac7d6f9 100644
 2.34.1
 
 
-From 414c5dde235b16ee258dd40cc13270fd0ac14bfa Mon Sep 17 00:00:00 2001
+From 7823e76138da41752d9e635a4958ca43ad338ef4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
-Subject: [PATCH 14/18] Output certificate in pm dump
+Subject: [PATCH 14/16] Output certificate in pm dump
 
 Change-Id: I6c54ae43fecce81972b9b5f1239bb3ff8308e540
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1462,10 +1462,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 4 insertions(+)
 
 diff --git a/services/core/java/com/android/server/pm/Settings.java b/services/core/java/com/android/server/pm/Settings.java
-index 1f672a093..84a787606 100644
+index 485a28070..e5791a1cb 100644
 --- a/services/core/java/com/android/server/pm/Settings.java
 +++ b/services/core/java/com/android/server/pm/Settings.java
-@@ -5401,6 +5401,10 @@ public final class Settings implements Watchable, Snappable, ResilientAtomicFile
+@@ -5414,6 +5414,10 @@ public final class Settings implements Watchable, Snappable, ResilientAtomicFile
                      pw.println(ps.getVolumeUuid());
          }
          pw.print(prefix); pw.print("  signatures="); pw.println(ps.getSignatures());
@@ -1480,10 +1480,10 @@ index 1f672a093..84a787606 100644
 2.34.1
 
 
-From 8eee673bdf98c1d39d021077171962bb755ca1a2 Mon Sep 17 00:00:00 2001
+From 5d13ed08106297376e7aee1b3fd656dee27d6f1e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:00 -0500
-Subject: [PATCH 15/18] Add permission for Nova launcher pro
+Subject: [PATCH 15/16] Add permission for Nova launcher pro
 
 Change-Id: I79670eb2b11018568ee7b115d92cf2482e56d717
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1494,22 +1494,22 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  3 files changed, 6 insertions(+)
 
 diff --git a/core/api/current.txt b/core/api/current.txt
-index 7bb57a6c9..376db4664 100644
+index a1e241f31..dfcf00bf4 100644
 --- a/core/api/current.txt
 +++ b/core/api/current.txt
-@@ -241,6 +241,7 @@ package android {
-     field public static final String PROVIDE_OWN_AUTOFILL_SUGGESTIONS = "android.permission.PROVIDE_OWN_AUTOFILL_SUGGESTIONS";
-     field public static final String PROVIDE_REMOTE_CREDENTIALS = "android.permission.PROVIDE_REMOTE_CREDENTIALS";
+@@ -245,6 +245,7 @@ package android {
+     field @FlaggedApi("android.security.aapm_api") public static final String QUERY_ADVANCED_PROTECTION_MODE = "android.permission.QUERY_ADVANCED_PROTECTION_MODE";
      field public static final String QUERY_ALL_PACKAGES = "android.permission.QUERY_ALL_PACKAGES";
+     field @FlaggedApi("android.permission.flags.ranging_permission_enabled") public static final String RANGING = "android.permission.RANGING";
 +    field public static final String RAZER_DEVICE_POWER = "razer.permission.RAZER_DEVICE_POWER";
      field public static final String READ_ASSISTANT_APP_SEARCH_DATA = "android.permission.READ_ASSISTANT_APP_SEARCH_DATA";
      field public static final String READ_BASIC_PHONE_STATE = "android.permission.READ_BASIC_PHONE_STATE";
      field public static final String READ_CALENDAR = "android.permission.READ_CALENDAR";
 diff --git a/core/api/lint-baseline.txt b/core/api/lint-baseline.txt
-index 550ba8aaa..fc89e79e4 100644
+index c224f0cdb..e60ad9e24 100644
 --- a/core/api/lint-baseline.txt
 +++ b/core/api/lint-baseline.txt
-@@ -1093,6 +1093,8 @@ Todo: android.provider.ContactsContract.RawContacts#newEntityIterator(android.da
+@@ -1125,6 +1125,8 @@ Todo: android.provider.ContactsContract.RawContacts#newEntityIterator(android.da
      Documentation mentions 'TODO'
  
  
@@ -1519,12 +1519,12 @@ index 550ba8aaa..fc89e79e4 100644
      New API must be flagged with @FlaggedApi: field android.Manifest.permission.FAKE_PACKAGE_SIGNATURE
  UnflaggedApi: android.Manifest.permission_group#FAKE_PACKAGE:
 diff --git a/core/res/AndroidManifest.xml b/core/res/AndroidManifest.xml
-index 11750f555..b2207090e 100644
+index d52ff1c11..0e58bdc2e 100644
 --- a/core/res/AndroidManifest.xml
 +++ b/core/res/AndroidManifest.xml
-@@ -8464,6 +8464,9 @@
-     <permission android:name="android.permission.RESERVED_FOR_TESTING_SIGNATURE"
-                 android:protectionLevel="signature"/>
+@@ -8825,6 +8825,9 @@
+         android:protectionLevel="signature|role"
+         android:featureFlag="android.permission.flags.text_classifier_choice_api_enabled"/>
  
 +    <permission android:name="razer.permission.RAZER_DEVICE_POWER"
 +        android:protectionLevel="normal" />
@@ -1536,96 +1536,49 @@ index 11750f555..b2207090e 100644
 2.34.1
 
 
-From a0439a142fab5f6201b97b69b113efeb5943e833 Mon Sep 17 00:00:00 2001
+From 3fe77b94dce60f5b3d93900d130c5d5511ef09e2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Sun, 17 Mar 2024 14:08:02 -0400
-Subject: [PATCH 16/18] Revert "Include vendor.samsung.hardware.radio-V2.2-java
- HIDL in base libs, will be used by f/o/telephony"
+Date: Sun, 16 Mar 2025 15:03:04 -0400
+Subject: [PATCH 16/16] fix power manager HintManagerService
 
-This reverts commit 6c6ff345d6d38d1ca2ddd1e417438cd8fb4553a8.
+Change-Id: I6781837fa9284d562563d1be94b2519c53a7040b
 ---
- Android.bp | 1 -
- 1 file changed, 1 deletion(-)
+ .../server/power/hint/HintManagerService.java       | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-diff --git a/Android.bp b/Android.bp
-index 624fa23de..e23db8b69 100644
---- a/Android.bp
-+++ b/Android.bp
-@@ -234,7 +234,6 @@ java_library {
-         "android.hardware.gnss-V2.1-java",
-         "android.hardware.health-V1.0-java-constants",
-         "android.hardware.radio-V1.6-java",
--        "vendor.samsung.hardware.radio-V2.2-java",
-         "android.hardware.radio.data-V3-java",
-         "android.hardware.radio.ims-V2-java",
-         "android.hardware.radio.messaging-V3-java",
--- 
-2.34.1
-
-
-From 7f4883b71936a2450be81e4dc5c104656e0fc7d4 Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Sun, 17 Mar 2024 14:08:15 -0400
-Subject: [PATCH 17/18] Revert "Include
- vendor.samsung.hardware.radio.network-V1-java in base libs, will be used by
- f/o/telephony"
-
-This reverts commit 805647281c27b2b9d77dabc097c3c48ccf87fe62.
----
- Android.bp | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/Android.bp b/Android.bp
-index e23db8b69..8c0158549 100644
---- a/Android.bp
-+++ b/Android.bp
-@@ -239,7 +239,6 @@ java_library {
-         "android.hardware.radio.messaging-V3-java",
-         "android.hardware.radio.modem-V3-java",
-         "android.hardware.radio.network-V3-java",
--        "vendor.samsung.hardware.radio.network-V1-java",
-         "android.hardware.radio.sim-V3-java",
-         "android.hardware.radio.voice-V3-java",
-         "android.hardware.thermal-V1.0-java-constants",
--- 
-2.34.1
-
-
-From b5e407554a5ff3d208e245abeb2be2dc351de512 Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Fri, 7 Feb 2025 21:02:10 -0500
-Subject: [PATCH 18/18] Fix fingerprint sensor
-
-Change-Id: I9877def6c7e81902adbf5ae46c316fb8aa9333ae
-Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
----
- .../com/android/server/biometrics/AuthService.java     | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
-
-diff --git a/services/core/java/com/android/server/biometrics/AuthService.java b/services/core/java/com/android/server/biometrics/AuthService.java
-index 7383afb19..63e88a5c7 100644
---- a/services/core/java/com/android/server/biometrics/AuthService.java
-+++ b/services/core/java/com/android/server/biometrics/AuthService.java
-@@ -1115,13 +1115,15 @@ public class AuthService extends SystemService {
+diff --git a/services/core/java/com/android/server/power/hint/HintManagerService.java b/services/core/java/com/android/server/power/hint/HintManagerService.java
+index 987a84994..e2b3b259b 100644
+--- a/services/core/java/com/android/server/power/hint/HintManagerService.java
++++ b/services/core/java/com/android/server/power/hint/HintManagerService.java
+@@ -295,9 +295,7 @@ public final class HintManagerService extends SystemService {
+         mPowerHal = injector.createIPower();
+         mPowerHalVersion = 0;
+         mUsesFmq = false;
+-        if (mPowerHal != null) {
+-            mSupportInfo = getSupportInfo();
+-        }
++        mSupportInfo = getSupportInfo();
+         mDefaultCpuHeadroomCalculationWindowMillis =
+                 new CpuHeadroomParamsInternal().calculationWindowMillis;
+         mDefaultGpuHeadroomCalculationWindowMillis =
+@@ -316,12 +314,13 @@ public final class HintManagerService extends SystemService {
  
-         handlerProvider.getFingerprintHandler().post(() -> {
-             final FingerprintSensorConfigurations mFingerprintSensorConfigurations =
--                    new FingerprintSensorConfigurations(fingerprintAidlInstances != null
--                            && fingerprintAidlInstances.length > 0);
-+                    new FingerprintSensorConfigurations(!(hidlConfigStrings != null
-+                            && hidlConfigStrings.length > 0));
-+
-+            if (hidlConfigStrings != null && hidlConfigStrings.length > 0) {
-+                mFingerprintSensorConfigurations.addHidlSensors(hidlConfigStrings, context);
-+            }
- 
-             if (fingerprintAidlInstances != null && fingerprintAidlInstances.length > 0) {
-                 mFingerprintSensorConfigurations.addAidlSensors(fingerprintAidlInstances);
--            } else if (hidlConfigStrings != null && hidlConfigStrings.length > 0) {
--                mFingerprintSensorConfigurations.addHidlSensors(hidlConfigStrings, context);
+     SupportInfo getSupportInfo() {
+         try {
+-            mPowerHalVersion = mPowerHal.getInterfaceVersion();
+-            if (mPowerHalVersion >= 6) {
+-                return mPowerHal.getSupportInfo();
++            if (mPowerHal != null) {
++                mPowerHalVersion = mPowerHal.getInterfaceVersion();
++                if (mPowerHalVersion >= 6) {
++                    return mPowerHal.getSupportInfo();
++                }
              }
+         } catch (RemoteException e) {
+-            throw new IllegalStateException("Could not contact PowerHAL!", e);
+         }
  
-             if (fingerprintService != null) {
+         SupportInfo supportInfo = new SupportInfo();
 -- 
 2.34.1
 

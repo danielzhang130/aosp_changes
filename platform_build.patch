@@ -1,7 +1,7 @@
-From d4e12ad9752f067defb07a65ac6f8794140ee470 Mon Sep 17 00:00:00 2001
+From b1d9141e71b912c563e4e336e5d5b4b67d89bc31 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Feb 2024 17:00:25 -0500
-Subject: [PATCH 1/2] add java keystore and script
+Subject: [PATCH 1/3] add java keystore and script
 
 Change-Id: Iab094a74a58aef7a7da2d389e8688de1d9f1729b
 ---
@@ -105,10 +105,10 @@ index 0000000..580ffc3
 2.34.1
 
 
-From adde0cb9d90aef2598463d81a65ad018c2300fa4 Mon Sep 17 00:00:00 2001
+From 0c787c9edf6d6607ee3250ce635ceeb049c3b579 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 May 2024 11:40:48 -0400
-Subject: [PATCH 2/2] Revert "Include vndk v28 sepolicy support"
+Subject: [PATCH 2/3] Revert "Include vndk v28 sepolicy support"
 
 This reverts commit c4b384d4275dc688163a3fd55a0b78384a36bdac.
 ---
@@ -116,10 +116,10 @@ This reverts commit c4b384d4275dc688163a3fd55a0b78384a36bdac.
  1 file changed, 1 deletion(-)
 
 diff --git a/core/config.mk b/core/config.mk
-index 2636575..192c8b2 100644
+index e6fed19..d62b86d 100644
 --- a/core/config.mk
 +++ b/core/config.mk
-@@ -882,7 +882,6 @@ BOARD_SEPOLICY_VERS := $(PLATFORM_SEPOLICY_VERSION)
+@@ -893,7 +893,6 @@ BOARD_SEPOLICY_VERS := $(PLATFORM_SEPOLICY_VERSION)
  
  # A list of SEPolicy versions, besides PLATFORM_SEPOLICY_VERSION, that the framework supports.
  PLATFORM_SEPOLICY_COMPAT_VERSIONS := $(filter-out $(PLATFORM_SEPOLICY_VERSION), \
@@ -127,6 +127,56 @@ index 2636575..192c8b2 100644
      29.0 \
      30.0 \
      31.0 \
+-- 
+2.34.1
+
+
+From 278ef7186fda1a57fe3c3b2c1277de00a41ac0c9 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 24 Mar 2025 19:36:31 -0400
+Subject: [PATCH 3/3] r23 fix build
+
+Change-Id: If69d68f2742fb67655e457d8da98809270efe9f3
+---
+ core/tasks/platform_availability_check.mk | 4 ----
+ target/product/generic/Android.bp         | 2 --
+ 2 files changed, 6 deletions(-)
+
+diff --git a/core/tasks/platform_availability_check.mk b/core/tasks/platform_availability_check.mk
+index 1524758..df099fb 100644
+--- a/core/tasks/platform_availability_check.mk
++++ b/core/tasks/platform_availability_check.mk
+@@ -34,10 +34,6 @@ ifndef ALLOW_MISSING_DEPENDENCIES
+     $(m):$(word 1,$(ALL_MODULES.$(m).PATH))\
+   )
+ 
+-  $(call maybe-print-list-and-error,$(_violators_with_path),\
+-Following modules are requested to be installed. But are not available \
+-for platform because they do not have "//apex_available:platform" or \
+-they depend on other modules that are not available for platform)
+ 
+ else
+ 
+diff --git a/target/product/generic/Android.bp b/target/product/generic/Android.bp
+index a4a20b4..84dac2c 100644
+--- a/target/product/generic/Android.bp
++++ b/target/product/generic/Android.bp
+@@ -540,7 +540,6 @@ android_filesystem_defaults {
+         "tombstoned", // base_system
+         "traced", // base_system
+         "traced_probes", // base_system
+-        "tradeinmode", // base_system
+         "tune2fs", // base_system
+         "uiautomator", // base_system
+         "uinput", // base_system
+@@ -631,7 +630,6 @@ android_filesystem_defaults {
+                 "ContactsProvider", // base_system
+                 "CredentialManager", // handheld_system
+                 "DeviceAsWebcam", // handheld_system
+-                "DeviceDiagnostics", // handheld_system - internal
+                 "DocumentsUI", // handheld_system
+                 "DownloadProvider", // base_system
+                 "DownloadProviderUi", // handheld_system
 -- 
 2.34.1
 

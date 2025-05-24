@@ -1,4 +1,4 @@
-From 440297680142458f7270e94cbd2f03a0f38e25c4 Mon Sep 17 00:00:00 2001
+From 4d49142ade7cd5df9cdb60da19d0b9651ba69684 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
 Subject: [PATCH 01/28] Various updates to phh treble device
@@ -25,16 +25,16 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  delete mode 100644 su/su.rc
 
 diff --git a/base.mk b/base.mk
-index 43e261b..beec8b4 100644
+index a29e402..ff13850 100644
 --- a/base.mk
 +++ b/base.mk
 @@ -33,7 +33,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
- 	ro.build.version.all_codenames=$(PLATFORM_VERSION_ALL_CODENAMES) \
- 	ro.build.version.release=$(PLATFORM_VERSION) \
- 	ro.build.version.security_patch=$(PLATFORM_SECURITY_PATCH) \
--	ro.adb.secure=0 \
- 	ro.logd.auditd=true \
- 	ro.logd.kernel=true \
+     ro.build.version.all_codenames=$(PLATFORM_VERSION_ALL_CODENAMES) \
+     ro.build.version.release=$(PLATFORM_VERSION) \
+     ro.build.version.security_patch=$(PLATFORM_SECURITY_PATCH) \
+-    ro.adb.secure=0 \
+     ro.logd.auditd=true \
+     ro.logd.kernel=true \
  
 diff --git a/gapps.mk b/gapps.mk
 index 15e12a9..744cf31 100644
@@ -6441,7 +6441,7 @@ index f3c0c45..b2bcf63 100644
 2.34.1
 
 
-From a26ec580bc112fc9921bda09a300494be1934b75 Mon Sep 17 00:00:00 2001
+From 089e5089021fe7360f8b3f1226e1142897538752 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
 Subject: [PATCH 02/28] Passes safetynet out of the box
@@ -6454,10 +6454,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 6 deletions(-)
 
 diff --git a/rw-system.sh b/rw-system.sh
-index 9a1eea5..2205357 100644
+index a7b94f6..2efd227 100644
 --- a/rw-system.sh
 +++ b/rw-system.sh
-@@ -781,8 +781,6 @@ copyprop() {
+@@ -787,8 +787,6 @@ copyprop() {
  }
  if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
      copyprop ro.build.device ro.vendor.build.device
@@ -6466,7 +6466,7 @@ index 9a1eea5..2205357 100644
      copyprop ro.build.fingerprint ro.vendor.build.fingerprint
      copyprop ro.build.device ro.vendor.product.device
      copyprop ro.product.system.device ro.vendor.product.device
-@@ -801,10 +799,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
+@@ -807,10 +805,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
      copyprop ro.product.model ro.product.vendor.model
      copyprop ro.build.product ro.vendor.product.model
      copyprop ro.build.product ro.product.vendor.model
@@ -6481,7 +6481,7 @@ index 9a1eea5..2205357 100644
 2.34.1
 
 
-From af820a5d899a651009dbf0fcac657b0fec02bdca Mon Sep 17 00:00:00 2001
+From d686ad43e09d7275dc146dc30637230e9f8c0714 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
 Subject: [PATCH 03/28] Fix adb not connecting when device first starts
@@ -6494,19 +6494,19 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  delete mode 100644 files/adbd.rc
 
 diff --git a/base.mk b/base.mk
-index beec8b4..ea69649 100644
+index ff13850..20759f6 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -156,9 +156,6 @@ PRODUCT_PACKAGES += \
+@@ -148,9 +148,6 @@ PRODUCT_PACKAGES += \
      lightsctl-aidl \
      uevent
  
 -PRODUCT_COPY_FILES += \
--	device/phh/treble/files/adbd.rc:system/etc/init/adbd.rc
+-    device/phh/treble/files/adbd.rc:system/etc/init/adbd.rc
 -
- #MTK incoming SMS fix
+ # MTK incoming SMS fix
  PRODUCT_PACKAGES += \
- 	mtk-sms-fwk-ready
+     mtk-sms-fwk-ready
 diff --git a/files/adbd.rc b/files/adbd.rc
 deleted file mode 100644
 index 55b3311..0000000
@@ -6525,42 +6525,41 @@ index 55b3311..0000000
 2.34.1
 
 
-From e82130d12d0df954de6275cb3513459007fe87ab Mon Sep 17 00:00:00 2001
+From f32f64b68d6220d12a5e88c9273ebee6b2a53883 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
 Subject: [PATCH 04/28] add nova launcher and remove unused packages
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- base.mk | 19 ++++---------------
+ base.mk | 16 ++++------------
  phh.mk  |  3 ---
- 2 files changed, 4 insertions(+), 18 deletions(-)
+ 2 files changed, 4 insertions(+), 15 deletions(-)
  delete mode 100644 phh.mk
 
 diff --git a/base.mk b/base.mk
-index ea69649..25c34b4 100644
+index 20759f6..8564d01 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -188,16 +188,6 @@ PRODUCT_COPY_FILES += \
- PRODUCT_PACKAGES += \
-     asus-motor
+@@ -182,15 +182,8 @@ PRODUCT_PACKAGES += \
  
--# Privapp-permissions whitelist for PhhTrebleApp
--PRODUCT_COPY_FILES += \
--	device/phh/treble/privapp-permissions-me.phh.treble.app.xml:system/etc/permissions/privapp-permissions-me.phh.treble.app.xml
--
+ # Privapp-permissions whitelist for PhhTrebleApp
+ PRODUCT_COPY_FILES += \
+-    device/phh/treble/privapp-permissions-me.phh.treble.app.xml:system/etc/permissions/privapp-permissions-me.phh.treble.app.xml \
+     device/phh/treble/sysconfig-me.phh.treble.app.xml:system/etc/sysconfig/sysconfig-me.phh.treble.app.xml
+ 
 -# Remote debugging
 -PRODUCT_COPY_FILES += \
--	device/phh/treble/remote/dbclient:system/bin/dbclient \
--	device/phh/treble/remote/phh-remotectl.rc:system/etc/init/phh-remotectl.rc \
--	device/phh/treble/remote/phh-remotectl.sh:system/bin/phh-remotectl.sh \
+-    device/phh/treble/remote/dbclient:system/bin/dbclient \
+-    device/phh/treble/remote/phh-remotectl.rc:system/etc/init/phh-remotectl.rc \
+-    device/phh/treble/remote/phh-remotectl.sh:system/bin/phh-remotectl.sh \
 -
  PRODUCT_PACKAGES += \
- 	android.hardware.biometrics.fingerprint@2.1-service.oppo.compat \
- 	android.hardware.biometrics.fingerprint@2.1-service.oplus.compat \
-@@ -229,11 +219,6 @@ PRODUCT_COPY_FILES += \
- 	device/phh/treble/proprietary-files/gome/fs16xx_01s_right.preset:system/phh/gome/fs16xx_01s_right.preset \
- 	device/phh/treble/proprietary-files/umidigi/fs16xx_01s_mono.preset:system/phh/umidigi/fs16xx_01s_mono.preset
+     android.hardware.biometrics.fingerprint@2.1-service.oppo.compat \
+     android.hardware.biometrics.fingerprint@2.1-service.oplus.compat \
+@@ -222,11 +215,6 @@ PRODUCT_COPY_FILES += \
+     device/phh/treble/proprietary-files/gome/fs16xx_01s_right.preset.raw:system/phh/gome/fs16xx_01s_right.preset \
+     device/phh/treble/proprietary-files/umidigi/fs16xx_01s_mono.preset.raw:system/phh/umidigi/fs16xx_01s_mono.preset
  
 -PRODUCT_PACKAGES += phh-ota
 -
@@ -6568,11 +6567,11 @@ index ea69649..25c34b4 100644
 -    xiaomi-touch
 -
  PRODUCT_COPY_FILES += \
- 	frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration_7_0.xml:system/etc/a2dp_audio_policy_configuration_7_0.xml \
- 	frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:system/etc/a2dp_audio_policy_configuration.xml \
-@@ -257,6 +242,10 @@ PRODUCT_PACKAGES += \
- 	QualifiedNetworksService \
- 	MtkInCallService \
+     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration_7_0.xml:system/etc/a2dp_audio_policy_configuration_7_0.xml \
+     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:system/etc/a2dp_audio_policy_configuration.xml \
+@@ -250,6 +238,10 @@ PRODUCT_PACKAGES += \
+     QualifiedNetworksService \
+     MtkInCallService \
  
 +PRODUCT_PACKAGES += \
 +	NovaLauncher \
@@ -6594,7 +6593,7 @@ index 738b96f..0000000
 2.34.1
 
 
-From ac794db4aa67700845826d4da002215bca9e805e Mon Sep 17 00:00:00 2001
+From 92b1d6178f33f7ead0721088cfa77533b2918e7d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
 Subject: [PATCH 05/28] Add fp3 boot animation
@@ -6633,10 +6632,10 @@ index 0000000..3060485
 +PRODUCT_MANUFACTURER := My Custom
 +
 diff --git a/base.mk b/base.mk
-index 25c34b4..fea4407 100644
+index 8564d01..10e7125 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -252,3 +252,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
+@@ -248,3 +248,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
      persist.settings.large_screen_opt.enabled=true
  
  PRODUCT_EXTRA_VNDK_VERSIONS += 28 29
@@ -6647,7 +6646,7 @@ index 25c34b4..fea4407 100644
 2.34.1
 
 
-From cb508a25537717ab9d32cc765d03bd2deef25521 Mon Sep 17 00:00:00 2001
+From 90763cdb03a1d19e2337d4f19f179e6815467eb2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
 Subject: [PATCH 06/28] Remove restarting surfaceflinger
@@ -6661,7 +6660,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 3 deletions(-)
 
 diff --git a/vndk.rc b/vndk.rc
-index 6bd3950..3a1c319 100644
+index c2b8eae..3d36a6d 100644
 --- a/vndk.rc
 +++ b/vndk.rc
 @@ -64,9 +64,6 @@ on property:persist.sys.phh.backlight.scale=*
@@ -6678,39 +6677,37 @@ index 6bd3950..3a1c319 100644
 2.34.1
 
 
-From 7e146460b739bbc6f990b6fedc7b3004160088e0 Mon Sep 17 00:00:00 2001
+From 74076dc8d25cf48d9a0e7646db7b78096c37572f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
 Subject: [PATCH 07/28] Remove twrp files
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- base.mk             |   6 --
+ base.mk             |   4 --
  twrp/busybox-armv7l | Bin 1079156 -> 0 bytes
  twrp/twrp.rc        |   3 -
  twrp/twrp.sh        | 157 --------------------------------------------
- 4 files changed, 166 deletions(-)
+ 4 files changed, 164 deletions(-)
  delete mode 100644 twrp/busybox-armv7l
  delete mode 100644 twrp/twrp.rc
  delete mode 100644 twrp/twrp.sh
 
 diff --git a/base.mk b/base.mk
-index fea4407..e25bd0c 100644
+index 10e7125..cf7c7ac 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -87,12 +87,6 @@ PRODUCT_PACKAGES += \
- 	bootctl \
- 	vintf \
+@@ -80,10 +80,6 @@ PRODUCT_PACKAGES += \
+     bootctl \
+     vintf
  
--
 -PRODUCT_COPY_FILES += \
--	device/phh/treble/twrp/twrp.rc:system/etc/init/twrp.rc \
--	device/phh/treble/twrp/twrp.sh:system/bin/twrp.sh \
--	device/phh/treble/twrp/busybox-armv7l:system/bin/busybox_phh
--
+-    device/phh/treble/twrp/twrp.rc:system/etc/init/twrp.rc \
+-    device/phh/treble/twrp/twrp.sh:system/bin/twrp.sh \
+-    device/phh/treble/twrp/busybox-armv7l:system/bin/busybox_phh
+ 
  PRODUCT_PACKAGES += \
      simg2img_simple \
-     lptools
 diff --git a/twrp/busybox-armv7l b/twrp/busybox-armv7l
 deleted file mode 100644
 index e7200896402d0180c7624ffa66f4dd1caddbd8a4..0000000000000000000000000000000000000000
@@ -19680,7 +19677,7 @@ index cb67b71..0000000
 2.34.1
 
 
-From ed1e1fd12abf41076ee1044bd54b837dab78a562 Mon Sep 17 00:00:00 2001
+From c68fda877be68390ed84be735d18067d9dde627b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:47:06 -0500
 Subject: [PATCH 08/28] Remove ota
@@ -19700,17 +19697,17 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  delete mode 100644 ota/phh-ota.rc
 
 diff --git a/base.mk b/base.mk
-index e25bd0c..c1b35f8 100644
+index cf7c7ac..bca7f93 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -167,7 +167,6 @@ PRODUCT_PACKAGES += \
+@@ -161,7 +161,6 @@ PRODUCT_PACKAGES += \
  
  PRODUCT_COPY_FILES += \
- 	device/phh/treble/phh-securize.sh:system/bin/phh-securize.sh \
--	device/phh/treble/files/ota.sh:system/bin/ota.sh \
+     device/phh/treble/phh-securize.sh:system/bin/phh-securize.sh \
+-    device/phh/treble/files/ota.sh:system/bin/ota.sh \
  
  PRODUCT_COPY_FILES += \
- 	device/phh/treble/remove-telephony.sh:system/bin/remove-telephony.sh \
+     device/phh/treble/remove-telephony.sh:system/bin/remove-telephony.sh \
 diff --git a/files/ota.sh b/files/ota.sh
 deleted file mode 100644
 index a43ce81..0000000
@@ -19922,7 +19919,7 @@ index c6c5814..0000000
 -on property:sys.boot_completed=1
 -    exec u:r:phhsu_daemon:s0 root -- /system/bin/phh-ota delete-other-slot
 diff --git a/vndk.rc b/vndk.rc
-index 3a1c319..7a8f06b 100644
+index 3d36a6d..85af831 100644
 --- a/vndk.rc
 +++ b/vndk.rc
 @@ -82,9 +82,6 @@ on property:persist.sys.phh.restart_ril=true
@@ -19939,7 +19936,7 @@ index 3a1c319..7a8f06b 100644
 2.34.1
 
 
-From e551dc1fe2251e0345f47d4070d15f2d92ded8f4 Mon Sep 17 00:00:00 2001
+From ea3139bf722af780450e59c7d14b87d9e39d1958 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:00:25 -0500
 Subject: [PATCH 09/28] Remove unused remote files, functionality already
@@ -22052,7 +22049,7 @@ index 87f2f96..0000000
 2.34.1
 
 
-From 3af3c860beb0533800737f69ac457b06b295d9d4 Mon Sep 17 00:00:00 2001
+From ca3317d235c2c79f366165f1d43209493b110e8b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:12:45 -0500
 Subject: [PATCH 10/28] fix adb by removing ctl.restart adbd
@@ -22063,7 +22060,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 44 deletions(-)
 
 diff --git a/rw-system.sh b/rw-system.sh
-index 2205357..0b7870f 100644
+index 2efd227..95c2076 100644
 --- a/rw-system.sh
 +++ b/rw-system.sh
 @@ -10,48 +10,6 @@ else
@@ -22115,8 +22112,8 @@ index 2205357..0b7870f 100644
  vndk="$(getprop persist.sys.vndk)"
  [ -z "$vndk" ] && vndk="$(getprop ro.vndk.version |grep -oE '^[0-9]+')"
  
-@@ -815,8 +773,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
-     resetprop_phh ro.build.type user
+@@ -831,8 +789,6 @@ if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
+     resetprop_phh ro.vendor.build.type user
      resetprop_phh --delete ro.build.selinux
  
 -    resetprop_phh ro.adb.secure 1
@@ -22128,7 +22125,7 @@ index 2205357..0b7870f 100644
 2.34.1
 
 
-From 82edd15b18466ea6ca357c37733cdf4d2b7de4cf Mon Sep 17 00:00:00 2001
+From 12d560788a17a8f744894782f61166beffb08cce Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 27 Dec 2022 15:16:35 -0500
 Subject: [PATCH 11/28] Add Wellbeing as priv-app
@@ -22154,7 +22151,7 @@ index 813d66b..96a0a7a 100644
 2.34.1
 
 
-From 898ae40af0297b777ac13af46ef3410926e59c77 Mon Sep 17 00:00:00 2001
+From fd9f63f240196fb2449a6384f34f463461d701db Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 18:02:33 -0500
 Subject: [PATCH 12/28] Add themepicker to build
@@ -22165,10 +22162,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 4 insertions(+)
 
 diff --git a/base.mk b/base.mk
-index c1b35f8..366d5fa 100644
+index bca7f93..875d63d 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -239,6 +239,10 @@ PRODUCT_PACKAGES += \
+@@ -237,6 +237,10 @@ PRODUCT_PACKAGES += \
  	NovaLauncher \
  	NovaCompanion
  
@@ -22183,7 +22180,7 @@ index c1b35f8..366d5fa 100644
 2.34.1
 
 
-From 3d6d3e18a89a45607808d95ce12625471cf9804a Mon Sep 17 00:00:00 2001
+From 72f4b7d01141600c23986ede1417b28fa59cbc69 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 29 Dec 2022 15:32:08 -0500
 Subject: [PATCH 13/28] Remove default browser, calendar and gallery app
@@ -22213,7 +22210,7 @@ index 96a0a7a..dc9e985 100644
 2.34.1
 
 
-From 46556314ebb8ebae76dc903163425c5f1e388f75 Mon Sep 17 00:00:00 2001
+From ae39e2b83e2076cbb0707159fc246abe0f57a56a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 11:01:17 -0500
 Subject: [PATCH 14/28] Enable one handed mode
@@ -22238,7 +22235,7 @@ index b2bcf63..ce18f21 100644
 2.34.1
 
 
-From 5cd46d0ab9bd608a3615334cc41347eacd75801c Mon Sep 17 00:00:00 2001
+From f32b559cf07ef870216b97672500418b8c744c81 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 22:43:22 -0500
 Subject: [PATCH 15/28] Add changelist generation on each build
@@ -22251,10 +22248,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  create mode 100755 genCL
 
 diff --git a/base.mk b/base.mk
-index 366d5fa..aa7c820 100644
+index 875d63d..96b6d6a 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -252,3 +252,6 @@ PRODUCT_EXTRA_VNDK_VERSIONS += 28 29
+@@ -250,3 +250,6 @@ PRODUCT_EXTRA_VNDK_VERSIONS += 28 29
  
  $(call inherit-product, vendor/bootanim/bootanim.mk)
  
@@ -22279,7 +22276,7 @@ index 0000000..4e3d648
 2.34.1
 
 
-From c1f8197dc879f92d6ec6ea90bf47399020ca5ec9 Mon Sep 17 00:00:00 2001
+From 56c796126e96a61f73d90b15704ae475769231ff Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 15 Mar 2023 15:02:46 -0400
 Subject: [PATCH 16/28] Disable fingerprint cleanup to prevent fingerprint from
@@ -22291,10 +22288,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/rw-system.sh b/rw-system.sh
-index 0b7870f..c6149f0 100644
+index 95c2076..20e81e0 100644
 --- a/rw-system.sh
 +++ b/rw-system.sh
-@@ -1143,6 +1143,8 @@ fi
+@@ -1161,6 +1161,8 @@ fi
  resetprop_phh ro.config.media_vol_steps 25
  resetprop_phh ro.config.media_vol_default 8
  
@@ -22307,7 +22304,7 @@ index 0b7870f..c6149f0 100644
 2.34.1
 
 
-From bb2a7b5df0c11c666ff100150d1ee48867f3d19e Mon Sep 17 00:00:00 2001
+From 5ca26532f5fec3df69e72fe846ed411d4036e7e5 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 8 Jul 2023 09:11:02 -0400
 Subject: [PATCH 17/28] Remove unused proprietary dependencies
@@ -22319,19 +22316,19 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  2 files changed, 40 deletions(-)
 
 diff --git a/base.mk b/base.mk
-index aa7c820..a8414c1 100644
+index 96b6d6a..4d0eb66 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -230,7 +230,6 @@ PRODUCT_PACKAGES += \
+@@ -228,7 +228,6 @@ PRODUCT_PACKAGES += \
      QcRilAm
  
  PRODUCT_PACKAGES += \
--	slsi-booted \
- 	Iwlan \
- 	QualifiedNetworksService \
- 	MtkInCallService \
+-    slsi-booted \
+     Iwlan \
+     QualifiedNetworksService \
+     MtkInCallService \
 diff --git a/cmds/Android.bp b/cmds/Android.bp
-index 18788e9..eed1bbc 100644
+index df2625f..aff655d 100644
 --- a/cmds/Android.bp
 +++ b/cmds/Android.bp
 @@ -255,45 +255,6 @@ cc_binary {
@@ -22384,7 +22381,7 @@ index 18788e9..eed1bbc 100644
 2.34.1
 
 
-From 89375c71ca2cd776b8c26a65b4005284ca63a290 Mon Sep 17 00:00:00 2001
+From f5c0f65dfcfe41fc40e35479e7afe9f81bb37b86 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 25 Mar 2024 23:10:21 -0400
 Subject: [PATCH 18/28] clocks: Add clocks for customization
@@ -22394,10 +22391,10 @@ Subject: [PATCH 18/28] clocks: Add clocks for customization
  1 file changed, 2 insertions(+)
 
 diff --git a/base.mk b/base.mk
-index a8414c1..06cde7a 100644
+index 4d0eb66..02869ce 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -254,3 +254,5 @@ $(call inherit-product, vendor/bootanim/bootanim.mk)
+@@ -252,3 +252,5 @@ $(call inherit-product, vendor/bootanim/bootanim.mk)
  CUR_DIR := $(shell pwd)
  $(shell /usr/bin/python3.10 /usr/bin/repo forall -c '$(CUR_DIR)/device/phh/treble/genCL $$REPO_PROJECT $$REPO_RREV' > vendor/hardware_overlay/Settings/res/raw/cl.txt)
  
@@ -22407,7 +22404,7 @@ index a8414c1..06cde7a 100644
 2.34.1
 
 
-From 383c930ada4481a32ff0274b751b89332f0b8fb6 Mon Sep 17 00:00:00 2001
+From bd779ede4a075fbad0798463885a05a981ab360d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:47:46 -0500
 Subject: [PATCH 19/28] Remove unused prop changes
@@ -22418,10 +22415,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 23 deletions(-)
 
 diff --git a/rw-system.sh b/rw-system.sh
-index c6149f0..6264799 100644
+index 20e81e0..fcb5c19 100644
 --- a/rw-system.sh
 +++ b/rw-system.sh
-@@ -738,29 +738,6 @@ copyprop() {
+@@ -744,29 +744,6 @@ copyprop() {
      fi
  }
  if [ -f /system/phh/secure ] || [ -f /metadata/phh/secure ];then
@@ -22448,14 +22445,14 @@ index c6149f0..6264799 100644
 -        [ -n "$v" ] && resetprop_phh ro.build.version.security_patch "$v"
 -    done
 -
+     resetprop_phh ro.build.user nobody
+     resetprop_phh ro.build.host android-build
      resetprop_phh ro.build.tags release-keys
-     resetprop_phh ro.boot.vbmeta.device_state locked
-     resetprop_phh ro.boot.verifiedbootstate green
 -- 
 2.34.1
 
 
-From e379a9a3b1973057bbff164a613eaa2f28f4d669 Mon Sep 17 00:00:00 2001
+From 715d87ec27e0afd6b9838122c5d295c7e8f7113b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 2 Feb 2024 15:53:35 -0500
 Subject: [PATCH 20/28] Revert "Include vndk v28"
@@ -22466,10 +22463,10 @@ This reverts commit bbe9520e9e18e83f0733732d41f245af637028f6.
  1 file changed, 2 deletions(-)
 
 diff --git a/base.mk b/base.mk
-index 06cde7a..41d0a2b 100644
+index 02869ce..6d2ca41 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -247,8 +247,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/window_extensions.mk)
+@@ -245,8 +245,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/window_extensions.mk)
  PRODUCT_PRODUCT_PROPERTIES += \
      persist.settings.large_screen_opt.enabled=true
  
@@ -22482,7 +22479,7 @@ index 06cde7a..41d0a2b 100644
 2.34.1
 
 
-From e4a989988201024ad5b84aedd6761e0ff3595764 Mon Sep 17 00:00:00 2001
+From a94242e54ea367455dad57aef95536bc0fd00657 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 13 Feb 2024 10:56:20 -0500
 Subject: [PATCH 21/28] Make generate.sh executable
@@ -22499,7 +22496,7 @@ new mode 100755
 2.34.1
 
 
-From 0d5b99ec95dce9be2efcf5074d8f147c999a8325 Mon Sep 17 00:00:00 2001
+From cf28a71a32bd8dc2312fddca3bc72ad1ea38474d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:40 -0500
 Subject: [PATCH 22/28] Add system props for Nova launcher pro
@@ -22510,12 +22507,12 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 3 insertions(+)
 
 diff --git a/base.mk b/base.mk
-index 41d0a2b..3faa037 100644
+index 6d2ca41..8cbb4be 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -198,6 +198,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+@@ -196,6 +196,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
  PRODUCT_PRODUCT_PROPERTIES += \
- 	ro.setupwizard.mode=OPTIONAL \
+     ro.setupwizard.mode=OPTIONAL \
  
 +PRODUCT_PRODUCT_PROPERTIES += \
 +	ro.razer.internal.api=123 \
@@ -22527,7 +22524,7 @@ index 41d0a2b..3faa037 100644
 2.34.1
 
 
-From 3334ebf5f961ba9e7d5dd6ad2bfbc0a5da6294c0 Mon Sep 17 00:00:00 2001
+From 5fdb5843b5e46423a4f187657ba4586eedc2febb Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 17 Feb 2024 15:51:20 -0500
 Subject: [PATCH 23/28] Add relax uses library check
@@ -22537,10 +22534,10 @@ Subject: [PATCH 23/28] Add relax uses library check
  1 file changed, 1 insertion(+)
 
 diff --git a/base.mk b/base.mk
-index 3faa037..600d6db 100644
+index 8cbb4be..349eecc 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -257,3 +257,4 @@ $(shell /usr/bin/python3.10 /usr/bin/repo forall -c '$(CUR_DIR)/device/phh/trebl
+@@ -255,3 +255,4 @@ $(shell /usr/bin/python3.10 /usr/bin/repo forall -c '$(CUR_DIR)/device/phh/trebl
  
  $(call inherit-product, vendor/clocks/clocks.mk)
  
@@ -22549,7 +22546,7 @@ index 3faa037..600d6db 100644
 2.34.1
 
 
-From f2041fe9e2d1f260a192bb27fa340ae2544c332e Mon Sep 17 00:00:00 2001
+From 7147a13371eb40dadb22ddbe0f83b2baedfaef0d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 23 Feb 2024 21:39:03 -0500
 Subject: [PATCH 24/28] simplify hardware overlay mk
@@ -22559,7 +22556,7 @@ Subject: [PATCH 24/28] simplify hardware overlay mk
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/base.mk b/base.mk
-index 600d6db..d79a1a7 100644
+index 349eecc..ff63e10 100644
 --- a/base.mk
 +++ b/base.mk
 @@ -20,7 +20,7 @@ PRODUCT_COPY_FILES += \
@@ -22575,7 +22572,7 @@ index 600d6db..d79a1a7 100644
 2.34.1
 
 
-From f761fe9742c57f8acc925ea267a5e8387064e1ef Mon Sep 17 00:00:00 2001
+From 3c821619cd3999f894346f1bf00521930caf52d0 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 23 Nov 2024 22:05:12 -0500
 Subject: [PATCH 25/28] add ims package
@@ -22585,10 +22582,10 @@ Subject: [PATCH 25/28] add ims package
  1 file changed, 4 insertions(+)
 
 diff --git a/base.mk b/base.mk
-index d79a1a7..7b95851 100644
+index ff63e10..bfd27cb 100644
 --- a/base.mk
 +++ b/base.mk
-@@ -258,3 +258,7 @@ $(shell /usr/bin/python3.10 /usr/bin/repo forall -c '$(CUR_DIR)/device/phh/trebl
+@@ -256,3 +256,7 @@ $(shell /usr/bin/python3.10 /usr/bin/repo forall -c '$(CUR_DIR)/device/phh/trebl
  $(call inherit-product, vendor/clocks/clocks.mk)
  
  RELAX_USES_LIBRARY_CHECK=true
@@ -22600,7 +22597,7 @@ index d79a1a7..7b95851 100644
 2.34.1
 
 
-From f1451859e1f4680fd15de0642c226dc9cc4658e9 Mon Sep 17 00:00:00 2001
+From d9ee84077964293a7af9589429070793433cd155 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 1 Mar 2025 15:42:51 -0500
 Subject: [PATCH 26/28] enable ims
@@ -22624,46 +22621,17 @@ index ce18f21..63df75e 100644
 2.34.1
 
 
-From cc3abf2fff5d1fbf1a30c35e94ba665af865f18d Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Sun, 16 Mar 2025 21:31:29 -0400
-Subject: [PATCH 27/28] fix build
-
----
- bluetooth/audio/hal/Android.bp | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/bluetooth/audio/hal/Android.bp b/bluetooth/audio/hal/Android.bp
-index a30754e..59a9f78 100644
---- a/bluetooth/audio/hal/Android.bp
-+++ b/bluetooth/audio/hal/Android.bp
-@@ -1,6 +1,10 @@
-+vintf_fragment {
-+    name: "bluetooth_audio_system",
-+    src: "bluetooth_audio_system.xml"
-+}
- cc_binary {
-     name: "android.hardware.bluetooth.audio-service-system",
--    vintf_fragments: ["bluetooth_audio_system.xml"],
-+    vintf_fragment_modules: ["bluetooth_audio_system"],
-     init_rc: ["android.hardware.bluetooth.audio-service-system.rc"],
-     relative_install_path: "hw",
-     srcs: [
--- 
-2.34.1
-
-
-From 4564d5bfd79847688946c126bf6c5c66ae1e9af7 Mon Sep 17 00:00:00 2001
+From caec00a277ce63737930a819b7bed3feeb55fd6b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 24 Mar 2025 19:40:16 -0400
-Subject: [PATCH 28/28] r23 fix build
+Subject: [PATCH 27/28] r23 fix build
 
 ---
- base.mk | 77 ++++++++++++++++++++++++++++-----------------------------
- 1 file changed, 38 insertions(+), 39 deletions(-)
+ base.mk | 75 ++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 37 insertions(+), 38 deletions(-)
 
 diff --git a/base.mk b/base.mk
-index 7b95851..e6a8985 100644
+index bfd27cb..3bf414c 100644
 --- a/base.mk
 +++ b/base.mk
 @@ -62,9 +62,9 @@ PRODUCT_COPY_FILES += \
@@ -22671,110 +22639,139 @@ index 7b95851..e6a8985 100644
  #   Provide default libnfc-nci.conf file for devices that does not have one in
  #   vendor/etc
 -PRODUCT_COPY_FILES += \
--	device/phh/treble/nfc/libnfc-nci.conf:system/phh/libnfc-nci-oreo.conf \
--	device/phh/treble/nfc/libnfc-nci-huawei.conf:system/phh/libnfc-nci-huawei.conf
+-    device/phh/treble/nfc/libnfc-nci.conf:system/phh/libnfc-nci-oreo.conf \
+-    device/phh/treble/nfc/libnfc-nci-huawei.conf:system/phh/libnfc-nci-huawei.conf
 +#PRODUCT_COPY_FILES += \
-+#	device/phh/treble/nfc/libnfc-nci.conf:system/phh/libnfc-nci-oreo.conf \
-+#	device/phh/treble/nfc/libnfc-nci-huawei.conf:system/phh/libnfc-nci-huawei.conf
- 
- # LineageOS build may need this to make NFC work
- PRODUCT_PACKAGES += \
-@@ -77,7 +77,7 @@ PRODUCT_COPY_FILES += \
- 	device/phh/treble/fixSPL/getSPL.arm:system/bin/getSPL
++#    device/phh/treble/nfc/libnfc-nci.conf:system/phh/libnfc-nci-oreo.conf \
++#    device/phh/treble/nfc/libnfc-nci-huawei.conf:system/phh/libnfc-nci-huawei.conf
  
  PRODUCT_COPY_FILES += \
--	device/phh/treble/empty:system/phh/empty \
-+#	device/phh/treble/empty:system/phh/empty \
- 	device/phh/treble/phh-on-boot.sh:system/bin/phh-on-boot.sh
- 
- PRODUCT_PACKAGES += \
-@@ -108,36 +108,36 @@ PRODUCT_PACKAGES += \
+     device/phh/treble/rw-system.sh:system/bin/rw-system.sh \
+@@ -102,36 +102,36 @@ PRODUCT_PACKAGES += \
  PRODUCT_COPY_FILES += \
- 	device/phh/treble/interfaces.xml:system/etc/permissions/interfaces.xml
+     device/phh/treble/interfaces.xml:system/etc/permissions/interfaces.xml
  
 -PRODUCT_COPY_FILES += \
--	device/phh/treble/files/samsung-gpio_keys.kl:system/phh/samsung-gpio_keys.kl \
--	device/phh/treble/files/samsung-sec_touchscreen.kl:system/phh/samsung-sec_touchscreen.kl \
--	device/phh/treble/files/samsung-sec_touchkey.kl:system/phh/samsung-sec_touchkey.kl \
--	device/phh/treble/files/oneplus6-synaptics_s3320.kl:system/phh/oneplus6-synaptics_s3320.kl \
--	device/phh/treble/files/huawei-fingerprint.kl:system/phh/huawei/fingerprint.kl \
--	device/phh/treble/files/samsung-sec_e-pen.idc:system/usr/idc/sec_e-pen.idc \
--	device/phh/treble/files/samsung-9810-floating_feature.xml:system/ph/sam-9810-flo_feat.xml \
--	device/phh/treble/files/mimix3-gpio-keys.kl:system/phh/mimix3-gpio-keys.kl \
--	device/phh/treble/files/nokia-soc_gpio_keys.kl:system/phh/nokia-soc_gpio_keys.kl \
--	device/phh/treble/files/lenovo-synaptics_dsx.kl:system/phh/lenovo-synaptics_dsx.kl \
--	device/phh/treble/files/oppo-touchpanel.kl:system/phh/oppo-touchpanel.kl \
--	device/phh/treble/files/google-uinput-fpc.kl:system/phh/google-uinput-fpc.kl \
--	device/phh/treble/files/moto-uinput-egis.kl:system/phh/moto-uinput-egis.kl \
--	device/phh/treble/files/daisy-buttonJack.kl:system/phh/daisy-buttonJack.kl \
--	device/phh/treble/files/daisy-uinput-fpc.kl:system/phh/daisy-uinput-fpc.kl \
--	device/phh/treble/files/daisy-uinput-goodix.kl:system/phh/daisy-uinput-goodix.kl \
--	device/phh/treble/files/nubia-nubia_synaptics_dsx.kl:system/phh/nubia-nubia_synaptics_dsx.kl \
--	device/phh/treble/files/nubia-nubia_goodix_ts.kl:system/phh/nubia-nubia_goodix_ts.kl \
--	device/phh/treble/files/unihertz-mtk-kpd.kl:system/phh/unihertz-mtk-kpd.kl \
--	device/phh/treble/files/unihertz-mtk-tpd.kl:system/phh/unihertz-mtk-tpd.kl \
--	device/phh/treble/files/unihertz-mtk-tpd-kpd.kl:system/phh/unihertz-mtk-tpd-kpd.kl \
--	device/phh/treble/files/unihertz-fingerprint_key.kl:system/phh/unihertz-fingerprint_key.kl \
--	device/phh/treble/files/zf6-goodixfp.kl:system/phh/zf6-goodixfp.kl \
--	device/phh/treble/files/zf6-googlekey_input.kl:system/phh/zf6-googlekey_input.kl \
--	device/phh/treble/files/teracube2e-mtk-kpd.kl:system/phh/teracube2e-mtk-kpd.kl \
--	device/phh/treble/files/bv9500plus-mtk-kpd.kl:system/phh/bv9500plus-mtk-kpd.kl \
--	device/phh/treble/files/moto-liber-gpio-keys.kl:system/phh/moto-liber-gpio-keys.kl \
--	device/phh/treble/files/tecno-touchpanel.kl:system/phh/tecno-touchpanel.kl \
--	device/phh/treble/files/rosemary-excluded-input-devices.xml:system/phh/rosemary-excluded-input-devices.xml
+-    device/phh/treble/files/samsung-gpio_keys.kl.raw:system/phh/samsung-gpio_keys.kl \
+-    device/phh/treble/files/samsung-sec_touchscreen.kl.raw:system/phh/samsung-sec_touchscreen.kl \
+-    device/phh/treble/files/samsung-sec_touchkey.kl.raw:system/phh/samsung-sec_touchkey.kl \
+-    device/phh/treble/files/oneplus6-synaptics_s3320.kl.raw:system/phh/oneplus6-synaptics_s3320.kl \
+-    device/phh/treble/files/huawei-fingerprint.kl.raw:system/phh/huawei/fingerprint.kl \
+-    device/phh/treble/files/samsung-9810-floating_feature.xml:system/phh/sam-9810-flo_feat.xml \
+-    device/phh/treble/files/mimix3-gpio-keys.kl.raw:system/phh/mimix3-gpio-keys.kl \
+-    device/phh/treble/files/nokia-soc_gpio_keys.kl.raw:system/phh/nokia-soc_gpio_keys.kl \
+-    device/phh/treble/files/lenovo-synaptics_dsx.kl.raw:system/phh/lenovo-synaptics_dsx.kl \
+-    device/phh/treble/files/oppo-touchpanel.kl.raw:system/phh/oppo-touchpanel.kl \
+-    device/phh/treble/files/google-uinput-fpc.kl.raw:system/phh/google-uinput-fpc.kl \
+-    device/phh/treble/files/moto-uinput-egis.kl.raw:system/phh/moto-uinput-egis.kl \
+-    device/phh/treble/files/daisy-buttonJack.kl.raw:system/phh/daisy-buttonJack.kl \
+-    device/phh/treble/files/daisy-uinput-fpc.kl.raw:system/phh/daisy-uinput-fpc.kl \
+-    device/phh/treble/files/daisy-uinput-goodix.kl.raw:system/phh/daisy-uinput-goodix.kl \
+-    device/phh/treble/files/nubia-nubia_synaptics_dsx.kl.raw:system/phh/nubia-nubia_synaptics_dsx.kl \
+-    device/phh/treble/files/nubia-nubia_goodix_ts.kl.raw:system/phh/nubia-nubia_goodix_ts.kl \
+-    device/phh/treble/files/unihertz-mtk-kpd.kl.raw:system/phh/unihertz-mtk-kpd.kl \
+-    device/phh/treble/files/unihertz-mtk-tpd.kl.raw:system/phh/unihertz-mtk-tpd.kl \
+-    device/phh/treble/files/unihertz-mtk-tpd-kpd.kl.raw:system/phh/unihertz-mtk-tpd-kpd.kl \
+-    device/phh/treble/files/unihertz-fingerprint_key.kl.raw:system/phh/unihertz-fingerprint_key.kl \
+-    device/phh/treble/files/zf6-goodixfp.kl.raw:system/phh/zf6-goodixfp.kl \
+-    device/phh/treble/files/zf6-googlekey_input.kl.raw:system/phh/zf6-googlekey_input.kl \
+-    device/phh/treble/files/teracube2e-mtk-kpd.kl.raw:system/phh/teracube2e-mtk-kpd.kl \
+-    device/phh/treble/files/bv9500plus-mtk-kpd.kl.raw:system/phh/bv9500plus-mtk-kpd.kl \
+-    device/phh/treble/files/moto-liber-gpio-keys.kl.raw:system/phh/moto-liber-gpio-keys.kl \
+-    device/phh/treble/files/tecno-touchpanel.kl.raw:system/phh/tecno-touchpanel.kl \
+-    device/phh/treble/files/samsung-sec_e-pen.idc:system/usr/idc/sec_e-pen.idc \
+-    device/phh/treble/files/rosemary-excluded-input-devices.xml:system/phh/rosemary-excluded-input-devices.xml
 +#PRODUCT_COPY_FILES += \
-+#	device/phh/treble/files/samsung-gpio_keys.kl:system/phh/samsung-gpio_keys.kl \
-+#	device/phh/treble/files/samsung-sec_touchscreen.kl:system/phh/samsung-sec_touchscreen.kl \
-+#	device/phh/treble/files/samsung-sec_touchkey.kl:system/phh/samsung-sec_touchkey.kl \
-+#	device/phh/treble/files/oneplus6-synaptics_s3320.kl:system/phh/oneplus6-synaptics_s3320.kl \
-+#	device/phh/treble/files/huawei-fingerprint.kl:system/phh/huawei/fingerprint.kl \
-+#	device/phh/treble/files/samsung-sec_e-pen.idc:system/usr/idc/sec_e-pen.idc \
-+#	device/phh/treble/files/samsung-9810-floating_feature.xml:system/ph/sam-9810-flo_feat.xml \
-+#	device/phh/treble/files/mimix3-gpio-keys.kl:system/phh/mimix3-gpio-keys.kl \
-+#	device/phh/treble/files/nokia-soc_gpio_keys.kl:system/phh/nokia-soc_gpio_keys.kl \
-+#	device/phh/treble/files/lenovo-synaptics_dsx.kl:system/phh/lenovo-synaptics_dsx.kl \
-+#	device/phh/treble/files/oppo-touchpanel.kl:system/phh/oppo-touchpanel.kl \
-+#	device/phh/treble/files/google-uinput-fpc.kl:system/phh/google-uinput-fpc.kl \
-+#	device/phh/treble/files/moto-uinput-egis.kl:system/phh/moto-uinput-egis.kl \
-+#	device/phh/treble/files/daisy-buttonJack.kl:system/phh/daisy-buttonJack.kl \
-+#	device/phh/treble/files/daisy-uinput-fpc.kl:system/phh/daisy-uinput-fpc.kl \
-+#	device/phh/treble/files/daisy-uinput-goodix.kl:system/phh/daisy-uinput-goodix.kl \
-+#	device/phh/treble/files/nubia-nubia_synaptics_dsx.kl:system/phh/nubia-nubia_synaptics_dsx.kl \
-+#	device/phh/treble/files/nubia-nubia_goodix_ts.kl:system/phh/nubia-nubia_goodix_ts.kl \
-+#	device/phh/treble/files/unihertz-mtk-kpd.kl:system/phh/unihertz-mtk-kpd.kl \
-+#	device/phh/treble/files/unihertz-mtk-tpd.kl:system/phh/unihertz-mtk-tpd.kl \
-+#	device/phh/treble/files/unihertz-mtk-tpd-kpd.kl:system/phh/unihertz-mtk-tpd-kpd.kl \
-+#	device/phh/treble/files/unihertz-fingerprint_key.kl:system/phh/unihertz-fingerprint_key.kl \
-+#	device/phh/treble/files/zf6-goodixfp.kl:system/phh/zf6-goodixfp.kl \
-+#	device/phh/treble/files/zf6-googlekey_input.kl:system/phh/zf6-googlekey_input.kl \
-+#	device/phh/treble/files/teracube2e-mtk-kpd.kl:system/phh/teracube2e-mtk-kpd.kl \
-+#	device/phh/treble/files/bv9500plus-mtk-kpd.kl:system/phh/bv9500plus-mtk-kpd.kl \
-+#	device/phh/treble/files/moto-liber-gpio-keys.kl:system/phh/moto-liber-gpio-keys.kl \
-+#	device/phh/treble/files/tecno-touchpanel.kl:system/phh/tecno-touchpanel.kl \
-+#	device/phh/treble/files/rosemary-excluded-input-devices.xml:system/phh/rosemary-excluded-input-devices.xml
++#    device/phh/treble/files/samsung-gpio_keys.kl.raw:system/phh/samsung-gpio_keys.kl \
++#    device/phh/treble/files/samsung-sec_touchscreen.kl.raw:system/phh/samsung-sec_touchscreen.kl \
++#    device/phh/treble/files/samsung-sec_touchkey.kl.raw:system/phh/samsung-sec_touchkey.kl \
++#    device/phh/treble/files/oneplus6-synaptics_s3320.kl.raw:system/phh/oneplus6-synaptics_s3320.kl \
++#    device/phh/treble/files/huawei-fingerprint.kl.raw:system/phh/huawei/fingerprint.kl \
++#    device/phh/treble/files/samsung-9810-floating_feature.xml:system/phh/sam-9810-flo_feat.xml \
++#    device/phh/treble/files/mimix3-gpio-keys.kl.raw:system/phh/mimix3-gpio-keys.kl \
++#    device/phh/treble/files/nokia-soc_gpio_keys.kl.raw:system/phh/nokia-soc_gpio_keys.kl \
++#    device/phh/treble/files/lenovo-synaptics_dsx.kl.raw:system/phh/lenovo-synaptics_dsx.kl \
++#    device/phh/treble/files/oppo-touchpanel.kl.raw:system/phh/oppo-touchpanel.kl \
++#    device/phh/treble/files/google-uinput-fpc.kl.raw:system/phh/google-uinput-fpc.kl \
++#    device/phh/treble/files/moto-uinput-egis.kl.raw:system/phh/moto-uinput-egis.kl \
++#    device/phh/treble/files/daisy-buttonJack.kl.raw:system/phh/daisy-buttonJack.kl \
++#    device/phh/treble/files/daisy-uinput-fpc.kl.raw:system/phh/daisy-uinput-fpc.kl \
++#    device/phh/treble/files/daisy-uinput-goodix.kl.raw:system/phh/daisy-uinput-goodix.kl \
++#    device/phh/treble/files/nubia-nubia_synaptics_dsx.kl.raw:system/phh/nubia-nubia_synaptics_dsx.kl \
++#    device/phh/treble/files/nubia-nubia_goodix_ts.kl.raw:system/phh/nubia-nubia_goodix_ts.kl \
++#    device/phh/treble/files/unihertz-mtk-kpd.kl.raw:system/phh/unihertz-mtk-kpd.kl \
++#    device/phh/treble/files/unihertz-mtk-tpd.kl.raw:system/phh/unihertz-mtk-tpd.kl \
++#    device/phh/treble/files/unihertz-mtk-tpd-kpd.kl.raw:system/phh/unihertz-mtk-tpd-kpd.kl \
++#    device/phh/treble/files/unihertz-fingerprint_key.kl.raw:system/phh/unihertz-fingerprint_key.kl \
++#    device/phh/treble/files/zf6-goodixfp.kl.raw:system/phh/zf6-goodixfp.kl \
++#    device/phh/treble/files/zf6-googlekey_input.kl.raw:system/phh/zf6-googlekey_input.kl \
++#    device/phh/treble/files/teracube2e-mtk-kpd.kl.raw:system/phh/teracube2e-mtk-kpd.kl \
++#    device/phh/treble/files/bv9500plus-mtk-kpd.kl.raw:system/phh/bv9500plus-mtk-kpd.kl \
++#    device/phh/treble/files/moto-liber-gpio-keys.kl.raw:system/phh/moto-liber-gpio-keys.kl \
++#    device/phh/treble/files/tecno-touchpanel.kl.raw:system/phh/tecno-touchpanel.kl \
++#    device/phh/treble/files/samsung-sec_e-pen.idc:system/usr/idc/sec_e-pen.idc \
++#    device/phh/treble/files/rosemary-excluded-input-devices.xml:system/phh/rosemary-excluded-input-devices.xml
  
  SELINUX_IGNORE_NEVERALLOWS := true
  
-@@ -210,10 +210,10 @@ PRODUCT_PACKAGES += \
+@@ -208,10 +208,10 @@ PRODUCT_PACKAGES += \
  
  PRODUCT_COPY_FILES += \
- 	device/phh/treble/empty:system/etc/smartpa_params/empty \
--	device/phh/treble/proprietary-files/gome/fs16xx_01s_left.preset:system/phh/gome/fs16xx_01s_left.preset \
--	device/phh/treble/proprietary-files/gome/fs16xx_01s_mono.preset:system/phh/gome/fs16xx_01s_mono.preset \
--	device/phh/treble/proprietary-files/gome/fs16xx_01s_right.preset:system/phh/gome/fs16xx_01s_right.preset \
--	device/phh/treble/proprietary-files/umidigi/fs16xx_01s_mono.preset:system/phh/umidigi/fs16xx_01s_mono.preset
-+#	device/phh/treble/proprietary-files/gome/fs16xx_01s_left.preset:system/phh/gome/fs16xx_01s_left.preset \
-+#	device/phh/treble/proprietary-files/gome/fs16xx_01s_mono.preset:system/phh/gome/fs16xx_01s_mono.preset \
-+#	device/phh/treble/proprietary-files/gome/fs16xx_01s_right.preset:system/phh/gome/fs16xx_01s_right.preset \
-+#	device/phh/treble/proprietary-files/umidigi/fs16xx_01s_mono.preset:system/phh/umidigi/fs16xx_01s_mono.preset
+     device/phh/treble/overrides/nothing.txt:system/etc/smartpa_params/empty \
+-    device/phh/treble/proprietary-files/gome/fs16xx_01s_left.preset.raw:system/phh/gome/fs16xx_01s_left.preset \
+-    device/phh/treble/proprietary-files/gome/fs16xx_01s_mono.preset.raw:system/phh/gome/fs16xx_01s_mono.preset \
+-    device/phh/treble/proprietary-files/gome/fs16xx_01s_right.preset.raw:system/phh/gome/fs16xx_01s_right.preset \
+-    device/phh/treble/proprietary-files/umidigi/fs16xx_01s_mono.preset.raw:system/phh/umidigi/fs16xx_01s_mono.preset
++#    device/phh/treble/proprietary-files/gome/fs16xx_01s_left.preset.raw:system/phh/gome/fs16xx_01s_left.preset \
++#    device/phh/treble/proprietary-files/gome/fs16xx_01s_mono.preset.raw:system/phh/gome/fs16xx_01s_mono.preset \
++#    device/phh/treble/proprietary-files/gome/fs16xx_01s_right.preset.raw:system/phh/gome/fs16xx_01s_right.preset \
++#    device/phh/treble/proprietary-files/umidigi/fs16xx_01s_mono.preset.raw:system/phh/umidigi/fs16xx_01s_mono.preset
  
  PRODUCT_COPY_FILES += \
- 	frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration_7_0.xml:system/etc/a2dp_audio_policy_configuration_7_0.xml \
-@@ -261,4 +261,3 @@ RELAX_USES_LIBRARY_CHECK=true
+     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration_7_0.xml:system/etc/a2dp_audio_policy_configuration_7_0.xml \
+@@ -259,4 +259,3 @@ RELAX_USES_LIBRARY_CHECK=true
  
  PRODUCT_PACKAGES += \
  	ims \
 -
+-- 
+2.34.1
+
+
+From 7a8dbaa25391f599cc710deabe46547b1918b736 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sat, 10 May 2025 13:56:03 -0400
+Subject: [PATCH 28/28] fix build r32
+
+---
+ cmds/Android.bp | 12 ------------
+ empty           |  0
+ 2 files changed, 12 deletions(-)
+ create mode 100644 empty
+
+diff --git a/cmds/Android.bp b/cmds/Android.bp
+index aff655d..eed1bbc 100644
+--- a/cmds/Android.bp
++++ b/cmds/Android.bp
+@@ -274,15 +274,3 @@ cc_binary {
+ 		"re-libged_sys.cpp",
+ 	],
+ }
+-
+-cc_binary {
+-	name: "agold-cmd",
+-	srcs: [
+-		"agold-cmd.cpp",
+-	],
+-	shared_libs: [
+-        "vendor.mediatek.hardware.agolddaemon-V1-cpp",
+-		"libutils",
+-		"libbinder",
+-	],
+-}
+diff --git a/empty b/empty
+new file mode 100644
+index 0000000..e69de29
 -- 
 2.34.1
 

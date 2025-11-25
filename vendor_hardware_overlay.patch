@@ -1,7 +1,7 @@
-From 06a0b4482a6e10b9fb3f764e276db726cf002508 Mon Sep 17 00:00:00 2001
+From b68912285b0685e3e80d47364b379d2a2d1c3ab2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:44:02 -0500
-Subject: [PATCH 01/18] Add fairphone system ui overlay
+Subject: [PATCH 01/19] Add fairphone system ui overlay
 
 - change volume dialog position
 - remove unused oem overlays
@@ -59,10 +59,10 @@ index 0000000..87ee5ac
 2.34.1
 
 
-From 09c7dd042a760e6eab7e278706eb4e304b10ee28 Mon Sep 17 00:00:00 2001
+From 305e4e2621a729beede268084e8c6d28529723d1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 23:38:31 -0500
-Subject: [PATCH 02/18] Add target filters to FP3 overlays
+Subject: [PATCH 02/19] Add target filters to FP3 overlays
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -88,10 +88,10 @@ index 59a9e93..5710557 100644
 2.34.1
 
 
-From 4e54739e3edb18dcda30a67c21405d71d13ab0ca Mon Sep 17 00:00:00 2001
+From 7953aa9c4aa74c126c7ebbf864e139db9dfa37ef Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 27 Dec 2022 15:19:25 -0500
-Subject: [PATCH 03/18] Enable fingerprint on FP3
+Subject: [PATCH 03/19] Enable fingerprint on FP3
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -115,10 +115,10 @@ index 84d0585..2b642de 100644
 2.34.1
 
 
-From 9de749c1fb672eb47e3468a35caee14b2ff15a6e Mon Sep 17 00:00:00 2001
+From 71336899ed1b515f56a7d98a8712dc4690dc678b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 18:00:16 -0500
-Subject: [PATCH 04/18] Add theme picker to settings with overlays
+Subject: [PATCH 04/19] Add theme picker to settings with overlays
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -174,10 +174,10 @@ index 0000000..b0e3472
 2.34.1
 
 
-From 9624587858f50e06672816743955f6ec699e28af Mon Sep 17 00:00:00 2001
+From 3266998ffa4b5cb6706caa2d185eda73ac3b3058 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:01:04 -0500
-Subject: [PATCH 05/18] Increase number of quick tiles in notification shade
+Subject: [PATCH 05/19] Increase number of quick tiles in notification shade
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -211,10 +211,10 @@ index 87ee5ac..25aa6f5 100644
 2.34.1
 
 
-From f2e5d1129281f3be4baad70bd2fe7cf4e37e44a6 Mon Sep 17 00:00:00 2001
+From 77f98ed6b9384ec677d6a1d731bed90139a3e206 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 11:05:21 -0500
-Subject: [PATCH 06/18] FP3 does not support swipe on fingerprint sensor
+Subject: [PATCH 06/19] FP3 does not support swipe on fingerprint sensor
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -239,10 +239,10 @@ index 2b642de..210c66b 100644
 2.34.1
 
 
-From 14c15f81461b749f0d983438d3a20bcd30c571a8 Mon Sep 17 00:00:00 2001
+From a672cd744f1d0c00f3bc3f82657300f8b74b2ea9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 13 Jan 2023 22:39:15 -0500
-Subject: [PATCH 07/18] Add open qr code scanner as default qr quick tile
+Subject: [PATCH 07/19] Add open qr code scanner as default qr quick tile
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -264,10 +264,10 @@ index 210c66b..fc91b97 100644
 2.34.1
 
 
-From 3ea9fadffb6d473564db2f6767f6273d55e5465f Mon Sep 17 00:00:00 2001
+From 0439c4ab1f63d13632865de1a0d2c762d6275f63 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 15 Jan 2023 12:50:21 -0500
-Subject: [PATCH 08/18] Add one more row to quick toggles expanded
+Subject: [PATCH 08/19] Add one more row to quick toggles expanded
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -299,10 +299,10 @@ index 25aa6f5..fda12c2 100644
 2.34.1
 
 
-From 75db5017127b8ad567593653f271b908ba53eb62 Mon Sep 17 00:00:00 2001
+From f438d855ee4bf62b7cd4a960da6acbda658b6b74 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 17:04:59 -0500
-Subject: [PATCH 09/18] Enable qr code scanner on lock screen
+Subject: [PATCH 09/19] Enable qr code scanner on lock screen
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -323,10 +323,10 @@ index fc91b97..132dcb6 100644
 2.34.1
 
 
-From 0504ad2aefb2aa97d6ae4d66c67dd74b0a0643dc Mon Sep 17 00:00:00 2001
+From 7441105cdd6d47f2a1d7a3c69a99ec1b7c007adc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 21 Jan 2023 17:06:46 -0500
-Subject: [PATCH 10/18] Increase landscape volume dialog height and seekbar
+Subject: [PATCH 10/19] Increase landscape volume dialog height and seekbar
  length
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -361,10 +361,10 @@ index 0000000..c65b61d
 2.34.1
 
 
-From 7117a2bc5dbe7e4ad4f07453cc57fb2ed2720c69 Mon Sep 17 00:00:00 2001
+From a78aa6af6ec2aa0bc2b3fe6a07dfcf8d452b9626 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 22:49:09 -0500
-Subject: [PATCH 11/18] Add gitignore for generated cl.txt
+Subject: [PATCH 11/19] Add gitignore for generated cl.txt
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -384,10 +384,10 @@ index 0000000..6c03d13
 2.34.1
 
 
-From 5945087cede0dac5c72cfe5cf8c9696e5bf2052a Mon Sep 17 00:00:00 2001
+From b8d62bc529a8bede00c1d08ecc1131e9d0a9d2dc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 1 May 2023 13:18:24 -0400
-Subject: [PATCH 12/18] Replace google captive portal url with v2ex
+Subject: [PATCH 12/19] Replace google captive portal url with v2ex
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -443,10 +443,10 @@ index 0000000..4a61b09
 2.34.1
 
 
-From 2f60dd5b353d0b27ca8739c9468bd659f0b45da9 Mon Sep 17 00:00:00 2001
+From dcf24a457d6da45f56df533593a19b0124fcce59 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 11 Aug 2023 14:36:26 -0400
-Subject: [PATCH 13/18] Update one handed mode size
+Subject: [PATCH 13/19] Update one handed mode size
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -468,10 +468,10 @@ index 0000000..2b22266
 2.34.1
 
 
-From 4d8fa50d394552b9e8db0e93dc40761da138e4f1 Mon Sep 17 00:00:00 2001
+From f88d2664ab4b46ec0d28fbc3a5c9664961ebc9db Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 1 Dec 2023 22:19:04 -0500
-Subject: [PATCH 14/18] Enable customizable lock screen shortcuts
+Subject: [PATCH 14/19] Enable customizable lock screen shortcuts
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -492,10 +492,10 @@ index 2b22266..0a03a41 100644
 2.34.1
 
 
-From 498ac61fa4e5a232ffa94d3c3dcf3fe32ebb8cd0 Mon Sep 17 00:00:00 2001
+From 9a4854cb6555e938096c2d8bc554dc5ae3df5af7 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 12 Feb 2024 16:09:56 -0500
-Subject: [PATCH 15/18] Add dialer overlay
+Subject: [PATCH 15/19] Add dialer overlay
 
 increase swipe distance to accept call
 
@@ -551,10 +551,10 @@ index 0000000..c0023e4
 2.34.1
 
 
-From 6d615fb86fb73ddaba3e591af90309fe2490a694 Mon Sep 17 00:00:00 2001
+From a7c6f390038368927d56c442b501d81755aab067 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 23 Feb 2024 21:39:44 -0500
-Subject: [PATCH 16/18] simplify hardware overlay mk
+Subject: [PATCH 16/19] simplify hardware overlay mk
 
 ---
  my_overlay.mk | 41 +++++++++++++++++++++++++++++++++++++++++
@@ -612,10 +612,10 @@ index 0000000..0c88c6a
 2.34.1
 
 
-From 868a907ff236ff7296f918797e4807bb10ebb90d Mon Sep 17 00:00:00 2001
+From 2f27f53ce8de9dcf48f43944dc940207e87a5745 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 1 Mar 2025 15:44:31 -0500
-Subject: [PATCH 17/18] fp3 memory optimization
+Subject: [PATCH 17/19] fp3 memory optimization
 
 ---
  Fairphone/FP3/res/values/config.xml | 8 ++++++++
@@ -649,10 +649,10 @@ index 132dcb6..4dd61e2 100644
 2.34.1
 
 
-From 7206d898d0b3a15e9e598571372f95a37e397414 Mon Sep 17 00:00:00 2001
+From bd03422a8e4c534ae03c606c20b929d27f6b38bf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 2 Apr 2025 21:05:25 -0400
-Subject: [PATCH 18/18] update FP3 configs
+Subject: [PATCH 18/19] update FP3 configs
 
 ---
  Fairphone/FP3/res/values/config.xml | 20 +++-----------------
@@ -707,6 +707,30 @@ index 4dd61e2..6f63e9a 100644
  
          <bool name="config_pinnerCameraApp">true</bool>
 +        <bool name="config_speed_up_audio_on_mt_calls">true</bool>
+ </resources>
+-- 
+2.34.1
+
+
+From 172bca6eebf2ba3bcef20adbdfbd97f35f8f1bf3 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 24 Nov 2025 23:24:13 -0500
+Subject: [PATCH 19/19] Default to gesture nav. this fixes setup wizard issue
+
+---
+ Fairphone/FP3/res/values/config.xml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Fairphone/FP3/res/values/config.xml b/Fairphone/FP3/res/values/config.xml
+index 6f63e9a..0fe7311 100644
+--- a/Fairphone/FP3/res/values/config.xml
++++ b/Fairphone/FP3/res/values/config.xml
+@@ -477,4 +477,6 @@
+ 
+         <bool name="config_pinnerCameraApp">true</bool>
+         <bool name="config_speed_up_audio_on_mt_calls">true</bool>
++
++        <integer name="config_navBarInteractionMode">2</integer>
  </resources>
 -- 
 2.34.1

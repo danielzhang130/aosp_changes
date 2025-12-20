@@ -1,4 +1,4 @@
-From 94ebb586bab1c8d0a75a240a74f78c819f46fe13 Mon Sep 17 00:00:00 2001
+From c69382b1314c96f6c2c01dd9b961cfa7209709d5 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
 Subject: [PATCH 01/16] pass safetynet and gpay
@@ -7,17 +7,17 @@ Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
  core/java/android/app/Instrumentation.java    |  4 +
- .../net/config/ManifestConfigSource.java      |  2 +-
  .../internal/gmscompat/AttestationHooks.java  | 86 +++++++++++++++++++
  .../keystore2/AndroidKeyStoreSpi.java         |  3 +
+ .../net/config/ManifestConfigSource.java      |  2 +-
  4 files changed, 94 insertions(+), 1 deletion(-)
  create mode 100644 core/java/com/android/internal/gmscompat/AttestationHooks.java
 
 diff --git a/core/java/android/app/Instrumentation.java b/core/java/android/app/Instrumentation.java
-index 19fecb9bf..c49360e55 100644
+index 9938a19b4..4fd9ab627 100644
 --- a/core/java/android/app/Instrumentation.java
 +++ b/core/java/android/app/Instrumentation.java
-@@ -66,6 +66,8 @@ import android.view.WindowManagerGlobal;
+@@ -71,6 +71,8 @@ import android.view.WindowManagerGlobal;
  
  import com.android.internal.content.ReferrerIntent;
  
@@ -26,7 +26,7 @@ index 19fecb9bf..c49360e55 100644
  import java.io.File;
  import java.lang.annotation.Retention;
  import java.lang.annotation.RetentionPolicy;
-@@ -1346,6 +1348,7 @@ public class Instrumentation {
+@@ -1359,6 +1361,7 @@ public class Instrumentation {
          Application app = getFactory(context.getPackageName())
                  .instantiateApplication(cl, className);
          app.attach(context);
@@ -34,7 +34,7 @@ index 19fecb9bf..c49360e55 100644
          return app;
      }
      
-@@ -1363,6 +1366,7 @@ public class Instrumentation {
+@@ -1377,6 +1380,7 @@ public class Instrumentation {
              ClassNotFoundException {
          Application app = (Application)clazz.newInstance();
          app.attach(context);
@@ -42,19 +42,6 @@ index 19fecb9bf..c49360e55 100644
          return app;
      }
  
-diff --git a/core/java/android/security/net/config/ManifestConfigSource.java b/core/java/android/security/net/config/ManifestConfigSource.java
-index 0e20997d3..d84ea1af2 100644
---- a/core/java/android/security/net/config/ManifestConfigSource.java
-+++ b/core/java/android/security/net/config/ManifestConfigSource.java
-@@ -57,7 +57,7 @@ public class ManifestConfigSource implements ConfigSource {
-             }
-             int configResource = mApplicationInfo.networkSecurityConfigRes;
-             ConfigSource source;
--            if (configResource != 0) {
-+            if (false) {
-                 boolean debugBuild =
-                         (mApplicationInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
-                 if (DBG) {
 diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
 new file mode 100644
 index 000000000..77101541f
@@ -168,11 +155,24 @@ index e6a63b9c4..6a80c14c9 100644
          KeyEntryResponse response = getKeyMetadata(alias);
  
          if (response == null || response.metadata.certificate == null) {
+diff --git a/packages/NetworkSecurityConfig/platform/src/android/security/net/config/ManifestConfigSource.java b/packages/NetworkSecurityConfig/platform/src/android/security/net/config/ManifestConfigSource.java
+index 3ae7ee594..a26c40349 100644
+--- a/packages/NetworkSecurityConfig/platform/src/android/security/net/config/ManifestConfigSource.java
++++ b/packages/NetworkSecurityConfig/platform/src/android/security/net/config/ManifestConfigSource.java
+@@ -64,7 +64,7 @@ public class ManifestConfigSource implements ConfigSource {
+             }
+             int configResource = mApplicationInfo.networkSecurityConfigRes;
+             ConfigSource source;
+-            if (configResource != 0) {
++            if (false) {
+                 boolean debugBuild =
+                         (mApplicationInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+                 if (DBG) {
 -- 
 2.34.1
 
 
-From 658ea8e2cec34bbe4e2f0bcdf98d199d626f25a1 Mon Sep 17 00:00:00 2001
+From 1e15ee18c3842e633e33c41ffe32bb8c8b3e2250 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
 Subject: [PATCH 02/16] Set auto brightness on by default
@@ -183,7 +183,7 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/packages/SettingsProvider/res/values/defaults.xml b/packages/SettingsProvider/res/values/defaults.xml
-index 94aa955f0..3d24efe61 100644
+index ce8de5e8d..712d47839 100644
 --- a/packages/SettingsProvider/res/values/defaults.xml
 +++ b/packages/SettingsProvider/res/values/defaults.xml
 @@ -33,7 +33,7 @@
@@ -199,7 +199,7 @@ index 94aa955f0..3d24efe61 100644
 2.34.1
 
 
-From 975742c1c498d48098bd1f7bbf8cc4c71ed83aec Mon Sep 17 00:00:00 2001
+From cbf38f81bb947b596c445253983f00e3c043fbca Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Dec 2022 15:07:10 -0500
 Subject: [PATCH 03/16] Add support for left side volume dialog
@@ -660,7 +660,7 @@ index 000000000..8025a7807
 +
 +</FrameLayout>
 diff --git a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-index 6fc956101..f41fb93a6 100644
+index 0b4d53aa5..11d2a6f5f 100644
 --- a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
 +++ b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
 @@ -196,6 +196,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
@@ -817,7 +817,7 @@ index 6fc956101..f41fb93a6 100644
          }
  
          mAnimateUpBackgroundToMatchDrawer.setDuration(DRAWER_ANIMATION_DURATION);
-@@ -1759,7 +1771,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
+@@ -1758,7 +1770,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
              }
          }
  
@@ -853,7 +853,7 @@ index 6fc956101..f41fb93a6 100644
 2.34.1
 
 
-From fe0dc0776a4fc6e0623c4d99d59a36f57bacfb8c Mon Sep 17 00:00:00 2001
+From 3c5510f9a8f704a1c90f1102d748a0e71f94be84 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
 Subject: [PATCH 04/16] Remove max column limit on quick tiles under
@@ -881,7 +881,7 @@ index ef44e5fb8..cf7e43d2a 100644
 2.34.1
 
 
-From 9bab3c84c3a18de22bc8a1e401193f35eadcc1b5 Mon Sep 17 00:00:00 2001
+From f3d1e647cea576780305c79b4a94e569b9d6e9ab Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
 Subject: [PATCH 05/16] Update permission history cutoff days
@@ -893,10 +893,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 4 insertions(+), 9 deletions(-)
 
 diff --git a/services/core/java/com/android/server/appop/DiscreteOpsRegistry.java b/services/core/java/com/android/server/appop/DiscreteOpsRegistry.java
-index 3867cbe1e..d5a99185b 100644
+index ada9f7a74..89051320f 100644
 --- a/services/core/java/com/android/server/appop/DiscreteOpsRegistry.java
 +++ b/services/core/java/com/android/server/appop/DiscreteOpsRegistry.java
-@@ -215,15 +215,10 @@ abstract class DiscreteOpsRegistry {
+@@ -203,15 +203,10 @@ abstract class DiscreteOpsRegistry {
      }
  
      private void setDiscreteHistoryParameters(DeviceConfig.Properties p) {
@@ -920,7 +920,7 @@ index 3867cbe1e..d5a99185b 100644
 2.34.1
 
 
-From f41c4fb73677937bc6215f8cd0dac91855588506 Mon Sep 17 00:00:00 2001
+From bc0e5de46a22e3a85b366d1a57f9fef32e8d473a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
 Subject: [PATCH 06/16] Add launcher icon for android 10 easter egg
@@ -932,10 +932,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/packages/EasterEgg/AndroidManifest.xml b/packages/EasterEgg/AndroidManifest.xml
-index bcc10ddde..115d552b9 100644
+index 34789819e..9e14d922a 100644
 --- a/packages/EasterEgg/AndroidManifest.xml
 +++ b/packages/EasterEgg/AndroidManifest.xml
-@@ -81,6 +81,7 @@
+@@ -82,6 +82,7 @@
              android:theme="@style/QuaresTheme">
              <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
@@ -947,7 +947,7 @@ index bcc10ddde..115d552b9 100644
 2.34.1
 
 
-From 55a5fd8d7075b70b423f30153eca4c6c8c4244e6 Mon Sep 17 00:00:00 2001
+From 7f524f83db905a3923e2fe7aedea0cf1a3a325cc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
 Subject: [PATCH 07/16] Use system default vibration for fb messenger app
@@ -959,10 +959,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 3 insertions(+)
 
 diff --git a/core/java/android/app/NotificationChannel.java b/core/java/android/app/NotificationChannel.java
-index c1d80c93c..6e014bdb9 100644
+index ad02c7a09..d6dad7a4f 100644
 --- a/core/java/android/app/NotificationChannel.java
 +++ b/core/java/android/app/NotificationChannel.java
-@@ -747,6 +747,9 @@ public final class NotificationChannel implements Parcelable {
+@@ -738,6 +738,9 @@ public final class NotificationChannel implements Parcelable {
       * {@link NotificationManager#createNotificationChannel(NotificationChannel)}.
       */
      public void setVibrationPattern(long[] vibrationPattern) {
@@ -971,12 +971,12 @@ index c1d80c93c..6e014bdb9 100644
 +        }
          this.mVibrationEnabled = vibrationPattern != null && vibrationPattern.length > 0;
          this.mVibrationPattern = vibrationPattern;
-         if (Flags.notifChannelCropVibrationEffects()) {
+         if (vibrationPattern != null && vibrationPattern.length > MAX_VIBRATION_LENGTH) {
 -- 
 2.34.1
 
 
-From 6a66529c737892d68c56e50d396dbc78e9d08e2e Mon Sep 17 00:00:00 2001
+From e4ec7dfdc3a7484b85dd31658878d2bbb4df0a96 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
 Subject: [PATCH 08/16] Fix safetynet/play integrity
@@ -1009,7 +1009,7 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From 90e20737ea7143d3c2e8fc2bb51d095983d9544f Mon Sep 17 00:00:00 2001
+From 73d2abe0e5282aceded51165d9966529eb3f8043 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
 Subject: [PATCH 09/16] Get free photo storage for google pixel
@@ -1021,10 +1021,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 25 insertions(+)
 
 diff --git a/core/java/android/app/Application.java b/core/java/android/app/Application.java
-index 6a50e74ca..5051499a2 100644
+index ed22fb961..8c7a37f9c 100644
 --- a/core/java/android/app/Application.java
 +++ b/core/java/android/app/Application.java
-@@ -32,6 +32,7 @@ import android.os.Bundle;
+@@ -33,6 +33,7 @@ import android.os.Bundle;
  import android.util.Log;
  import android.view.autofill.AutofillManager;
  
@@ -1032,7 +1032,7 @@ index 6a50e74ca..5051499a2 100644
  import java.util.ArrayList;
  
  /**
-@@ -262,8 +263,32 @@ public class Application extends ContextWrapper implements ComponentCallbacks2 {
+@@ -272,8 +273,32 @@ public class Application extends ContextWrapper implements ComponentCallbacks2 {
       */
      @CallSuper
      public void onCreate() {
@@ -1069,7 +1069,7 @@ index 6a50e74ca..5051499a2 100644
 2.34.1
 
 
-From d03a834240d465731ba4dc86a2e2acb5f555fa16 Mon Sep 17 00:00:00 2001
+From b4f0ab51540b145a8c2f36e2d9365b19d4caf737 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
 Subject: [PATCH 10/16] Add ability to change fingerprint from persist prop
@@ -1111,7 +1111,7 @@ index 84d767694..3a928f54b 100644
 2.34.1
 
 
-From 82e76ff67cdadbf3857a97d21f627537521cce42 Mon Sep 17 00:00:00 2001
+From cea6aa781e7a9ae30852b825e609b2a3fc7ddbbf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
 Subject: [PATCH 11/16] Update default spoof fingerprint
@@ -1154,7 +1154,7 @@ index 3a928f54b..ee174dfb5 100644
 2.34.1
 
 
-From 0b8969c26b379c9248c2a3cc2535b17ec3b3cc2b Mon Sep 17 00:00:00 2001
+From 2957fd11aec0e19e75cc1e1cc1d1aa20908c52e7 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
 Subject: [PATCH 12/16] Change quick affordance click from long to short click
@@ -1162,20 +1162,22 @@ Subject: [PATCH 12/16] Change quick affordance click from long to short click
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- .../domain/interactor/KeyguardQuickAffordanceInteractor.kt   | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ .../domain/interactor/KeyguardQuickAffordanceInteractor.kt | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt b/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt
-index 65ceb88ef..bfc2faecf 100644
+index 446df06b4..cbe5177b2 100644
 --- a/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt
 +++ b/packages/SystemUI/src/com/android/systemui/keyguard/domain/interactor/KeyguardQuickAffordanceInteractor.kt
-@@ -113,10 +113,7 @@ constructor(
+@@ -111,12 +111,7 @@ constructor(
       *
       * If `false`, the UI goes back to using single taps.
       */
 -    fun useLongPress(): Flow<Boolean> =
--        dockManager.retrieveIsDocked().map { isDocked ->
--            !isDocked && !accessibilityManager.isEnabled()
+-        combine(dockManager.retrieveIsDocked(), accessibilityInteractor.isEnabledFiltered) {
+-            isDocked,
+-            isAccessibilityEnabled ->
+-            !isDocked && !isAccessibilityEnabled
 -        }
 +    fun useLongPress(): Flow<Boolean> = flowOf(false)
  
@@ -1185,7 +1187,7 @@ index 65ceb88ef..bfc2faecf 100644
 2.34.1
 
 
-From c2e6d900bc19a5b3e5677e3f04340e3bea574aba Mon Sep 17 00:00:00 2001
+From dea9c0b36ddddf9c40c52ca2962a6d4fd9f72696 Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Sat, 16 Oct 2021 05:27:57 -0700
 Subject: [PATCH 13/16] Add support for app signature spoofing
@@ -1239,10 +1241,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  6 files changed, 83 insertions(+), 7 deletions(-)
 
 diff --git a/core/api/current.txt b/core/api/current.txt
-index 07224db7d..255befc4c 100644
+index a1d5522e6..dffe19603 100644
 --- a/core/api/current.txt
 +++ b/core/api/current.txt
-@@ -104,6 +104,7 @@ package android {
+@@ -108,6 +108,7 @@ package android {
      field @FlaggedApi("android.xr.xr_manifest_entries") public static final String EYE_TRACKING_FINE = "android.permission.EYE_TRACKING_FINE";
      field @FlaggedApi("android.xr.xr_manifest_entries") public static final String FACE_TRACKING = "android.permission.FACE_TRACKING";
      field public static final String FACTORY_TEST = "android.permission.FACTORY_TEST";
@@ -1250,7 +1252,7 @@ index 07224db7d..255befc4c 100644
      field public static final String FOREGROUND_SERVICE = "android.permission.FOREGROUND_SERVICE";
      field public static final String FOREGROUND_SERVICE_CAMERA = "android.permission.FOREGROUND_SERVICE_CAMERA";
      field public static final String FOREGROUND_SERVICE_CONNECTED_DEVICE = "android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE";
-@@ -360,6 +361,7 @@ package android {
+@@ -369,6 +370,7 @@ package android {
      field public static final String CALL_LOG = "android.permission-group.CALL_LOG";
      field public static final String CAMERA = "android.permission-group.CAMERA";
      field public static final String CONTACTS = "android.permission-group.CONTACTS";
@@ -1259,10 +1261,10 @@ index 07224db7d..255befc4c 100644
      field public static final String MICROPHONE = "android.permission-group.MICROPHONE";
      field public static final String NEARBY_DEVICES = "android.permission-group.NEARBY_DEVICES";
 diff --git a/core/api/lint-baseline.txt b/core/api/lint-baseline.txt
-index 3895a512a..d6bb8703e 100644
+index 1cb912420..785274383 100644
 --- a/core/api/lint-baseline.txt
 +++ b/core/api/lint-baseline.txt
-@@ -1123,6 +1123,10 @@ Todo: android.provider.ContactsContract.RawContacts#newEntityIterator(android.da
+@@ -1194,6 +1194,10 @@ Todo: android.provider.ContactsContract.RawContacts#newEntityIterator(android.da
      Documentation mentions 'TODO'
  
  
@@ -1274,10 +1276,10 @@ index 3895a512a..d6bb8703e 100644
      New API must be flagged with @FlaggedApi: field android.R.color.on_surface_disabled_material
  UnflaggedApi: android.R.color#outline_disabled_material:
 diff --git a/core/res/AndroidManifest.xml b/core/res/AndroidManifest.xml
-index 636968dd1..e51a31109 100644
+index 3a5dbd08d..ebba48a1a 100644
 --- a/core/res/AndroidManifest.xml
 +++ b/core/res/AndroidManifest.xml
-@@ -4884,6 +4884,21 @@
+@@ -5001,6 +5001,21 @@
          android:description="@string/permdesc_getPackageSize"
          android:protectionLevel="normal" />
  
@@ -1300,10 +1302,10 @@ index 636968dd1..e51a31109 100644
           {@link android.content.pm.PackageManager#addPackageToPreferred}
           for details. -->
 diff --git a/core/res/res/values/strings.xml b/core/res/res/values/strings.xml
-index 43ba327f4..1369633db 100644
+index f9abbcd1b..367b522a3 100644
 --- a/core/res/res/values/strings.xml
 +++ b/core/res/res/values/strings.xml
-@@ -1075,6 +1075,18 @@
+@@ -1142,6 +1142,18 @@
  
      <!--  Permissions -->
  
@@ -1323,10 +1325,10 @@ index 43ba327f4..1369633db 100644
      <string name="permlab_statusBar">disable or modify status bar</string>
      <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
 diff --git a/services/core/java/com/android/server/pm/ComputerEngine.java b/services/core/java/com/android/server/pm/ComputerEngine.java
-index 14836d6bc..6dbdc7f4b 100644
+index c9ae89cde..1a057e6fa 100644
 --- a/services/core/java/com/android/server/pm/ComputerEngine.java
 +++ b/services/core/java/com/android/server/pm/ComputerEngine.java
-@@ -1526,6 +1526,11 @@ public class ComputerEngine implements Computer {
+@@ -1519,6 +1519,11 @@ public class ComputerEngine implements Computer {
          return Optional.of(fakeSignature);
      }
  
@@ -1338,7 +1340,7 @@ index 14836d6bc..6dbdc7f4b 100644
      public final PackageInfo generatePackageInfo(PackageStateInternal ps,
              @PackageManager.PackageInfoFlagsBits long flags, int userId) {
          if (!mUserManager.exists(userId)) return null;
-@@ -1559,7 +1564,8 @@ public class ComputerEngine implements Computer {
+@@ -1552,7 +1557,8 @@ public class ComputerEngine implements Computer {
                      || ArrayUtils.isEmpty(p.getPermissions())) ? Collections.emptySet()
                      : mPermissionManager.getInstalledPermissions(ps.getPackageName());
              // Compute granted permissions only if package has requested permissions
@@ -1348,7 +1350,7 @@ index 14836d6bc..6dbdc7f4b 100644
                      || ArrayUtils.isEmpty(p.getRequestedPermissions())) ? Collections.emptySet()
                      : mPermissionManager.getGrantedPermissions(ps.getPackageName(), userId);
  
-@@ -1623,7 +1629,7 @@ public class ComputerEngine implements Computer {
+@@ -1624,7 +1630,7 @@ public class ComputerEngine implements Computer {
              pi.applicationInfo = PackageInfoUtils.generateDelegateApplicationInfo(
                      ai, flags, state, userId);
              pi.signingInfo = ps.getSigningInfo();
@@ -1358,26 +1360,26 @@ index 14836d6bc..6dbdc7f4b 100644
                  pi.setArchiveTimeMillis(state.getArchiveState().getArchiveTimeMillis());
              }
 diff --git a/services/core/java/com/android/server/pm/parsing/PackageInfoUtils.java b/services/core/java/com/android/server/pm/parsing/PackageInfoUtils.java
-index 5ca5fda19..caac7d6f9 100644
+index d8d3b7a58..b74dbdaf0 100644
 --- a/services/core/java/com/android/server/pm/parsing/PackageInfoUtils.java
 +++ b/services/core/java/com/android/server/pm/parsing/PackageInfoUtils.java
-@@ -44,6 +44,7 @@ import android.content.pm.Signature;
- import android.content.pm.SigningDetails;
+@@ -45,6 +45,7 @@ import android.content.pm.SigningDetails;
  import android.content.pm.SigningInfo;
+ import android.content.pm.ValidPurposeInfo;
  import android.content.pm.overlay.OverlayPaths;
 +import android.os.Build;
  import android.os.Environment;
  import android.os.PatternMatcher;
  import android.os.UserHandle;
-@@ -82,6 +83,7 @@ import com.android.server.pm.pkg.PackageUserStateUtils;
+@@ -85,6 +86,7 @@ import com.android.server.pm.pkg.PackageUserStateUtils;
  import com.android.server.pm.pkg.SELinuxUtil;
  
  import java.io.File;
 +import java.security.cert.CertificateException;
  import java.util.ArrayList;
+ import java.util.Collection;
  import java.util.List;
- import java.util.Map;
-@@ -114,6 +116,27 @@ public class PackageInfoUtils {
+@@ -117,6 +119,27 @@ public class PackageInfoUtils {
                  installedPermissions, grantedPermissions, state, userId, pkgSetting);
      }
  
@@ -1405,7 +1407,7 @@ index 5ca5fda19..caac7d6f9 100644
      /**
       * @param pkgSetting See {@link PackageInfoUtils} for description of pkgSetting usage.
       */
-@@ -243,11 +266,20 @@ public class PackageInfoUtils {
+@@ -248,11 +271,20 @@ public class PackageInfoUtils {
          }
  
          final SigningDetails signingDetails = pkg.getSigningDetails();
@@ -1428,7 +1430,7 @@ index 5ca5fda19..caac7d6f9 100644
                  // only return a valid SigningInfo if there is signing information to report
                  info.signingInfo = new SigningInfo(signingDetails);
              } else {
-@@ -355,12 +387,17 @@ public class PackageInfoUtils {
+@@ -360,12 +392,17 @@ public class PackageInfoUtils {
      /**
       * Retrieve the deprecated {@link PackageInfo.signatures} field of signing certificates
       */
@@ -1453,7 +1455,7 @@ index 5ca5fda19..caac7d6f9 100644
 2.34.1
 
 
-From 2811e69ec5a6b21d9b5c5990c219b14e282343e6 Mon Sep 17 00:00:00 2001
+From bfe8c8d7137f501af50feb5c12b574cbf3c74e90 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
 Subject: [PATCH 14/16] Output certificate in pm dump
@@ -1465,10 +1467,10 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  1 file changed, 4 insertions(+)
 
 diff --git a/services/core/java/com/android/server/pm/Settings.java b/services/core/java/com/android/server/pm/Settings.java
-index 92257f1ee..999c89b9d 100644
+index 960564b69..54132debb 100644
 --- a/services/core/java/com/android/server/pm/Settings.java
 +++ b/services/core/java/com/android/server/pm/Settings.java
-@@ -5415,6 +5415,10 @@ public final class Settings implements Watchable, Snappable, ResilientAtomicFile
+@@ -5492,6 +5492,10 @@ public final class Settings implements Watchable, Snappable, ResilientAtomicFile
                      pw.println(ps.getVolumeUuid());
          }
          pw.print(prefix); pw.print("  signatures="); pw.println(ps.getSignatures());
@@ -1483,7 +1485,7 @@ index 92257f1ee..999c89b9d 100644
 2.34.1
 
 
-From 3049c0d0b9020b377ca47bf5bc6cb7c4fd21fdb7 Mon Sep 17 00:00:00 2001
+From f18f4071d7dc4455a2ce65dc55dcb370d3d270d2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:00 -0500
 Subject: [PATCH 15/16] Add permission for Nova launcher pro
@@ -1497,22 +1499,22 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  3 files changed, 6 insertions(+)
 
 diff --git a/core/api/current.txt b/core/api/current.txt
-index 255befc4c..850a6ba26 100644
+index dffe19603..464d3d7e1 100644
 --- a/core/api/current.txt
 +++ b/core/api/current.txt
-@@ -251,6 +251,7 @@ package android {
-     field @FlaggedApi("android.security.aapm_api") public static final String QUERY_ADVANCED_PROTECTION_MODE = "android.permission.QUERY_ADVANCED_PROTECTION_MODE";
+@@ -257,6 +257,7 @@ package android {
      field public static final String QUERY_ALL_PACKAGES = "android.permission.QUERY_ALL_PACKAGES";
+     field @FlaggedApi("android.media.audio.guard_stream_volume_apis") public static final String QUERY_AUDIO_VOLUME = "android.permission.QUERY_AUDIO_VOLUME";
      field @FlaggedApi("android.permission.flags.ranging_permission_enabled") public static final String RANGING = "android.permission.RANGING";
 +    field public static final String RAZER_DEVICE_POWER = "razer.permission.RAZER_DEVICE_POWER";
      field public static final String READ_ASSISTANT_APP_SEARCH_DATA = "android.permission.READ_ASSISTANT_APP_SEARCH_DATA";
      field public static final String READ_BASIC_PHONE_STATE = "android.permission.READ_BASIC_PHONE_STATE";
      field public static final String READ_CALENDAR = "android.permission.READ_CALENDAR";
 diff --git a/core/api/lint-baseline.txt b/core/api/lint-baseline.txt
-index d6bb8703e..ce33f39ea 100644
+index 785274383..cb3891ecd 100644
 --- a/core/api/lint-baseline.txt
 +++ b/core/api/lint-baseline.txt
-@@ -1123,6 +1123,8 @@ Todo: android.provider.ContactsContract.RawContacts#newEntityIterator(android.da
+@@ -1194,6 +1194,8 @@ Todo: android.provider.ContactsContract.RawContacts#newEntityIterator(android.da
      Documentation mentions 'TODO'
  
  
@@ -1522,10 +1524,10 @@ index d6bb8703e..ce33f39ea 100644
      New API must be flagged with @FlaggedApi: field android.Manifest.permission.FAKE_PACKAGE_SIGNATURE
  UnflaggedApi: android.Manifest.permission_group#FAKE_PACKAGE:
 diff --git a/core/res/AndroidManifest.xml b/core/res/AndroidManifest.xml
-index e51a31109..d25d123f1 100644
+index ebba48a1a..fa4c72de0 100644
 --- a/core/res/AndroidManifest.xml
 +++ b/core/res/AndroidManifest.xml
-@@ -9015,6 +9015,9 @@
+@@ -9344,6 +9344,9 @@
          android:protectionLevel="signature|privileged|vendorPrivileged"
          android:featureFlag="android.media.tv.flags.kids_mode_tvdb_sharing"/>
  
@@ -1539,7 +1541,7 @@ index e51a31109..d25d123f1 100644
 2.34.1
 
 
-From 7bb1434644e75befc99576011bc33a5d5100912e Mon Sep 17 00:00:00 2001
+From a60b4a1fa3c008e290d1ed36d1b93173528bb025 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 2 Aug 2025 20:11:32 -0400
 Subject: [PATCH 16/16] Revert "Removing Vibrator HIDL HAL support from
@@ -1553,10 +1555,10 @@ This reverts commit dffa80bf3276376caf09c80de02ceb332ef5416f.
  3 files changed, 33 insertions(+)
 
 diff --git a/services/core/java/com/android/server/Watchdog.java b/services/core/java/com/android/server/Watchdog.java
-index d60c6c534..96b30d4e1 100644
+index 115aaad1e..8c8e0ed0e 100644
 --- a/services/core/java/com/android/server/Watchdog.java
 +++ b/services/core/java/com/android/server/Watchdog.java
-@@ -165,6 +165,7 @@ public class Watchdog implements Dumpable {
+@@ -172,6 +172,7 @@ public class Watchdog implements Dumpable {
              "android.hardware.sensors@1.0::ISensors",
              "android.hardware.sensors@2.0::ISensors",
              "android.hardware.sensors@2.1::ISensors",
@@ -1565,7 +1567,7 @@ index d60c6c534..96b30d4e1 100644
              "android.system.suspend@1.0::ISystemSuspend"
      );
 diff --git a/services/core/jni/Android.bp b/services/core/jni/Android.bp
-index 457f2c245..c20c34a12 100644
+index e6c564538..005ad42f5 100644
 --- a/services/core/jni/Android.bp
 +++ b/services/core/jni/Android.bp
 @@ -193,6 +193,10 @@ cc_defaults {
@@ -1576,11 +1578,11 @@ index 457f2c245..c20c34a12 100644
 +        "android.hardware.vibrator@1.1",
 +        "android.hardware.vibrator@1.2",
 +        "android.hardware.vibrator@1.3",
-         "android.hardware.vr@1.0",
          "android.hidl.token@1.0-utils",
-         "android.frameworks.schedulerservice@1.0",
+         "android.frameworks.sensorservice@1.0",
+         "android.frameworks.sensorservice-V1-ndk",
 diff --git a/services/core/jni/com_android_server_vibrator_VibratorController.cpp b/services/core/jni/com_android_server_vibrator_VibratorController.cpp
-index 11dbbdfb8..534dbb1f6 100644
+index 11a69bfe6..d8f727798 100644
 --- a/services/core/jni/com_android_server_vibrator_VibratorController.cpp
 +++ b/services/core/jni/com_android_server_vibrator_VibratorController.cpp
 @@ -19,6 +19,7 @@

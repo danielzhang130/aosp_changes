@@ -1,4 +1,4 @@
-From e4e4291420c3ca6f326dd14d8076d2cece120ab7 Mon Sep 17 00:00:00 2001
+From a1e9f8553ceeae094d2f493faa49f9f4287f50f1 Mon Sep 17 00:00:00 2001
 From: danielzhang130 <danielzhang130@gmail.com>
 Date: Sat, 13 Aug 2022 13:32:22 -0400
 Subject: [PATCH 1/4] Add Build and Build.VERSION info to about phone screen
@@ -172,7 +172,7 @@ index 00000000..36056827
 2.34.1
 
 
-From 8292ca8e986dfa1f51df4e0b153170bc100061f1 Mon Sep 17 00:00:00 2001
+From 5c06c9811a473ff5abde0db1b7806c3e3d323c78 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 10:58:52 -0500
 Subject: [PATCH 2/4] Add settings animations files
@@ -2125,7 +2125,7 @@ index e69de29b..0fddbf8e 100644
 2.34.1
 
 
-From 4145c1470f1ef584af1f722824fb871d2b4ddbea Mon Sep 17 00:00:00 2001
+From d162477ed020cac07f6ced5aaea9a7a7ea38bcc8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 21:49:17 -0500
 Subject: [PATCH 3/4] Add changelist to about phone screen
@@ -2284,7 +2284,7 @@ index 36056827..c108909b 100644
 2.34.1
 
 
-From b999ade30106e22a3ed2e2887ee4dc7565607e04 Mon Sep 17 00:00:00 2001
+From 4e3c75f416289e823d51eb7faf1eb58012a56e35 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 30 Dec 2023 15:52:29 -0500
 Subject: [PATCH 4/4] Add memory cpu usage quick tile
@@ -2299,12 +2299,12 @@ Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
  4 files changed, 179 insertions(+)
 
 diff --git a/AndroidManifest.xml b/AndroidManifest.xml
-index 1cb5ee4f..71aed67a 100644
+index 2215af0d..5f66c028 100644
 --- a/AndroidManifest.xml
 +++ b/AndroidManifest.xml
-@@ -5168,6 +5168,17 @@
-                        android:value="android.service.quicksettings.CATEGORY_DISPLAY" />
- 
+@@ -4976,6 +4976,17 @@
+             <meta-data android:name="android.service.quicksettings.TOGGLEABLE_TILE"
+                        android:value="true"/>
          </service>
 +        <service
 +            android:name=".development.qstile.DevelopmentTiles$MemoryUsage"
@@ -2321,10 +2321,10 @@ index 1cb5ee4f..71aed67a 100644
              android:name=".development.qstile.DevelopmentTiles$GPUProfiling"
              android:label="@string/track_frame_time"
 diff --git a/res/values/strings.xml b/res/values/strings.xml
-index 67f6fe62..f25a7429 100644
+index 61259c54..7a41155e 100644
 --- a/res/values/strings.xml
 +++ b/res/values/strings.xml
-@@ -11299,6 +11299,8 @@
+@@ -11082,6 +11082,8 @@ Data usage charges may apply.</string>
  
      <!-- Summary of memory screen [CHAR LIMIT=NONE] -->
      <string name="memory_summary">Avg <xliff:g id="used_memory" example="1.7GB">%1$s</xliff:g> of <xliff:g id="total_memory" example="2GB">%2$s</xliff:g> memory used</string>
@@ -2334,7 +2334,7 @@ index 67f6fe62..f25a7429 100644
      <!-- Summary of User settings [CHAR LIMIT=NONE] -->
      <string name="users_summary">Signed in as <xliff:g id="user_name" example="Jason">%1$s</xliff:g></string>
 diff --git a/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java b/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
-index 626835dc..b90bb07c 100644
+index ad12101a..53471d78 100644
 --- a/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
 +++ b/src/com/android/settings/development/DevelopmentSettingsDashboardFragment.java
 @@ -58,6 +58,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -2345,8 +2345,8 @@ index 626835dc..b90bb07c 100644
  import com.android.settings.biometrics.IdentityCheckBiometricErrorDialog;
  import com.android.settings.core.SubSettingLauncher;
  import com.android.settings.dashboard.RestrictedDashboardFragment;
-@@ -330,6 +331,12 @@ public class DevelopmentSettingsDashboardFragment extends RestrictedDashboardFra
-                     .setDestination(AdbWirelessDebuggingFragment.class.getName())
+@@ -332,6 +333,12 @@ public class DevelopmentSettingsDashboardFragment extends RestrictedDashboardFra
+                     .setDestination(WirelessDebuggingFragment.class.getName())
                      .setSourceMetricsCategory(SettingsEnums.SETTINGS_ADB_WIRELESS)
                      .launch();
 +        } else if (DevelopmentTiles.MemoryUsage.class.getName().equals(
@@ -2359,7 +2359,7 @@ index 626835dc..b90bb07c 100644
          // Add other qstiles here
      }
 diff --git a/src/com/android/settings/development/qstile/DevelopmentTiles.java b/src/com/android/settings/development/qstile/DevelopmentTiles.java
-index b2e1e2ec..ad07e48c 100644
+index cf0d4d18..f98150d9 100644
 --- a/src/com/android/settings/development/qstile/DevelopmentTiles.java
 +++ b/src/com/android/settings/development/qstile/DevelopmentTiles.java
 @@ -21,9 +21,11 @@ import static com.android.settings.development.AdbPreferenceController.ADB_SETTI
@@ -2388,7 +2388,7 @@ index b2e1e2ec..ad07e48c 100644
  import com.android.internal.statusbar.IStatusBarService;
 +import com.android.settings.applications.ProcStatsData;
 +import com.android.settings.applications.ProcessStatsBase;
- import com.android.settings.development.AdbWirelessDebuggingPreferenceController;
+ import com.android.settings.development.WirelessDebuggingPreferenceController;
  import com.android.settings.overlay.FeatureFactory;
 +import com.android.settings.Utils;
  import com.android.settingslib.core.instrumentation.MetricsFeatureProvider;

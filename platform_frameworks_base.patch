@@ -1,7 +1,7 @@
-From bfd094a495ea3cdc1138af529c52f97ee50689bc Mon Sep 17 00:00:00 2001
+From 9a5ea9f9f79d1eec98133597df2f66be6fdb8dec Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/16] pass safetynet and gpay
+Subject: [PATCH 01/18] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -172,10 +172,10 @@ index e6a63b9c4..6a80c14c9 100644
 2.34.1
 
 
-From 34e3f8702cad7ee737fa8cbb752aa6e6ab4cb111 Mon Sep 17 00:00:00 2001
+From 06a812ae6e32c785d6c197c26fc07b2008e7e69a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/16] Set auto brightness on by default
+Subject: [PATCH 02/18] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,664 +199,10 @@ index 94aa955f0..3d24efe61 100644
 2.34.1
 
 
-From 517d4b1cc0f84a83378912e9455ec81107175de9 Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Mon, 26 Dec 2022 15:07:10 -0500
-Subject: [PATCH 03/16] Add support for left side volume dialog
-
-Change-Id: Id40c67afa985834ed3f93858f411e3d4314215dd
-Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
----
- .../res/layout-land/volume_dialog_left.xml    | 147 ++++++++++++++++++
- .../res/layout/volume_dialog_left.xml         | 145 +++++++++++++++++
- .../res/layout/volume_ringer_drawer_left.xml  | 133 ++++++++++++++++
- .../systemui/volume/VolumeDialogImpl.java     |  66 +++++---
- 4 files changed, 466 insertions(+), 25 deletions(-)
- create mode 100644 packages/SystemUI/res/layout-land/volume_dialog_left.xml
- create mode 100644 packages/SystemUI/res/layout/volume_dialog_left.xml
- create mode 100644 packages/SystemUI/res/layout/volume_ringer_drawer_left.xml
-
-diff --git a/packages/SystemUI/res/layout-land/volume_dialog_left.xml b/packages/SystemUI/res/layout-land/volume_dialog_left.xml
-new file mode 100644
-index 000000000..3d0c3614b
---- /dev/null
-+++ b/packages/SystemUI/res/layout-land/volume_dialog_left.xml
-@@ -0,0 +1,147 @@
-+<!--
-+  ~ Copyright (C) 2019 The Android Open Source Project
-+  ~
-+  ~ Licensed under the Apache License, Version 2.0 (the "License");
-+  ~ you may not use this file except in compliance with the License.
-+  ~ You may obtain a copy of the License at
-+  ~
-+  ~      http://www.apache.org/licenses/LICENSE-2.0
-+  ~
-+  ~ Unless required by applicable law or agreed to in writing, software
-+  ~ distributed under the License is distributed on an "AS IS" BASIS,
-+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-+  ~ See the License for the specific language governing permissions and
-+  ~ limitations under the License
-+  -->
-+<FrameLayout
-+    xmlns:android="http://schemas.android.com/apk/res/android"
-+    xmlns:sysui="http://schemas.android.com/apk/res-auto"
-+    xmlns:androidprv="http://schemas.android.com/apk/prv/res/android"
-+    android:id="@+id/volume_dialog_container"
-+    android:layout_width="wrap_content"
-+    android:layout_height="wrap_content"
-+    android:gravity="left"
-+    android:layout_gravity="left"
-+    android:background="@android:color/transparent"
-+    android:theme="@style/volume_dialog_theme">
-+
-+    <!-- right-aligned to be physically near volume button -->
-+    <LinearLayout
-+        android:id="@+id/volume_dialog"
-+        android:layout_width="wrap_content"
-+        android:layout_height="wrap_content"
-+        android:gravity="left"
-+        android:layout_gravity="left"
-+        android:layout_marginLeft="@dimen/volume_dialog_panel_transparent_padding_right"
-+        android:orientation="vertical"
-+        android:clipToPadding="false"
-+        android:clipChildren="false">
-+
-+
-+        <LinearLayout
-+            android:id="@+id/volume_dialog_top_container"
-+            android:layout_width="wrap_content"
-+            android:layout_height="wrap_content"
-+            android:orientation="vertical"
-+            android:clipChildren="false"
-+            android:gravity="left">
-+
-+            <include layout="@layout/volume_ringer_drawer_left" />
-+
-+            <FrameLayout
-+                android:visibility="gone"
-+                android:id="@+id/ringer"
-+                android:layout_width="@dimen/volume_dialog_ringer_size"
-+                android:layout_height="@dimen/volume_dialog_ringer_size"
-+                android:layout_marginBottom="@dimen/volume_dialog_spacer"
-+                android:gravity="left"
-+                android:layout_gravity="left"
-+                android:translationZ="@dimen/volume_dialog_elevation"
-+                android:clipToPadding="false"
-+                android:background="@drawable/rounded_bg_full">
-+                <com.android.keyguard.AlphaOptimizedImageButton
-+                    android:id="@+id/ringer_icon"
-+                    style="@style/VolumeButtons"
-+                    android:background="@drawable/rounded_ripple"
-+                    android:layout_width="match_parent"
-+                    android:layout_height="match_parent"
-+                    android:scaleType="fitCenter"
-+                    android:padding="@dimen/volume_dialog_ringer_icon_padding"
-+                    android:tint="?android:attr/textColorPrimary"
-+                    android:layout_gravity="center"
-+                    android:soundEffectsEnabled="false" />
-+
-+            </FrameLayout>
-+
-+            <LinearLayout
-+                android:id="@+id/volume_dialog_rows_container"
-+                android:layout_width="wrap_content"
-+                android:layout_height="wrap_content"
-+                android:gravity="left"
-+                android:layout_gravity="left"
-+                android:orientation="vertical"
-+                android:clipChildren="false"
-+                android:clipToPadding="false" >
-+                <LinearLayout
-+                    android:id="@+id/volume_dialog_rows"
-+                    android:layout_width="wrap_content"
-+                    android:layout_height="wrap_content"
-+                    android:gravity="center"
-+                    android:orientation="horizontal">
-+                    <!-- volume rows added and removed here! :-) -->
-+                </LinearLayout>
-+                <FrameLayout
-+                    android:id="@+id/settings_container"
-+                    android:layout_width="wrap_content"
-+                    android:layout_height="wrap_content"
-+                    android:background="@drawable/volume_background_bottom"
-+                    android:paddingLeft="@dimen/volume_dialog_ringer_rows_padding"
-+                    android:paddingBottom="@dimen/volume_dialog_ringer_rows_padding"
-+                    android:paddingRight="@dimen/volume_dialog_ringer_rows_padding">
-+                    <com.android.keyguard.AlphaOptimizedImageButton
-+                        android:id="@+id/settings"
-+                        android:src="@drawable/horizontal_ellipsis"
-+                        android:layout_width="@dimen/volume_dialog_tap_target_size"
-+                        android:layout_height="@dimen/volume_dialog_tap_target_size"
-+                        android:layout_gravity="center"
-+                        android:contentDescription="@string/accessibility_volume_settings"
-+                        android:background="@drawable/ripple_drawable_20dp"
-+                        android:tint="?androidprv:attr/colorAccent"
-+                        android:soundEffectsEnabled="false" />
-+                </FrameLayout>
-+            </LinearLayout>
-+
-+        </LinearLayout>
-+
-+        <FrameLayout
-+            android:id="@+id/odi_captions"
-+            android:layout_width="@dimen/volume_dialog_caption_size"
-+            android:layout_height="@dimen/volume_dialog_caption_size"
-+            android:layout_marginTop="@dimen/volume_dialog_row_margin_bottom"
-+            android:gravity="left"
-+            android:layout_gravity="left"
-+            android:clipToPadding="false"
-+            android:clipToOutline="true"
-+            android:background="@drawable/volume_row_rounded_background">
-+            <com.android.systemui.volume.CaptionsToggleImageButton
-+                android:id="@+id/odi_captions_icon"
-+                android:src="@drawable/ic_volume_odi_captions_disabled"
-+                style="@style/VolumeButtons"
-+                android:layout_width="match_parent"
-+                android:layout_height="match_parent"
-+                android:tint="?android:attr/colorAccent"
-+                android:layout_gravity="center"
-+                android:soundEffectsEnabled="false" />
-+        </FrameLayout>
-+    </LinearLayout>
-+
-+    <ViewStub
-+        android:id="@+id/odi_captions_tooltip_stub"
-+        android:inflatedId="@+id/odi_captions_tooltip_view"
-+        android:layout="@layout/volume_tool_tip_view"
-+        android:layout_width="wrap_content"
-+        android:layout_height="wrap_content"
-+        android:layout_gravity="bottom | right"
-+        android:layout_marginRight="@dimen/volume_tool_tip_right_margin"/>
-+
-+</FrameLayout>
-diff --git a/packages/SystemUI/res/layout/volume_dialog_left.xml b/packages/SystemUI/res/layout/volume_dialog_left.xml
-new file mode 100644
-index 000000000..d6a01088f
---- /dev/null
-+++ b/packages/SystemUI/res/layout/volume_dialog_left.xml
-@@ -0,0 +1,145 @@
-+<!--
-+     Copyright (C) 2015 The Android Open Source Project
-+
-+     Licensed under the Apache License, Version 2.0 (the "License");
-+     you may not use this file except in compliance with the License.
-+     You may obtain a copy of the License at
-+
-+          http://www.apache.org/licenses/LICENSE-2.0
-+
-+     Unless required by applicable law or agreed to in writing, software
-+     distributed under the License is distributed on an "AS IS" BASIS,
-+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-+     See the License for the specific language governing permissions and
-+     limitations under the License.
-+-->
-+<FrameLayout
-+    xmlns:android="http://schemas.android.com/apk/res/android"
-+    xmlns:sysui="http://schemas.android.com/apk/res-auto"
-+    xmlns:androidprv="http://schemas.android.com/apk/prv/res/android"
-+    android:id="@+id/volume_dialog_container"
-+    android:layout_width="wrap_content"
-+    android:layout_height="wrap_content"
-+    android:gravity="left"
-+    android:layout_gravity="left"
-+    android:clipToPadding="false"
-+    android:theme="@style/volume_dialog_theme">
-+
-+    <!-- right-aligned to be physically near volume button -->
-+    <LinearLayout
-+        android:id="@+id/volume_dialog"
-+        android:layout_width="wrap_content"
-+        android:layout_height="wrap_content"
-+        android:gravity="left"
-+        android:layout_gravity="left"
-+        android:layout_marginLeft="@dimen/volume_dialog_panel_transparent_padding_right"
-+        android:orientation="vertical"
-+        android:clipToPadding="false"
-+        android:clipChildren="false">
-+
-+        <LinearLayout
-+            android:id="@+id/volume_dialog_top_container"
-+            android:layout_width="wrap_content"
-+            android:layout_height="wrap_content"
-+            android:clipChildren="false"
-+            android:orientation="vertical"
-+            android:gravity="left">
-+
-+            <include layout="@layout/volume_ringer_drawer_left" />
-+
-+            <FrameLayout
-+                android:visibility="gone"
-+                android:id="@+id/ringer"
-+                android:layout_width="@dimen/volume_dialog_ringer_size"
-+                android:layout_height="@dimen/volume_dialog_ringer_size"
-+                android:layout_marginBottom="@dimen/volume_dialog_spacer"
-+                android:gravity="left"
-+                android:layout_gravity="left"
-+                android:translationZ="@dimen/volume_dialog_elevation"
-+                android:clipToPadding="false"
-+                android:background="@drawable/rounded_bg_full">
-+                <com.android.keyguard.AlphaOptimizedImageButton
-+                    android:id="@+id/ringer_icon"
-+                    style="@style/VolumeButtons"
-+                    android:background="@drawable/rounded_ripple"
-+                    android:layout_width="match_parent"
-+                    android:layout_height="match_parent"
-+                    android:scaleType="fitCenter"
-+                    android:padding="@dimen/volume_dialog_ringer_icon_padding"
-+                    android:tint="?android:attr/textColorPrimary"
-+                    android:layout_gravity="center"
-+                    android:soundEffectsEnabled="false" />
-+            </FrameLayout>
-+
-+            <LinearLayout
-+                android:id="@+id/volume_dialog_rows_container"
-+                android:layout_width="wrap_content"
-+                android:layout_height="wrap_content"
-+                android:gravity="left"
-+                android:layout_gravity="left"
-+                android:orientation="vertical"
-+                android:clipChildren="false"
-+                android:clipToPadding="false" >
-+                <LinearLayout
-+                    android:id="@+id/volume_dialog_rows"
-+                    android:layout_width="wrap_content"
-+                    android:layout_height="wrap_content"
-+                    android:gravity="center"
-+                    android:orientation="horizontal">
-+                        <!-- volume rows added and removed here! :-) -->
-+                </LinearLayout>
-+                <FrameLayout
-+                    android:id="@+id/settings_container"
-+                    android:layout_width="wrap_content"
-+                    android:layout_height="wrap_content"
-+                    android:background="@drawable/volume_background_bottom"
-+                    android:paddingLeft="@dimen/volume_dialog_ringer_rows_padding"
-+                    android:paddingBottom="@dimen/volume_dialog_ringer_rows_padding"
-+                    android:paddingRight="@dimen/volume_dialog_ringer_rows_padding">
-+                    <com.android.keyguard.AlphaOptimizedImageButton
-+                        android:id="@+id/settings"
-+                        android:src="@drawable/horizontal_ellipsis"
-+                        android:layout_width="@dimen/volume_dialog_tap_target_size"
-+                        android:layout_height="@dimen/volume_dialog_tap_target_size"
-+                        android:layout_gravity="center"
-+                        android:contentDescription="@string/accessibility_volume_settings"
-+                        android:background="@drawable/ripple_drawable_20dp"
-+                        android:tint="?androidprv:attr/colorAccent"
-+                        android:soundEffectsEnabled="false" />
-+                </FrameLayout>
-+            </LinearLayout>
-+
-+        </LinearLayout>
-+
-+        <FrameLayout
-+            android:id="@+id/odi_captions"
-+            android:layout_width="@dimen/volume_dialog_caption_size"
-+            android:layout_height="@dimen/volume_dialog_caption_size"
-+            android:layout_marginTop="@dimen/volume_dialog_row_margin_bottom"
-+            android:gravity="left"
-+            android:layout_gravity="left"
-+            android:clipToPadding="false"
-+            android:clipToOutline="true"
-+            android:background="@drawable/volume_row_rounded_background">
-+            <com.android.systemui.volume.CaptionsToggleImageButton
-+                android:id="@+id/odi_captions_icon"
-+                android:src="@drawable/ic_volume_odi_captions_disabled"
-+                style="@style/VolumeButtons"
-+                android:layout_width="match_parent"
-+                android:layout_height="match_parent"
-+                android:tint="?android:attr/colorAccent"
-+                android:layout_gravity="center"
-+                android:soundEffectsEnabled="false"/>
-+        </FrameLayout>
-+    </LinearLayout>
-+
-+    <ViewStub
-+        android:id="@+id/odi_captions_tooltip_stub"
-+        android:inflatedId="@+id/odi_captions_tooltip_view"
-+        android:layout="@layout/volume_tool_tip_view"
-+        android:layout_width="wrap_content"
-+        android:layout_height="wrap_content"
-+        android:layout_gravity="bottom | left"
-+        android:layout_marginLeft="@dimen/volume_tool_tip_right_margin"/>
-+
-+</FrameLayout>
-diff --git a/packages/SystemUI/res/layout/volume_ringer_drawer_left.xml b/packages/SystemUI/res/layout/volume_ringer_drawer_left.xml
-new file mode 100644
-index 000000000..8025a7807
---- /dev/null
-+++ b/packages/SystemUI/res/layout/volume_ringer_drawer_left.xml
-@@ -0,0 +1,133 @@
-+<?xml version="1.0" encoding="utf-8"?>
-+<!--
-+     Copyright (C) 2021 The Android Open Source Project
-+
-+     Licensed under the Apache License, Version 2.0 (the "License");
-+     you may not use this file except in compliance with the License.
-+     You may obtain a copy of the License at
-+
-+          http://www.apache.org/licenses/LICENSE-2.0
-+
-+     Unless required by applicable law or agreed to in writing, software
-+     distributed under the License is distributed on an "AS IS" BASIS,
-+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-+     See the License for the specific language governing permissions and
-+     limitations under the License.
-+-->
-+
-+<!-- Contains the active ringer icon and a hidden drawer containing all three ringer options. -->
-+<FrameLayout
-+    xmlns:android="http://schemas.android.com/apk/res/android"
-+    android:id="@+id/volume_ringer_and_drawer_container"
-+    android:layout_width="wrap_content"
-+    android:layout_height="wrap_content"
-+    android:gravity="center"
-+    android:paddingLeft="@dimen/volume_dialog_ringer_rows_padding"
-+    android:paddingTop="@dimen/volume_dialog_ringer_rows_padding"
-+    android:paddingRight="@dimen/volume_dialog_ringer_rows_padding"
-+    android:paddingBottom="@dimen/volume_dialog_ringer_rows_padding"
-+    android:background="@drawable/volume_background_top"
-+    android:layoutDirection="ltr"
-+    android:clipToPadding="false"
-+    android:clipChildren="false">
-+
-+    <!-- Drawer view, invisible by default. -->
-+    <FrameLayout
-+        android:id="@+id/volume_drawer_container"
-+        android:alpha="0.0"
-+        android:layout_width="match_parent"
-+        android:layout_height="wrap_content"
-+        android:background="@drawable/volume_drawer_bg"
-+        android:orientation="vertical">
-+
-+        <!-- View that is animated to a tapped ringer selection, so it appears selected. -->
-+        <FrameLayout
-+            android:id="@+id/volume_drawer_selection_background"
-+            android:alpha="0.0"
-+            android:layout_width="@dimen/volume_ringer_drawer_item_size"
-+            android:layout_height="@dimen/volume_ringer_drawer_item_size"
-+            android:layout_gravity="bottom|left"
-+            android:background="@drawable/volume_drawer_selection_bg" />
-+
-+        <LinearLayout
-+            android:id="@+id/volume_drawer_options"
-+            android:layout_width="match_parent"
-+            android:layout_height="wrap_content"
-+            android:orientation="vertical">
-+
-+            <FrameLayout
-+                android:id="@+id/volume_drawer_vibrate"
-+                android:layout_width="@dimen/volume_ringer_drawer_item_size"
-+                android:layout_height="@dimen/volume_ringer_drawer_item_size"
-+                android:contentDescription="@string/volume_ringer_hint_vibrate"
-+                android:gravity="center">
-+
-+                <ImageView
-+                    android:id="@+id/volume_drawer_vibrate_icon"
-+                    android:layout_width="@dimen/volume_ringer_drawer_icon_size"
-+                    android:layout_height="@dimen/volume_ringer_drawer_icon_size"
-+                    android:layout_gravity="center"
-+                    android:tint="?android:attr/textColorPrimary"
-+                    android:src="@drawable/ic_volume_ringer_vibrate" />
-+
-+            </FrameLayout>
-+
-+            <FrameLayout
-+                android:id="@+id/volume_drawer_mute"
-+                android:layout_width="@dimen/volume_ringer_drawer_item_size"
-+                android:layout_height="@dimen/volume_ringer_drawer_item_size"
-+                android:contentDescription="@string/volume_ringer_hint_mute"
-+                android:gravity="center">
-+
-+                <ImageView
-+                    android:id="@+id/volume_drawer_mute_icon"
-+                    android:layout_width="@dimen/volume_ringer_drawer_icon_size"
-+                    android:layout_height="@dimen/volume_ringer_drawer_icon_size"
-+                    android:layout_gravity="center"
-+                    android:tint="?android:attr/textColorPrimary"
-+                    android:src="@drawable/ic_volume_ringer_mute" />
-+
-+            </FrameLayout>
-+
-+            <FrameLayout
-+                android:id="@+id/volume_drawer_normal"
-+                android:layout_width="@dimen/volume_ringer_drawer_item_size"
-+                android:layout_height="@dimen/volume_ringer_drawer_item_size"
-+                android:contentDescription="@string/volume_ringer_hint_unmute"
-+                android:gravity="center">
-+
-+                <ImageView
-+                    android:id="@+id/volume_drawer_normal_icon"
-+                    android:layout_width="@dimen/volume_ringer_drawer_icon_size"
-+                    android:layout_height="@dimen/volume_ringer_drawer_icon_size"
-+                    android:layout_gravity="center"
-+                    android:tint="?android:attr/textColorPrimary"
-+                    android:src="@drawable/ic_volume_ringer" />
-+
-+            </FrameLayout>
-+
-+        </LinearLayout>
-+
-+    </FrameLayout>
-+
-+    <!-- The current ringer selection. When the drawer is opened, this animates to the corresponding
-+         position in the drawer. When the drawer is closed, it animates back. -->
-+    <FrameLayout
-+        android:id="@+id/volume_new_ringer_active_icon_container"
-+        android:layout_width="@dimen/volume_ringer_drawer_item_size"
-+        android:layout_height="@dimen/volume_ringer_drawer_item_size"
-+        android:layout_gravity="bottom|left"
-+        android:contentDescription="@string/volume_ringer_change"
-+        android:background="@drawable/volume_drawer_selection_bg">
-+
-+        <ImageView
-+            android:id="@+id/volume_new_ringer_active_icon"
-+            android:layout_width="@dimen/volume_ringer_drawer_icon_size"
-+            android:layout_height="@dimen/volume_ringer_drawer_icon_size"
-+            android:layout_gravity="center"
-+            android:tint="?android:attr/textColorPrimaryInverse"
-+            android:src="@drawable/ic_volume_media" />
-+
-+    </FrameLayout>
-+
-+</FrameLayout>
-diff --git a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-index 89ea27521..013159bf4 100644
---- a/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-+++ b/packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java
-@@ -198,6 +198,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-     private final int mDialogShowAnimationDurationMs;
-     private final int mDialogHideAnimationDurationMs;
-     private int mDialogWidth;
-+    private int mDialogGravity;
-     private int mDialogCornerRadius;
-     private int mRingerDrawerItemSize;
-     private int mRingerRowsPadding;
-@@ -314,7 +315,6 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-     @VisibleForTesting
-     final int mVolumeRingerMuteIconDrawableId = R.drawable.ic_legacy_speaker_mute;
- 
--    private int mOriginalGravity;
-     private final DevicePostureController.Callback mDevicePostureControllerCallback;
-     private final DevicePostureController mDevicePostureController;
-     private @DevicePostureController.DevicePostureInt int mDevicePosture;
-@@ -423,10 +423,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-                 mDevicePosture == DevicePostureController.DEVICE_POSTURE_HALF_OPENED;
-         final boolean isTabletop = isPortrait && isHalfOpen;
-         WindowManager.LayoutParams lp =  mWindow.getAttributes();
--        int gravity = isTabletop ? (mOriginalGravity | Gravity.TOP) : mOriginalGravity;
--        mWindowGravity = Gravity.getAbsoluteGravity(gravity,
--                mContext.getResources().getConfiguration().getLayoutDirection());
--        lp.gravity = mWindowGravity;
-+        lp.gravity = mDialogGravity;
-     }
- 
-     @VisibleForTesting int getWindowGravity() {
-@@ -493,6 +490,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
- 
-         float x = locInWindow[0];
-         float y = locInWindow[1];
-+        boolean expandRight = false;
- 
-         // The ringer and rows container has extra height at the top to fit the expanded ringer
-         // drawer. This area should not be touchable unless the ringer drawer is open.
-@@ -501,15 +499,17 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-         if (view == mTopContainer && !mIsRingerDrawerOpen) {
-             if (!isLandscape()) {
-                 y += getRingerDrawerOpenExtraSize();
--            } else if (getRingerDrawerOpenExtraSize() > getVisibleRowsExtraSize()) {
-+            } else if ((mDialogGravity & Gravity.LEFT) != Gravity.LEFT && getRingerDrawerOpenExtraSize() > getVisibleRowsExtraSize()) {
-                 x += (getRingerDrawerOpenExtraSize() - getVisibleRowsExtraSize());
-+            } else {
-+                expandRight = true;
-             }
-         }
- 
-         mTouchableRegion.op(
-                 (int) x,
-                 (int) y,
--                locInWindow[0] + view.getWidth(),
-+                locInWindow[0] + view.getWidth() + (expandRight ? getRingerDrawerOpenExtraSize() : 0),
-                 locInWindow[1] + view.getHeight(),
-                 Region.Op.UNION);
-     }
-@@ -539,15 +539,12 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-         lp.format = PixelFormat.TRANSLUCENT;
-         lp.setTitle(VolumeDialogImpl.class.getSimpleName());
-         lp.windowAnimations = -1;
--
--        mOriginalGravity = mContext.getResources().getInteger(R.integer.volume_dialog_gravity);
--        mWindowGravity = Gravity.getAbsoluteGravity(mOriginalGravity,
--                mContext.getResources().getConfiguration().getLayoutDirection());
--        lp.gravity = mWindowGravity;
-+        lp.gravity = mDialogGravity;
- 
-         mWindow.setAttributes(lp);
-         mWindow.setLayout(WRAP_CONTENT, WRAP_CONTENT);
--        mDialog.setContentView(R.layout.volume_dialog_legacy);
-+        mDialog.setContentView((mDialogGravity & Gravity.LEFT) != Gravity.LEFT ?
-+                R.layout.volume_dialog_legacy : R.layout.volume_dialog_left);
-         mDialogView = mDialog.findViewById(R.id.volume_dialog);
-         mDialogView.setAlpha(0);
-         mDialogTimeoutMillis = mSecureSettings.get().getInt(
-@@ -733,7 +730,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-     }
- 
-     private boolean isWindowGravityLeft() {
--        return (mWindowGravity & Gravity.LEFT) == Gravity.LEFT;
-+        return (mDialogGravity & Gravity.LEFT) == Gravity.LEFT;
-     }
- 
-     private void initDimens() {
-@@ -749,6 +746,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
- 
-         // Normal, mute, and possibly vibrate.
-         mRingerCount = mShowVibrate ? 3 : 2;
-+        mDialogGravity = mContext.getResources().getInteger(R.integer.volume_dialog_gravity);
-     }
- 
-     protected ViewGroup getDialogView() {
-@@ -984,7 +982,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-                     mDialogView.getPaddingTop(),
-                     mDialogView.getPaddingRight(),
-                     mDialogView.getPaddingBottom() + getRingerDrawerOpenExtraSize());
--        } else {
-+        } else if ((mDialogGravity & Gravity.LEFT) != Gravity.LEFT) {
-             mDialogView.setPadding(
-                     mDialogView.getPaddingLeft() + getRingerDrawerOpenExtraSize(),
-                     mDialogView.getPaddingTop(),
-@@ -1058,11 +1056,19 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-      * with the given mode in the drawer.
-      */
-     private float getTranslationInDrawerForRingerMode(int mode) {
--        return mode == RINGER_MODE_VIBRATE
--                ? -mRingerDrawerItemSize * 2
--                : mode == RINGER_MODE_SILENT
--                        ? -mRingerDrawerItemSize
--                        : 0;
-+        if (isLandscape() && (mDialogGravity & Gravity.LEFT) == Gravity.LEFT) {
-+            return mode == RINGER_MODE_VIBRATE
-+                    ? 0
-+                    : mode == RINGER_MODE_SILENT
-+                            ? mRingerDrawerItemSize
-+                            : mRingerDrawerItemSize * 2;
-+        } else {
-+            return mode == RINGER_MODE_VIBRATE
-+                    ? -mRingerDrawerItemSize * 2
-+                    : mode == RINGER_MODE_SILENT
-+                            ? -mRingerDrawerItemSize
-+                            : 0;
-+        }
-     }
- 
-     @VisibleForTesting String getSelectedRingerContainerDescription() {
-@@ -1110,8 +1116,10 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-         // icon.
-         if (!isLandscape()) {
-             mRingerDrawerContainer.setTranslationY(mRingerDrawerItemSize * (mRingerCount - 1));
--        } else {
-+        } else if ((mDialogGravity & Gravity.LEFT) != Gravity.LEFT) {
-             mRingerDrawerContainer.setTranslationX(mRingerDrawerItemSize * (mRingerCount - 1));
-+        } else {
-+            mRingerDrawerContainer.setTranslationX(-mRingerDrawerItemSize * (mRingerCount - 1));
-         }
-         mRingerDrawerContainer.setAlpha(0f);
-         mRingerDrawerContainer.setVisibility(VISIBLE);
-@@ -1188,10 +1196,14 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-             mRingerDrawerContainer.animate()
-                     .translationY(mRingerDrawerItemSize * 2)
-                     .start();
--        } else {
-+        } else if ((mDialogGravity & Gravity.LEFT) != Gravity.LEFT) {
-             mRingerDrawerContainer.animate()
-                     .translationX(mRingerDrawerItemSize * 2)
-                     .start();
-+        } else {
-+            mRingerDrawerContainer.animate()
-+                    .translationX(-mRingerDrawerItemSize * 2)
-+                    .start();
-         }
- 
-         mAnimateUpBackgroundToMatchDrawer.setDuration(DRAWER_ANIMATION_DURATION);
-@@ -1761,7 +1773,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-             }
-         }
- 
--        if (rightmostVisibleRowIndex > -1 && rightmostVisibleRowIndex < Short.MAX_VALUE) {
-+        if ((mDialogGravity & Gravity.LEFT) != Gravity.LEFT && rightmostVisibleRowIndex > -1 && rightmostVisibleRowIndex < Short.MAX_VALUE) {
-             final View lastVisibleChild = mDialogRowsView.getChildAt(rightmostVisibleRowIndex);
-             final ViewGroup.LayoutParams layoutParams = lastVisibleChild.getLayoutParams();
-             // Remove the spacing on the last row, and remove its background since the container is
-@@ -2334,8 +2346,11 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-         final Rect bounds = mRingerAndDrawerContainerBackground.copyBounds();
-         if (!isLandscape()) {
-             bounds.top = (int) (mRingerDrawerClosedAmount * getRingerDrawerOpenExtraSize());
--        } else {
-+        } else if ((mDialogGravity & Gravity.LEFT) != Gravity.LEFT) {
-             bounds.left = (int) (mRingerDrawerClosedAmount * getRingerDrawerOpenExtraSize());
-+        } else {
-+            int tmp = (int) (mRingerDrawerClosedAmount * getRingerDrawerOpenExtraSize());
-+            bounds.right = mRingerAndDrawerContainer.getWidth() - tmp;
-         }
-         mRingerAndDrawerContainerBackground.setBounds(bounds);
-     }
-@@ -2397,7 +2412,8 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
-                         : mDialogRowsViewContainer.getTop() - mDialogCornerRadius);
- 
-         // Set gravity to top-right, since additional rows will be added on the left.
--        background.setLayerGravity(0, Gravity.TOP | Gravity.RIGHT);
-+        int gravity = (mDialogGravity & Gravity.LEFT) == Gravity.LEFT ? Gravity.LEFT : Gravity.RIGHT;
-+        background.setLayerGravity(0, Gravity.TOP | gravity);
- 
-         // In landscape, the ringer drawer animates out to the left (instead of down). Since the
-         // drawer comes from the right (beyond the bounds of the dialog), we should clip it so it
--- 
-2.34.1
-
-
-From 29dcc81dd595c48ba91bca3bd2bd47c1577dc18e Mon Sep 17 00:00:00 2001
+From 2d7c7cd9a6942c7e40ae944f5392832b374b7f06 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 04/16] Remove max column limit on quick tiles under
+Subject: [PATCH 03/18] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -881,10 +227,10 @@ index ef44e5fb8..cf7e43d2a 100644
 2.34.1
 
 
-From d7c3b9398f00529a11c2752c13810a49a1aca74a Mon Sep 17 00:00:00 2001
+From 656fb5cdbca02641b6ca6218bd9c3b6604d02dfc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 05/16] Update permission history cutoff days
+Subject: [PATCH 04/18] Update permission history cutoff days
 
 Change-Id: I0c61451d766a9870b543c73a661abc39c5eb6bf3
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -920,10 +266,10 @@ index ada9f7a74..89051320f 100644
 2.34.1
 
 
-From df64312fe591ec5f255a8ecf1aa47e34b2754865 Mon Sep 17 00:00:00 2001
+From d6acf5c92fa77e7e3a9219ce17d403c6e0a5b452 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 06/16] Add launcher icon for android 10 easter egg
+Subject: [PATCH 05/18] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -947,10 +293,10 @@ index bcc10ddde..115d552b9 100644
 2.34.1
 
 
-From d26cc86f102447048379482089a250b6652ba1aa Mon Sep 17 00:00:00 2001
+From a62e50a008a0032568bb1b1f72c033faf9a6e419 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 07/16] Use system default vibration for fb messenger app
+Subject: [PATCH 06/18] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -976,10 +322,10 @@ index f8e119ef7..422bd86f1 100644
 2.34.1
 
 
-From 6e8f1efd1badae146afebf7a22fbed0b2bab98ad Mon Sep 17 00:00:00 2001
+From dd890a40ba26dd5efc495cd3a9733187cb5215ba Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 08/16] Fix safetynet/play integrity
+Subject: [PATCH 07/18] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1009,10 +355,10 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From 22d7ac582e5dd3298ca75d315af78afa19561cfe Mon Sep 17 00:00:00 2001
+From b68d1bc9c1ecf54b7214e8ac8bb6890bb0bd476d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 09/16] Get free photo storage for google pixel
+Subject: [PATCH 08/18] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1069,10 +415,10 @@ index ed22fb961..8c7a37f9c 100644
 2.34.1
 
 
-From a98559b49aeba0d6b859c8fc1f3f3aa27044d195 Mon Sep 17 00:00:00 2001
+From 79431ba80457ef12b953b1328b9b0ca015c95ee1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 10/16] Add ability to change fingerprint from persist prop
+Subject: [PATCH 09/18] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1111,10 +457,10 @@ index 84d767694..3a928f54b 100644
 2.34.1
 
 
-From 8ada394b45986f62f45c433ad2c35ae796555d4f Mon Sep 17 00:00:00 2001
+From c24217689b6df69a27f3181607f2744d737cd37b Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 11/16] Update default spoof fingerprint
+Subject: [PATCH 10/18] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1154,10 +500,10 @@ index 3a928f54b..ee174dfb5 100644
 2.34.1
 
 
-From 9e71674481dc8925c20fb3017302ecbdc53874d6 Mon Sep 17 00:00:00 2001
+From f2d70a9938dad38700b5999558793ef3ed26304f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
-Subject: [PATCH 12/16] Change quick affordance click from long to short click
+Subject: [PATCH 11/18] Change quick affordance click from long to short click
 
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1187,10 +533,10 @@ index 01241bf5c..b1f3e51dd 100644
 2.34.1
 
 
-From 8bd975f42b6165d0ce0c0f56642b8f0fc2c50723 Mon Sep 17 00:00:00 2001
+From 4a97c92ff2ad0f100420e8c82704cbb934fcb0fd Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Sat, 16 Oct 2021 05:27:57 -0700
-Subject: [PATCH 13/16] Add support for app signature spoofing
+Subject: [PATCH 12/18] Add support for app signature spoofing
 
 This is needed by microG GmsCore to pretend to be the official Google
 Play Services package, because client apps check the package signature
@@ -1455,10 +801,10 @@ index 7597f9503..fb1c0b8b7 100644
 2.34.1
 
 
-From 15aff4cc23ed3996f5228e51e51a3c618e77cf2e Mon Sep 17 00:00:00 2001
+From a834805b9a4fcccfe578747eb0ee970660632a14 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
-Subject: [PATCH 14/16] Output certificate in pm dump
+Subject: [PATCH 13/18] Output certificate in pm dump
 
 Change-Id: I6c54ae43fecce81972b9b5f1239bb3ff8308e540
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1485,10 +831,10 @@ index c97300bdd..d08832e88 100644
 2.34.1
 
 
-From 1ba71e5b12052c64930d04532848a1123e9def71 Mon Sep 17 00:00:00 2001
+From dac02a28636d1004cb841c8f004eeae36deebd4a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:00 -0500
-Subject: [PATCH 15/16] Add permission for Nova launcher pro
+Subject: [PATCH 14/18] Add permission for Nova launcher pro
 
 Change-Id: I79670eb2b11018568ee7b115d92cf2482e56d717
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -1541,10 +887,10 @@ index 7e2c31d91..86b9d93ce 100644
 2.34.1
 
 
-From 5c38240184f22b951cde234a910adf475afb4a46 Mon Sep 17 00:00:00 2001
+From dc56e6b03fd6e1d705b487527462ea8df46a87bc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 2 Aug 2025 20:11:32 -0400
-Subject: [PATCH 16/16] Revert "Removing Vibrator HIDL HAL support from
+Subject: [PATCH 15/18] Revert "Removing Vibrator HIDL HAL support from
  frameworks"
 
 This reverts commit dffa80bf3276376caf09c80de02ceb332ef5416f.
@@ -1634,6 +980,289 @@ index 81cd77488..eee6e5a78 100644
  static std::shared_ptr<vibrator::HalController> findVibrator(int32_t vibratorId) {
      vibrator::ManagerHalController* manager =
              android_server_vibrator_VibratorManagerService_getManager();
+-- 
+2.34.1
+
+
+From d27f4791c825b471cd095b41327c017ed34a8d6a Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Tue, 23 Dec 2025 17:28:08 -0500
+Subject: [PATCH 16/18] fix runtime errors
+
+Change-Id: I6d8247dd91b272349ab987112bd6c28ec6df26c7
+---
+ .../brightness/shared/model/GammaBrightness.kt         | 10 +++-------
+ .../ui/binder/KeyguardPreviewSmartspaceViewBinder.kt   |  2 +-
+ 2 files changed, 4 insertions(+), 8 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/brightness/shared/model/GammaBrightness.kt b/packages/SystemUI/src/com/android/systemui/brightness/shared/model/GammaBrightness.kt
+index b7a9d5f53..73295bb22 100644
+--- a/packages/SystemUI/src/com/android/systemui/brightness/shared/model/GammaBrightness.kt
++++ b/packages/SystemUI/src/com/android/systemui/brightness/shared/model/GammaBrightness.kt
+@@ -23,13 +23,9 @@ import com.android.systemui.util.kotlin.pairwiseBy
+ import kotlinx.coroutines.flow.Flow
+ 
+ @JvmInline
+-value class GammaBrightness(val value: Int) {
+-    init {
+-        require(value in BrightnessUtils.GAMMA_SPACE_MIN..BrightnessUtils.GAMMA_SPACE_MAX) {
+-            "Value must be in range ${BrightnessUtils.GAMMA_SPACE_MIN} to ${BrightnessUtils.GAMMA_SPACE_MAX}"
+-        }
+-    }
+-}
++value class GammaBrightness(
++    val value: Int
++)
+ 
+ internal fun Flow<GammaBrightness>.logDiffForTable(
+     tableLogBuffer: TableLogBuffer,
+diff --git a/packages/SystemUI/src/com/android/systemui/keyguard/ui/binder/KeyguardPreviewSmartspaceViewBinder.kt b/packages/SystemUI/src/com/android/systemui/keyguard/ui/binder/KeyguardPreviewSmartspaceViewBinder.kt
+index 0c67d1891..e5abfa712 100644
+--- a/packages/SystemUI/src/com/android/systemui/keyguard/ui/binder/KeyguardPreviewSmartspaceViewBinder.kt
++++ b/packages/SystemUI/src/com/android/systemui/keyguard/ui/binder/KeyguardPreviewSmartspaceViewBinder.kt
+@@ -124,7 +124,7 @@ object KeyguardPreviewSmartspaceViewBinder {
+                                     when (clockSize) {
+                                         ClockSizeSetting.DYNAMIC -> {
+                                             if (viewModel.shouldDateWeatherBeBelowLargeClock) {
+-                                                largeDateView.also { view ->
++                                                largeDateView?.also { view ->
+                                                     constrainWidth(
+                                                         view.id,
+                                                         ConstraintSet.WRAP_CONTENT,
+-- 
+2.34.1
+
+
+From 39cc68b28832196dedc54d5994d9c3071336f29e Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Thu, 25 Dec 2025 16:25:22 -0500
+Subject: [PATCH 17/18] Disable haptics on sysui sliders
+
+Change-Id: Iefd13833acfe38762f8acbb120e94717745eb458
+---
+ .../brightness/ui/compose/BrightnessSlider.kt        |  2 --
+ .../sliders/ui/VolumeDialogSliderViewBinder.kt       | 12 ------------
+ 2 files changed, 14 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/brightness/ui/compose/BrightnessSlider.kt b/packages/SystemUI/src/com/android/systemui/brightness/ui/compose/BrightnessSlider.kt
+index e87b3cd0c..5aaf59f54 100644
+--- a/packages/SystemUI/src/com/android/systemui/brightness/ui/compose/BrightnessSlider.kt
++++ b/packages/SystemUI/src/com/android/systemui/brightness/ui/compose/BrightnessSlider.kt
+@@ -201,7 +201,6 @@ fun BrightnessSlider(
+         onValueChange = {
+             if (enabled) {
+                 if (!overriddenByAppState) {
+-                    hapticsViewModel.onValueChange(it)
+                     value = it.toInt()
+                     onDrag(value)
+                 }
+@@ -210,7 +209,6 @@ fun BrightnessSlider(
+         onValueChangeFinished = {
+             if (enabled) {
+                 if (!overriddenByAppState) {
+-                    hapticsViewModel.onValueChangeEnded()
+                     onStop(value)
+                 }
+             }
+diff --git a/packages/SystemUI/src/com/android/systemui/volume/dialog/sliders/ui/VolumeDialogSliderViewBinder.kt b/packages/SystemUI/src/com/android/systemui/volume/dialog/sliders/ui/VolumeDialogSliderViewBinder.kt
+index 82fabca7a..b20486aa8 100644
+--- a/packages/SystemUI/src/com/android/systemui/volume/dialog/sliders/ui/VolumeDialogSliderViewBinder.kt
++++ b/packages/SystemUI/src/com/android/systemui/volume/dialog/sliders/ui/VolumeDialogSliderViewBinder.kt
+@@ -128,18 +128,6 @@ private fun VolumeDialogSlider(
+         isVertical = isVolumeDialogVertical,
+         colors = colors,
+         interactionSource = interactionSource,
+-        haptics =
+-            Haptics.Enabled(
+-                hapticsViewModelFactory = hapticsViewModelFactory,
+-                hapticConfigs =
+-                    VolumeHapticsConfigsProvider.continuousConfigs(SliderHapticFeedbackFilter()),
+-                orientation =
+-                    if (isVolumeDialogVertical) {
+-                        Orientation.Vertical
+-                    } else {
+-                        Orientation.Horizontal
+-                    },
+-            ),
+         stepDistance = 1f,
+         track = { sliderState ->
+             SliderTrack(
+-- 
+2.34.1
+
+
+From 9609e8ff55b27971e0e7e82cccf4fbbe3c6b9afb Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Thu, 25 Dec 2025 16:26:18 -0500
+Subject: [PATCH 18/18] Add support for left side volume dialog
+
+Change-Id: I42d09cb66ba36eb47f8b94df52d1c3c4a3390aba
+---
+ .../SystemUI/res/layout/volume_dialog.xml     | 10 +++----
+ .../res/layout/volume_dialog_top_section.xml  |  2 +-
+ .../systemui/volume/dialog/VolumeDialog.kt    |  2 +-
+ .../ui/util/RingerDrawerConstraintsUtils.kt   | 30 +++++++++----------
+ .../ui/binder/VolumeDialogViewBinder.kt       |  2 +-
+ 5 files changed, 23 insertions(+), 23 deletions(-)
+
+diff --git a/packages/SystemUI/res/layout/volume_dialog.xml b/packages/SystemUI/res/layout/volume_dialog.xml
+index e421cb310..e3584851c 100644
+--- a/packages/SystemUI/res/layout/volume_dialog.xml
++++ b/packages/SystemUI/res/layout/volume_dialog.xml
+@@ -42,9 +42,9 @@
+         android:layout_marginBottom="@dimen/volume_dialog_components_spacing"
+         android:clipChildren="false"
+         app:layout_constraintBottom_toTopOf="@id/volume_dialog_main_slider_container"
+-        app:layout_constraintEnd_toEndOf="@id/volume_dialog_background"
++        app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHeight_default="spread"
+-        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintStart_toStartOf="@id/volume_dialog_background"
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintWidth_default="spread">
+ 
+@@ -57,10 +57,10 @@
+         android:layout_width="@dimen/volume_dialog_slider_width"
+         android:layout_height="0dp"
+         android:layout_marginTop="@dimen/volume_dialog_slider_vertical_margin"
+-        android:layout_marginEnd="@dimen/volume_dialog_window_margin"
++        android:layout_marginStart="@dimen/volume_dialog_window_margin"
+         android:layout_marginBottom="@dimen/volume_dialog_slider_vertical_margin"
+         app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintRight_toRightOf="parent"
++        app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintHeight_max="@dimen/volume_dialog_slider_height"
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintVertical_bias="0.5" />
+@@ -96,7 +96,7 @@
+         android:orientation="horizontal"
+         android:showDividers="middle|beginning|end"
+         app:layout_constraintBottom_toBottomOf="@id/volume_dialog_main_slider_container"
+-        app:layout_constraintRight_toLeftOf="@id/volume_dialog_background"
++        app:layout_constraintLeft_toRightOf="@id/volume_dialog_background"
+         app:layout_constraintTop_toTopOf="@id/volume_dialog_main_slider_container" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+diff --git a/packages/SystemUI/res/layout/volume_dialog_top_section.xml b/packages/SystemUI/res/layout/volume_dialog_top_section.xml
+index 9d3598800..a8e5ce443 100644
+--- a/packages/SystemUI/res/layout/volume_dialog_top_section.xml
++++ b/packages/SystemUI/res/layout/volume_dialog_top_section.xml
+@@ -22,7 +22,7 @@
+     android:clipChildren="false"
+     android:clipToPadding="false"
+     android:gravity="center"
+-    android:paddingEnd="@dimen/volume_dialog_background_margin"
++    android:paddingStart="@dimen/volume_dialog_background_margin"
+     app:layoutDescription="@xml/volume_dialog_ringer_drawer_motion_scene">
+ 
+     <View
+diff --git a/packages/SystemUI/src/com/android/systemui/volume/dialog/VolumeDialog.kt b/packages/SystemUI/src/com/android/systemui/volume/dialog/VolumeDialog.kt
+index c99b41136..b5729e953 100644
+--- a/packages/SystemUI/src/com/android/systemui/volume/dialog/VolumeDialog.kt
++++ b/packages/SystemUI/src/com/android/systemui/volume/dialog/VolumeDialog.kt
+@@ -64,7 +64,7 @@ constructor(
+                 }
+             if (isVolumeDialogVertical) {
+                 setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
+-                setGravity(Gravity.END)
++                setGravity(Gravity.START)
+             } else {
+                 setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                 setGravity(Gravity.TOP or Gravity.END)
+diff --git a/packages/SystemUI/src/com/android/systemui/volume/dialog/ringer/ui/util/RingerDrawerConstraintsUtils.kt b/packages/SystemUI/src/com/android/systemui/volume/dialog/ringer/ui/util/RingerDrawerConstraintsUtils.kt
+index d4963c15e..66ad587a7 100644
+--- a/packages/SystemUI/src/com/android/systemui/volume/dialog/ringer/ui/util/RingerDrawerConstraintsUtils.kt
++++ b/packages/SystemUI/src/com/android/systemui/volume/dialog/ringer/ui/util/RingerDrawerConstraintsUtils.kt
+@@ -59,7 +59,7 @@ private fun ConstraintSet.setButtonPositionPortraitConstraints(
+             ConstraintSet.TOP,
+         )
+     }
+-    connect(button.id, ConstraintSet.END, motionLayout.id, ConstraintSet.END)
++    connect(button.id, ConstraintSet.START, motionLayout.id, ConstraintSet.START)
+ }
+ 
+ private fun ConstraintSet.setButtonPositionLandscapeConstraints(
+@@ -67,21 +67,21 @@ private fun ConstraintSet.setButtonPositionLandscapeConstraints(
+     index: Int,
+     button: View,
+ ) {
+-    if (motionLayout.getChildAt(index + 1) == null) {
+-        connect(button.id, ConstraintSet.END, motionLayout.id, ConstraintSet.END)
++    if (index == 1) {
++        connect(button.id, ConstraintSet.START, motionLayout.id, ConstraintSet.START)
+     } else {
+         connect(
+             button.id,
+-            ConstraintSet.END,
+-            motionLayout.getChildAt(index + 1).id,
+             ConstraintSet.START,
++            motionLayout.getChildAt(index - 1).id,
++            ConstraintSet.END,
+         )
+     }
+     connect(button.id, ConstraintSet.BOTTOM, motionLayout.id, ConstraintSet.BOTTOM)
+ 
+     // Index 1 is the first button in the children of motionLayout.
+-    if (index == 1) {
+-        clear(button.id, ConstraintSet.START)
++    if (motionLayout.getChildAt(index + 1) == null) {
++        clear(button.id, ConstraintSet.END)
+     }
+ }
+ 
+@@ -135,11 +135,11 @@ private fun ConstraintSet.adjustOpenConstraintsForDrawer(
+             connect(view.id, ConstraintSet.BOTTOM, motionLayout.id, ConstraintSet.BOTTOM)
+             connect(
+                 view.id,
+-                ConstraintSet.START,
+-                motionLayout.getChildAt(1).id,
+-                ConstraintSet.START,
++                ConstraintSet.END,
++                motionLayout.getChildAt(motionLayout.childCount - 1).id,
++                ConstraintSet.END,
+             )
+-            connect(view.id, ConstraintSet.END, motionLayout.id, ConstraintSet.END)
++            connect(view.id, ConstraintSet.START, motionLayout.id, ConstraintSet.START)
+             connect(view.id, ConstraintSet.TOP, motionLayout.getChildAt(1).id, ConstraintSet.TOP)
+         }
+     }
+@@ -167,7 +167,7 @@ private fun ConstraintSet.adjustClosedConstraintsForDrawer(
+                                 .toInt(),
+                         )
+                     } else {
+-                        connect(view.id, ConstraintSet.END, motionLayout.id, ConstraintSet.END)
++                        connect(view.id, ConstraintSet.START, motionLayout.id, ConstraintSet.START)
+                         setAlpha(view.id, 1.0F)
+                         constrainWidth(
+                             view.id,
+@@ -222,11 +222,11 @@ private fun ConstraintSet.adjustClosedConstraintsForDrawer(
+             connect(view.id, ConstraintSet.BOTTOM, motionLayout.id, ConstraintSet.BOTTOM)
+             connect(
+                 view.id,
+-                ConstraintSet.START,
++                ConstraintSet.END,
+                 motionLayout.getChildAt(motionLayout.childCount - selectedIndex - 1).id,
+-                ConstraintSet.START,
++                ConstraintSet.END,
+             )
+-            connect(view.id, ConstraintSet.END, motionLayout.id, ConstraintSet.END)
++            connect(view.id, ConstraintSet.START, motionLayout.id, ConstraintSet.START)
+             connect(
+                 view.id,
+                 ConstraintSet.TOP,
+diff --git a/packages/SystemUI/src/com/android/systemui/volume/dialog/ui/binder/VolumeDialogViewBinder.kt b/packages/SystemUI/src/com/android/systemui/volume/dialog/ui/binder/VolumeDialogViewBinder.kt
+index e96561d62..67a7d50b8 100644
+--- a/packages/SystemUI/src/com/android/systemui/volume/dialog/ui/binder/VolumeDialogViewBinder.kt
++++ b/packages/SystemUI/src/com/android/systemui/volume/dialog/ui/binder/VolumeDialogViewBinder.kt
+@@ -202,7 +202,7 @@ constructor(
+      */
+     private fun View.applyAnimationProgress(fraction: Float) {
+         alpha = ceil(fraction)
+-        translationX = lerp(width, 0, fraction).toFloat()
++        translationX = -lerp(width, 0, fraction).toFloat()
+     }
+ 
+     private suspend fun ViewTreeObserver.listenToComputeInternalInsets() =
 -- 
 2.34.1
 

@@ -1,0 +1,70 @@
+From da45ffbb1ce6bc157bd2b1ec122dafed26296a94 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 26 Dec 2025 22:14:57 -0500
+Subject: [PATCH 1/2] Fix wallpaper picker not rendering because one of the
+ flows was empty
+
+Change-Id: I3a68a889bcaeb3a481f48f7d8fa1b1a5e546f99f
+---
+ .../ui/viewmodel/CategoriesViewModel.kt        | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/src/com/android/wallpaper/picker/category/ui/viewmodel/CategoriesViewModel.kt b/src/com/android/wallpaper/picker/category/ui/viewmodel/CategoriesViewModel.kt
+index 17b1d82..35cbed1 100644
+--- a/src/com/android/wallpaper/picker/category/ui/viewmodel/CategoriesViewModel.kt
++++ b/src/com/android/wallpaper/picker/category/ui/viewmodel/CategoriesViewModel.kt
+@@ -384,15 +384,15 @@ constructor(
+                         sectionTitle = context.getString(R.string.choose_a_wallpaper_section_title),
+                     )
+                 }
+-                .onEmpty {
+-                    emit(
+-                        SectionViewModel(
+-                            tileViewModels = emptyList(),
+-                            columnCount = 0,
+-                            sectionTitle = "No Photos Available",
+-                        )
+-                    )
+-                }
++        }
++        .onEmpty {
++            emit(
++                SectionViewModel(
++                    tileViewModels = emptyList(),
++                    columnCount = 0,
++                    sectionTitle = "No Photos Available",
++                )
++            )
+         }
+ 
+     // The ordering of addition of viewModels here decides the final ordering how sections would
+-- 
+2.34.1
+
+
+From ab948107a8f62b9065eb9acd49bc49e47a9759e8 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sat, 27 Dec 2025 15:14:58 -0500
+Subject: [PATCH 2/2] fix wallpaper picker not showing pictures
+
+Change-Id: I01ae095292515d175ba2ec6fe2fa98ed84cf12b7
+---
+ .../picker/category/ui/viewmodel/CategoriesViewModel.kt         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/com/android/wallpaper/picker/category/ui/viewmodel/CategoriesViewModel.kt b/src/com/android/wallpaper/picker/category/ui/viewmodel/CategoriesViewModel.kt
+index 35cbed1..87ca8d0 100644
+--- a/src/com/android/wallpaper/picker/category/ui/viewmodel/CategoriesViewModel.kt
++++ b/src/com/android/wallpaper/picker/category/ui/viewmodel/CategoriesViewModel.kt
+@@ -310,7 +310,7 @@ constructor(
+             }
+ 
+     private val myPhotosSectionViewModel: Flow<SectionViewModel> =
+-        if (BaseFlags.get().isNewPickerUi()) {
++        if (false) {
+             curatedPhotosInteractor.category
+                 .distinctUntilChanged(PhotoMediaUtils.distinctMediaKeyChanged())
+                 .map { category ->
+-- 
+2.34.1
+

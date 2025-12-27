@@ -1,4 +1,4 @@
-From a1e9f8553ceeae094d2f493faa49f9f4287f50f1 Mon Sep 17 00:00:00 2001
+From e13a40a4b7d4f8ffda8a1fac0a759bdfa8fdb79d Mon Sep 17 00:00:00 2001
 From: danielzhang130 <danielzhang130@gmail.com>
 Date: Sat, 13 Aug 2022 13:32:22 -0400
 Subject: [PATCH 1/4] Add Build and Build.VERSION info to about phone screen
@@ -6,11 +6,25 @@ Subject: [PATCH 1/4] Add Build and Build.VERSION info to about phone screen
 Signed-off-by: danielzhang130 <danielzhang130@gmail.com>
 Change-Id: I0ad77dbe06acd451dc153b14b0443e3fd914c08f
 ---
+ .../firmwareversion/FirmwareVersionScreen.kt  |  2 +-
  .../FirmwareVersionSettings.java              | 56 +++++++++++++++
  .../SimplePreferenceController.java           | 68 +++++++++++++++++++
- 2 files changed, 124 insertions(+)
+ 3 files changed, 125 insertions(+), 1 deletion(-)
  create mode 100644 src/com/android/settings/deviceinfo/firmwareversion/SimplePreferenceController.java
 
+diff --git a/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionScreen.kt b/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionScreen.kt
+index d841fa52..4db78355 100644
+--- a/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionScreen.kt
++++ b/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionScreen.kt
+@@ -61,7 +61,7 @@ open class FirmwareVersionScreen : PreferenceScreenMixin, PreferenceSummaryProvi
+ 
+     override fun isIndexable(context: Context) = true
+ 
+-    override fun hasCompleteHierarchy() = true
++    override fun hasCompleteHierarchy() = false
+ 
+     override fun getLaunchIntent(context: Context, metadata: PreferenceMetadata?) =
+         makeLaunchIntent(context, FirmwareVersionActivity::class.java, metadata?.key)
 diff --git a/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java b/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java
 index 25efc1e6..f51d3abd 100644
 --- a/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java
@@ -172,7 +186,7 @@ index 00000000..36056827
 2.34.1
 
 
-From 5c06c9811a473ff5abde0db1b7806c3e3d323c78 Mon Sep 17 00:00:00 2001
+From 437b4b85783b52a58959653f06dca67228c55553 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 10:58:52 -0500
 Subject: [PATCH 2/4] Add settings animations files
@@ -2125,7 +2139,7 @@ index e69de29b..0fddbf8e 100644
 2.34.1
 
 
-From d162477ed020cac07f6ced5aaea9a7a7ea38bcc8 Mon Sep 17 00:00:00 2001
+From 821028d6b5fd3e46fe68c7c05bd4c38ccc063700 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 21:49:17 -0500
 Subject: [PATCH 3/4] Add changelist to about phone screen
@@ -2284,7 +2298,7 @@ index 36056827..c108909b 100644
 2.34.1
 
 
-From 4e3c75f416289e823d51eb7faf1eb58012a56e35 Mon Sep 17 00:00:00 2001
+From f9d90a10b079f99061a4affab9f21fd6e51e8894 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 30 Dec 2023 15:52:29 -0500
 Subject: [PATCH 4/4] Add memory cpu usage quick tile

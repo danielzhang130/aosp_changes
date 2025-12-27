@@ -1,7 +1,7 @@
-From 7a46277cfc3c395a49d2f0304ab49ba349621b74 Mon Sep 17 00:00:00 2001
+From 9d3437c49a0b68cacffde62d13ee870380a595d2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 24 Mar 2025 19:39:35 -0400
-Subject: [PATCH] r23 add nfc apex
+Subject: [PATCH 1/2] r23 add nfc apex
 
 Change-Id: I80c8f08682a0dce108742cbf320164cc8ccdf77b
 ---
@@ -19,6 +19,32 @@ index 0000000..f0b126a
 +value: {
 +  string_value: "com.android.nfcservices"
 +}
+-- 
+2.34.1
+
+
+From 68260f63d9a2ad96e94a285a813160975bb07923 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Fri, 26 Dec 2025 22:21:02 -0500
+Subject: [PATCH 2/2] disable new aconfig storage, not working
+
+Change-Id: I308963661996c76d5c415d02f4e9c0639ded4ef2
+---
+ .../use_new_aconfig_storage_flag_values.textproto               | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/aconfig/bp2a/android.content.res/use_new_aconfig_storage_flag_values.textproto b/aconfig/bp2a/android.content.res/use_new_aconfig_storage_flag_values.textproto
+index 335ddf6..dcd2981 100644
+--- a/aconfig/bp2a/android.content.res/use_new_aconfig_storage_flag_values.textproto
++++ b/aconfig/bp2a/android.content.res/use_new_aconfig_storage_flag_values.textproto
+@@ -1,6 +1,6 @@
+ flag_value {
+   package: "android.content.res"
+   name: "use_new_aconfig_storage"
+-  state: ENABLED
++  state: DISABLED
+   permission: READ_ONLY
+ }
 -- 
 2.34.1
 

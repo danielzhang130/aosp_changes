@@ -1,0 +1,27 @@
+From 53697084eb8819e100305893fb68397e6eb935c0 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Tue, 23 Dec 2025 21:51:09 -0500
+Subject: [PATCH] fix runtime errors
+
+Change-Id: Ia6d46324afb43bbd4e462e3a74cadaf6c46b66b0
+---
+ service/src/com/android/server/BpfNetMaps.java | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/service/src/com/android/server/BpfNetMaps.java b/service/src/com/android/server/BpfNetMaps.java
+index d8a8c05..e0a3d42 100644
+--- a/service/src/com/android/server/BpfNetMaps.java
++++ b/service/src/com/android/server/BpfNetMaps.java
+@@ -478,8 +478,7 @@ public class BpfNetMaps {
+      NetworkStackUtils.isAtLeast25Q2 when it is moved to a static lib.
+      */
+     public static boolean isAtLeast25Q2() {
+-        return SdkLevel.isAtLeastB()  || (SdkLevel.isAtLeastV()
+-                && "Baklava".equals(Build.VERSION.CODENAME));
++        return false;
+     }
+ 
+     private void removeRule(final int uid, final long match, final String caller) {
+-- 
+2.34.1
+

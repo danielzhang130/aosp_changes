@@ -1,7 +1,7 @@
-From 9a5ea9f9f79d1eec98133597df2f66be6fdb8dec Mon Sep 17 00:00:00 2001
+From 0f8cddf0f227d454c932531a428ab5f7758e4981 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/18] pass safetynet and gpay
+Subject: [PATCH 01/17] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -172,10 +172,10 @@ index e6a63b9c4..6a80c14c9 100644
 2.34.1
 
 
-From 06a812ae6e32c785d6c197c26fc07b2008e7e69a Mon Sep 17 00:00:00 2001
+From 7325371097e9c1169b0021fc700342b3da4f7371 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/18] Set auto brightness on by default
+Subject: [PATCH 02/17] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index 94aa955f0..3d24efe61 100644
 2.34.1
 
 
-From 2d7c7cd9a6942c7e40ae944f5392832b374b7f06 Mon Sep 17 00:00:00 2001
+From c7730f2cefbb7abe7c5fdb35d183e71a02b21c72 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 03/18] Remove max column limit on quick tiles under
+Subject: [PATCH 03/17] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -227,10 +227,10 @@ index ef44e5fb8..cf7e43d2a 100644
 2.34.1
 
 
-From 656fb5cdbca02641b6ca6218bd9c3b6604d02dfc Mon Sep 17 00:00:00 2001
+From 320807a0e0cd9e83e78a8a05a154a1d22265fe6d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 04/18] Update permission history cutoff days
+Subject: [PATCH 04/17] Update permission history cutoff days
 
 Change-Id: I0c61451d766a9870b543c73a661abc39c5eb6bf3
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -266,10 +266,10 @@ index ada9f7a74..89051320f 100644
 2.34.1
 
 
-From d6acf5c92fa77e7e3a9219ce17d403c6e0a5b452 Mon Sep 17 00:00:00 2001
+From 37d64e8101a3c275003b1be9d28434341bd7cee4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 05/18] Add launcher icon for android 10 easter egg
+Subject: [PATCH 05/17] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -293,10 +293,10 @@ index bcc10ddde..115d552b9 100644
 2.34.1
 
 
-From a62e50a008a0032568bb1b1f72c033faf9a6e419 Mon Sep 17 00:00:00 2001
+From 9b9054bd5744723ec9311fc00c5377e30d6cb1dd Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 06/18] Use system default vibration for fb messenger app
+Subject: [PATCH 06/17] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -322,10 +322,10 @@ index f8e119ef7..422bd86f1 100644
 2.34.1
 
 
-From dd890a40ba26dd5efc495cd3a9733187cb5215ba Mon Sep 17 00:00:00 2001
+From 3d4e1124ffa5223e7640dfe771baa85c6ec62955 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 07/18] Fix safetynet/play integrity
+Subject: [PATCH 07/17] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -355,10 +355,10 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From b68d1bc9c1ecf54b7214e8ac8bb6890bb0bd476d Mon Sep 17 00:00:00 2001
+From 6f86767a09e197b9572b1196693e01e30efd80dd Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 08/18] Get free photo storage for google pixel
+Subject: [PATCH 08/17] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -415,10 +415,10 @@ index ed22fb961..8c7a37f9c 100644
 2.34.1
 
 
-From 79431ba80457ef12b953b1328b9b0ca015c95ee1 Mon Sep 17 00:00:00 2001
+From 6e98c822f5d0d5349827556219188e376a537654 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 09/18] Add ability to change fingerprint from persist prop
+Subject: [PATCH 09/17] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -457,10 +457,10 @@ index 84d767694..3a928f54b 100644
 2.34.1
 
 
-From c24217689b6df69a27f3181607f2744d737cd37b Mon Sep 17 00:00:00 2001
+From 5c9b0050f70b12fe55c887564a797d3c81708618 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 10/18] Update default spoof fingerprint
+Subject: [PATCH 10/17] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -500,10 +500,10 @@ index 3a928f54b..ee174dfb5 100644
 2.34.1
 
 
-From f2d70a9938dad38700b5999558793ef3ed26304f Mon Sep 17 00:00:00 2001
+From f9acb541251eef0350289ebc380e0afe9f86deb1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
-Subject: [PATCH 11/18] Change quick affordance click from long to short click
+Subject: [PATCH 11/17] Change quick affordance click from long to short click
 
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -533,10 +533,10 @@ index 01241bf5c..b1f3e51dd 100644
 2.34.1
 
 
-From 4a97c92ff2ad0f100420e8c82704cbb934fcb0fd Mon Sep 17 00:00:00 2001
+From 2ebcca799dea3869d959ab643312cc630b9e2325 Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Sat, 16 Oct 2021 05:27:57 -0700
-Subject: [PATCH 12/18] Add support for app signature spoofing
+Subject: [PATCH 12/17] Add support for app signature spoofing
 
 This is needed by microG GmsCore to pretend to be the official Google
 Play Services package, because client apps check the package signature
@@ -801,10 +801,10 @@ index 7597f9503..fb1c0b8b7 100644
 2.34.1
 
 
-From a834805b9a4fcccfe578747eb0ee970660632a14 Mon Sep 17 00:00:00 2001
+From 53c7795e8354d91c7ab8f3b6239a399bf7a0d8ec Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
-Subject: [PATCH 13/18] Output certificate in pm dump
+Subject: [PATCH 13/17] Output certificate in pm dump
 
 Change-Id: I6c54ae43fecce81972b9b5f1239bb3ff8308e540
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -831,10 +831,10 @@ index c97300bdd..d08832e88 100644
 2.34.1
 
 
-From dac02a28636d1004cb841c8f004eeae36deebd4a Mon Sep 17 00:00:00 2001
+From 36662c887dc6fef7cb316879b7f22e57731c056d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:00 -0500
-Subject: [PATCH 14/18] Add permission for Nova launcher pro
+Subject: [PATCH 14/17] Add permission for Nova launcher pro
 
 Change-Id: I79670eb2b11018568ee7b115d92cf2482e56d717
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -887,107 +887,10 @@ index 7e2c31d91..86b9d93ce 100644
 2.34.1
 
 
-From dc56e6b03fd6e1d705b487527462ea8df46a87bc Mon Sep 17 00:00:00 2001
-From: Daniel Zhang <danielzhang130@gmail.com>
-Date: Sat, 2 Aug 2025 20:11:32 -0400
-Subject: [PATCH 15/18] Revert "Removing Vibrator HIDL HAL support from
- frameworks"
-
-This reverts commit dffa80bf3276376caf09c80de02ceb332ef5416f.
----
- .../java/com/android/server/Watchdog.java     |  1 +
- services/core/jni/Android.bp                  |  4 +++
- ...oid_server_vibrator_VibratorController.cpp | 28 +++++++++++++++++++
- 3 files changed, 33 insertions(+)
-
-diff --git a/services/core/java/com/android/server/Watchdog.java b/services/core/java/com/android/server/Watchdog.java
-index 3f1089438..728bf2a5e 100644
---- a/services/core/java/com/android/server/Watchdog.java
-+++ b/services/core/java/com/android/server/Watchdog.java
-@@ -169,6 +169,7 @@ public class Watchdog implements Dumpable {
-             "android.hardware.sensors@1.0::ISensors",
-             "android.hardware.sensors@2.0::ISensors",
-             "android.hardware.sensors@2.1::ISensors",
-+            "android.hardware.vibrator@1.0::IVibrator",
-             "android.hardware.vr@1.0::IVr",
-             "android.system.suspend@1.0::ISystemSuspend"
-     );
-diff --git a/services/core/jni/Android.bp b/services/core/jni/Android.bp
-index ca4c60b90..15b6217cc 100644
---- a/services/core/jni/Android.bp
-+++ b/services/core/jni/Android.bp
-@@ -191,6 +191,10 @@ cc_defaults {
-         "android.hardware.tv.input@1.0",
-         "android.hardware.tv.input-V3-ndk",
-         "android.hardware.vibrator-V3-ndk",
-+        "android.hardware.vibrator@1.0",
-+        "android.hardware.vibrator@1.1",
-+        "android.hardware.vibrator@1.2",
-+        "android.hardware.vibrator@1.3",
-         "android.hidl.token@1.0-utils",
-         "android.frameworks.sensorservice@1.0",
-         "android.frameworks.sensorservice-V1-ndk",
-diff --git a/services/core/jni/com_android_server_vibrator_VibratorController.cpp b/services/core/jni/com_android_server_vibrator_VibratorController.cpp
-index 81cd77488..eee6e5a78 100644
---- a/services/core/jni/com_android_server_vibrator_VibratorController.cpp
-+++ b/services/core/jni/com_android_server_vibrator_VibratorController.cpp
-@@ -19,6 +19,7 @@
- #include <aidl/android/hardware/vibrator/IVibrator.h>
- #include <android/binder_parcel.h>
- #include <android/binder_parcel_jni.h>
-+#include <android/hardware/vibrator/1.3/IVibrator.h>
- #include <android/persistable_bundle_aidl.h>
- #include <android_os_vibrator.h>
- #include <nativehelper/JNIHelp.h>
-@@ -31,6 +32,8 @@
- #include "core_jni_helpers.h"
- #include "jni.h"
- 
-+namespace V1_0 = android::hardware::vibrator::V1_0;
-+namespace V1_3 = android::hardware::vibrator::V1_3;
- namespace Aidl = aidl::android::hardware::vibrator;
- 
- using aidl::android::os::PersistableBundle;
-@@ -77,6 +80,31 @@ static struct {
-     jfieldID timeMillis;
- } sPwlePointClassInfo;
- 
-+static_assert(static_cast<uint8_t>(V1_0::EffectStrength::LIGHT) ==
-+              static_cast<uint8_t>(Aidl::EffectStrength::LIGHT));
-+static_assert(static_cast<uint8_t>(V1_0::EffectStrength::MEDIUM) ==
-+              static_cast<uint8_t>(Aidl::EffectStrength::MEDIUM));
-+static_assert(static_cast<uint8_t>(V1_0::EffectStrength::STRONG) ==
-+              static_cast<uint8_t>(Aidl::EffectStrength::STRONG));
-+
-+static_assert(static_cast<uint8_t>(V1_3::Effect::CLICK) ==
-+              static_cast<uint8_t>(Aidl::Effect::CLICK));
-+static_assert(static_cast<uint8_t>(V1_3::Effect::DOUBLE_CLICK) ==
-+              static_cast<uint8_t>(Aidl::Effect::DOUBLE_CLICK));
-+static_assert(static_cast<uint8_t>(V1_3::Effect::TICK) == static_cast<uint8_t>(Aidl::Effect::TICK));
-+static_assert(static_cast<uint8_t>(V1_3::Effect::THUD) == static_cast<uint8_t>(Aidl::Effect::THUD));
-+static_assert(static_cast<uint8_t>(V1_3::Effect::POP) == static_cast<uint8_t>(Aidl::Effect::POP));
-+static_assert(static_cast<uint8_t>(V1_3::Effect::HEAVY_CLICK) ==
-+              static_cast<uint8_t>(Aidl::Effect::HEAVY_CLICK));
-+static_assert(static_cast<uint8_t>(V1_3::Effect::RINGTONE_1) ==
-+              static_cast<uint8_t>(Aidl::Effect::RINGTONE_1));
-+static_assert(static_cast<uint8_t>(V1_3::Effect::RINGTONE_2) ==
-+              static_cast<uint8_t>(Aidl::Effect::RINGTONE_2));
-+static_assert(static_cast<uint8_t>(V1_3::Effect::RINGTONE_15) ==
-+              static_cast<uint8_t>(Aidl::Effect::RINGTONE_15));
-+static_assert(static_cast<uint8_t>(V1_3::Effect::TEXTURE_TICK) ==
-+              static_cast<uint8_t>(Aidl::Effect::TEXTURE_TICK));
-+
- static std::shared_ptr<vibrator::HalController> findVibrator(int32_t vibratorId) {
-     vibrator::ManagerHalController* manager =
-             android_server_vibrator_VibratorManagerService_getManager();
--- 
-2.34.1
-
-
-From d27f4791c825b471cd095b41327c017ed34a8d6a Mon Sep 17 00:00:00 2001
+From 4429cc62303d7cd30d9a59928e1ad4154f64c626 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 23 Dec 2025 17:28:08 -0500
-Subject: [PATCH 16/18] fix runtime errors
+Subject: [PATCH 15/17] fix runtime errors
 
 Change-Id: I6d8247dd91b272349ab987112bd6c28ec6df26c7
 ---
@@ -1033,10 +936,10 @@ index 0c67d1891..e5abfa712 100644
 2.34.1
 
 
-From 39cc68b28832196dedc54d5994d9c3071336f29e Mon Sep 17 00:00:00 2001
+From a942fe0efd237ce99377c87c09e6b5b6f9b18983 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 25 Dec 2025 16:25:22 -0500
-Subject: [PATCH 17/18] Disable haptics on sysui sliders
+Subject: [PATCH 16/17] Disable haptics on sysui sliders
 
 Change-Id: Iefd13833acfe38762f8acbb120e94717745eb458
 ---
@@ -1091,10 +994,10 @@ index 82fabca7a..b20486aa8 100644
 2.34.1
 
 
-From 9609e8ff55b27971e0e7e82cccf4fbbe3c6b9afb Mon Sep 17 00:00:00 2001
+From 9698b289857900560c2eace5970147240e69d622 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 25 Dec 2025 16:26:18 -0500
-Subject: [PATCH 18/18] Add support for left side volume dialog
+Subject: [PATCH 17/17] Add support for left side volume dialog
 
 Change-Id: I42d09cb66ba36eb47f8b94df52d1c3c4a3390aba
 ---

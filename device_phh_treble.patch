@@ -1,7 +1,7 @@
 From e46e3323af1aa23418a6a8bcfd3c06f2918794a9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 20:52:26 -0500
-Subject: [PATCH 01/29] Various updates to phh treble device
+Subject: [PATCH 01/30] Various updates to phh treble device
 
 - make adb secure
 - remove su
@@ -6444,7 +6444,7 @@ index f3c0c45..b2bcf63 100644
 From 733077b8622895bf25be64bb8e3080aded3bf4f1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 14 Dec 2022 21:07:13 -0500
-Subject: [PATCH 02/29] Passes safetynet out of the box
+Subject: [PATCH 02/30] Passes safetynet out of the box
 
 remove unneeded system prop changes
 
@@ -6484,7 +6484,7 @@ index a7b94f6..2efd227 100644
 From cfc0e476ccb1f648b9b095ea0928525f21a1d90c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Dec 2022 17:04:53 -0500
-Subject: [PATCH 03/29] Fix adb not connecting when device first starts
+Subject: [PATCH 03/30] Fix adb not connecting when device first starts
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -6528,7 +6528,7 @@ index 55b3311..0000000
 From a2fdf24f4f0667e0a5c35b77cbf61b8e6ea9eb8f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 15:00:45 -0500
-Subject: [PATCH 04/29] add nova launcher and remove unused packages
+Subject: [PATCH 04/30] add nova launcher and remove unused packages
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -6596,7 +6596,7 @@ index 738b96f..0000000
 From 5613064c42e700faea939293209ff1b2be87be99 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 19 Dec 2022 19:29:48 -0500
-Subject: [PATCH 05/29] Add fp3 boot animation
+Subject: [PATCH 05/30] Add fp3 boot animation
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -6649,7 +6649,7 @@ index 8564d01..10e7125 100644
 From c51732fff05947f9db9707d0d0660fd3d895c1f1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 17:02:30 -0500
-Subject: [PATCH 06/29] Remove restarting surfaceflinger
+Subject: [PATCH 06/30] Remove restarting surfaceflinger
 
 - stop boot animation restarting
 - lcd density seems to be set correctly without it
@@ -6680,7 +6680,7 @@ index 2f56680..c0c3063 100644
 From c94ba0d5c0db110d80ad6cd90ef65fae5a5c7d92 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:25:49 -0500
-Subject: [PATCH 07/29] Remove twrp files
+Subject: [PATCH 07/30] Remove twrp files
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -19680,7 +19680,7 @@ index cb67b71..0000000
 From dcb5abdd79a5799dd41ba698fbacc491a64847c3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 21:47:06 -0500
-Subject: [PATCH 08/29] Remove ota
+Subject: [PATCH 08/30] Remove ota
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -19939,7 +19939,7 @@ index c0c3063..560b429 100644
 From 2d4e611ea90f87f576527606e9b3616e714b7ce8 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:00:25 -0500
-Subject: [PATCH 09/29] Remove unused remote files, functionality already
+Subject: [PATCH 09/30] Remove unused remote files, functionality already
  removed
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -22052,7 +22052,7 @@ index 87f2f96..0000000
 From 298e2f6ff0ce6412215413bf1f834d778e83c4f9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 22 Dec 2022 22:12:45 -0500
-Subject: [PATCH 10/29] fix adb by removing ctl.restart adbd
+Subject: [PATCH 10/30] fix adb by removing ctl.restart adbd
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -22128,7 +22128,7 @@ index 2efd227..95c2076 100644
 From 1ec39bbeb079659ff618988c2a8fe923a6f0cf86 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 27 Dec 2022 15:16:35 -0500
-Subject: [PATCH 11/29] Add Wellbeing as priv-app
+Subject: [PATCH 11/30] Add Wellbeing as priv-app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -22154,7 +22154,7 @@ index 813d66b..96a0a7a 100644
 From 1f51ef10ef076f10f5dcd30e882235ee19a99ca3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 18:02:33 -0500
-Subject: [PATCH 12/29] Add themepicker to build
+Subject: [PATCH 12/30] Add themepicker to build
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -22183,7 +22183,7 @@ index bca7f93..875d63d 100644
 From 461aa996013a863b9c527bd3a65db9ce3472b002 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 29 Dec 2022 15:32:08 -0500
-Subject: [PATCH 13/29] Remove default browser, calendar and gallery app
+Subject: [PATCH 13/30] Remove default browser, calendar and gallery app
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -22213,7 +22213,7 @@ index 96a0a7a..dc9e985 100644
 From 5082904f9b2a41258b43bee33c358391d2a2c816 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 11:01:17 -0500
-Subject: [PATCH 14/29] Enable one handed mode
+Subject: [PATCH 14/30] Enable one handed mode
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -22238,7 +22238,7 @@ index b2bcf63..ce18f21 100644
 From ce787695d8ce4b41e7a7723a1772d9bba83e06b9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 22:43:22 -0500
-Subject: [PATCH 15/29] Add changelist generation on each build
+Subject: [PATCH 15/30] Add changelist generation on each build
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -22279,7 +22279,7 @@ index 0000000..4e3d648
 From 84c28c04e931a1aae5d27660cdcd728fe44f9673 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 15 Mar 2023 15:02:46 -0400
-Subject: [PATCH 16/29] Disable fingerprint cleanup to prevent fingerprint from
+Subject: [PATCH 16/30] Disable fingerprint cleanup to prevent fingerprint from
  disappearing
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -22307,7 +22307,7 @@ index 95c2076..20e81e0 100644
 From 6283648779f0838ebb43558aab05b5ef4ca4fff5 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 8 Jul 2023 09:11:02 -0400
-Subject: [PATCH 17/29] Remove unused proprietary dependencies
+Subject: [PATCH 17/30] Remove unused proprietary dependencies
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -22384,7 +22384,7 @@ index df2625f..aff655d 100644
 From 6f66f8c38c3a4a28d47877dd2a1a644234bbf7a3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 25 Mar 2024 23:10:21 -0400
-Subject: [PATCH 18/29] clocks: Add clocks for customization
+Subject: [PATCH 18/30] clocks: Add clocks for customization
 
 ---
  base.mk | 2 ++
@@ -22407,7 +22407,7 @@ index 4d0eb66..02869ce 100644
 From e6269b8fc810f7d328b148b0002e847c24030fcd Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:47:46 -0500
-Subject: [PATCH 19/29] Remove unused prop changes
+Subject: [PATCH 19/30] Remove unused prop changes
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -22455,7 +22455,7 @@ index 20e81e0..fcb5c19 100644
 From c16890772fbd67b89679f9a4e05962e384d7a437 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 2 Feb 2024 15:53:35 -0500
-Subject: [PATCH 20/29] Revert "Include vndk v28"
+Subject: [PATCH 20/30] Revert "Include vndk v28"
 
 This reverts commit bbe9520e9e18e83f0733732d41f245af637028f6.
 ---
@@ -22482,7 +22482,7 @@ index 02869ce..6d2ca41 100644
 From e954b2fe026bfb2d933f6bda1f8de678d9137a65 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 13 Feb 2024 10:56:20 -0500
-Subject: [PATCH 21/29] Make generate.sh executable
+Subject: [PATCH 21/30] Make generate.sh executable
 
 ---
  generate.sh | 0
@@ -22499,7 +22499,7 @@ new mode 100755
 From ded1b46fe01ece0cee067e36f3346d4d2066862c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:40 -0500
-Subject: [PATCH 22/29] Add system props for Nova launcher pro
+Subject: [PATCH 22/30] Add system props for Nova launcher pro
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -22527,7 +22527,7 @@ index 6d2ca41..8cbb4be 100644
 From 8c7d50e53039036ff4096b7fedc51e5594ba8d2d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 17 Feb 2024 15:51:20 -0500
-Subject: [PATCH 23/29] Add relax uses library check
+Subject: [PATCH 23/30] Add relax uses library check
 
 ---
  base.mk | 1 +
@@ -22549,7 +22549,7 @@ index 8cbb4be..349eecc 100644
 From 81631e91496be602629ba28a2975ec2072ceebda Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 23 Feb 2024 21:39:03 -0500
-Subject: [PATCH 24/29] simplify hardware overlay mk
+Subject: [PATCH 24/30] simplify hardware overlay mk
 
 ---
  base.mk | 2 +-
@@ -22575,7 +22575,7 @@ index 349eecc..ff63e10 100644
 From 0cc720afb7cd3ea6a2668e785b08d9ce4e86540e Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 23 Nov 2024 22:05:12 -0500
-Subject: [PATCH 25/29] add ims package
+Subject: [PATCH 25/30] add ims package
 
 ---
  base.mk | 4 ++++
@@ -22600,7 +22600,7 @@ index ff63e10..bfd27cb 100644
 From e5c18d70f6e83b534ae3474d9c3276b1eceeb5bf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 1 Mar 2025 15:42:51 -0500
-Subject: [PATCH 26/29] enable ims
+Subject: [PATCH 26/30] enable ims
 
 ---
  system.prop | 3 +++
@@ -22624,7 +22624,7 @@ index ce18f21..63df75e 100644
 From b1f9328e4e6625cd8de8dc12b10995a3fad927c7 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 24 Mar 2025 19:40:16 -0400
-Subject: [PATCH 27/29] r23 fix build
+Subject: [PATCH 27/30] r23 fix build
 
 ---
  base.mk | 75 ++++++++++++++++++++++++++++-----------------------------
@@ -22741,7 +22741,7 @@ index bfd27cb..3bf414c 100644
 From 4041d9e09ca0355391e87d905f2945831ed5e23d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 10 May 2025 13:56:03 -0400
-Subject: [PATCH 28/29] fix build r32
+Subject: [PATCH 28/30] fix build r32
 
 ---
  cmds/Android.bp | 12 ------------
@@ -22779,7 +22779,7 @@ index 0000000..e69de29
 From 0af6b9641a7c5597f358a71f8fb1c9c79cfb4cd2 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 29 Dec 2025 14:12:36 -0500
-Subject: [PATCH 29/29] add a16 theme props
+Subject: [PATCH 29/30] add a16 theme props
 
 ---
  system.prop | 3 +++
@@ -22796,6 +22796,29 @@ index 63df75e..d4bbed3 100644
 +
 +is_expressive_design_enabled=true
 +setupwizard.theme=glif_expressive
+-- 
+2.34.1
+
+
+From b4716d22b447ab4dccfff600fa53716b838ad975 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Mon, 29 Dec 2025 21:08:26 -0500
+Subject: [PATCH 30/30] Move wallpaper makefile
+
+---
+ FP3.mk | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/FP3.mk b/FP3.mk
+index 3060485..3c62c18 100644
+--- a/FP3.mk
++++ b/FP3.mk
+@@ -1,4 +1,5 @@
+ $(call inherit-product, device/phh/treble/treble_arm64_bgN.mk)
++$(call inherit-product, vendor/fp3_wallpapers/wallpaper.mk)
+ 
+ PRODUCT_COPY_FILES += device/phh/treble/empty:system/phh/secure
+ 
 -- 
 2.34.1
 

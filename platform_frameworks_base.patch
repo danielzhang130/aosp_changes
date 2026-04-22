@@ -1,7 +1,7 @@
-From 0f8cddf0f227d454c932531a428ab5f7758e4981 Mon Sep 17 00:00:00 2001
+From 1694239fb5489dc0221e961cc60af105f2751c4a Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/17] pass safetynet and gpay
+Subject: [PATCH 01/19] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -172,10 +172,10 @@ index e6a63b9c4..6a80c14c9 100644
 2.34.1
 
 
-From 7325371097e9c1169b0021fc700342b3da4f7371 Mon Sep 17 00:00:00 2001
+From efd7561b4420cb67e569e46699d773c236eb9950 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/17] Set auto brightness on by default
+Subject: [PATCH 02/19] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index 94aa955f0..3d24efe61 100644
 2.34.1
 
 
-From c7730f2cefbb7abe7c5fdb35d183e71a02b21c72 Mon Sep 17 00:00:00 2001
+From 6e01f27958c5b7f1e49e97038a4571d8377df476 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 03/17] Remove max column limit on quick tiles under
+Subject: [PATCH 03/19] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -227,10 +227,10 @@ index ef44e5fb8..cf7e43d2a 100644
 2.34.1
 
 
-From 320807a0e0cd9e83e78a8a05a154a1d22265fe6d Mon Sep 17 00:00:00 2001
+From 738fce0c0dfbccc3cd3d31161cd934b4f36408c3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 04/17] Update permission history cutoff days
+Subject: [PATCH 04/19] Update permission history cutoff days
 
 Change-Id: I0c61451d766a9870b543c73a661abc39c5eb6bf3
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -266,10 +266,10 @@ index ada9f7a74..89051320f 100644
 2.34.1
 
 
-From 37d64e8101a3c275003b1be9d28434341bd7cee4 Mon Sep 17 00:00:00 2001
+From 98290618c1f09137ead3a824a4a0abd2afc7a519 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 05/17] Add launcher icon for android 10 easter egg
+Subject: [PATCH 05/19] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -293,10 +293,10 @@ index bcc10ddde..115d552b9 100644
 2.34.1
 
 
-From 9b9054bd5744723ec9311fc00c5377e30d6cb1dd Mon Sep 17 00:00:00 2001
+From 951b9267cf0101742949b280909f429327ba8b49 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 06/17] Use system default vibration for fb messenger app
+Subject: [PATCH 06/19] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -322,10 +322,10 @@ index f8e119ef7..422bd86f1 100644
 2.34.1
 
 
-From 3d4e1124ffa5223e7640dfe771baa85c6ec62955 Mon Sep 17 00:00:00 2001
+From de1b6d2f5eea43db8f8c0128159b65bca3790230 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 07/17] Fix safetynet/play integrity
+Subject: [PATCH 07/19] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -355,10 +355,10 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From 6f86767a09e197b9572b1196693e01e30efd80dd Mon Sep 17 00:00:00 2001
+From 687fedc006f0fa5ad150f595af33812194668787 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 08/17] Get free photo storage for google pixel
+Subject: [PATCH 08/19] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -415,10 +415,10 @@ index ed22fb961..8c7a37f9c 100644
 2.34.1
 
 
-From 6e98c822f5d0d5349827556219188e376a537654 Mon Sep 17 00:00:00 2001
+From 534d13772cd91b7bbae3a5503c7b1f95c448e874 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 09/17] Add ability to change fingerprint from persist prop
+Subject: [PATCH 09/19] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -457,10 +457,10 @@ index 84d767694..3a928f54b 100644
 2.34.1
 
 
-From 5c9b0050f70b12fe55c887564a797d3c81708618 Mon Sep 17 00:00:00 2001
+From 3497dd381fae4692856223aaf3fc69d335a3b2e9 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 10/17] Update default spoof fingerprint
+Subject: [PATCH 10/19] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -500,10 +500,10 @@ index 3a928f54b..ee174dfb5 100644
 2.34.1
 
 
-From f9acb541251eef0350289ebc380e0afe9f86deb1 Mon Sep 17 00:00:00 2001
+From b98e8883a3954aadeacde41e24f2fc10248d87cf Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
-Subject: [PATCH 11/17] Change quick affordance click from long to short click
+Subject: [PATCH 11/19] Change quick affordance click from long to short click
 
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -533,10 +533,10 @@ index 01241bf5c..b1f3e51dd 100644
 2.34.1
 
 
-From 2ebcca799dea3869d959ab643312cc630b9e2325 Mon Sep 17 00:00:00 2001
+From d0a3e4db8d1bc10ca116f52864ef163d55900272 Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Sat, 16 Oct 2021 05:27:57 -0700
-Subject: [PATCH 12/17] Add support for app signature spoofing
+Subject: [PATCH 12/19] Add support for app signature spoofing
 
 This is needed by microG GmsCore to pretend to be the official Google
 Play Services package, because client apps check the package signature
@@ -801,10 +801,10 @@ index 7597f9503..fb1c0b8b7 100644
 2.34.1
 
 
-From 53c7795e8354d91c7ab8f3b6239a399bf7a0d8ec Mon Sep 17 00:00:00 2001
+From 7aeab52af0ba73aa693380823a1d185495efa283 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
-Subject: [PATCH 13/17] Output certificate in pm dump
+Subject: [PATCH 13/19] Output certificate in pm dump
 
 Change-Id: I6c54ae43fecce81972b9b5f1239bb3ff8308e540
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -831,10 +831,10 @@ index c97300bdd..d08832e88 100644
 2.34.1
 
 
-From 36662c887dc6fef7cb316879b7f22e57731c056d Mon Sep 17 00:00:00 2001
+From 4a9a26c755fb9b0ef630a03d443c32b92e395b33 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:00 -0500
-Subject: [PATCH 14/17] Add permission for Nova launcher pro
+Subject: [PATCH 14/19] Add permission for Nova launcher pro
 
 Change-Id: I79670eb2b11018568ee7b115d92cf2482e56d717
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -887,10 +887,10 @@ index 7e2c31d91..86b9d93ce 100644
 2.34.1
 
 
-From 4429cc62303d7cd30d9a59928e1ad4154f64c626 Mon Sep 17 00:00:00 2001
+From da17a9c3fe18a287e80ad5082ab19c1d98a48ab3 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 23 Dec 2025 17:28:08 -0500
-Subject: [PATCH 15/17] fix runtime errors
+Subject: [PATCH 15/19] fix runtime errors
 
 Change-Id: I6d8247dd91b272349ab987112bd6c28ec6df26c7
 ---
@@ -936,16 +936,17 @@ index 0c67d1891..e5abfa712 100644
 2.34.1
 
 
-From a942fe0efd237ce99377c87c09e6b5b6f9b18983 Mon Sep 17 00:00:00 2001
+From bdded1b05acebd500fde6e2bfbb901242bb06a42 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 25 Dec 2025 16:25:22 -0500
-Subject: [PATCH 16/17] Disable haptics on sysui sliders
+Subject: [PATCH 16/19] Disable haptics on sysui sliders
 
 Change-Id: Iefd13833acfe38762f8acbb120e94717745eb458
 ---
  .../brightness/ui/compose/BrightnessSlider.kt        |  2 --
+ .../stack/MagneticNotificationRowManagerImpl.kt      |  1 -
  .../sliders/ui/VolumeDialogSliderViewBinder.kt       | 12 ------------
- 2 files changed, 14 deletions(-)
+ 3 files changed, 15 deletions(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/brightness/ui/compose/BrightnessSlider.kt b/packages/SystemUI/src/com/android/systemui/brightness/ui/compose/BrightnessSlider.kt
 index e87b3cd0c..5aaf59f54 100644
@@ -967,6 +968,18 @@ index e87b3cd0c..5aaf59f54 100644
                      onStop(value)
                  }
              }
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/notification/stack/MagneticNotificationRowManagerImpl.kt b/packages/SystemUI/src/com/android/systemui/statusbar/notification/stack/MagneticNotificationRowManagerImpl.kt
+index e8d2aad9e..d7d0e790d 100644
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/notification/stack/MagneticNotificationRowManagerImpl.kt
++++ b/packages/SystemUI/src/com/android/systemui/statusbar/notification/stack/MagneticNotificationRowManagerImpl.kt
+@@ -250,7 +250,6 @@ constructor(
+                 it.setMagneticTranslation(targetTranslation)
+             }
+         }
+-        playPullHaptics(mappedTranslation = translation * swipedRowMultiplier, canSwipedBeDismissed)
+     }
+ 
+     private fun playPullHaptics(mappedTranslation: Float, canSwipedBeDismissed: Boolean) {
 diff --git a/packages/SystemUI/src/com/android/systemui/volume/dialog/sliders/ui/VolumeDialogSliderViewBinder.kt b/packages/SystemUI/src/com/android/systemui/volume/dialog/sliders/ui/VolumeDialogSliderViewBinder.kt
 index 82fabca7a..b20486aa8 100644
 --- a/packages/SystemUI/src/com/android/systemui/volume/dialog/sliders/ui/VolumeDialogSliderViewBinder.kt
@@ -994,10 +1007,10 @@ index 82fabca7a..b20486aa8 100644
 2.34.1
 
 
-From 9698b289857900560c2eace5970147240e69d622 Mon Sep 17 00:00:00 2001
+From 22f291ac05237a4787b817132be877db98521448 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 25 Dec 2025 16:26:18 -0500
-Subject: [PATCH 17/17] Add support for left side volume dialog
+Subject: [PATCH 17/19] Add support for left side volume dialog
 
 Change-Id: I42d09cb66ba36eb47f8b94df52d1c3c4a3390aba
 ---
@@ -1166,6 +1179,104 @@ index e96561d62..67a7d50b8 100644
      }
  
      private suspend fun ViewTreeObserver.listenToComputeInternalInsets() =
+-- 
+2.34.1
+
+
+From 64a54b267549d86f22792c06d14d0a5b3ae3a752 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sun, 22 Feb 2026 20:54:38 -0500
+Subject: [PATCH 18/19] left power button screen on effect
+
+Change-Id: Icd6e3c231e9e64117111435424f5e87640a595e6
+---
+ .../src/com/android/systemui/statusbar/LightRevealScrim.kt    | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/LightRevealScrim.kt b/packages/SystemUI/src/com/android/systemui/statusbar/LightRevealScrim.kt
+index a56624ca6..37af5f827 100644
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/LightRevealScrim.kt
++++ b/packages/SystemUI/src/com/android/systemui/statusbar/LightRevealScrim.kt
+@@ -254,10 +254,10 @@ data class PowerButtonReveal(
+             @Rotation val rotation = RotationUtils.getRotation(scrim.getContext())
+             if (rotation == RotationUtils.ROTATION_NONE) {
+                 setRevealGradientBounds(
+-                    width * (1f + OFF_SCREEN_START_AMOUNT) -
++                    width * (-1f * OFF_SCREEN_START_AMOUNT) -
+                         width * INCREASE_MULTIPLIER * interpolatedAmount,
+                     powerButtonY - height * interpolatedAmount,
+-                    width * (1f + OFF_SCREEN_START_AMOUNT) +
++                    width * (OFF_SCREEN_START_AMOUNT) +
+                         width * INCREASE_MULTIPLIER * interpolatedAmount,
+                     powerButtonY + height * interpolatedAmount,
+                 )
+-- 
+2.34.1
+
+
+From 30aaa168332a0787aed4b3c0f7528096d468c0c2 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sun, 22 Feb 2026 20:55:15 -0500
+Subject: [PATCH 19/19] Update default spoofing, add vending app
+
+Change-Id: I3190ef9b94456537cc65877f22a75987f5cc2cb3
+---
+ .../internal/gmscompat/AttestationHooks.java  | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
+
+diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+index ee174dfb5..478e64e88 100644
+--- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
++++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+@@ -35,12 +35,16 @@ public final class AttestationHooks {
+ 
+     private static final String PACKAGE_GMS_CORE = "com.google.android.gms";
+     private static final String PACKAGE_G_PAY = "com.google.android.apps.walletnfcrel";
++    private static final String PACKAGE_VENDING = "com.android.vending";
+ 
+     private static volatile boolean sIsGms = false;
+ 
+     private AttestationHooks() { }
+ 
+     private static void setBuildField(Class clazz, String key, String value) {
++        if (value.isEmpty()) {
++            return;
++        }
+         try {
+             // Unlock
+             Field field = clazz.getDeclaredField(key);
+@@ -58,23 +62,24 @@ public final class AttestationHooks {
+ 
+     private static void spoofBuildGms() {
+         setBuildField(Build.class, "PRODUCT", 
+-                SystemProperties.get("persist.product", "bullhead"));
++                SystemProperties.get("persist.product", ""));
+         setBuildField(Build.class, "DEVICE",
+-                SystemProperties.get("persist.device", "bullhead"));
++                SystemProperties.get("persist.device", ""));
+         setBuildField(Build.class, "MANUFACTURER",
+-                SystemProperties.get("persist.manufacturer", "LGE"));
++                SystemProperties.get("persist.manufacturer", ""));
+         setBuildField(Build.class, "BRAND",
+-                SystemProperties.get("persist.brand", "google"));
++                SystemProperties.get("persist.brand", ""));
+         setBuildField(Build.class, "MODEL",
+-                SystemProperties.get("persist.model", "Nexus 5X"));
++                SystemProperties.get("persist.model", ""));
+         setBuildField(Build.class, "FINGERPRINT",
+-                SystemProperties.get("persist.fingerprint", "google/bullhead/bullhead:6.0.1/MHC19Q/2705526:user/release-keys"));
++                SystemProperties.get("persist.fingerprint", ""));
+     }
+ 
+     public static void initApplicationBeforeOnCreate(Application app) {
+         if ((PACKAGE_GMS_CORE.equals(app.getPackageName()) &&
+                 PROCESS_UNSTABLE.equals(Application.getProcessName())) ||
+-            PACKAGE_G_PAY.equals(app.getPackageName())){
++            PACKAGE_G_PAY.equals(app.getPackageName()) ||
++            PACKAGE_VENDING.equals(app.getPackageName())){
+             sIsGms = true;
+             spoofBuildGms();
+         }
 -- 
 2.34.1
 

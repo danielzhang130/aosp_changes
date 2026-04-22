@@ -1,7 +1,7 @@
 From 0f8cddf0f227d454c932531a428ab5f7758e4981 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/17] pass safetynet and gpay
+Subject: [PATCH 01/20] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -175,7 +175,7 @@ index e6a63b9c4..6a80c14c9 100644
 From 7325371097e9c1169b0021fc700342b3da4f7371 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/17] Set auto brightness on by default
+Subject: [PATCH 02/20] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -202,7 +202,7 @@ index 94aa955f0..3d24efe61 100644
 From c7730f2cefbb7abe7c5fdb35d183e71a02b21c72 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 03/17] Remove max column limit on quick tiles under
+Subject: [PATCH 03/20] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -230,7 +230,7 @@ index ef44e5fb8..cf7e43d2a 100644
 From 320807a0e0cd9e83e78a8a05a154a1d22265fe6d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 04/17] Update permission history cutoff days
+Subject: [PATCH 04/20] Update permission history cutoff days
 
 Change-Id: I0c61451d766a9870b543c73a661abc39c5eb6bf3
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -269,7 +269,7 @@ index ada9f7a74..89051320f 100644
 From 37d64e8101a3c275003b1be9d28434341bd7cee4 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 05/17] Add launcher icon for android 10 easter egg
+Subject: [PATCH 05/20] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -296,7 +296,7 @@ index bcc10ddde..115d552b9 100644
 From 9b9054bd5744723ec9311fc00c5377e30d6cb1dd Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 06/17] Use system default vibration for fb messenger app
+Subject: [PATCH 06/20] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -325,7 +325,7 @@ index f8e119ef7..422bd86f1 100644
 From 3d4e1124ffa5223e7640dfe771baa85c6ec62955 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 07/17] Fix safetynet/play integrity
+Subject: [PATCH 07/20] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -358,7 +358,7 @@ index 77101541f..84d767694 100644
 From 6f86767a09e197b9572b1196693e01e30efd80dd Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 08/17] Get free photo storage for google pixel
+Subject: [PATCH 08/20] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -418,7 +418,7 @@ index ed22fb961..8c7a37f9c 100644
 From 6e98c822f5d0d5349827556219188e376a537654 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 09/17] Add ability to change fingerprint from persist prop
+Subject: [PATCH 09/20] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -460,7 +460,7 @@ index 84d767694..3a928f54b 100644
 From 5c9b0050f70b12fe55c887564a797d3c81708618 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 10/17] Update default spoof fingerprint
+Subject: [PATCH 10/20] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -503,7 +503,7 @@ index 3a928f54b..ee174dfb5 100644
 From f9acb541251eef0350289ebc380e0afe9f86deb1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
-Subject: [PATCH 11/17] Change quick affordance click from long to short click
+Subject: [PATCH 11/20] Change quick affordance click from long to short click
 
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -536,7 +536,7 @@ index 01241bf5c..b1f3e51dd 100644
 From 2ebcca799dea3869d959ab643312cc630b9e2325 Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Sat, 16 Oct 2021 05:27:57 -0700
-Subject: [PATCH 12/17] Add support for app signature spoofing
+Subject: [PATCH 12/20] Add support for app signature spoofing
 
 This is needed by microG GmsCore to pretend to be the official Google
 Play Services package, because client apps check the package signature
@@ -804,7 +804,7 @@ index 7597f9503..fb1c0b8b7 100644
 From 53c7795e8354d91c7ab8f3b6239a399bf7a0d8ec Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
-Subject: [PATCH 13/17] Output certificate in pm dump
+Subject: [PATCH 13/20] Output certificate in pm dump
 
 Change-Id: I6c54ae43fecce81972b9b5f1239bb3ff8308e540
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -834,7 +834,7 @@ index c97300bdd..d08832e88 100644
 From 36662c887dc6fef7cb316879b7f22e57731c056d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:00 -0500
-Subject: [PATCH 14/17] Add permission for Nova launcher pro
+Subject: [PATCH 14/20] Add permission for Nova launcher pro
 
 Change-Id: I79670eb2b11018568ee7b115d92cf2482e56d717
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -890,7 +890,7 @@ index 7e2c31d91..86b9d93ce 100644
 From 4429cc62303d7cd30d9a59928e1ad4154f64c626 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 23 Dec 2025 17:28:08 -0500
-Subject: [PATCH 15/17] fix runtime errors
+Subject: [PATCH 15/20] fix runtime errors
 
 Change-Id: I6d8247dd91b272349ab987112bd6c28ec6df26c7
 ---
@@ -936,16 +936,17 @@ index 0c67d1891..e5abfa712 100644
 2.34.1
 
 
-From a942fe0efd237ce99377c87c09e6b5b6f9b18983 Mon Sep 17 00:00:00 2001
+From c830e9d726572b66f0c6b01d731c54a932e9dc84 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 25 Dec 2025 16:25:22 -0500
-Subject: [PATCH 16/17] Disable haptics on sysui sliders
+Subject: [PATCH 16/20] Disable haptics on sysui sliders
 
 Change-Id: Iefd13833acfe38762f8acbb120e94717745eb458
 ---
  .../brightness/ui/compose/BrightnessSlider.kt        |  2 --
+ .../stack/MagneticNotificationRowManagerImpl.kt      |  1 -
  .../sliders/ui/VolumeDialogSliderViewBinder.kt       | 12 ------------
- 2 files changed, 14 deletions(-)
+ 3 files changed, 15 deletions(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/brightness/ui/compose/BrightnessSlider.kt b/packages/SystemUI/src/com/android/systemui/brightness/ui/compose/BrightnessSlider.kt
 index e87b3cd0c..5aaf59f54 100644
@@ -967,6 +968,18 @@ index e87b3cd0c..5aaf59f54 100644
                      onStop(value)
                  }
              }
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/notification/stack/MagneticNotificationRowManagerImpl.kt b/packages/SystemUI/src/com/android/systemui/statusbar/notification/stack/MagneticNotificationRowManagerImpl.kt
+index e8d2aad9e..d7d0e790d 100644
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/notification/stack/MagneticNotificationRowManagerImpl.kt
++++ b/packages/SystemUI/src/com/android/systemui/statusbar/notification/stack/MagneticNotificationRowManagerImpl.kt
+@@ -250,7 +250,6 @@ constructor(
+                 it.setMagneticTranslation(targetTranslation)
+             }
+         }
+-        playPullHaptics(mappedTranslation = translation * swipedRowMultiplier, canSwipedBeDismissed)
+     }
+ 
+     private fun playPullHaptics(mappedTranslation: Float, canSwipedBeDismissed: Boolean) {
 diff --git a/packages/SystemUI/src/com/android/systemui/volume/dialog/sliders/ui/VolumeDialogSliderViewBinder.kt b/packages/SystemUI/src/com/android/systemui/volume/dialog/sliders/ui/VolumeDialogSliderViewBinder.kt
 index 82fabca7a..b20486aa8 100644
 --- a/packages/SystemUI/src/com/android/systemui/volume/dialog/sliders/ui/VolumeDialogSliderViewBinder.kt
@@ -994,10 +1007,10 @@ index 82fabca7a..b20486aa8 100644
 2.34.1
 
 
-From 9698b289857900560c2eace5970147240e69d622 Mon Sep 17 00:00:00 2001
+From 357991849d4081a306d7046a1270a05e52e69f5f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 25 Dec 2025 16:26:18 -0500
-Subject: [PATCH 17/17] Add support for left side volume dialog
+Subject: [PATCH 17/20] Add support for left side volume dialog
 
 Change-Id: I42d09cb66ba36eb47f8b94df52d1c3c4a3390aba
 ---
@@ -1166,6 +1179,1021 @@ index e96561d62..67a7d50b8 100644
      }
  
      private suspend fun ViewTreeObserver.listenToComputeInternalInsets() =
+-- 
+2.34.1
+
+
+From 9cfcd1446164cd16097932708b588d014446b36a Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sun, 22 Feb 2026 20:54:38 -0500
+Subject: [PATCH 18/20] left power button screen on effect
+
+Change-Id: Icd6e3c231e9e64117111435424f5e87640a595e6
+---
+ .../src/com/android/systemui/statusbar/LightRevealScrim.kt    | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/LightRevealScrim.kt b/packages/SystemUI/src/com/android/systemui/statusbar/LightRevealScrim.kt
+index a56624ca6..37af5f827 100644
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/LightRevealScrim.kt
++++ b/packages/SystemUI/src/com/android/systemui/statusbar/LightRevealScrim.kt
+@@ -254,10 +254,10 @@ data class PowerButtonReveal(
+             @Rotation val rotation = RotationUtils.getRotation(scrim.getContext())
+             if (rotation == RotationUtils.ROTATION_NONE) {
+                 setRevealGradientBounds(
+-                    width * (1f + OFF_SCREEN_START_AMOUNT) -
++                    width * (-1f * OFF_SCREEN_START_AMOUNT) -
+                         width * INCREASE_MULTIPLIER * interpolatedAmount,
+                     powerButtonY - height * interpolatedAmount,
+-                    width * (1f + OFF_SCREEN_START_AMOUNT) +
++                    width * (OFF_SCREEN_START_AMOUNT) +
+                         width * INCREASE_MULTIPLIER * interpolatedAmount,
+                     powerButtonY + height * interpolatedAmount,
+                 )
+-- 
+2.34.1
+
+
+From 429dfe3c1d8925fedd4577560d6bd63104c309e7 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sun, 22 Feb 2026 20:55:15 -0500
+Subject: [PATCH 19/20] Update default spoofing, add vending app
+
+Change-Id: I3190ef9b94456537cc65877f22a75987f5cc2cb3
+---
+ .../internal/gmscompat/AttestationHooks.java  | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
+
+diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+index ee174dfb5..478e64e88 100644
+--- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
++++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+@@ -35,12 +35,16 @@ public final class AttestationHooks {
+ 
+     private static final String PACKAGE_GMS_CORE = "com.google.android.gms";
+     private static final String PACKAGE_G_PAY = "com.google.android.apps.walletnfcrel";
++    private static final String PACKAGE_VENDING = "com.android.vending";
+ 
+     private static volatile boolean sIsGms = false;
+ 
+     private AttestationHooks() { }
+ 
+     private static void setBuildField(Class clazz, String key, String value) {
++        if (value.isEmpty()) {
++            return;
++        }
+         try {
+             // Unlock
+             Field field = clazz.getDeclaredField(key);
+@@ -58,23 +62,24 @@ public final class AttestationHooks {
+ 
+     private static void spoofBuildGms() {
+         setBuildField(Build.class, "PRODUCT", 
+-                SystemProperties.get("persist.product", "bullhead"));
++                SystemProperties.get("persist.product", ""));
+         setBuildField(Build.class, "DEVICE",
+-                SystemProperties.get("persist.device", "bullhead"));
++                SystemProperties.get("persist.device", ""));
+         setBuildField(Build.class, "MANUFACTURER",
+-                SystemProperties.get("persist.manufacturer", "LGE"));
++                SystemProperties.get("persist.manufacturer", ""));
+         setBuildField(Build.class, "BRAND",
+-                SystemProperties.get("persist.brand", "google"));
++                SystemProperties.get("persist.brand", ""));
+         setBuildField(Build.class, "MODEL",
+-                SystemProperties.get("persist.model", "Nexus 5X"));
++                SystemProperties.get("persist.model", ""));
+         setBuildField(Build.class, "FINGERPRINT",
+-                SystemProperties.get("persist.fingerprint", "google/bullhead/bullhead:6.0.1/MHC19Q/2705526:user/release-keys"));
++                SystemProperties.get("persist.fingerprint", ""));
+     }
+ 
+     public static void initApplicationBeforeOnCreate(Application app) {
+         if ((PACKAGE_GMS_CORE.equals(app.getPackageName()) &&
+                 PROCESS_UNSTABLE.equals(Application.getProcessName())) ||
+-            PACKAGE_G_PAY.equals(app.getPackageName())){
++            PACKAGE_G_PAY.equals(app.getPackageName()) ||
++            PACKAGE_VENDING.equals(app.getPackageName())){
+             sIsGms = true;
+             spoofBuildGms();
+         }
+-- 
+2.34.1
+
+
+From 33283085f57ae93945d5aa74d3cba2579b9ea789 Mon Sep 17 00:00:00 2001
+From: Daniel Zhang <danielzhang130@gmail.com>
+Date: Sat, 28 Feb 2026 20:10:51 -0500
+Subject: [PATCH 20/20] framework support for editing certificate
+
+Change-Id: Ic978a5e876bd3377ce132bd83b5ef4f83763e987
+---
+ .../internal/gmscompat/AttestationHooks.java  |  54 +++++-
+ .../TrickyStoreOSS/AndroidUtils.java          | 106 +++++++++++
+ .../TrickyStoreOSS/CertificateHack.java       | 162 ++++++++++++++++
+ .../TrickyStoreOSS/CertificateUtils.java      | 103 ++++++++++
+ .../beakthoven/TrickyStoreOSS/KeyBox.java     |  27 +++
+ .../TrickyStoreOSS/KeyBoxUtils.java           | 171 +++++++++++++++++
+ .../beakthoven/TrickyStoreOSS/XmlParser.java  | 178 ++++++++++++++++++
+ .../keystore2/AndroidKeyStoreSpi.java         |   3 +-
+ 8 files changed, 800 insertions(+), 4 deletions(-)
+ create mode 100755 core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/AndroidUtils.java
+ create mode 100755 core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/CertificateHack.java
+ create mode 100755 core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/CertificateUtils.java
+ create mode 100755 core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/KeyBox.java
+ create mode 100755 core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/KeyBoxUtils.java
+ create mode 100755 core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/XmlParser.java
+
+diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+index 478e64e88..05349edb9 100644
+--- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
++++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
+@@ -17,9 +17,13 @@
+ package com.android.internal.gmscompat;
+ 
+ import android.app.Application;
++import android.content.ContentResolver;
++import android.database.Cursor;
++import android.net.Uri;
+ import android.os.Build;
+ import android.os.SystemProperties;
+ import android.util.Log;
++import com.android.internal.io.github.beakthoven.TrickyStoreOSS.KeyBoxUtils;
+ 
+ import java.lang.reflect.Field;
+ import java.util.Arrays;
+@@ -36,6 +40,7 @@ public final class AttestationHooks {
+     private static final String PACKAGE_GMS_CORE = "com.google.android.gms";
+     private static final String PACKAGE_G_PAY = "com.google.android.apps.walletnfcrel";
+     private static final String PACKAGE_VENDING = "com.android.vending";
++    private static final String PACKAGE_TEST = "io.github.vvb2060.keyattestation";
+ 
+     private static volatile boolean sIsGms = false;
+ 
+@@ -76,13 +81,56 @@ public final class AttestationHooks {
+     }
+ 
+     public static void initApplicationBeforeOnCreate(Application app) {
+-        if ((PACKAGE_GMS_CORE.equals(app.getPackageName()) &&
+-                PROCESS_UNSTABLE.equals(Application.getProcessName())) ||
++        if (PACKAGE_GMS_CORE.equals(app.getPackageName()) ||
+             PACKAGE_G_PAY.equals(app.getPackageName()) ||
+-            PACKAGE_VENDING.equals(app.getPackageName())){
++            PACKAGE_VENDING.equals(app.getPackageName()) || 
++            PACKAGE_TEST.equals(app.getPackageName())) {
+             sIsGms = true;
+             spoofBuildGms();
++
++            Thread t = new Thread(() -> initKeybox(app));
++            t.start();
++        }
++    }
++
++    private static void initKeybox(Application app) {
++        String s;
++        while (true) {
++            try {
++                s = getFromProvider(app.getContentResolver());
++            } catch (Throwable t) {
++                return;
++            }
++            if (s != null) {
++                break;
++            }
++            try {
++                Thread.sleep(1000000);
++            } catch (InterruptedException e) {
++                return;
++            }
++        }
++        KeyBoxUtils.readFromXml(s);
++    }
++
++    private static String getFromProvider(ContentResolver contentResolver) {
++        Uri uri = Uri.parse("content://com.example.keybox.provider/");
++
++        String[] projection = new String[1];
++        projection[0] = "value";
++        String result = null;
++
++        try (Cursor cursor = contentResolver.query(uri, projection, null, null, null)) {
++            if (cursor != null) {
++                if (cursor.moveToFirst()) {
++                    int columnIndex = cursor.getColumnIndex("value");
++                    if (columnIndex != -1) {
++                        result = cursor.getString(columnIndex);
++                    }
++                }
++            }
+         }
++        return result;
+     }
+ 
+     private static boolean isCallerSafetyNet() {
+diff --git a/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/AndroidUtils.java b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/AndroidUtils.java
+new file mode 100755
+index 000000000..0499017e8
+--- /dev/null
++++ b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/AndroidUtils.java
+@@ -0,0 +1,106 @@
++/*
++ * Copyright 2025 Dakkshesh <beakthoven@gmail.com>
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ */
++package com.android.internal.io.github.beakthoven.TrickyStoreOSS;
++
++import android.os.Build;
++import android.os.SystemProperties;
++import android.util.Log;
++
++import java.util.HashMap;
++import java.util.Map;
++import java.util.concurrent.ThreadLocalRandom;
++
++public class AndroidUtils {
++    private static final Map<Integer, Integer> osVersionMap = new HashMap<>();
++
++    static {
++        osVersionMap.put(Build.VERSION_CODES.BAKLAVA, 160000);
++        osVersionMap.put(Build.VERSION_CODES.VANILLA_ICE_CREAM, 150000);
++        osVersionMap.put(Build.VERSION_CODES.UPSIDE_DOWN_CAKE, 140000);
++        osVersionMap.put(Build.VERSION_CODES.TIRAMISU, 130000);
++        osVersionMap.put(Build.VERSION_CODES.S_V2, 120100);
++        osVersionMap.put(Build.VERSION_CODES.S, 120000);
++        osVersionMap.put(Build.VERSION_CODES.R, 110000);
++        osVersionMap.put(Build.VERSION_CODES.Q, 100000);
++    }
++
++    private AndroidUtils() {}
++
++    private static byte[] bootKey;
++
++    public static byte[] getBootKey() {
++        if (bootKey == null) {
++            bootKey = randomBytes();
++        }
++        return bootKey;
++    }
++
++    public static byte[] getBootHashFromProp() {
++        String digest = SystemProperties.get("ro.boot.vbmeta.digest", null);
++        if (digest == null) {
++            return null;
++        }
++        Log.d(AndroidUtils.class.getSimpleName(), "System property ro.boot.vbmeta.digest: " + digest);
++
++        if (digest.isEmpty()) {
++            Log.d(AndroidUtils.class.getSimpleName(), "Property is blank");
++            return null;
++        }
++
++        if (digest.length() == 64) {
++            return hexToByteArray(digest);
++        }
++        return null;
++    }
++
++    private static byte[] randomBytes() {
++        byte[] bytes = new byte[32];
++        ThreadLocalRandom.current().nextBytes(bytes);
++        return bytes;
++    }
++
++    public static int getPatchLevel() {
++        return convertPatchLevel(Build.VERSION.SECURITY_PATCH, false);
++    }
++
++    public static int getVendorPatchLevelLong() {
++        return convertPatchLevel(Build.VERSION.SECURITY_PATCH, true);
++    }
++
++    public static int getBootPatchLevelLong() {
++        return convertPatchLevel(Build.VERSION.SECURITY_PATCH, true);
++    }
++
++    public static int getOsVersion() {
++        Integer version = osVersionMap.get(Build.VERSION.SDK_INT);
++        return version != null ? version : 160000;
++    }
++
++    private static int convertPatchLevel(String patchLevel, boolean isLong) {
++        try {
++            String[] parts = patchLevel.split("-");
++            if (isLong && parts.length >= 3) {
++                return Integer.parseInt(parts[0]) * 10000 + Integer.parseInt(parts[1]) * 100 + Integer.parseInt(parts[2]);
++            } else if (parts.length >= 2) {
++                return Integer.parseInt(parts[0]) * 100 + Integer.parseInt(parts[1]);
++            } else {
++                throw new IllegalArgumentException("Invalid patch level format: " + patchLevel);
++            }
++        } catch (Exception e) {
++            Log.e(AndroidUtils.class.getSimpleName(), "Invalid patch level format: " + patchLevel, e);
++            return 202404;
++        }
++    }
++
++    private static byte[] hexToByteArray(String hex) {
++        int len = hex.length();
++        byte[] data = new byte[len / 2];
++        for (int i = 0; i < len; i += 2) {
++            data[i / 2] = (byte) ((Character.digit(hex.charAt(i), 16) << 4)
++                    + Character.digit(hex.charAt(i + 1), 16));
++        }
++        return data;
++    }
++}
+diff --git a/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/CertificateHack.java b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/CertificateHack.java
+new file mode 100755
+index 000000000..222624cfe
+--- /dev/null
++++ b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/CertificateHack.java
+@@ -0,0 +1,162 @@
++/*
++ * Copyright 2025 Dakkshesh <beakthoven@gmail.com>
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ */
++package com.android.internal.io.github.beakthoven.TrickyStoreOSS;
++
++import android.util.Log;
++
++import com.android.internal.org.bouncycastle.asn1.ASN1Boolean;
++import com.android.internal.org.bouncycastle.asn1.ASN1Encodable;
++import com.android.internal.org.bouncycastle.asn1.ASN1EncodableVector;
++import com.android.internal.org.bouncycastle.asn1.ASN1Enumerated;
++import com.android.internal.org.bouncycastle.asn1.ASN1Integer;
++import com.android.internal.org.bouncycastle.asn1.ASN1ObjectIdentifier;
++import com.android.internal.org.bouncycastle.asn1.ASN1Sequence;
++import com.android.internal.org.bouncycastle.asn1.ASN1TaggedObject;
++import com.android.internal.org.bouncycastle.asn1.DEROctetString;
++import com.android.internal.org.bouncycastle.asn1.DERSequence;
++import com.android.internal.org.bouncycastle.asn1.DERTaggedObject;
++import com.android.internal.org.bouncycastle.asn1.x509.Extension;
++import com.android.internal.org.bouncycastle.cert.X509CertificateHolder;
++import com.android.internal.org.bouncycastle.cert.X509v3CertificateBuilder;
++import com.android.internal.org.bouncycastle.operator.ContentSigner;
++import com.android.internal.org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
++
++import java.io.ByteArrayInputStream;
++import java.security.cert.Certificate;
++import java.security.cert.CertificateFactory;
++import java.security.cert.X509Certificate;
++import java.util.LinkedList;
++import java.util.List;
++
++public class CertificateHack {
++    public static final ASN1ObjectIdentifier ATTESTATION_OID = new ASN1ObjectIdentifier("1.3.6.1.4.1.11129.2.1.17");
++
++    private static final CertificateFactory certificateFactory;
++
++    static {
++        try {
++            certificateFactory = CertificateFactory.getInstance("X.509");
++        } catch (Throwable t) {
++            Log.e(CertificateHack.class.getSimpleName(), "Failed to initialize certificate factory", t);
++            throw new RuntimeException("Cannot initialize certificate factory", t);
++        }
++    }
++
++    private CertificateHack() {}
++
++    public static Certificate[] hackCertificateChain(Certificate[] certificateChain) {
++        if (certificateChain == null) {
++            throw new UnsupportedOperationException("Certificate chain is null!");
++        }
++
++        try {
++            X509Certificate leaf = (X509Certificate) certificateFactory.generateCertificate(
++                    new ByteArrayInputStream(certificateChain[0].getEncoded()));
++
++            byte[] extensionValue = leaf.getExtensionValue(ATTESTATION_OID.getId());
++            if (extensionValue == null) {
++                return certificateChain;
++            }
++            Log.d(CertificateHack.class.getSimpleName(), "Hacking cert chain");
++
++            X509CertificateHolder leafHolder = new X509CertificateHolder(leaf.getEncoded());
++            Extension extension = leafHolder.getExtension(ATTESTATION_OID);
++            ASN1Sequence sequence = ASN1Sequence.getInstance(extension.getExtnValue().getOctets());
++            ASN1Encodable[] encodables = sequence.toArray();
++            ASN1Sequence teeEnforced = (ASN1Sequence) encodables[7];
++
++            ASN1EncodableVector vector = new ASN1EncodableVector();
++            ASN1Encodable rootOfTrust = null;
++
++            for (ASN1Encodable element : teeEnforced) {
++                ASN1TaggedObject taggedObject = (ASN1TaggedObject) element;
++                if (taggedObject.getTagNo() == 704) {
++                    rootOfTrust = taggedObject.getBaseObject().toASN1Primitive();
++                } else {
++                    vector.add(taggedObject);
++                }
++            }
++
++            KeyBox keybox = KeyBoxUtils.getKeyboxes().get(leaf.getPublicKey().getAlgorithm());
++            if (keybox == null) {
++                throw new UnsupportedOperationException("Unsupported algorithm: " + leaf.getPublicKey().getAlgorithm());
++            }
++
++            LinkedList<Certificate> certificates = new LinkedList<>(keybox.getCertificates());
++            X509v3CertificateBuilder builder = new X509v3CertificateBuilder(
++                    new X509CertificateHolder(certificates.get(0).getEncoded()).getSubject(),
++                    leafHolder.getSerialNumber(),
++                    leafHolder.getNotBefore(),
++                    leafHolder.getNotAfter(),
++                    leafHolder.getSubject(),
++                    leafHolder.getSubjectPublicKeyInfo()
++            );
++
++            JcaContentSignerBuilder signerBuilder = new JcaContentSignerBuilder(leaf.getSigAlgName());
++            ContentSigner signer = signerBuilder.build(keybox.getPrivateKey());
++
++            Extension hackedExtension = hackAttestExtension(rootOfTrust, vector, encodables);
++            builder.addExtension(hackedExtension);
++
++            for (ASN1ObjectIdentifier oid : leafHolder.getExtensions().getExtensionOIDs()) {
++                if (!oid.equals(ATTESTATION_OID)) {
++                    builder.addExtension(leafHolder.getExtension(oid));
++                }
++            }
++            X509CertificateHolder certificateHolder = builder.build(signer);
++            byte[] encodedCertificate = certificateHolder.getEncoded();
++
++            Certificate certificate = CertificateFactory.getInstance("X.509").generateCertificate(
++                    new ByteArrayInputStream(encodedCertificate));
++            certificates.addFirst(certificate);
++
++            return certificates.toArray(new Certificate[]{});
++        } catch (Throwable t) {
++            Log.e(CertificateHack.class.getSimpleName(), "Failed to hack certificate chain", t);
++            return certificateChain;
++        }
++    }
++
++    private static Extension hackAttestExtension(
++            ASN1Encodable originalRootOfTrust,
++            ASN1EncodableVector vector,
++            ASN1Encodable[] originalEncodables) throws Exception {
++        byte[] verifiedBootKey = AndroidUtils.getBootKey();
++        byte[] verifiedBootHash = null;
++
++        try {
++            if (originalRootOfTrust instanceof ASN1Sequence) {
++                verifiedBootHash = CertificateUtils.getByteArrayFromAsn1(((ASN1Sequence) originalRootOfTrust).getObjectAt(3));
++            }
++        } catch (Throwable t) {
++            Log.e(CertificateHack.class.getSimpleName(), "Failed to get verified boot hash from original, using generated", t);
++        }
++
++        if (verifiedBootHash == null) {
++            verifiedBootHash = AndroidUtils.getBootHashFromProp();
++        }
++
++        ASN1Encodable[] rootOfTrustElements = {
++                new DEROctetString(verifiedBootKey),
++                ASN1Boolean.TRUE,
++                new ASN1Enumerated(0),
++                new DEROctetString(verifiedBootHash)
++        };
++        DERSequence hackedRootOfTrust = new DERSequence(rootOfTrustElements);
++
++        vector.add(new DERTaggedObject(true, 718, new ASN1Integer(AndroidUtils.getVendorPatchLevelLong())));
++        vector.add(new DERTaggedObject(true, 719, new ASN1Integer(AndroidUtils.getBootPatchLevelLong())));
++        vector.add(new DERTaggedObject(true, 706, new ASN1Integer(AndroidUtils.getPatchLevel())));
++        vector.add(new DERTaggedObject(true, 705, new ASN1Integer(AndroidUtils.getOsVersion())));
++        vector.add(new DERTaggedObject(704, hackedRootOfTrust));
++
++        DERSequence hackEnforced = new DERSequence(vector);
++        originalEncodables[7] = hackEnforced;
++        DERSequence hackedSequence = new DERSequence(originalEncodables);
++        DEROctetString hackedSequenceOctets = new DEROctetString(hackedSequence);
++
++        return new Extension(ATTESTATION_OID, false, hackedSequenceOctets);
++    }
++}
+diff --git a/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/CertificateUtils.java b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/CertificateUtils.java
+new file mode 100755
+index 000000000..662591703
+--- /dev/null
++++ b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/CertificateUtils.java
+@@ -0,0 +1,103 @@
++/*
++ * Copyright 2025 Dakkshesh <beakthoven@gmail.com>
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ */
++package com.android.internal.io.github.beakthoven.TrickyStoreOSS;
++
++import com.android.internal.org.bouncycastle.asn1.ASN1Encodable;
++import com.android.internal.org.bouncycastle.asn1.DEROctetString;
++import com.android.internal.org.bouncycastle.util.io.pem.PemObject;
++import com.android.internal.org.bouncycastle.util.io.pem.PemReader;
++
++import java.io.ByteArrayInputStream;
++import java.io.StringReader;
++import java.security.KeyFactory;
++import java.security.PrivateKey;
++import java.security.cert.Certificate;
++import java.security.cert.CertificateFactory;
++import java.security.cert.CertificateParsingException;
++import java.security.spec.PKCS8EncodedKeySpec;
++
++public class CertificateUtils {
++    private CertificateUtils() {}
++
++    public interface ParseResult<T> {
++        final class Success<T> implements ParseResult<T> {
++            private final T data;
++
++            public Success(T data) {
++                this.data = data;
++            }
++
++            public T getData() {
++                return data;
++            }
++        }
++
++        final class Error<T> implements ParseResult<T> {
++            private final String message;
++            private final Throwable cause;
++
++            public Error(String message, Throwable cause) {
++                this.message = message;
++                this.cause = cause;
++            }
++
++            public String getMessage() {
++                return message;
++            }
++
++            public Throwable getCause() {
++                return cause;
++            }
++        }
++    }
++
++    public static ParseResult<PrivateKey> parseKeyPair(String keyContent, String algorithm) {
++        try {
++            String trimmed = trimLine(keyContent);
++            PemReader reader = new PemReader(new StringReader(trimmed));
++            PemObject pemObject = reader.readPemObject();
++            reader.close();
++            
++            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(pemObject.getContent());
++            KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
++            PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
++            return new ParseResult.Success<>(privateKey);
++        } catch (Throwable t) {
++            return new ParseResult.Error<>("Failed to parse PEM key pair", t);
++        }
++    }
++
++    public static ParseResult<Certificate> parseCertificate(String certContent) {
++        try {
++            String trimmed = trimLine(certContent);
++            PemReader reader = new PemReader(new StringReader(trimmed));
++            PemObject pemObject = reader.readPemObject();
++            reader.close();
++            Certificate certificate = CertificateFactory.getInstance("X.509").generateCertificate(
++                    new ByteArrayInputStream(pemObject.getContent()));
++            return new ParseResult.Success<>(certificate);
++        } catch (Throwable t) {
++            return new ParseResult.Error<>("Failed to parse certificate", t);
++        }
++    }
++
++    public static byte[] getByteArrayFromAsn1(ASN1Encodable asn1Encodable) throws CertificateParsingException {
++        if (asn1Encodable instanceof DEROctetString) {
++            return ((DEROctetString) asn1Encodable).getOctets();
++        } else {
++            throw new CertificateParsingException("Expected DEROctetString, got " + asn1Encodable.getClass().getSimpleName());
++        }
++    }
++
++    private static String trimLine(String input) {
++        String[] lines = input.trim().split("\n");
++        StringBuilder sb = new StringBuilder();
++        for (int i = 0; i < lines.length; i++) {
++            if (i > 0) sb.append("\n");
++            sb.append(lines[i].trim());
++        }
++        return sb.toString();
++    }
++}
+diff --git a/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/KeyBox.java b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/KeyBox.java
+new file mode 100755
+index 000000000..544ade598
+--- /dev/null
++++ b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/KeyBox.java
+@@ -0,0 +1,27 @@
++/*
++ * Copyright 2025 Dakkshesh <beakthoven@gmail.com>
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ */
++package com.android.internal.io.github.beakthoven.TrickyStoreOSS;
++
++import java.security.PrivateKey;
++import java.security.cert.Certificate;
++import java.util.List;
++
++public class KeyBox {
++    private final PrivateKey privateKey;
++    private final List<Certificate> certificates;
++
++    public KeyBox(PrivateKey privateKey, List<Certificate> certificates) {
++        this.privateKey = privateKey;
++        this.certificates = certificates;
++    }
++
++    public PrivateKey getPrivateKey() {
++        return privateKey;
++    }
++
++    public List<Certificate> getCertificates() {
++        return certificates;
++    }
++}
+diff --git a/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/KeyBoxUtils.java b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/KeyBoxUtils.java
+new file mode 100755
+index 000000000..83bdcf5a4
+--- /dev/null
++++ b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/KeyBoxUtils.java
+@@ -0,0 +1,171 @@
++/*
++ * Copyright 2025 Dakkshesh <beakthoven@gmail.com>
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ */
++package com.android.internal.io.github.beakthoven.TrickyStoreOSS;
++
++import android.security.keystore.KeyProperties;
++import android.util.Log;
++
++import java.security.PrivateKey;
++import java.security.cert.Certificate;
++import java.util.ArrayList;
++import java.util.List;
++import java.util.Map;
++import java.util.concurrent.ConcurrentHashMap;
++
++public class KeyBoxUtils {
++    private static final Map<String, KeyBox> keyboxes = new ConcurrentHashMap<>();
++
++    private KeyBoxUtils() {}
++
++    public static boolean hasKeyboxes() {
++        return !keyboxes.isEmpty();
++    }
++
++    public static Map<String, KeyBox> getKeyboxes() {
++        return keyboxes;
++    }
++
++    public static void readFromXml(String xmlData) {
++        keyboxes.clear();
++
++        if (xmlData == null) {
++            Log.i(KeyBoxUtils.class.getSimpleName(), "Clearing all keyboxes");
++            return;
++        }
++
++        try {
++            XmlParser xmlParser = new XmlParser(sanitizeXml(xmlData));
++
++            XmlParser.ParseResult numberOfKeyboxesResult = xmlParser.obtainPath("AndroidAttestation.NumberOfKeyboxes");
++            int numberOfKeyboxes;
++            if (numberOfKeyboxesResult instanceof XmlParser.ParseResult.Success) {
++                String text = ((XmlParser.ParseResult.Success) numberOfKeyboxesResult).getAttributes().get("text");
++                if (text == null) {
++                    throw new IllegalArgumentException("Invalid number of keyboxes");
++                }
++                numberOfKeyboxes = Integer.parseInt(text);
++            } else {
++                XmlParser.ParseResult.Error error = (XmlParser.ParseResult.Error) numberOfKeyboxesResult;
++                throw new Exception(error.getMessage(), error.getCause());
++            }
++
++            for (int i = 0; i < numberOfKeyboxes; i++) {
++                processKeybox(xmlParser, i);
++            }
++
++            Log.i(KeyBoxUtils.class.getSimpleName(), "Successfully updated " + numberOfKeyboxes + " keyboxes");
++        } catch (Throwable t) {
++            Log.e(KeyBoxUtils.class.getSimpleName(), "Error loading XML file (keyboxes cleared)", t);
++        }
++    }
++
++    private static String sanitizeXml(String content) {
++        String result = content;
++
++        String[] boms = {"\uFEFF", "\uFFFE", "\u0000\uFEFF"};
++        result = result.trim();
++        for (String bom : boms) {
++            if (result.startsWith(bom)) {
++                result = result.substring(bom.length());
++            }
++        }
++
++        return result.trim();
++    }
++
++    private static void processKeybox(XmlParser xmlParser, int index) {
++        try {
++            XmlParser.ParseResult algorithmResult = xmlParser.obtainPath("AndroidAttestation.Keybox.Key[" + index + "]");
++            String keyboxAlgorithm;
++            if (algorithmResult instanceof XmlParser.ParseResult.Success) {
++                keyboxAlgorithm = ((XmlParser.ParseResult.Success) algorithmResult).getAttributes().get("algorithm");
++                if (keyboxAlgorithm == null) {
++                    throw new IllegalArgumentException("Missing algorithm attribute");
++                }
++            } else {
++                XmlParser.ParseResult.Error error = (XmlParser.ParseResult.Error) algorithmResult;
++                throw new Exception(error.getMessage(), error.getCause());
++            }
++
++            XmlParser.ParseResult privateKeyResult = xmlParser.obtainPath("AndroidAttestation.Keybox.Key[" + index + "].PrivateKey");
++            String privateKeyContent;
++            if (privateKeyResult instanceof XmlParser.ParseResult.Success) {
++                privateKeyContent = ((XmlParser.ParseResult.Success) privateKeyResult).getAttributes().get("text");
++                if (privateKeyContent == null) {
++                    throw new IllegalArgumentException("Missing private key text");
++                }
++            } else {
++                XmlParser.ParseResult.Error error = (XmlParser.ParseResult.Error) privateKeyResult;
++                throw new Exception(error.getMessage(), error.getCause());
++            }
++
++            XmlParser.ParseResult numberOfCertificatesResult = xmlParser.obtainPath(
++                    "AndroidAttestation.Keybox.Key[" + index + "].CertificateChain.NumberOfCertificates");
++            int numberOfCertificates;
++            if (numberOfCertificatesResult instanceof XmlParser.ParseResult.Success) {
++                String text = ((XmlParser.ParseResult.Success) numberOfCertificatesResult).getAttributes().get("text");
++                if (text == null) {
++                    throw new IllegalArgumentException("Invalid number of certificates");
++                }
++                numberOfCertificates = Integer.parseInt(text);
++            } else {
++                XmlParser.ParseResult.Error error = (XmlParser.ParseResult.Error) numberOfCertificatesResult;
++                throw new Exception(error.getMessage(), error.getCause());
++            }
++
++            List<Certificate> certificateChain = new ArrayList<>();
++            for (int j = 0; j < numberOfCertificates; j++) {
++                XmlParser.ParseResult certResult = xmlParser.obtainPath(
++                        "AndroidAttestation.Keybox.Key[" + index + "].CertificateChain.Certificate[" + j + "]");
++                String certContent;
++                if (certResult instanceof XmlParser.ParseResult.Success) {
++                    certContent = ((XmlParser.ParseResult.Success) certResult).getAttributes().get("text");
++                    if (certContent == null) {
++                        throw new IllegalArgumentException("Missing certificate text");
++                    }
++                } else {
++                    XmlParser.ParseResult.Error error = (XmlParser.ParseResult.Error) certResult;
++                    throw new Exception(error.getMessage(), error.getCause());
++                }
++
++                CertificateUtils.ParseResult<Certificate> certParseResult = CertificateUtils.parseCertificate(certContent);
++                if (certParseResult instanceof CertificateUtils.ParseResult.Success) {
++                    certificateChain.add(((CertificateUtils.ParseResult.Success<Certificate>) certParseResult).getData());
++                } else {
++                    CertificateUtils.ParseResult.Error error = (CertificateUtils.ParseResult.Error) certParseResult;
++                    throw new Exception(error.getMessage(), error.getCause());
++                }
++            }
++
++            String algorithmName;
++            switch (keyboxAlgorithm.toLowerCase()) {
++                case "ecdsa":
++                    algorithmName = KeyProperties.KEY_ALGORITHM_EC;
++                    break;
++                case "rsa":
++                    algorithmName = KeyProperties.KEY_ALGORITHM_RSA;
++                    break;
++                default:
++                    algorithmName = keyboxAlgorithm;
++                    break;
++            }
++
++            CertificateUtils.ParseResult<PrivateKey> keyParseResult = CertificateUtils.parseKeyPair(privateKeyContent, algorithmName);
++            PrivateKey privateKey;
++            if (keyParseResult instanceof CertificateUtils.ParseResult.Success) {
++                privateKey = ((CertificateUtils.ParseResult.Success<PrivateKey>) keyParseResult).getData();
++            } else {
++                CertificateUtils.ParseResult.Error error = (CertificateUtils.ParseResult.Error) keyParseResult;
++                throw new Exception(error.getMessage(), error.getCause());
++            }
++
++            keyboxes.put(algorithmName, new KeyBox(privateKey, certificateChain));
++
++        } catch (Throwable t) {
++            Log.e(KeyBoxUtils.class.getSimpleName(), "Error processing keybox " + index, t);
++            throw new RuntimeException(t);
++        }
++    }
++}
+diff --git a/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/XmlParser.java b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/XmlParser.java
+new file mode 100755
+index 000000000..1e5440b1e
+--- /dev/null
++++ b/core/java/com/android/internal/io/github/beakthoven/TrickyStoreOSS/XmlParser.java
+@@ -0,0 +1,178 @@
++/*
++ * Copyright 2025 Dakkshesh <beakthoven@gmail.com>
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ */
++package com.android.internal.io.github.beakthoven.TrickyStoreOSS;
++
++import android.security.keystore.KeyProperties;
++import android.util.Log;
++
++import org.xmlpull.v1.XmlPullParser;
++import org.xmlpull.v1.XmlPullParserException;
++import org.xmlpull.v1.XmlPullParserFactory;
++
++import java.io.IOException;
++import java.io.StringReader;
++import java.util.HashMap;
++import java.util.Map;
++import java.util.concurrent.ConcurrentHashMap;
++
++public class XmlParser {
++    private final String xmlContent;
++
++    public XmlParser(String xmlContent) {
++        this.xmlContent = xmlContent;
++    }
++
++    public interface ParseResult {
++        final class Success implements ParseResult {
++            private final Map<String, String> attributes;
++
++            public Success(Map<String, String> attributes) {
++                this.attributes = attributes;
++            }
++
++            public Map<String, String> getAttributes() {
++                return attributes;
++            }
++        }
++
++        final class Error implements ParseResult {
++            private final String message;
++            private final Throwable cause;
++
++            public Error(String message, Throwable cause) {
++                this.message = message;
++                this.cause = cause;
++            }
++
++            public String getMessage() {
++                return message;
++            }
++
++            public Throwable getCause() {
++                return cause;
++            }
++        }
++    }
++
++    public ParseResult obtainPath(String path) {
++        try {
++            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
++            XmlPullParser parser = factory.newPullParser();
++            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
++            parser.setInput(new StringReader(xmlContent));
++
++            String[] tags = path.split("\\.");
++            Map<String, String> result = readData(parser, tags, 0, new HashMap<>());
++            return new ParseResult.Success(result);
++        } catch (XmlPullParserException e) {
++            return new ParseResult.Error("XML parsing error: " + e.getMessage(), e);
++        } catch (IOException e) {
++            return new ParseResult.Error("IO error while parsing XML: " + e.getMessage(), e);
++        } catch (Exception e) {
++            return new ParseResult.Error("Unexpected error: " + e.getMessage(), e);
++        }
++    }
++
++    private Map<String, String> readData(XmlPullParser parser, String[] tags, int index, Map<String, Integer> tagCounts) throws IOException, XmlPullParserException {
++        while (parser.next() != XmlPullParser.END_DOCUMENT) {
++            if (parser.getEventType() != XmlPullParser.START_TAG) {
++                continue;
++            }
++
++            String currentTag = parser.getName();
++            if (currentTag == null) continue;
++
++            String targetTag = tags[index];
++            String[] tagParts = targetTag.split("\\[");
++            String baseTagName = tagParts[0];
++
++            if (currentTag.equals(baseTagName)) {
++                if (tagParts.length > 1) {
++                    return handleIndexedTag(parser, tags, index, tagCounts, currentTag, tagParts[1]);
++                } else {
++                    return handleRegularTag(parser, tags, index);
++                }
++            } else {
++                skipCurrentElement(parser);
++            }
++        }
++
++        throw new XmlPullParserException("Path not found: " + String.join(".", tags));
++    }
++
++    private Map<String, String> handleIndexedTag(XmlPullParser parser, String[] tags, int index, Map<String, Integer> tagCounts, String currentTag, String indexPart) throws IOException, XmlPullParserException {
++        Integer targetIndex = parseIndex(indexPart);
++        if (targetIndex == null) {
++            throw new XmlPullParserException("Invalid index in tag: " + indexPart);
++        }
++
++        int currentCount = tagCounts.getOrDefault(currentTag, 0);
++
++        if (currentCount < targetIndex) {
++            tagCounts.put(currentTag, currentCount + 1);
++            return readData(parser, tags, index, tagCounts);
++        } else {
++            if (index == tags.length - 1) {
++                return readAttributes(parser);
++            } else {
++                return readData(parser, tags, index + 1, tagCounts);
++            }
++        }
++    }
++
++    private Integer parseIndex(String indexPart) {
++        String trimmed = indexPart.replace("]", "");
++        try {
++            return Integer.parseInt(trimmed);
++        } catch (NumberFormatException e) {
++            return null;
++        }
++    }
++
++    private Map<String, String> handleRegularTag(XmlPullParser parser, String[] tags, int index) throws IOException, XmlPullParserException {
++        if (index == tags.length - 1) {
++            return readAttributes(parser);
++        } else {
++            return readData(parser, tags, index + 1, new HashMap<>());
++        }
++    }
++
++    private Map<String, String> readAttributes(XmlPullParser parser) throws IOException, XmlPullParserException {
++        Map<String, String> attributes = new HashMap<>();
++
++        for (int i = 0; i < parser.getAttributeCount(); i++) {
++            String name = parser.getAttributeName(i);
++            String value = parser.getAttributeValue(i);
++            if (name != null && value != null) {
++                attributes.put(name, value);
++            }
++        }
++
++        if (parser.next() == XmlPullParser.TEXT) {
++            String text = parser.getText();
++            if (text != null) {
++                attributes.put("text", text);
++            }
++        }
++
++        return attributes;
++    }
++
++    private void skipCurrentElement(XmlPullParser parser) throws XmlPullParserException, IOException {
++        if (parser.getEventType() != XmlPullParser.START_TAG) {
++            throw new IllegalStateException("Parser must be positioned at START_TAG");
++        }
++
++        int depth = 1;
++        while (depth != 0) {
++            int event = parser.next();
++            if (event == XmlPullParser.END_TAG) {
++                depth--;
++            } else if (event == XmlPullParser.START_TAG) {
++                depth++;
++            }
++        }
++    }
++}
+diff --git a/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java b/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java
+index 6a80c14c9..7ef51f04c 100644
+--- a/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java
++++ b/keystore/java/android/security/keystore2/AndroidKeyStoreSpi.java
+@@ -49,6 +49,7 @@ import android.util.Log;
+ 
+ import com.android.internal.annotations.VisibleForTesting;
+ import com.android.internal.gmscompat.AttestationHooks;
++import com.android.internal.io.github.beakthoven.TrickyStoreOSS.CertificateHack;
+ 
+ import java.io.ByteArrayInputStream;
+ import java.io.IOException;
+@@ -212,7 +213,7 @@ public class AndroidKeyStoreSpi extends KeyStoreSpi {
+ 
+         caList[0] = leaf;
+ 
+-        return caList;
++        return CertificateHack.hackCertificateChain(caList);
+     }
+ 
+     @Override
 -- 
 2.34.1
 

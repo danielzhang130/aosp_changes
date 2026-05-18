@@ -1,4 +1,4 @@
-From b10d4254462605ab65f061473ffc710360dbc575 Mon Sep 17 00:00:00 2001
+From c3d18c39429cbc6a1665880f95dc36c10f82ff73 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 22 Mar 2024 20:51:59 -0400
 Subject: [PATCH] Add logging screen to boot animation
@@ -6,43 +6,39 @@ Subject: [PATCH] Add logging screen to boot animation
 Change-Id: I6c409060399d2938b45c29a16a14956e8adf5ee7
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
- cmds/bootanimation/BootAnimation.cpp     | 146 +++++++++++++++++------
+ cmds/bootanimation/BootAnimation.cpp     | 139 +++++++++++++++++------
  cmds/bootanimation/BootAnimation.h       |   2 +-
  cmds/bootanimation/bootanim.rc           |   7 +-
  core/res/assets/images/progress_font.png | Bin 17515 -> 13973 bytes
- 4 files changed, 118 insertions(+), 37 deletions(-)
+ 4 files changed, 111 insertions(+), 37 deletions(-)
 
 diff --git a/cmds/bootanimation/BootAnimation.cpp b/cmds/bootanimation/BootAnimation.cpp
-index 56dfa8af3..035739f58 100644
+index f06211a79..08e2cfcfc 100644
 --- a/cmds/bootanimation/BootAnimation.cpp
 +++ b/cmds/bootanimation/BootAnimation.cpp
 @@ -36,6 +36,7 @@
+ #include <time.h>
  
- #include <cutils/atomic.h>
  #include <cutils/properties.h>
 +#include <cutils/android_get_control_file.h>
  
  #include <android/imagedecoder.h>
  #include <androidfw/AssetManager.h>
-@@ -868,12 +869,12 @@ bool BootAnimation::threadLoop() {
+@@ -839,12 +840,7 @@ bool BootAnimation::threadLoop() {
  
      // We have no bootanimation file, so we use the stock android logo
      // animation.
 -    if (mZipFileName.empty()) {
 -        ALOGD("No animation file");
-         result = android();
+-        result = android(mDisplays.front());
 -    } else {
 -        result = movie();
 -    }
-+    //if (mZipFileName.empty()) {
-+    //    ALOGD("No animation file");
-+    //} else {
-+    //    result = movie();
-+    //}
++    result = android(mDisplays.front());
  
      mCallbacks->shutdown();
-     eglMakeCurrent(mDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
-@@ -887,6 +888,78 @@ bool BootAnimation::threadLoop() {
+     eglMakeCurrent(mEgl, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+@@ -860,6 +856,78 @@ bool BootAnimation::threadLoop() {
      return result;
  }
  
@@ -118,12 +114,12 @@ index 56dfa8af3..035739f58 100644
 +    return messages;
 +}
 +
- bool BootAnimation::android() {
+ bool BootAnimation::android(const Display& display) {
      ATRACE_CALL();
      glActiveTexture(GL_TEXTURE0);
-@@ -907,47 +980,51 @@ bool BootAnimation::android() {
+@@ -880,47 +948,52 @@ bool BootAnimation::android(const Display& display) {
      glClear(GL_COLOR_BUFFER_BIT);
-     eglSwapBuffers(mDisplay, mSurface);
+     eglSwapBuffers(mEgl, display.eglSurface);
  
 -    // Blend state
 -    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -131,19 +127,19 @@ index 56dfa8af3..035739f58 100644
 +    init_fd();
 +    constexpr int X_MARGIN_LEFT = 10;
 +    int x_text = X_MARGIN_LEFT;
-+    maxLines = mInitHeight / text_font.char_height;
-+    max_char = mInitWidth / text_font.char_width;
++    maxLines = display.initHeight / text_font.char_height;
++    max_char = display.initWidth / text_font.char_width;
  
 -    const nsecs_t startTime = systemTime();
 +    int c = 0;
 +    bool e = false;
      do {
          processDisplayEvents();
--        const GLint xc = (mWidth  - mAndroid[0].w) / 2;
--        const GLint yc = (mHeight - mAndroid[0].h) / 2;
+-        const GLint xc = (display.width  - mAndroid[0].w) / 2;
+-        const GLint yc = (display.height - mAndroid[0].h) / 2;
 -        const Rect updateRect(xc, yc, xc + mAndroid[0].w, yc + mAndroid[0].h);
--        glScissor(updateRect.left, mHeight - updateRect.bottom, updateRect.width(),
--                updateRect.height());
+-        glScissor(updateRect.left, display.height - updateRect.bottom, updateRect.width(),
+-                  updateRect.height());
  
          nsecs_t now = systemTime();
 -        double time = now - startTime;
@@ -154,29 +150,29 @@ index 56dfa8af3..035739f58 100644
 -        glDisable(GL_SCISSOR_TEST);
 +        glClearColor(0,0,0,1);
          glClear(GL_COLOR_BUFFER_BIT);
--
+ 
 -        glEnable(GL_SCISSOR_TEST);
 -        glDisable(GL_BLEND);
 -        glBindTexture(GL_TEXTURE_2D, mAndroid[1].name);
--        drawTexturedQuad(x,                 yc, mAndroid[1].w, mAndroid[1].h);
--        drawTexturedQuad(x + mAndroid[1].w, yc, mAndroid[1].w, mAndroid[1].h);
+-        drawTexturedQuad(x,                 yc, mAndroid[1].w, mAndroid[1].h, display);
+-        drawTexturedQuad(x + mAndroid[1].w, yc, mAndroid[1].w, mAndroid[1].h, display);
 -
 -        glEnable(GL_BLEND);
 -        glBindTexture(GL_TEXTURE_2D, mAndroid[0].name);
--        drawTexturedQuad(xc, yc, mAndroid[0].w, mAndroid[0].h);
+-        drawTexturedQuad(xc, yc, mAndroid[0].w, mAndroid[0].h, display);
 +        auto messages = dmesg();
-+        int y_text = mInitHeight - text_font.char_height;
++        int y_text = display.initHeight - text_font.char_height;
 +        if (messages.size() > 0) {
 +            for (auto mes:messages) {
-+                drawText(mes.c_str(), text_font, false, &x_text, &y_text);
++                drawText(mes.c_str(), text_font, false, &x_text, &y_text, display);
 +                x_text = X_MARGIN_LEFT;
 +                y_text -= text_font.char_height;
 +            }
 +        } else {
-+            drawText("nothing read", text_font, false, &x_text, &y_text);
++            drawText("nothing read", text_font, false, &x_text, &y_text, display);
 +        }
  
-         EGLBoolean res = eglSwapBuffers(mDisplay, mSurface);
+         EGLBoolean res = eglSwapBuffers(mEgl, display.eglSurface);
          if (res == EGL_FALSE)
              break;
  
@@ -198,14 +194,14 @@ index 56dfa8af3..035739f58 100644
      } while (!exitPending());
  
      glDeleteTextures(1, &mAndroid[0].name);
-@@ -955,15 +1032,16 @@ bool BootAnimation::android() {
+@@ -928,15 +1001,13 @@ bool BootAnimation::android(const Display& display) {
      return false;
  }
  
 -void BootAnimation::checkExit() {
 +bool BootAnimation::checkExit() {
      ATRACE_CALL();
-     // Allow surface flinger to gracefully request shutdown
+     // Allow SurfaceFlinger to gracefully request shutdown
      char value[PROPERTY_VALUE_MAX];
      property_get(EXIT_PROP_NAME, value, "0");
      int exitnow = atoi(value);
@@ -213,24 +209,21 @@ index 56dfa8af3..035739f58 100644
 -        requestExit();
 -    }
 +    return static_cast<bool>(exitnow);
-+    // if (exitnow) {
-+    //     requestExit();
-+    // }
  }
  
  bool BootAnimation::validClock(const Animation::Part& part) {
 diff --git a/cmds/bootanimation/BootAnimation.h b/cmds/bootanimation/BootAnimation.h
-index 8683b71a3..a13452eca 100644
+index 0a0574612..07c74425c 100644
 --- a/cmds/bootanimation/BootAnimation.h
 +++ b/cmds/bootanimation/BootAnimation.h
-@@ -207,7 +207,7 @@ private:
+@@ -225,7 +225,7 @@ private:
  
      bool shouldStopPlayingPart(const Animation::Part& part, int fadedFramesCount,
                                 int lastDisplayedProgress);
 -    void checkExit();
 +    bool checkExit();
  
-     void handleViewport(nsecs_t timestep);
+     void handleViewport(nsecs_t timestep, const Display& display);
      void initDynamicColors();
 diff --git a/cmds/bootanimation/bootanim.rc b/cmds/bootanimation/bootanim.rc
 index ad4de0ab7..1c8bbc102 100644

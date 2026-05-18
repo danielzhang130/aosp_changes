@@ -1,4 +1,4 @@
-From 94a6f2e00bc140c3313d905b6e9fe6e100d5e8e5 Mon Sep 17 00:00:00 2001
+From f65ee904d827bc6e9fdb62287267a2931f176304 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 22 Mar 2024 20:49:32 -0400
 Subject: [PATCH] Bootanimation logging sepolicy patch
@@ -6,8 +6,8 @@ Subject: [PATCH] Bootanimation logging sepolicy patch
 Change-Id: I158b318aaf5c6383bca037a2ea5bb004500971df
 ---
  prebuilts/api/34.0/private/bootanim.te | 7 ++++++-
- private/bootanim.te                    | 5 +++++
- 2 files changed, 11 insertions(+), 1 deletion(-)
+ private/bootanim.te                    | 6 +++++-
+ 2 files changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/prebuilts/api/34.0/private/bootanim.te b/prebuilts/api/34.0/private/bootanim.te
 index f4fb0bc..31876df 100644
@@ -26,18 +26,20 @@ index f4fb0bc..31876df 100644
 +allow bootanim shell_exec:file { read open execute};
 +permissive bootanim;
 diff --git a/private/bootanim.te b/private/bootanim.te
-index f63a230..b8bcb28 100644
+index fd3a09b..c7af756 100644
 --- a/private/bootanim.te
 +++ b/private/bootanim.te
-@@ -21,3 +21,8 @@ r_dir_file(bootanim, bootanim_data_file)
+@@ -66,4 +66,8 @@ allow bootanim proc_meminfo:file r_file_perms;
+ allow bootanim system_file:dir r_dir_perms;
  
- # Allow accessing vendor apex for EGL/GLES
- allow bootanim vendor_apex_metadata_file:dir r_dir_perms;
+ # Allow bootanim to send information to statsd socket.
+-unix_socket_send(bootanim, statsdw, statsd)
+\ No newline at end of file
++unix_socket_send(bootanim, statsdw, statsd)
 +allow bootanim shell_exec:file { read open execute execute_no_trans getattr };
 +allow bootanim kmsg_device:chr_file { getattr open read };
 +allow bootanim kernel:system syslog_read;
 +allow bootanim toolbox_exec:file { execute execute_no_trans getattr open read };
-+
 -- 
 2.34.1
 

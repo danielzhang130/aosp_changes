@@ -1,7 +1,7 @@
-From 6c6cdbafc58925f2bef26c49088ca332c4d74584 Mon Sep 17 00:00:00 2001
+From 2a2c24165bc2c6812506fc8392d3b3f8c6925706 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:23:50 -0500
-Subject: [PATCH] add force option in run-as
+Subject: [PATCH 1/2] add force option in run-as
 
 Change-Id: I9f929e85fed6414e474cc312b09ad709c20ab105
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -60,6 +60,137 @@ index 32057b4..6a80653 100644
    }
  
    // Ensure we have the right data path for the specific user.
+-- 
+2.34.1
+
+
+From 3a20585823047dbabdcaf453c8c4327a795711f8 Mon Sep 17 00:00:00 2001
+From: Dmitry Muhomor <muhomor.dmitry@gmail.com>
+Date: Sat, 13 Jan 2024 21:14:48 +0200
+Subject: [PATCH 2/2] add auto-reboot implementation
+
+---
+ init/property_service.cpp | 93 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 93 insertions(+)
+
+diff --git a/init/property_service.cpp b/init/property_service.cpp
+index b355f3a..1571f85 100644
+--- a/init/property_service.cpp
++++ b/init/property_service.cpp
+@@ -538,6 +538,90 @@ uint32_t CheckPermissions(const std::string& name, const std::string& value,
+     return PROP_SUCCESS;
+ }
+ 
++#include <atomic>
++
++static timer_t auto_reboot_timer;
++static bool device_unlocked_at_least_once;
++static std::atomic_bool is_auto_reboot_timer_started;
++
++static void auto_reboot_timer_callback(union sigval) {
++    if (!is_auto_reboot_timer_started.load()) {
++        return;
++    }
++    LOG(INFO) << "auto_reboot: received timer callback, rebooting";
++    trigger_shutdown("reboot");
++}
++
++// all of the auto_reboot_* functions, except for auto_reboot_timer_callback, are called on the
++// same thread
++
++static void auto_reboot_timer_init() {
++    struct sigevent sev = {};
++    sev.sigev_notify = SIGEV_THREAD;
++    sev.sigev_notify_function = auto_reboot_timer_callback;
++
++    if (int r = timer_create(CLOCK_BOOTTIME_ALARM, &sev, &auto_reboot_timer); r != 0) {
++        LOG(ERROR) << "auto_reboot: timer_create failed: " << strerror(errno);
++    }
++}
++
++static void auto_reboot_timer_set(time_t duration_sec) {
++    if (auto_reboot_timer == 0) {
++        LOG(ERROR) << "auto_reboot: timer not initialized";
++        return;
++    }
++    const time_t min_duration = 20;
++    if (duration_sec != 0 && duration_sec < min_duration) {
++        LOG(WARNING) << "auto_reboot: raised timer duration from " << duration_sec << " to " << min_duration << " seconds";
++        duration_sec = min_duration;
++    }
++    struct itimerspec ts_dur = {};
++    ts_dur.it_value.tv_sec = duration_sec;
++    struct itimerspec ts_prev = {};
++    int flags = 0;
++    LOG(INFO) << "auto_reboot: timer_settime id: " << auto_reboot_timer;
++    if (int r = timer_settime(auto_reboot_timer, flags, &ts_dur, &ts_prev); r != 0) {
++        LOG(ERROR) << "auto_reboot: timer_settime failed: " << strerror(errno);
++    }
++    if (duration_sec > 0) {
++        LOG(INFO) << "auto_reboot: started timer for " << duration_sec << " seconds";
++    }
++    LOG(DEBUG) << "auto_reboot: prev timer value: " << ts_prev.it_value.tv_sec << " seconds";
++}
++
++static int auto_reboot_handle_property_set(const std::string& value) {
++    LOG(DEBUG) << "auto_reboot: handle_property_set: " << value;
++    if (value == "on_device_unlocked") {
++        device_unlocked_at_least_once = true;
++        if (is_auto_reboot_timer_started.exchange(false)) {
++            auto_reboot_timer_set(0);
++            LOG(INFO) << "auto_reboot: on_device_unlocked: stopped timer";
++        } else {
++            LOG(INFO) << "auto_reboot: on_device_unlocked: no started timer";
++        }
++        return PROP_SUCCESS;
++    }
++
++    int duration_sec = atoi(value.c_str()); // std::stoi can throw
++    if (duration_sec <= 0 || (uint64_t) duration_sec > (uint64_t) std::numeric_limits<time_t>::max()) {
++        LOG(WARNING) << "auto_reboot: invalid prop value: " << value;
++        return PROP_ERROR_INVALID_VALUE;
++    }
++
++    if (device_unlocked_at_least_once) {
++        if (is_auto_reboot_timer_started.exchange(true)) {
++            LOG(INFO) << "auto_reboot: timer is already started, ignored request to restart it;"
++                << " requested timer duration: " << value << " seconds";
++        } else {
++            auto_reboot_timer_set((time_t) duration_sec);
++        }
++    } else {
++        LOG(INFO) << "auto_reboot: device was never unlocked, skipped setting timer";
++    }
++
++    return PROP_SUCCESS;
++}
++
+ // This returns one of the enum of PROP_SUCCESS or PROP_ERROR*, or std::nullopt
+ // if asynchronous.
+ std::optional<uint32_t> HandlePropertySet(const std::string& name, const std::string& value,
+@@ -580,6 +664,11 @@ std::optional<uint32_t> HandlePropertySet(const std::string& name, const std::st
+         return {PROP_SUCCESS};
+     }
+ 
++    if (name == "sys.auto_reboot_ctl") {
++        int res = auto_reboot_handle_property_set(value);
++        return {res};
++    }
++
+     return PropertySet(name, value, socket, error);
+ }
+ 
+@@ -1502,6 +1591,10 @@ static void PropertyServiceThread(int fd, bool listen_init) {
+         }
+     }
+ 
++    if (!IsMicrodroid()) {
++        auto_reboot_timer_init();
++    }
++
+     while (true) {
+         auto epoll_result = epoll.Wait(std::nullopt);
+         if (!epoll_result.ok()) {
 -- 
 2.34.1
 

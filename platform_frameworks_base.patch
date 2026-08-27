@@ -1,7 +1,7 @@
-From 1694239fb5489dc0221e961cc60af105f2751c4a Mon Sep 17 00:00:00 2001
+From 91016418b1f9834da65a5c4f9a1375e97440c3cc Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 18 Nov 2022 22:06:22 -0500
-Subject: [PATCH 01/19] pass safetynet and gpay
+Subject: [PATCH 01/20] pass safetynet and gpay
 
 Change-Id: I7d1c52a5937a4fef9bbec8ab5b94fe41a2554ae0
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -172,10 +172,10 @@ index e6a63b9c4..6a80c14c9 100644
 2.34.1
 
 
-From efd7561b4420cb67e569e46699d773c236eb9950 Mon Sep 17 00:00:00 2001
+From 726d6a5ff70ae58d7b065fb75ef2ba9e4da32f6f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 16 Dec 2022 11:31:41 -0500
-Subject: [PATCH 02/19] Set auto brightness on by default
+Subject: [PATCH 02/20] Set auto brightness on by default
 
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
 ---
@@ -199,10 +199,10 @@ index 94aa955f0..3d24efe61 100644
 2.34.1
 
 
-From 6e01f27958c5b7f1e49e97038a4571d8377df476 Mon Sep 17 00:00:00 2001
+From 79255d84acf9e66904b353b61c272a00b0fe2d70 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 28 Dec 2022 21:02:38 -0500
-Subject: [PATCH 03/19] Remove max column limit on quick tiles under
+Subject: [PATCH 03/20] Remove max column limit on quick tiles under
  notification shade
 
 Change-Id: I7db5cf5e69b3726488aacad5e624d429dc70f891
@@ -227,10 +227,10 @@ index ef44e5fb8..cf7e43d2a 100644
 2.34.1
 
 
-From 738fce0c0dfbccc3cd3d31161cd934b4f36408c3 Mon Sep 17 00:00:00 2001
+From 87ef582ba2bc9b77b533606c80dfe8a3207d2e2f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 8 Feb 2023 17:39:55 -0500
-Subject: [PATCH 04/19] Update permission history cutoff days
+Subject: [PATCH 04/20] Update permission history cutoff days
 
 Change-Id: I0c61451d766a9870b543c73a661abc39c5eb6bf3
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -266,10 +266,10 @@ index ada9f7a74..89051320f 100644
 2.34.1
 
 
-From 98290618c1f09137ead3a824a4a0abd2afc7a519 Mon Sep 17 00:00:00 2001
+From c7974d1e51949a64f4b35a3d7d1c74ba7e37f5e1 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 12 Feb 2023 14:40:38 -0500
-Subject: [PATCH 05/19] Add launcher icon for android 10 easter egg
+Subject: [PATCH 05/20] Add launcher icon for android 10 easter egg
 
 Change-Id: I8b0086884f81ef02a7424387397b0d2e62200879
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -293,10 +293,10 @@ index bcc10ddde..115d552b9 100644
 2.34.1
 
 
-From 951b9267cf0101742949b280909f429327ba8b49 Mon Sep 17 00:00:00 2001
+From 2c045ee84da326c637346c85407c5d563981f973 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 10 May 2023 20:51:43 -0400
-Subject: [PATCH 06/19] Use system default vibration for fb messenger app
+Subject: [PATCH 06/20] Use system default vibration for fb messenger app
 
 Change-Id: I0fbada600b8a5c274136be38a4a4c75f4cd87fa6
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -322,10 +322,10 @@ index f8e119ef7..422bd86f1 100644
 2.34.1
 
 
-From de1b6d2f5eea43db8f8c0128159b65bca3790230 Mon Sep 17 00:00:00 2001
+From e49d2ead77611f41cfd022277fc716dd067ffe96 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 26 Jun 2023 08:04:28 -0400
-Subject: [PATCH 07/19] Fix safetynet/play integrity
+Subject: [PATCH 07/20] Fix safetynet/play integrity
 
 Change-Id: I57d34bb4c6c6e1b22fae4aa42e4842c7d4ee40aa
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -355,10 +355,10 @@ index 77101541f..84d767694 100644
 2.34.1
 
 
-From 687fedc006f0fa5ad150f595af33812194668787 Mon Sep 17 00:00:00 2001
+From 4c41e0670963e031c338a56f238c5b8e0bb919d7 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 6 Jul 2023 15:55:19 -0400
-Subject: [PATCH 08/19] Get free photo storage for google pixel
+Subject: [PATCH 08/20] Get free photo storage for google pixel
 
 Change-Id: I9843cdfd745e690f393417dfbbccf8e19b9a6d30
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -415,10 +415,10 @@ index ed22fb961..8c7a37f9c 100644
 2.34.1
 
 
-From 534d13772cd91b7bbae3a5503c7b1f95c448e874 Mon Sep 17 00:00:00 2001
+From 240433b86a6d1026f1cd1e0c1bd8edcfd9196b68 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Fri, 24 Nov 2023 13:16:36 -0500
-Subject: [PATCH 09/19] Add ability to change fingerprint from persist prop
+Subject: [PATCH 09/20] Add ability to change fingerprint from persist prop
 
 Change-Id: I80a0a55952333bc2bd46ffc4ed516e76aed4efad
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -457,10 +457,10 @@ index 84d767694..3a928f54b 100644
 2.34.1
 
 
-From 3497dd381fae4692856223aaf3fc69d335a3b2e9 Mon Sep 17 00:00:00 2001
+From 8e23723c310edba05b0df2ae499c9386d0ee424c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:50:00 -0500
-Subject: [PATCH 10/19] Update default spoof fingerprint
+Subject: [PATCH 10/20] Update default spoof fingerprint
 
 Change-Id: Ica6f809a85f9b1238fca22edb1dd8ad48601411d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -500,10 +500,10 @@ index 3a928f54b..ee174dfb5 100644
 2.34.1
 
 
-From b98e8883a3954aadeacde41e24f2fc10248d87cf Mon Sep 17 00:00:00 2001
+From 60a964e96ddd2d82fac31285a54548750680ae1d Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Mon, 4 Dec 2023 13:56:49 -0500
-Subject: [PATCH 11/19] Change quick affordance click from long to short click
+Subject: [PATCH 11/20] Change quick affordance click from long to short click
 
 Change-Id: I700b9e1cb0fcee64af849151891285b3e9b0307f
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -533,10 +533,10 @@ index 01241bf5c..b1f3e51dd 100644
 2.34.1
 
 
-From d0a3e4db8d1bc10ca116f52864ef163d55900272 Mon Sep 17 00:00:00 2001
+From 5292c8b4f52f6956db6940434048e582bd6d30e2 Mon Sep 17 00:00:00 2001
 From: Danny Lin <danny@kdrag0n.dev>
 Date: Sat, 16 Oct 2021 05:27:57 -0700
-Subject: [PATCH 12/19] Add support for app signature spoofing
+Subject: [PATCH 12/20] Add support for app signature spoofing
 
 This is needed by microG GmsCore to pretend to be the official Google
 Play Services package, because client apps check the package signature
@@ -801,10 +801,10 @@ index 7597f9503..fb1c0b8b7 100644
 2.34.1
 
 
-From 7aeab52af0ba73aa693380823a1d185495efa283 Mon Sep 17 00:00:00 2001
+From e3c5d657e8d11c585395d2f84602d4786c034c76 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Wed, 3 Jan 2024 16:21:50 -0500
-Subject: [PATCH 13/19] Output certificate in pm dump
+Subject: [PATCH 13/20] Output certificate in pm dump
 
 Change-Id: I6c54ae43fecce81972b9b5f1239bb3ff8308e540
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -831,10 +831,10 @@ index c97300bdd..d08832e88 100644
 2.34.1
 
 
-From 4a9a26c755fb9b0ef630a03d443c32b92e395b33 Mon Sep 17 00:00:00 2001
+From dfdc8e6e8e1dd264a9e4ad47f26b404f111b0df7 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 15 Feb 2024 21:38:00 -0500
-Subject: [PATCH 14/19] Add permission for Nova launcher pro
+Subject: [PATCH 14/20] Add permission for Nova launcher pro
 
 Change-Id: I79670eb2b11018568ee7b115d92cf2482e56d717
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -887,10 +887,10 @@ index 7e2c31d91..86b9d93ce 100644
 2.34.1
 
 
-From da17a9c3fe18a287e80ad5082ab19c1d98a48ab3 Mon Sep 17 00:00:00 2001
+From 7aa6f7cab7d00eeb4b06b2e272c59ba0a3a7af02 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Tue, 23 Dec 2025 17:28:08 -0500
-Subject: [PATCH 15/19] fix runtime errors
+Subject: [PATCH 15/20] fix runtime errors
 
 Change-Id: I6d8247dd91b272349ab987112bd6c28ec6df26c7
 ---
@@ -936,10 +936,10 @@ index 0c67d1891..e5abfa712 100644
 2.34.1
 
 
-From bdded1b05acebd500fde6e2bfbb901242bb06a42 Mon Sep 17 00:00:00 2001
+From f2739098dad3d61f648b538d45b7322f328d0c5c Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 25 Dec 2025 16:25:22 -0500
-Subject: [PATCH 16/19] Disable haptics on sysui sliders
+Subject: [PATCH 16/20] Disable haptics on sysui sliders
 
 Change-Id: Iefd13833acfe38762f8acbb120e94717745eb458
 ---
@@ -1007,10 +1007,10 @@ index 82fabca7a..b20486aa8 100644
 2.34.1
 
 
-From 22f291ac05237a4787b817132be877db98521448 Mon Sep 17 00:00:00 2001
+From c74b5b4eb638267b3d6768d622ca9f0e273e4068 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 25 Dec 2025 16:26:18 -0500
-Subject: [PATCH 17/19] Add support for left side volume dialog
+Subject: [PATCH 17/20] Add support for left side volume dialog
 
 Change-Id: I42d09cb66ba36eb47f8b94df52d1c3c4a3390aba
 ---
@@ -1183,10 +1183,10 @@ index e96561d62..67a7d50b8 100644
 2.34.1
 
 
-From 64a54b267549d86f22792c06d14d0a5b3ae3a752 Mon Sep 17 00:00:00 2001
+From 60c733d780ff5786f592c85d3f5f6c3e5c81f047 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 22 Feb 2026 20:54:38 -0500
-Subject: [PATCH 18/19] left power button screen on effect
+Subject: [PATCH 18/20] left power button screen on effect
 
 Change-Id: Icd6e3c231e9e64117111435424f5e87640a595e6
 ---
@@ -1214,10 +1214,10 @@ index a56624ca6..37af5f827 100644
 2.34.1
 
 
-From 30aaa168332a0787aed4b3c0f7528096d468c0c2 Mon Sep 17 00:00:00 2001
+From c04aa7e397ecbd8349f51cab79115528dd6c4308 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 22 Feb 2026 20:55:15 -0500
-Subject: [PATCH 19/19] Update default spoofing, add vending app
+Subject: [PATCH 19/20] Update default spoofing, add vending app
 
 Change-Id: I3190ef9b94456537cc65877f22a75987f5cc2cb3
 ---
@@ -1277,6 +1277,816 @@ index ee174dfb5..478e64e88 100644
              sIsGms = true;
              spoofBuildGms();
          }
+-- 
+2.34.1
+
+
+From 9309c2b8ecb806b72ec4f38575964b7d1467488c Mon Sep 17 00:00:00 2001
+From: Dmitry Muhomor <muhomor.dmitry@gmail.com>
+Date: Sun, 12 Feb 2023 19:38:02 +0200
+Subject: [PATCH 20/20] add auto-reboot feature
+
+Requires the corresponding changes to system/core and system/sepolicy.
+
+extsettings: add a set of helper classes for defining system settings
+
+SettingsLib: add CategoryKey for Exploit protection screen
+---
+ .../android/ext/settings/BoolSetting.java     |  76 ++++++++
+ .../android/ext/settings/BoolSysProperty.java |  32 ++++
+ .../android/ext/settings/ExtSettings.java     |  46 +++++
+ .../java/android/ext/settings/IntSetting.java | 111 +++++++++++
+ .../android/ext/settings/IntSysProperty.java  |  39 ++++
+ core/java/android/ext/settings/Setting.java   | 179 ++++++++++++++++++
+ .../android/ext/settings/StringSetting.java   |  72 +++++++
+ .../ext/settings/StringSysProperty.java       |  32 ++++
+ core/java/android/provider/Settings.java      |  20 ++
+ core/res/res/values/config_ext.xml            |   3 +
+ .../settingslib/drawer/CategoryKey.java       |   2 +
+ .../server/policy/keyguard/AutoReboot.java    |  39 ++++
+ .../policy/keyguard/KeyguardStateMonitor.java |   5 +
+ 13 files changed, 656 insertions(+)
+ create mode 100644 core/java/android/ext/settings/BoolSetting.java
+ create mode 100644 core/java/android/ext/settings/BoolSysProperty.java
+ create mode 100644 core/java/android/ext/settings/ExtSettings.java
+ create mode 100644 core/java/android/ext/settings/IntSetting.java
+ create mode 100644 core/java/android/ext/settings/IntSysProperty.java
+ create mode 100644 core/java/android/ext/settings/Setting.java
+ create mode 100644 core/java/android/ext/settings/StringSetting.java
+ create mode 100644 core/java/android/ext/settings/StringSysProperty.java
+ create mode 100644 core/res/res/values/config_ext.xml
+ create mode 100644 services/core/java/com/android/server/policy/keyguard/AutoReboot.java
+
+diff --git a/core/java/android/ext/settings/BoolSetting.java b/core/java/android/ext/settings/BoolSetting.java
+new file mode 100644
+index 000000000..ba8759db6
+--- /dev/null
++++ b/core/java/android/ext/settings/BoolSetting.java
+@@ -0,0 +1,76 @@
++/*
++ * Copyright (C) 2022 GrapheneOS
++ * SPDX-License-Identifier: Apache-2.0
++ */
++
++package android.ext.settings;
++
++import android.annotation.NonNull;
++import android.annotation.SystemApi;
++import android.content.Context;
++
++import java.util.function.Function;
++
++/** @hide */
++//@SystemApi
++public class BoolSetting extends Setting<BoolSetting> {
++    private boolean defaultValue;
++    private volatile Function<Context, Boolean> defaultValueSupplier;
++
++    public BoolSetting(@NonNull Scope scope, @NonNull String key, boolean defaultValue) {
++        super(scope, key);
++        this.defaultValue = defaultValue;
++    }
++
++    public BoolSetting(@NonNull Scope scope, @NonNull String key, @NonNull Function<Context, Boolean> defaultValue) {
++        super(scope, key);
++        defaultValueSupplier = defaultValue;
++    }
++
++    public final boolean get(@NonNull Context ctx) {
++        return get(ctx, ctx.getUserId());
++    }
++
++    // use only if this is a per-user setting and the context is not a per-user one
++    public final boolean get(@NonNull Context ctx, int userId) {
++        String valueStr = getRaw(ctx, userId);
++
++        if (valueStr == null) {
++            return getDefaultValue(ctx);
++        }
++
++        if (valueStr.equals("true")) {
++            return true;
++        }
++
++        if (valueStr.equals("false")) {
++            return false;
++        }
++
++        try {
++            int valueInt = Integer.parseInt(valueStr);
++            if (valueInt == 1) {
++                return true;
++            } else if (valueInt == 0) {
++                return false;
++            }
++        } catch (NumberFormatException e) {
++            e.printStackTrace();
++        }
++
++        return getDefaultValue(ctx);
++    }
++
++    public final boolean put(@NonNull Context ctx, boolean val) {
++        return putRaw(ctx, val ? "1" : "0");
++    }
++
++    private boolean getDefaultValue(Context ctx) {
++        Function<Context, Boolean> supplier = defaultValueSupplier;
++        if (supplier != null) {
++            defaultValue = supplier.apply(ctx).booleanValue();
++            defaultValueSupplier = null;
++        }
++        return defaultValue;
++    }
++}
+diff --git a/core/java/android/ext/settings/BoolSysProperty.java b/core/java/android/ext/settings/BoolSysProperty.java
+new file mode 100644
+index 000000000..73dfe906e
+--- /dev/null
++++ b/core/java/android/ext/settings/BoolSysProperty.java
+@@ -0,0 +1,32 @@
++package android.ext.settings;
++
++import android.annotation.NonNull;
++import android.annotation.SystemApi;
++import android.content.Context;
++import android.os.UserHandle;
++
++import java.util.function.BooleanSupplier;
++import java.util.function.Function;
++
++/** @hide */
++//@SystemApi
++public class BoolSysProperty extends BoolSetting {
++
++    public BoolSysProperty(@NonNull String key, boolean defaultValue) {
++        super(Scope.SYSTEM_PROPERTY, key, defaultValue);
++    }
++
++    public BoolSysProperty(@NonNull String key, @NonNull Function<Context, Boolean> defaultValue) {
++        super(Scope.SYSTEM_PROPERTY, key, defaultValue);
++    }
++
++    public boolean get() {
++        //noinspection DataFlowIssue
++        return super.get(null, UserHandle.USER_SYSTEM);
++    }
++
++    public boolean put(boolean val) {
++        //noinspection DataFlowIssue
++        return super.put(null, val);
++    }
++}
+diff --git a/core/java/android/ext/settings/ExtSettings.java b/core/java/android/ext/settings/ExtSettings.java
+new file mode 100644
+index 000000000..f486c9f55
+--- /dev/null
++++ b/core/java/android/ext/settings/ExtSettings.java
+@@ -0,0 +1,46 @@
++package android.ext.settings;
++
++import android.annotation.BoolRes;
++import android.annotation.IntegerRes;
++import android.annotation.StringRes;
++import android.content.Context;
++import android.content.res.Resources;
++import android.provider.Settings;
++
++import com.android.internal.R;
++
++import java.util.concurrent.TimeUnit;
++import java.util.function.BooleanSupplier;
++import java.util.function.Function;
++import java.util.function.IntSupplier;
++import java.util.function.Supplier;
++import java.util.function.ToIntFunction;
++
++/**
++ * Note that android.provider.Settings setting names should be defined in the corresponding classes,
++ * since the readability of settings is determined by using Java reflection on members of that class.
++ *
++ * @see android.provider.Settings#getPublicSettingsForClass
++ * @hide
++ */
++public class ExtSettings {
++
++    public static final IntSetting AUTO_REBOOT_TIMEOUT = new IntSetting(
++            Setting.Scope.GLOBAL, Settings.Global.AUTO_REBOOT_TIMEOUT,
++            // default value: 18 hours
++            (int) TimeUnit.HOURS.toMillis(18));
++
++    private ExtSettings() {}
++
++    public static Function<Context, Boolean> defaultBool(@BoolRes int res) {
++        return ctx -> ctx.getResources().getBoolean(res);
++    }
++
++    public static ToIntFunction<Context> defaultInt(@IntegerRes int res) {
++        return ctx -> ctx.getResources().getInteger(res);
++    }
++
++    public static Function<Context, String> defaultString(@StringRes int res) {
++        return ctx -> ctx.getString(res);
++    }
++}
+diff --git a/core/java/android/ext/settings/IntSetting.java b/core/java/android/ext/settings/IntSetting.java
+new file mode 100644
+index 000000000..562af3ae0
+--- /dev/null
++++ b/core/java/android/ext/settings/IntSetting.java
+@@ -0,0 +1,111 @@
++/*
++ * Copyright (C) 2022 GrapheneOS
++ * SPDX-License-Identifier: Apache-2.0
++ */
++
++package android.ext.settings;
++
++import android.annotation.NonNull;
++import android.annotation.Nullable;
++import android.annotation.SystemApi;
++import android.content.Context;
++
++import java.util.function.ToIntFunction;
++
++/** @hide */
++//@SystemApi
++public class IntSetting extends Setting<IntSetting> {
++    private int defaultValue;
++    private volatile ToIntFunction<Context> defaultValueSupplier;
++
++    @Nullable private final int[] validValues;
++
++    private IntSetting(@NonNull Scope scope, @NonNull String key, @Nullable int[] validValues) {
++        super(scope, key);
++        this.validValues = validValues;
++    }
++
++    public IntSetting(@NonNull Scope scope, @NonNull String key, int defaultValue) {
++        this(scope, key, (int[]) null);
++        setDefaultValue(defaultValue);
++    }
++
++    public IntSetting(@NonNull Scope scope, @NonNull String key, int defaultValue, @NonNull int... validValues) {
++        this(scope, key, validValues);
++        setDefaultValue(defaultValue);
++    }
++
++    public IntSetting(@NonNull Scope scope, @NonNull String key, @NonNull ToIntFunction<Context> defaultValue) {
++        this(scope, key, (int[]) null);
++        defaultValueSupplier = defaultValue;
++    }
++
++    public IntSetting(@NonNull Scope scope, @NonNull String key, @NonNull ToIntFunction<Context> defaultValue,
++                      @NonNull int... validValues) {
++        this(scope, key, validValues);
++        defaultValueSupplier = defaultValue;
++    }
++
++    public boolean validateValue(int val) {
++        if (validValues == null) {
++            return true;
++        }
++        // don't do sort() + bsearch() of validValues array, it's expected to have a small number of entries
++        for (int validValue : validValues) {
++            if (val == validValue) {
++                return true;
++            }
++        }
++        return false;
++    }
++
++    public final int get(@NonNull Context ctx) {
++        return get(ctx, ctx.getUserId());
++    }
++
++    // use only if this is a per-user setting and the context is not a per-user one
++    public final int get(@NonNull Context ctx, int userId) {
++        String valueStr = getRaw(ctx, userId);
++
++        if (valueStr == null) {
++            return getDefaultValue(ctx);
++        }
++
++        int value;
++        try {
++            value = Integer.parseInt(valueStr);
++        } catch (NumberFormatException e) {
++            e.printStackTrace();
++            return getDefaultValue(ctx);
++        }
++
++        if (!validateValue(value)) {
++            return getDefaultValue(ctx);
++        }
++
++        return value;
++    }
++
++    public final boolean put(@NonNull Context ctx, int val) {
++        if (!validateValue(val)) {
++            throw new IllegalArgumentException(Integer.toString(val));
++        }
++        return putRaw(ctx, Integer.toString(val));
++    }
++
++    private void setDefaultValue(int val) {
++        if (!validateValue(val)) {
++            throw new IllegalStateException("invalid default value " + val);
++        }
++        defaultValue = val;
++    }
++
++    private int getDefaultValue(Context ctx) {
++        ToIntFunction<Context> supplier = defaultValueSupplier;
++        if (supplier != null) {
++            setDefaultValue(supplier.applyAsInt(ctx));
++            defaultValueSupplier = null;
++        }
++        return defaultValue;
++    }
++}
+diff --git a/core/java/android/ext/settings/IntSysProperty.java b/core/java/android/ext/settings/IntSysProperty.java
+new file mode 100644
+index 000000000..e2e62e971
+--- /dev/null
++++ b/core/java/android/ext/settings/IntSysProperty.java
+@@ -0,0 +1,39 @@
++package android.ext.settings;
++
++import android.annotation.NonNull;
++import android.annotation.SystemApi;
++import android.content.Context;
++import android.os.UserHandle;
++
++import java.util.function.ToIntFunction;
++
++/** @hide */
++//@SystemApi
++public class IntSysProperty extends IntSetting {
++
++    public IntSysProperty(@NonNull String key, int defaultValue) {
++        super(Scope.SYSTEM_PROPERTY, key, defaultValue);
++    }
++
++    public IntSysProperty(@NonNull String key, int defaultValue, @NonNull int... validValues) {
++        super(Scope.SYSTEM_PROPERTY, key, defaultValue, validValues);
++    }
++
++    public IntSysProperty(@NonNull String key, @NonNull ToIntFunction<Context> defaultValue) {
++        super(Scope.SYSTEM_PROPERTY, key, defaultValue);
++    }
++
++    public IntSysProperty(@NonNull String key, @NonNull ToIntFunction<Context> defaultValue, @NonNull int... validValues) {
++        super(Scope.SYSTEM_PROPERTY, key, defaultValue, validValues);
++    }
++
++    public int get() {
++        //noinspection DataFlowIssue
++        return super.get(null, UserHandle.USER_SYSTEM);
++    }
++
++    public boolean put(int val) {
++        //noinspection DataFlowIssue
++        return super.put(null, val);
++    }
++}
+diff --git a/core/java/android/ext/settings/Setting.java b/core/java/android/ext/settings/Setting.java
+new file mode 100644
+index 000000000..31a879818
+--- /dev/null
++++ b/core/java/android/ext/settings/Setting.java
+@@ -0,0 +1,179 @@
++/*
++ * Copyright (C) 2022 GrapheneOS
++ * SPDX-License-Identifier: Apache-2.0
++ */
++
++package android.ext.settings;
++
++import android.annotation.NonNull;
++import android.annotation.Nullable;
++import android.annotation.SuppressLint;
++import android.annotation.SystemApi;
++import android.content.Context;
++import android.database.ContentObserver;
++import android.net.Uri;
++import android.os.Handler;
++import android.os.SystemProperties;
++import android.provider.Settings;
++import android.util.Log;
++
++import java.util.function.Consumer;
++
++/** @hide */
++//@SystemApi
++public abstract class Setting<SelfType extends Setting> {
++
++    @SuppressLint("Enum")
++    public enum Scope {
++        SYSTEM_PROPERTY, // android.os.SystemProperties, doesn't support state observers
++        GLOBAL, // android.provider.Settings.Global
++        PER_USER, // android.provider.Settings.Secure
++    }
++
++    private final Scope scope;
++    private final String key;
++
++    /** @hide */
++    protected Setting(Scope scope, String key) {
++        this.scope = scope;
++        this.key = key;
++    }
++
++    @NonNull
++    public final String getKey() {
++        return key;
++    }
++
++    @NonNull
++    public final Scope getScope() {
++        return scope;
++    }
++
++    /** @hide */
++    @Nullable
++    protected final String getRaw(Context ctx, int userId) {
++        try {
++            switch (scope) {
++                case SYSTEM_PROPERTY: {
++                    String s = SystemProperties.get(key);
++                    if (s.isEmpty()) {
++                        return null;
++                    }
++                    return s;
++                }
++                case GLOBAL:
++                    return Settings.Global.getString(ctx.getContentResolver(), key);
++                case PER_USER:
++                    return Settings.Secure.getStringForUser(ctx.getContentResolver(), key, userId);
++            }
++        } catch (Throwable e) {
++            Log.e("ExtSettings", "key: " + key, e);
++            if (Settings.isInSystemServer()) {
++                // should never happen under normal circumstances, but if it does,
++                // don't crash the system_server
++                return null;
++            }
++
++            throw e;
++        }
++
++        // "switch (scope)" above should be exhaustive
++        throw new IllegalStateException();
++    }
++
++    /** @hide */
++    protected final boolean putRaw(Context ctx, String val) {
++        switch (scope) {
++            case SYSTEM_PROPERTY: {
++                try {
++                    SystemProperties.set(key, val);
++                    return true;
++                } catch (RuntimeException e) {
++                    e.printStackTrace();
++                    if (e instanceof IllegalArgumentException) {
++                        // see doc
++                        throw e;
++                    }
++                    return false;
++                }
++            }
++            case GLOBAL:
++                return Settings.Global.putString(ctx.getContentResolver(), key, val);
++            case PER_USER:
++                return Settings.Secure.putString(ctx.getContentResolver(), key, val);
++            default:
++                throw new IllegalStateException();
++        }
++    }
++
++    public final boolean canObserveState() {
++        return scope != Scope.SYSTEM_PROPERTY;
++    }
++
++    // pass the return value to unregisterObserver() to remove the observer
++    @NonNull
++    public final Object registerObserver(@NonNull Context ctx, @NonNull Handler handler, @NonNull Consumer<SelfType> callback) {
++        return registerObserver(ctx, ctx.getUserId(), handler, callback);
++    }
++
++    @NonNull
++    public final Object registerObserver(@NonNull Context ctx, int userId, @NonNull Handler handler, @NonNull Consumer<SelfType> callback) {
++        if (scope == Scope.SYSTEM_PROPERTY) {
++            // SystemProperties.addChangeCallback() doesn't work unless the change is actually
++            // reported elsewhere in the same process with SystemProperties.callChangeCallbacks()
++            // or with its native equivalent (report_sysprop_change()).
++            // Leave the code in place in case this changes in the future.
++            if (false) {
++                Runnable observer = new Runnable() {
++                    private volatile String prev = SystemProperties.get(getKey());
++
++                    @Override
++                    public void run() {
++                        String value = SystemProperties.get(getKey());
++                        // change callback is dispatched whenever any change to system props occurs
++                        if (!prev.equals(value)) {
++                            prev = value;
++                            handler.post(() -> callback.accept((SelfType) Setting.this));
++                        }
++                    }
++                };
++                SystemProperties.addChangeCallback(observer);
++                return observer;
++            }
++            throw new UnsupportedOperationException("observing sysprop state is not supported");
++        }
++
++        Uri uri;
++        switch (scope) {
++            case GLOBAL:
++                uri = Settings.Global.getUriFor(key);
++                break;
++            case PER_USER:
++                uri = Settings.Secure.getUriFor(key);
++                break;
++            default:
++                throw new IllegalStateException();
++        }
++
++        ContentObserver observer = new ContentObserver(handler) {
++            @Override
++            public void onChange(boolean selfChange) {
++                callback.accept((SelfType) Setting.this);
++            }
++        };
++        ctx.getContentResolver().registerContentObserver(uri, false, observer, userId);
++
++        return observer;
++    }
++
++    public final void unregisterObserver(@NonNull Context ctx, @NonNull Object observer) {
++        if (scope == Scope.SYSTEM_PROPERTY) {
++            if (false) { // see comment in registerObserverInner
++                SystemProperties.removeChangeCallback((Runnable) observer);
++            }
++            throw new UnsupportedOperationException("observing sysprop state is not supported");
++        } else {
++            ctx.getContentResolver().unregisterContentObserver((ContentObserver) observer);
++        }
++    }
++}
+diff --git a/core/java/android/ext/settings/StringSetting.java b/core/java/android/ext/settings/StringSetting.java
+new file mode 100644
+index 000000000..732dbdc2e
+--- /dev/null
++++ b/core/java/android/ext/settings/StringSetting.java
+@@ -0,0 +1,72 @@
++/*
++ * Copyright (C) 2022 GrapheneOS
++ * SPDX-License-Identifier: Apache-2.0
++ */
++
++package android.ext.settings;
++
++import android.annotation.NonNull;
++import android.annotation.SystemApi;
++import android.content.Context;
++
++import java.util.function.Function;
++
++/** @hide */
++//@SystemApi
++public class StringSetting extends Setting<StringSetting> {
++    private String defaultValue;
++    private volatile Function<Context, String> defaultValueSupplier;
++
++    public StringSetting(@NonNull Scope scope, @NonNull String key, @NonNull String defaultValue) {
++        super(scope, key);
++        setDefaultValue(defaultValue);
++    }
++
++    public StringSetting(@NonNull Scope scope, @NonNull String key, @NonNull Function<Context, String> defaultValue) {
++        super(scope, key);
++        this.defaultValueSupplier = defaultValue;
++    }
++
++    public boolean validateValue(@NonNull String val) {
++        return true;
++    }
++
++    @NonNull
++    public final String get(@NonNull Context ctx) {
++        return get(ctx, ctx.getUserId());
++    }
++
++    @NonNull
++    // use only if this is a per-user setting and the context does not specify the userId
++    public final String get(@NonNull Context ctx, int userId) {
++        String s = getRaw(ctx, userId);
++        if (s == null || !validateValue(s)) {
++            return getDefaultValue(ctx);
++        }
++        return s;
++    }
++
++    public final boolean put(@NonNull Context ctx, @NonNull String val) {
++        if (!validateValue(val)) {
++            throw new IllegalStateException("invalid value " + val);
++        }
++        return putRaw(ctx, val);
++    }
++
++    private void setDefaultValue(@NonNull String val) {
++        if (!validateValue(val)) {
++            throw new IllegalStateException("invalid default value " + val);
++        }
++        defaultValue = val;
++    }
++
++    @NonNull
++    private String getDefaultValue(Context ctx) {
++        Function<Context, String> supplier = defaultValueSupplier;
++        if (supplier != null) {
++            setDefaultValue(supplier.apply(ctx));
++            defaultValueSupplier = null;
++        }
++        return defaultValue;
++    }
++}
+diff --git a/core/java/android/ext/settings/StringSysProperty.java b/core/java/android/ext/settings/StringSysProperty.java
+new file mode 100644
+index 000000000..4399b18b5
+--- /dev/null
++++ b/core/java/android/ext/settings/StringSysProperty.java
+@@ -0,0 +1,32 @@
++package android.ext.settings;
++
++import android.annotation.NonNull;
++import android.annotation.SystemApi;
++import android.content.Context;
++import android.os.UserHandle;
++
++import java.util.function.Function;
++
++/** @hide */
++//@SystemApi
++public class StringSysProperty extends StringSetting {
++
++    public StringSysProperty(@NonNull String key, @NonNull String defaultValue) {
++        super(Scope.SYSTEM_PROPERTY, key, defaultValue);
++    }
++
++    public StringSysProperty(@NonNull String key, @NonNull Function<Context, String> defaultValue) {
++        super(Scope.SYSTEM_PROPERTY, key, defaultValue);
++    }
++
++    @NonNull
++    public String get() {
++        //noinspection DataFlowIssue
++        return super.get(null, UserHandle.USER_SYSTEM);
++    }
++
++    public boolean put(@NonNull String val) {
++        //noinspection DataFlowIssue
++        return super.put(null, val);
++    }
++}
+diff --git a/core/java/android/provider/Settings.java b/core/java/android/provider/Settings.java
+index 9e5f178f5..0072bcb33 100644
+--- a/core/java/android/provider/Settings.java
++++ b/core/java/android/provider/Settings.java
+@@ -7130,6 +7130,15 @@ public final class Settings {
+      * or by calling the "put" methods that this class contains.
+      */
+     public static final class Secure extends NameValueTable {
++        // It's important to define setting names here, since readability of settings is determined
++        // by using Java reflection on members of this class.
++        /** @see android.provider.Settings#getPublicSettingsForClass */
++        // ExtSettings BEGIN
++
++
++
++        // ExtSettings END
++
+         // NOTE: If you add new settings here, be sure to add them to
+         // com.android.providers.settings.SettingsProtoDumpUtil#dumpProtoSecureSettingsLocked.
+ 
+@@ -13724,6 +13733,17 @@ public final class Settings {
+      * explicitly modify through the system UI or specialized APIs for those values.
+      */
+     public static final class Global extends NameValueTable {
++        // It's important to define setting names here, since readability of settings is determined
++        // by using Java reflection on members of this class.
++        /** @see android.provider.Settings#getPublicSettingsForClass */
++        // ExtSettings BEGIN
++
++        /** @hide */
++        public static final String AUTO_REBOOT_TIMEOUT = "settings_reboot_after_timeout";
++
++
++        // ExtSettings END
++
+         // NOTE: If you add new settings here, be sure to add them to
+         // com.android.providers.settings.SettingsProtoDumpUtil#dumpProtoGlobalSettingsLocked.
+ 
+diff --git a/core/res/res/values/config_ext.xml b/core/res/res/values/config_ext.xml
+new file mode 100644
+index 000000000..045e125f3
+--- /dev/null
++++ b/core/res/res/values/config_ext.xml
+@@ -0,0 +1,3 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++</resources>
+diff --git a/packages/SettingsLib/src/com/android/settingslib/drawer/CategoryKey.java b/packages/SettingsLib/src/com/android/settingslib/drawer/CategoryKey.java
+index fb384ff9f..7281e2f79 100644
+--- a/packages/SettingsLib/src/com/android/settingslib/drawer/CategoryKey.java
++++ b/packages/SettingsLib/src/com/android/settingslib/drawer/CategoryKey.java
+@@ -70,6 +70,8 @@ public final class CategoryKey {
+             "com.android.settings.category.ia.smart_battery_settings";
+     public static final String CATEGORY_COMMUNAL_SETTINGS =
+             "com.android.settings.category.ia.communal";
++    public static final String CATEGORY_EXPLOIT_PROTECTION_SETTINGS =
++            "com.android.settings.category.ia.exploit_protection_settings";
+     public static final String CATEGORY_MORE_SECURITY_PRIVACY_SETTINGS =
+             "com.android.settings.category.ia.more_security_privacy_settings";
+     public static final String CATEGORY_SUPERVISION =
+diff --git a/services/core/java/com/android/server/policy/keyguard/AutoReboot.java b/services/core/java/com/android/server/policy/keyguard/AutoReboot.java
+new file mode 100644
+index 000000000..603e45863
+--- /dev/null
++++ b/services/core/java/com/android/server/policy/keyguard/AutoReboot.java
+@@ -0,0 +1,39 @@
++package com.android.server.policy.keyguard;
++
++import android.content.Context;
++import android.ext.settings.ExtSettings;
++import android.os.SystemProperties;
++import android.util.Slog;
++
++/** @hide */
++class AutoReboot {
++    private static final String TAG = AutoReboot.class.getSimpleName();
++
++    // writes to this system property are special-cased in init
++    private static final String SYS_PROP = "sys.auto_reboot_ctl";
++
++    // This callback is invoked:
++    // - when keyguard becomes active (i.e. when device gets locked, including at boot-time)
++    // - when keyguard is dismissed by unlocking the device
++    // - when keyguard is dismissed by switching to a user that doesn't have a secure lockscreen,
++    // but not when switching to a user that does have a secure lockscreen
++    // - showing=false callback is invoked at boot-time when there's no lock screen, i.e. when the
++    // device boots straight into the home screen or initial setup wizard
++    //
++    // Note that "swipe-to-unlock" lockscreen is considered to be a keyguard.
++    static void onKeyguardShowingStateChanged(Context ctx, boolean showing, int userId) {
++        Slog.d(TAG, "onKeyguardShowingStateChanged, showing: " + showing + ", userId: " + userId);
++
++        if (!showing) {
++            SystemProperties.set(SYS_PROP, "on_device_unlocked");
++            return;
++        }
++
++        final int timeoutMillis = ExtSettings.AUTO_REBOOT_TIMEOUT.get(ctx);
++        final int timeoutSeconds = timeoutMillis / 1000;
++        if (timeoutSeconds > 0) {
++            SystemProperties.set(SYS_PROP, Integer.toString(timeoutSeconds));
++        }
++        Slog.d(TAG, "timeoutSeconds: " + timeoutSeconds);
++    }
++}
+diff --git a/services/core/java/com/android/server/policy/keyguard/KeyguardStateMonitor.java b/services/core/java/com/android/server/policy/keyguard/KeyguardStateMonitor.java
+index c0aa8aeff..f5876676f 100644
+--- a/services/core/java/com/android/server/policy/keyguard/KeyguardStateMonitor.java
++++ b/services/core/java/com/android/server/policy/keyguard/KeyguardStateMonitor.java
+@@ -34,6 +34,8 @@ import java.io.PrintWriter;
+ public class KeyguardStateMonitor extends IKeyguardStateCallback.Stub {
+     private static final String TAG = "KeyguardStateMonitor";
+ 
++    private final Context mContext;
++
+     // These cache the current state of Keyguard to improve performance and avoid deadlock. After
+     // Keyguard changes its state, it always triggers a layout in window manager. Because
+     // IKeyguardStateCallback is synchronous and because these states are declared volatile, it's
+@@ -51,6 +53,7 @@ public class KeyguardStateMonitor extends IKeyguardStateCallback.Stub {
+     private final StateCallback mCallback;
+ 
+     public KeyguardStateMonitor(Context context, IKeyguardService service, StateCallback callback) {
++        mContext = context;
+         mLockPatternUtils = new LockPatternUtils(context);
+         mCurrentUserId = ActivityManager.getCurrentUser();
+         mCallback = callback;
+@@ -89,6 +92,8 @@ public class KeyguardStateMonitor extends IKeyguardStateCallback.Stub {
+         mIsShowing = showing;
+ 
+         mCallback.onShowingChanged();
++
++        AutoReboot.onKeyguardShowingStateChanged(mContext, showing, userId);
+     }
+ 
+     @Override // Binder interface
 -- 
 2.34.1
 

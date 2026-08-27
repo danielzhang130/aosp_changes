@@ -1,7 +1,7 @@
-From e13a40a4b7d4f8ffda8a1fac0a759bdfa8fdb79d Mon Sep 17 00:00:00 2001
+From 60d8438877ba335b65142dbda6668583f6a8c296 Mon Sep 17 00:00:00 2001
 From: danielzhang130 <danielzhang130@gmail.com>
 Date: Sat, 13 Aug 2022 13:32:22 -0400
-Subject: [PATCH 1/4] Add Build and Build.VERSION info to about phone screen
+Subject: [PATCH 1/5] Add Build and Build.VERSION info to about phone screen
 
 Signed-off-by: danielzhang130 <danielzhang130@gmail.com>
 Change-Id: I0ad77dbe06acd451dc153b14b0443e3fd914c08f
@@ -186,10 +186,10 @@ index 00000000..36056827
 2.34.1
 
 
-From 437b4b85783b52a58959653f06dca67228c55553 Mon Sep 17 00:00:00 2001
+From 7b7fccc8e9d70e6384802857400c6012b6916c15 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 7 Jan 2023 10:58:52 -0500
-Subject: [PATCH 2/4] Add settings animations files
+Subject: [PATCH 2/5] Add settings animations files
 
 Change-Id: I78d98670b01933ba4cd4881287f1602955313e0d
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -2139,10 +2139,10 @@ index e69de29b..0fddbf8e 100644
 2.34.1
 
 
-From 821028d6b5fd3e46fe68c7c05bd4c38ccc063700 Mon Sep 17 00:00:00 2001
+From 9e5b05518b1253af7b75f39c2c1696d87a214617 Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Thu, 9 Feb 2023 21:49:17 -0500
-Subject: [PATCH 3/4] Add changelist to about phone screen
+Subject: [PATCH 3/5] Add changelist to about phone screen
 
 Change-Id: I0b0aad0be7939c6ae4f2aea00ee4f87a7cd1460b
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -2298,10 +2298,10 @@ index 36056827..c108909b 100644
 2.34.1
 
 
-From f9d90a10b079f99061a4affab9f21fd6e51e8894 Mon Sep 17 00:00:00 2001
+From 9c67920c541cef4fd45f9833412d70bf0b40ef7f Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sat, 30 Dec 2023 15:52:29 -0500
-Subject: [PATCH 4/4] Add memory cpu usage quick tile
+Subject: [PATCH 4/5] Add memory cpu usage quick tile
 
 Change-Id: Icfee54b3434215c8a1e5fa0988fa1745e1db2da8
 Signed-off-by: Daniel Zhang <danielzhang130@gmail.com>
@@ -2585,6 +2585,1172 @@ index cf0d4d18..f98150d9 100644
      /**
       * Tile to control the "GPU profiling" developer setting
       */
+-- 
+2.34.1
+
+
+From c443920bb5533edd6597b2870c6c955183a615ce Mon Sep 17 00:00:00 2001
+From: Dmitry Muhomor <muhomor.dmitry@gmail.com>
+Date: Tue, 30 Jul 2024 15:20:39 +0300
+Subject: [PATCH 5/5] add auto-reboot setting
+
+Squashed with:
+20d4d3e46ba4a626d6044df499b91c1fc5e5bd96
+514f0ddf2adbb7b69b0750806020476cef8ed17e
+
+Co-authored-by: Daniel Micay <daniel.micay@grapheneos.org>
+
+add Exploit protection screen
+
+add base class for ListPreference controllers
+
+add base classes for {Bool,Int}Setting preference controllers
+
+If no customization is needed, BoolSetting base class can be used directly from XML by adding
+settings:boolSettingField="<class name> <BoolSetting field name>"
+to the preference XML definition.
+
+add base class for toggle preference controllers
+---
+ AndroidManifest.xml                           |  17 ++
+ res/values/attrs.xml                          |   2 +
+ res/values/strings_ext.xml                    |   9 +
+ res/xml/exploit_protection_settings.xml       |  12 +
+ src/com/android/settings/Settings.java        |   3 +
+ .../core/PreferenceControllerListHelper.java  |   3 +
+ .../core/PreferenceXmlParserUtils.java        |  12 +
+ .../core/gateway/SettingsGateway.java         |   1 +
+ .../dashboard/DashboardFragmentRegistry.java  |   3 +
+ .../ext/AbstractListPreferenceController.java | 242 ++++++++++++++++++
+ .../ext/AbstractTogglePrefController.java     |  38 +++
+ .../ext/BoolSettingPrefController.java        |  98 +++++++
+ .../ext/ExtSettingControllerHelper.java       |  72 ++++++
+ .../ext/ExtSettingPrefController.java         |  12 +
+ .../ext/IntSettingPrefController.java         |  62 +++++
+ .../ext/RadioButtonPickerFragment2.java       | 208 +++++++++++++++
+ .../ExploitProtectionFragment.java            |  29 +++
+ .../security/AutoRebootPrefController.java    |  49 ++++
+ .../widget/RadioButtonPickerFragment.java     |  14 +-
+ 19 files changed, 884 insertions(+), 2 deletions(-)
+ create mode 100644 res/values/strings_ext.xml
+ create mode 100644 res/xml/exploit_protection_settings.xml
+ create mode 100644 src/com/android/settings/ext/AbstractListPreferenceController.java
+ create mode 100644 src/com/android/settings/ext/AbstractTogglePrefController.java
+ create mode 100644 src/com/android/settings/ext/BoolSettingPrefController.java
+ create mode 100644 src/com/android/settings/ext/ExtSettingControllerHelper.java
+ create mode 100644 src/com/android/settings/ext/ExtSettingPrefController.java
+ create mode 100644 src/com/android/settings/ext/IntSettingPrefController.java
+ create mode 100644 src/com/android/settings/ext/RadioButtonPickerFragment2.java
+ create mode 100644 src/com/android/settings/safetycenter/ExploitProtectionFragment.java
+ create mode 100644 src/com/android/settings/security/AutoRebootPrefController.java
+
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index 5f66c028..c9eaf8a8 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -2304,6 +2304,23 @@
+                        android:value="@string/menu_key_safety_center"/>
+         </activity>
+ 
++        <activity
++            android:name=".Settings$ExploitProtectionActivity"
++            android:label="@string/exploit_protection_settings"
++            android:permission="android.permission.MANAGE_SAFETY_CENTER"
++            android:exported="true">
++
++            <intent-filter>
++                <action android:name="com.android.settings.EXPLOIT_PROTECTION_SETTINGS" />
++                <category android:name="android.intent.category.DEFAULT" />
++            </intent-filter>
++
++            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
++                       android:value="com.android.settings.safetycenter.ExploitProtectionFragment" />
++            <meta-data android:name="com.android.settings.HIGHLIGHT_MENU_KEY"
++                       android:value="@string/menu_key_safety_center"/>
++        </activity>
++
+         <activity android:name="MonitoringCertInfoActivity"
+                 android:label=""
+                 android:theme="@style/Transparent"
+diff --git a/res/values/attrs.xml b/res/values/attrs.xml
+index 6477ddaf..215e8ba6 100644
+--- a/res/values/attrs.xml
++++ b/res/values/attrs.xml
+@@ -66,6 +66,8 @@
+         <attr name="searchable" format="boolean" />
+         <!-- Classname of a PreferenceController corresponding to the preference -->
+         <attr name="controller" format="string" />
++        <!-- Reference to a BoolSetting. Format: className <space> fieldName -->
++        <attr name="boolSettingField" format="string" />
+         <!-- Customized subtitle if it's an unavailable slice -->
+         <attr name="unavailableSliceSubtitle" format="string" />
+         <!-- Whether or not the preference is for work profile, by default it's false. -->
+diff --git a/res/values/strings_ext.xml b/res/values/strings_ext.xml
+new file mode 100644
+index 00000000..bf38a6a9
+--- /dev/null
++++ b/res/values/strings_ext.xml
+@@ -0,0 +1,9 @@
++<resources>
++
++    <string name="exploit_protection_settings">Exploit protection</string>
++
++    <string name="app_exploit_protection_category">App exploit protection</string>
++    <string name="auto_reboot_title">Auto reboot</string>
++    <string name="auto_reboot_footer">Automatically reboot the device if it hasn\'t been unlocked within the selected duration of time.</string>
++
++</resources>
+diff --git a/res/xml/exploit_protection_settings.xml b/res/xml/exploit_protection_settings.xml
+new file mode 100644
+index 00000000..c69e62d3
+--- /dev/null
++++ b/res/xml/exploit_protection_settings.xml
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="utf-8"?>
++<PreferenceScreen
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:settings="http://schemas.android.com/apk/res-auto"
++    android:key="exploit_protection_settings"
++    android:title="@string/exploit_protection_settings">
++
++    <Preference
++        android:key="auto_reboot"
++        android:title="@string/auto_reboot_title"
++        settings:controller="com.android.settings.security.AutoRebootPrefController" />
++</PreferenceScreen>
+diff --git a/src/com/android/settings/Settings.java b/src/com/android/settings/Settings.java
+index e54e7207..83ef0740 100644
+--- a/src/com/android/settings/Settings.java
++++ b/src/com/android/settings/Settings.java
+@@ -582,5 +582,8 @@ public class Settings extends SettingsActivity {
+     public static class ContentProtectionSettingsActivity extends SettingsActivity { /* empty */ }
+     public static class MagnificationActivity extends SettingsActivity { /* empty */ }
+     public static class FlashNotificationsActivity extends SettingsActivity { /* empty */ }
++
++    public static class ExploitProtectionActivity extends SettingsActivity {}
++
+     public static class NotificationBundlesActivity extends SettingsActivity { /* empty */ }
+ }
+diff --git a/src/com/android/settings/core/PreferenceControllerListHelper.java b/src/com/android/settings/core/PreferenceControllerListHelper.java
+index dea8c971..f07b374d 100644
+--- a/src/com/android/settings/core/PreferenceControllerListHelper.java
++++ b/src/com/android/settings/core/PreferenceControllerListHelper.java
+@@ -31,6 +31,7 @@ import androidx.preference.PreferenceManager;
+ import androidx.preference.PreferenceScreen;
+ 
+ import com.android.settings.core.PreferenceXmlParserUtils.MetadataFlag;
++import com.android.settings.ext.BoolSettingPrefController;
+ import com.android.settingslib.core.AbstractPreferenceController;
+ 
+ import org.xmlpull.v1.XmlPullParserException;
+@@ -59,6 +60,7 @@ public class PreferenceControllerListHelper {
+         try {
+             preferenceMetadata = PreferenceXmlParserUtils.extractMetadata(context, xmlResId,
+                     MetadataFlag.FLAG_NEED_KEY | MetadataFlag.FLAG_NEED_PREF_CONTROLLER
++                            | MetadataFlag.FLAG_NEED_BOOL_SETTING_FIELD
+                             | MetadataFlag.FLAG_INCLUDE_PREF_SCREEN  | MetadataFlag.FLAG_FOR_WORK);
+         } catch (IOException | XmlPullParserException e) {
+             Log.e(TAG, "Failed to parse preference xml for getting controllers", e);
+@@ -68,6 +70,7 @@ public class PreferenceControllerListHelper {
+         for (Bundle metadata : preferenceMetadata) {
+             final String controllerName = metadata.getString(METADATA_CONTROLLER);
+             if (TextUtils.isEmpty(controllerName)) {
++                BoolSettingPrefController.maybeAdd(context, metadata, controllers);
+                 continue;
+             }
+             BasePreferenceController controller;
+diff --git a/src/com/android/settings/core/PreferenceXmlParserUtils.java b/src/com/android/settings/core/PreferenceXmlParserUtils.java
+index cf2f9ca1..5d4758de 100644
+--- a/src/com/android/settings/core/PreferenceXmlParserUtils.java
++++ b/src/com/android/settings/core/PreferenceXmlParserUtils.java
+@@ -65,6 +65,7 @@ public class PreferenceXmlParserUtils {
+             MetadataFlag.FLAG_NEED_KEY,
+             MetadataFlag.FLAG_NEED_PREF_TYPE,
+             MetadataFlag.FLAG_NEED_PREF_CONTROLLER,
++            MetadataFlag.FLAG_NEED_BOOL_SETTING_FIELD,
+             MetadataFlag.FLAG_NEED_PREF_TITLE,
+             MetadataFlag.FLAG_NEED_PREF_SUMMARY,
+             MetadataFlag.FLAG_NEED_PREF_ICON,
+@@ -92,11 +93,14 @@ public class PreferenceXmlParserUtils {
+         int FLAG_FOR_WORK = 1 << 12;
+         int FLAG_NEED_HIGHLIGHTABLE_MENU_KEY = 1 << 13;
+         int FLAG_NEED_USER_RESTRICTION = 1 << 14;
++
++        int FLAG_NEED_BOOL_SETTING_FIELD = 1 << 30;
+     }
+ 
+     public static final String METADATA_PREF_TYPE = "type";
+     public static final String METADATA_KEY = "key";
+     public static final String METADATA_CONTROLLER = "controller";
++    public static final String METADATA_BOOL_SETTING_FIELD = "bool_setting_field";
+     public static final String METADATA_TITLE = "title";
+     public static final String METADATA_SUMMARY = "summary";
+     public static final String METADATA_ICON = "icon";
+@@ -163,6 +167,10 @@ public class PreferenceXmlParserUtils {
+                 preferenceMetadata.putString(METADATA_CONTROLLER,
+                         getController(preferenceAttributes));
+             }
++            if (hasFlag(flags, MetadataFlag.FLAG_NEED_BOOL_SETTING_FIELD)) {
++                preferenceMetadata.putString(METADATA_BOOL_SETTING_FIELD,
++                        getBoolSettingField(preferenceAttributes));
++            }
+             if (hasFlag(flags, MetadataFlag.FLAG_NEED_PREF_TITLE)) {
+                 preferenceMetadata.putString(METADATA_TITLE, getTitle(preferenceAttributes));
+             }
+@@ -231,6 +239,10 @@ public class PreferenceXmlParserUtils {
+         return styledAttributes.getString(R.styleable.Preference_controller);
+     }
+ 
++    private static String getBoolSettingField(TypedArray styledAttributes) {
++        return styledAttributes.getString(R.styleable.Preference_boolSettingField);
++    }
++
+     private static String getHighlightableMenuKey(TypedArray styledAttributes) {
+         return styledAttributes.getString(R.styleable.Preference_highlightableMenuKey);
+     }
+diff --git a/src/com/android/settings/core/gateway/SettingsGateway.java b/src/com/android/settings/core/gateway/SettingsGateway.java
+index 17fbe290..246ec1e3 100644
+--- a/src/com/android/settings/core/gateway/SettingsGateway.java
++++ b/src/com/android/settings/core/gateway/SettingsGateway.java
+@@ -225,6 +225,7 @@ public class SettingsGateway {
+      * security exception if the fragment it needs to display is not in this list.
+      */
+     public static final String[] ENTRY_FRAGMENTS = {
++            com.android.settings.safetycenter.ExploitProtectionFragment.class.getName(),
+             AdvancedConnectedDeviceDashboardFragment.class.getName(),
+             CreateShortcut.class.getName(),
+             BluetoothPairingDetail.class.getName(),
+diff --git a/src/com/android/settings/dashboard/DashboardFragmentRegistry.java b/src/com/android/settings/dashboard/DashboardFragmentRegistry.java
+index e42c14c1..1903c7a2 100644
+--- a/src/com/android/settings/dashboard/DashboardFragmentRegistry.java
++++ b/src/com/android/settings/dashboard/DashboardFragmentRegistry.java
+@@ -42,6 +42,7 @@ import com.android.settings.network.NetworkDashboardFragment;
+ import com.android.settings.notification.ConfigureNotificationSettings;
+ import com.android.settings.notification.SoundSettings;
+ import com.android.settings.privacy.PrivacyDashboardFragment;
++import com.android.settings.safetycenter.ExploitProtectionFragment;
+ import com.android.settings.safetycenter.MoreSecurityPrivacyFragment;
+ import com.android.settings.security.LockscreenDashboardFragment;
+ import com.android.settings.security.SecurityAdvancedSettings;
+@@ -71,6 +72,8 @@ public class DashboardFragmentRegistry {
+ 
+     static {
+         PARENT_TO_CATEGORY_KEY_MAP = new ArrayMap<>();
++        PARENT_TO_CATEGORY_KEY_MAP.put(ExploitProtectionFragment.class.getName(),
++                CategoryKey.CATEGORY_EXPLOIT_PROTECTION_SETTINGS);
+         PARENT_TO_CATEGORY_KEY_MAP.put(TopLevelSettings.class.getName(),
+                 CategoryKey.CATEGORY_HOMEPAGE);
+         PARENT_TO_CATEGORY_KEY_MAP.put(
+diff --git a/src/com/android/settings/ext/AbstractListPreferenceController.java b/src/com/android/settings/ext/AbstractListPreferenceController.java
+new file mode 100644
+index 00000000..a5686e37
+--- /dev/null
++++ b/src/com/android/settings/ext/AbstractListPreferenceController.java
+@@ -0,0 +1,242 @@
++/*
++ * Copyright (C) 2022 GrapheneOS
++ * SPDX-License-Identifier: Apache-2.0
++ */
++
++package com.android.settings.ext;
++
++import android.app.settings.SettingsEnums;
++import android.content.Context;
++import android.content.Intent;
++import android.net.Uri;
++import android.os.UserHandle;
++import android.text.TextUtils;
++import android.text.format.DateUtils;
++import android.util.SparseIntArray;
++
++import androidx.annotation.Nullable;
++import androidx.annotation.StringRes;
++import androidx.lifecycle.DefaultLifecycleObserver;
++import androidx.preference.ListPreference;
++import androidx.preference.Preference;
++import androidx.preference.PreferenceScreen;
++
++import com.android.settings.R;
++import com.android.settings.core.BasePreferenceController;
++import com.android.settings.core.SubSettingLauncher;
++import com.android.settings.dashboard.DashboardFragment;
++import com.android.settings.utils.CandidateInfoExtra;
++import com.android.settingslib.widget.CandidateInfo;
++import com.android.settingslib.widget.FooterPreference;
++
++import java.util.ArrayList;
++import java.util.Objects;
++import java.util.concurrent.TimeUnit;
++
++public abstract class AbstractListPreferenceController extends BasePreferenceController
++    implements DefaultLifecycleObserver {
++
++    private Preference preference;
++    private Entries entries;
++
++    @Nullable
++    public RadioButtonPickerFragment2 fragment;
++
++    protected AbstractListPreferenceController(Context ctx, String key) {
++        super(ctx, key);
++    }
++
++    // call entries.add(entryName, entryValue) to add entries.
++    // entryValues can be mapped from other values or sets of values, as long as getCurrentValue()
++    // and setValue() methods are consistent
++    protected abstract void getEntries(Entries entries);
++
++    public void getEntriesAsCandidates(ArrayList<CandidateInfo> dst) {
++        Entries e = new Entries(mContext);
++        getEntries(e);
++
++        dst.addAll(e.list);
++    }
++
++    protected abstract int getCurrentValue();
++    protected abstract boolean setValue(int val);
++
++    @Override
++    public void updateState(Preference p) {
++        if (entries == null) {
++            entries = new Entries(mContext);
++            getEntries(entries);
++        }
++
++        if (p != preference) {
++            p.setSingleLineTitle(false);
++            p.setPersistent(false);
++            this.preference = p;
++        }
++
++        updatePreference();
++    }
++
++    void updatePreference() {
++        if (fragment != null) {
++            fragment.updateCandidates();
++        }
++
++        Preference p = preference;
++        if (p == null) {
++            return;
++        }
++
++        int idx = entries.getIndexForValue(getCurrentValue());
++        if (idx >= 0) {
++            p.setSummary(entries.list.get(idx).loadLabel());
++        } else {
++            p.setSummary(null);
++        }
++    }
++
++    public static class Entries {
++        private final Context context;
++        private final ArrayList<CandidateInfoExtra> list = new ArrayList<>();
++        private final SparseIntArray valueToIndexMap = new SparseIntArray();
++
++        Entries(Context context) {
++            this.context = context;
++        }
++
++        public void add(@StringRes int title, int value) {
++            add(context.getText(title), value);
++        }
++
++        public void add(@StringRes int title, @StringRes int summary, int value) {
++            add(context.getText(title), context.getText(summary), value);
++        }
++
++        public void add(int duration, TimeUnit timeUnit) {
++            long durationMillis = timeUnit.toMillis(duration);
++            if (durationMillis > Integer.MAX_VALUE) {
++                throw new IllegalArgumentException();
++            }
++
++            add(DateUtils.formatDuration(durationMillis), (int) durationMillis);
++        }
++
++        public void add(CharSequence title, int value) {
++            add(title, null, value, true);
++        }
++
++        public void add(CharSequence title, CharSequence summary, int value) {
++            add(title, summary, value, true);
++        }
++
++        public void add(CharSequence title, @Nullable CharSequence summary, int value, boolean enabled) {
++            String prefKey = Integer.toString(value);
++            list.add(new CandidateInfoExtra(title, summary, prefKey, enabled));
++            valueToIndexMap.put(value, list.size() - 1);
++        }
++
++        public int getIndexForValue(int val) {
++            return valueToIndexMap.get(val, -1);
++        }
++    }
++
++    @Override
++    public boolean isSliceable() {
++        return false;
++    }
++
++    @Override
++    public int getSliceHighlightMenuRes() {
++        return NO_RES;
++    }
++
++    @Override
++    public boolean handlePreferenceTreeClick(Preference preference) {
++        if (!TextUtils.equals(preference.getKey(), getPreferenceKey())) {
++            return super.handlePreferenceTreeClick(preference);
++        }
++
++        if (this.preference instanceof ListPreference) {
++            return super.handlePreferenceTreeClick(preference);
++        }
++
++        UserHandle workProfileUser = getWorkProfileUser();
++        boolean isForWork = workProfileUser != null;
++
++        RadioButtonPickerFragment2.fillArgs(preference, this, isForWork);
++
++        new SubSettingLauncher(preference.getContext())
++                .setDestination(RadioButtonPickerFragment2.class.getName())
++                .setSourceMetricsCategory(preference.getExtras().getInt(DashboardFragment.CATEGORY,
++                                                                        SettingsEnums.PAGE_UNKNOWN))
++                .setTitleText(preference.getTitle())
++                .setArguments(preference.getExtras())
++                .setUserHandle(workProfileUser)
++                .launch();
++        return true;
++    }
++
++    public void addPrefsBeforeList(RadioButtonPickerFragment2 fragment, PreferenceScreen screen) {
++
++    }
++
++    public void addPrefsAfterList(RadioButtonPickerFragment2 fragment, PreferenceScreen screen) {
++
++    }
++
++    public FooterPreference addFooterPreference(PreferenceScreen screen, @StringRes int text) {
++        Context ctx = screen.getContext();
++        return addFooterPreference(screen, ctx.getText(text), null, null);
++    }
++
++    public FooterPreference addFooterPreference(PreferenceScreen screen,
++                                                @StringRes int text, String learnMoreUrl) {
++        return addFooterPreference(screen, text, R.string.learn_more, learnMoreUrl);
++    }
++
++    public FooterPreference addFooterPreference(
++            PreferenceScreen screen, @StringRes int text,
++            @StringRes int learnMoreText, String learnMoreUrl) {
++        Context ctx = screen.getContext();
++        Runnable learnMoreAction = () -> {
++            var intent = new Intent(Intent.ACTION_VIEW, Uri.parse(learnMoreUrl));
++            ctx.startActivity(intent);
++        };
++        return addFooterPreference(screen, ctx.getText(text),
++                ctx.getText(learnMoreText), learnMoreAction);
++    }
++
++    public FooterPreference addFooterPreference(
++            PreferenceScreen screen, @StringRes int text,
++            @StringRes int learnMoreText, Runnable learnMoreAction) {
++        Context ctx = screen.getContext();
++        return addFooterPreference(screen, ctx.getText(text), ctx.getText(learnMoreText), learnMoreAction);
++    }
++
++    public FooterPreference addFooterPreference(PreferenceScreen screen, CharSequence text,
++                                                @Nullable CharSequence learnMoreText,
++                                                @Nullable Runnable learnMoreAction) {
++        var p = new FooterPreference(screen.getContext());
++        p.setSelectable(false);
++        p.setSummary(text);
++        if (learnMoreText != null) {
++            p.setLearnMoreText(learnMoreText);
++            Objects.requireNonNull(learnMoreAction);
++            p.setLearnMoreAction(v -> learnMoreAction.run());
++        }
++        p.setOrder(Preference.DEFAULT_ORDER);
++        screen.addPreference(p);
++        return p;
++    }
++
++    protected final CharSequence getText(@StringRes int resId) {
++        return mContext.getText(resId);
++    }
++
++    /**
++     * Returns whether to require user credential confirmation before changing this preference.
++     */
++    protected boolean isCredentialConfirmationRequired() {
++        return false;
++    }
++}
+diff --git a/src/com/android/settings/ext/AbstractTogglePrefController.java b/src/com/android/settings/ext/AbstractTogglePrefController.java
+new file mode 100644
+index 00000000..ceee6984
+--- /dev/null
++++ b/src/com/android/settings/ext/AbstractTogglePrefController.java
+@@ -0,0 +1,38 @@
++package com.android.settings.ext;
++
++import android.content.Context;
++
++import androidx.annotation.Nullable;
++import androidx.preference.Preference;
++
++import com.android.settings.core.TogglePreferenceController;
++
++public abstract class AbstractTogglePrefController extends TogglePreferenceController {
++
++    protected AbstractTogglePrefController(Context ctx, String key) {
++        super(ctx, key);
++    }
++
++    @Nullable protected Preference preference;
++
++    @Override
++    public void updateState(Preference preference) {
++        super.updateState(preference);
++
++        if (preference != this.preference) {
++            preference.setSingleLineTitle(false);
++            preference.setPersistent(false);
++            this.preference = preference;
++        }
++    }
++
++    @Override
++    public boolean isSliceable() {
++        return false;
++    }
++
++    @Override
++    public int getSliceHighlightMenuRes() {
++        return NO_RES;
++    }
++}
+diff --git a/src/com/android/settings/ext/BoolSettingPrefController.java b/src/com/android/settings/ext/BoolSettingPrefController.java
+new file mode 100644
+index 00000000..1f3bcc77
+--- /dev/null
++++ b/src/com/android/settings/ext/BoolSettingPrefController.java
+@@ -0,0 +1,98 @@
++/*
++ * Copyright (C) 2022 GrapheneOS
++ * SPDX-License-Identifier: Apache-2.0
++ */
++
++package com.android.settings.ext;
++
++import android.content.Context;
++import android.ext.settings.BoolSetting;
++import android.os.Bundle;
++import android.os.UserHandle;
++
++import androidx.annotation.NonNull;
++import androidx.lifecycle.LifecycleOwner;
++
++import com.android.settings.core.BasePreferenceController;
++
++import java.lang.reflect.Field;
++import java.util.List;
++import java.util.Objects;
++
++import static com.android.settings.core.PreferenceXmlParserUtils.METADATA_BOOL_SETTING_FIELD;
++import static com.android.settings.core.PreferenceXmlParserUtils.METADATA_KEY;
++
++public class BoolSettingPrefController extends AbstractTogglePrefController
++        implements ExtSettingPrefController<BoolSetting> {
++    private final BoolSetting setting;
++    private final ExtSettingControllerHelper<BoolSetting> helper;
++    protected final UserHandle user;
++
++    public BoolSettingPrefController(Context ctx, String key, BoolSetting setting) {
++        this(ctx, key, setting, ctx.getUser());
++    }
++
++    public BoolSettingPrefController(Context ctx, String key, BoolSetting setting, UserHandle user) {
++        super(ctx, key);
++        this.setting = setting;
++        this.user = user;
++        Context userContext = ctx.getUser().equals(user) ? ctx : ctx.createContextAsUser(user, 0);
++        helper = new ExtSettingControllerHelper<>(userContext, setting);
++    }
++
++    @Override
++    public int getAvailabilityStatus() {
++        return helper.getAvailabilityStatus();
++    }
++
++    @Override
++    public final boolean isChecked() {
++        return setting.get(helper.context);
++    }
++
++    @Override
++    public boolean setChecked(boolean isChecked) {
++        return setting.put(helper.context, isChecked);
++    }
++
++    @Override
++    public void onResume(@NonNull LifecycleOwner owner) {
++        helper.onResume(this);
++    }
++
++    @Override
++    public void onPause(@NonNull LifecycleOwner owner) {
++        helper.onPause(this);
++    }
++
++    // called by the setting observer
++    @Override
++    public void accept(BoolSetting boolSetting) {
++        if (preference != null) {
++            updateState(preference);
++        }
++    }
++
++    // called when PreferenceScreen XML is parsed
++    public static void maybeAdd(Context context, Bundle metadata,
++                                List<BasePreferenceController> dest) {
++        String boolSettingField = metadata.getString(METADATA_BOOL_SETTING_FIELD);
++        if (boolSettingField == null) {
++            return;
++        }
++        String[] split = boolSettingField.split(" ");
++
++        BoolSetting boolSetting;
++        try {
++            Class c = Class.forName(split[0]);
++            Field field = c.getField(split[1]);
++            boolSetting = (BoolSetting) Objects.requireNonNull(field.get(null));
++        } catch (Exception e) {
++            throw new IllegalStateException("Invalid BoolSetting field " + boolSettingField);
++        }
++
++        String key = Objects.requireNonNull(metadata.getString(METADATA_KEY));
++
++        dest.add(new BoolSettingPrefController(context, key, boolSetting));
++    }
++}
+diff --git a/src/com/android/settings/ext/ExtSettingControllerHelper.java b/src/com/android/settings/ext/ExtSettingControllerHelper.java
+new file mode 100644
+index 00000000..1c8e70d4
+--- /dev/null
++++ b/src/com/android/settings/ext/ExtSettingControllerHelper.java
+@@ -0,0 +1,72 @@
++/*
++ * Copyright (C) 2023 GrapheneOS
++ * SPDX-License-Identifier: Apache-2.0
++ */
++
++package com.android.settings.ext;
++
++import android.content.ContentResolver;
++import android.content.Context;
++import android.ext.settings.Setting;
++import android.provider.Settings;
++
++import java.util.function.Consumer;
++
++import static com.android.settings.core.BasePreferenceController.AVAILABLE;
++import static com.android.settings.core.BasePreferenceController.CONDITIONALLY_UNAVAILABLE;
++import static com.android.settings.core.BasePreferenceController.DISABLED_FOR_USER;
++
++public class ExtSettingControllerHelper<T extends Setting> {
++    public final Context context;
++    private final T setting;
++
++    ExtSettingControllerHelper(Context context, T setting) {
++        this.context = context;
++        this.setting = setting;
++    }
++
++    public static int getGlobalSettingAvailability(Context ctx) {
++        return ctx.getUser().isSystem() ? AVAILABLE : DISABLED_FOR_USER;
++    }
++
++    public static int getSecondaryUserOnlySettingAvailability(Context ctx) {
++        return ctx.getUser().isSystem() ? DISABLED_FOR_USER : AVAILABLE;
++    }
++
++    public static int getDevModeSettingAvailability(Context ctx) {
++        ContentResolver cr = ctx.getContentResolver();
++        String key = Settings.Global.DEVELOPMENT_SETTINGS_ENABLED;
++
++        return (Settings.Global.getInt(cr, key, 0) == 0) ?
++            CONDITIONALLY_UNAVAILABLE : AVAILABLE;
++    }
++
++    int getAvailabilityStatus() {
++        if (setting.getScope() != Setting.Scope.PER_USER) {
++            return getGlobalSettingAvailability(context);
++        }
++        return AVAILABLE;
++    }
++
++    private Object observer;
++
++    void onResume(ExtSettingPrefController espc) {
++        registerObserver(espc);
++    }
++
++    void onPause(ExtSettingPrefController espc) {
++        unregisterObserver();
++    }
++
++    void registerObserver(Consumer<T> settingObserver) {
++        if (setting.canObserveState()) {
++            observer = setting.registerObserver(context, context.getMainThreadHandler(), settingObserver);
++        }
++    }
++
++    void unregisterObserver() {
++        if (setting.canObserveState()) {
++            setting.unregisterObserver(context, observer);
++        }
++    }
++}
+diff --git a/src/com/android/settings/ext/ExtSettingPrefController.java b/src/com/android/settings/ext/ExtSettingPrefController.java
+new file mode 100644
+index 00000000..f641e344
+--- /dev/null
++++ b/src/com/android/settings/ext/ExtSettingPrefController.java
+@@ -0,0 +1,12 @@
++package com.android.settings.ext;
++
++import android.ext.settings.Setting;
++
++import androidx.annotation.NonNull;
++import androidx.lifecycle.DefaultLifecycleObserver;
++import androidx.lifecycle.LifecycleOwner;
++
++import java.util.function.Consumer;
++
++interface ExtSettingPrefController<T extends Setting> extends DefaultLifecycleObserver, Consumer<T> {
++}
+diff --git a/src/com/android/settings/ext/IntSettingPrefController.java b/src/com/android/settings/ext/IntSettingPrefController.java
+new file mode 100644
+index 00000000..38ecc9a8
+--- /dev/null
++++ b/src/com/android/settings/ext/IntSettingPrefController.java
+@@ -0,0 +1,62 @@
++/*
++ * Copyright (C) 2022 GrapheneOS
++ * SPDX-License-Identifier: Apache-2.0
++ */
++
++package com.android.settings.ext;
++
++import android.content.Context;
++import android.ext.settings.IntSetting;
++import android.os.UserHandle;
++
++import androidx.annotation.NonNull;
++import androidx.lifecycle.LifecycleOwner;
++
++public abstract class IntSettingPrefController extends AbstractListPreferenceController
++        implements ExtSettingPrefController<IntSetting>
++{
++    private final IntSetting setting;
++    private final ExtSettingControllerHelper<IntSetting> helper;
++
++    protected IntSettingPrefController(Context ctx, String key, IntSetting setting) {
++        this(ctx, key, setting, ctx.getUser());
++    }
++
++    protected IntSettingPrefController(Context ctx, String key, IntSetting setting, UserHandle user) {
++        super(ctx, key);
++        this.setting = setting;
++        Context userContext = ctx.getUser().equals(user) ? ctx : ctx.createContextAsUser(user, 0);
++        helper = new ExtSettingControllerHelper<>(userContext, setting);
++    }
++
++    @Override
++    public int getAvailabilityStatus() {
++        return helper.getAvailabilityStatus();
++    }
++
++    @Override
++    protected final int getCurrentValue() {
++        return setting.get(helper.context);
++    }
++
++    @Override
++    protected boolean setValue(int val) {
++        return setting.put(helper.context, val);
++    }
++
++    @Override
++    public void onResume(@NonNull LifecycleOwner owner) {
++        helper.onResume(this);
++    }
++
++    @Override
++    public void onPause(@NonNull LifecycleOwner owner) {
++        helper.onPause(this);
++    }
++
++    // called by the setting observer
++    @Override
++    public void accept(IntSetting intSetting) {
++        updatePreference();
++    }
++}
+diff --git a/src/com/android/settings/ext/RadioButtonPickerFragment2.java b/src/com/android/settings/ext/RadioButtonPickerFragment2.java
+new file mode 100644
+index 00000000..a44c9280
+--- /dev/null
++++ b/src/com/android/settings/ext/RadioButtonPickerFragment2.java
+@@ -0,0 +1,208 @@
++package com.android.settings.ext;
++
++import android.app.Activity;
++import android.content.Context;
++import android.content.Intent;
++import android.os.Bundle;
++
++import androidx.activity.result.ActivityResult;
++import androidx.activity.result.ActivityResultLauncher;
++import androidx.activity.result.contract.ActivityResultContracts;
++import androidx.annotation.Nullable;
++import androidx.preference.Preference;
++import androidx.preference.PreferenceScreen;
++
++import com.android.internal.widget.LockPatternUtils;
++import com.android.settings.core.BasePreferenceController;
++import com.android.settings.overlay.FeatureFactory;
++import com.android.settings.password.ChooseLockSettingsHelper;
++import com.android.settings.utils.CandidateInfoExtra;
++import com.android.settings.widget.RadioButtonPickerFragment;
++import com.android.settingslib.widget.CandidateInfo;
++import com.android.settingslib.widget.SelectorWithWidgetPreference;
++
++import java.util.ArrayList;
++import java.util.List;
++
++public class RadioButtonPickerFragment2 extends RadioButtonPickerFragment {
++
++    private final ArrayList<CandidateInfo> candidates = new ArrayList<>();
++
++    static final String KEY_PREF_CONTROLLER_CLASS = "pref_controller";
++    static final String KEY_PREF_KEY = "pref_key";
++
++    private AbstractListPreferenceController prefController;
++
++    public static void fillArgs(Preference pref, AbstractListPreferenceController pc, boolean isForWork) {
++        Bundle args = pref.getExtras();
++        args.putString(KEY_PREF_CONTROLLER_CLASS, pc.getClass().getName());
++        args.putString(KEY_PREF_KEY, pc.getPreferenceKey());
++        args.putBoolean(EXTRA_FOR_WORK, isForWork);
++    }
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        Bundle args = requireArguments();
++        String prefControllerClass = args.getString(KEY_PREF_CONTROLLER_CLASS);
++        String prefKey = args.getString(KEY_PREF_KEY);
++        boolean forWork = args.getBoolean(EXTRA_FOR_WORK);
++
++        Context ctx = requireContext();
++
++        prefController = (AbstractListPreferenceController) BasePreferenceController
++                .createInstance(ctx,prefControllerClass, prefKey, forWork);
++        prefController.fragment = this;
++
++        super.onCreate(savedInstanceState);
++    }
++
++    private static final String KEY_USER_CREDENTIAL_CONFIRMED = "user_credential_confirmed";
++    private boolean userCredentialConfirmed;
++
++    @Override
++    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
++        PreferenceScreen ps = getPreferenceManager().createPreferenceScreen(requireContext());
++        setPreferenceScreen(ps);
++
++        if (savedInstanceState != null) {
++            userCredentialConfirmed = savedInstanceState.getBoolean(
++                    KEY_USER_CREDENTIAL_CONFIRMED, false);
++        }
++
++        updateCandidates();
++    }
++
++    @Override
++    public void onSaveInstanceState(Bundle outState) {
++        super.onSaveInstanceState(outState);
++        outState.putBoolean(KEY_USER_CREDENTIAL_CONFIRMED, userCredentialConfirmed);
++    }
++
++    private Runnable onAfterCredentialConfirmed;
++
++    private void runAfterCredentialConfirmation(Runnable runnable) {
++        if (userCredentialConfirmed) {
++            throw new IllegalStateException();
++        }
++
++        if (onAfterCredentialConfirmed != null) {
++            throw new IllegalStateException();
++        }
++
++        onAfterCredentialConfirmed = runnable;
++
++        var b = new ChooseLockSettingsHelper.Builder(requireActivity());
++        b.setActivityResultLauncher(credentialConfirmationLauncher);
++        b.setForegroundOnly(true);
++        b.show();
++    }
++
++    private final ActivityResultLauncher<Intent> credentialConfirmationLauncher =
++            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
++                this::onCredentialConfirmationResult);
++
++    private void onCredentialConfirmationResult(@Nullable ActivityResult result) {
++        Runnable r = onAfterCredentialConfirmed;
++        onAfterCredentialConfirmed = null;
++
++        if (result != null && result.getResultCode() == Activity.RESULT_OK) {
++            userCredentialConfirmed = true;
++            if (r != null) {
++                r.run();
++            }
++        }
++    }
++
++    @Override
++    public void onStop() {
++        super.onStop();
++        if (!requireActivity().isChangingConfigurations()) {
++            userCredentialConfirmed = false;
++        }
++    }
++
++    @Override
++    protected int getPreferenceScreenResId() {
++        return -1;
++    }
++
++    @Override
++    protected List<? extends CandidateInfo> getCandidates() {
++        candidates.clear();
++        prefController.getEntriesAsCandidates(candidates);
++        return candidates;
++    }
++
++    @Override
++    protected void addPrefsBeforeList(PreferenceScreen screen) {
++        prefController.addPrefsBeforeList(this, screen);
++    }
++
++    @Override
++    protected void addPrefsAfterList(PreferenceScreen screen) {
++        prefController.addPrefsAfterList(this, screen);
++    }
++
++    @Override
++    protected String getDefaultKey() {
++        return Integer.toString(prefController.getCurrentValue());
++    }
++
++    @Override
++    protected boolean setDefaultKey(String key) {
++        if (key.equals(getDefaultKey())) {
++            return true;
++        }
++
++        if (!userCredentialConfirmed && prefController.isCredentialConfirmationRequired()) {
++            Context ctx = requireContext();
++            LockPatternUtils lpu = FeatureFactory.getFeatureFactory()
++                .getSecurityFeatureProvider()
++                .getLockPatternUtils(ctx);
++
++            if (lpu.isSecure(ctx.getUserId())) {
++                runAfterCredentialConfirmation(() -> prefController.setValue(Integer.parseInt(key)));
++                return false;
++            }
++        }
++
++        return prefController.setValue(Integer.parseInt(key));
++    }
++
++    @Override
++    public void bindPreferenceExtra(SelectorWithWidgetPreference pref, String key, CandidateInfo info,
++                                    String defaultKey, String systemDefaultKey) {
++        pref.setSingleLineTitle(false);
++
++        if (info instanceof CandidateInfoExtra) {
++            var cie = (CandidateInfoExtra) info;
++            pref.setSummary(cie.loadSummary());
++        }
++    }
++
++    @Override
++    public int getMetricsCategory() {
++        return METRICS_CATEGORY_UNKNOWN;
++    }
++
++    @Override
++    public void onPause() {
++        super.onPause();
++        prefController.onPause(this);
++    }
++
++    private boolean updateCandidatesOnResume;
++
++    @Override
++    public void onResume() {
++        super.onResume();
++        prefController.onResume(this);
++
++        if (updateCandidatesOnResume) {
++            updateCandidates();
++        } else {
++            // updateCandidates() is called from onCreatePrefences() right before the first onResume()
++            updateCandidatesOnResume = true;
++        }
++    }
++}
+diff --git a/src/com/android/settings/safetycenter/ExploitProtectionFragment.java b/src/com/android/settings/safetycenter/ExploitProtectionFragment.java
+new file mode 100644
+index 00000000..25420125
+--- /dev/null
++++ b/src/com/android/settings/safetycenter/ExploitProtectionFragment.java
+@@ -0,0 +1,29 @@
++package com.android.settings.safetycenter;
++
++import com.android.settings.R;
++import com.android.settings.dashboard.DashboardFragment;
++import com.android.settings.search.BaseSearchIndexProvider;
++import com.android.settingslib.search.SearchIndexable;
++
++@SearchIndexable
++public class ExploitProtectionFragment extends DashboardFragment {
++    private static final String TAG = "ExploitProtFragment";
++
++    @Override
++    protected int getPreferenceScreenResId() {
++        return R.xml.exploit_protection_settings;
++    }
++
++    @Override
++    public int getMetricsCategory() {
++        return METRICS_CATEGORY_UNKNOWN;
++    }
++
++    @Override
++    protected String getLogTag() {
++        return TAG;
++    }
++
++    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
++            new BaseSearchIndexProvider(R.xml.exploit_protection_settings);
++}
+diff --git a/src/com/android/settings/security/AutoRebootPrefController.java b/src/com/android/settings/security/AutoRebootPrefController.java
+new file mode 100644
+index 00000000..9c00e954
+--- /dev/null
++++ b/src/com/android/settings/security/AutoRebootPrefController.java
+@@ -0,0 +1,49 @@
++package com.android.settings.security;
++
++import android.content.Context;
++import android.ext.settings.ExtSettings;
++
++import androidx.preference.PreferenceScreen;
++
++import com.android.settings.R;
++import com.android.settings.ext.IntSettingPrefController;
++import com.android.settings.ext.RadioButtonPickerFragment2;
++
++import static java.util.concurrent.TimeUnit.DAYS;
++import static java.util.concurrent.TimeUnit.HOURS;
++import static java.util.concurrent.TimeUnit.MINUTES;
++
++public class AutoRebootPrefController extends IntSettingPrefController {
++
++    public AutoRebootPrefController(Context ctx, String key) {
++        super(ctx, key, ExtSettings.AUTO_REBOOT_TIMEOUT);
++    }
++
++    @Override
++    public void addPrefsBeforeList(RadioButtonPickerFragment2 fragment, PreferenceScreen screen) {
++        addFooterPreference(screen, R.string.auto_reboot_footer,
++                "https://grapheneos.org/features#auto-reboot");
++    }
++
++    @Override
++    protected void getEntries(Entries entries) {
++        entries.add(R.string.switch_off_text, 0);
++        entries.add(3, DAYS);
++        entries.add(2, DAYS);
++        entries.add(36, HOURS);
++        entries.add(1, DAYS);
++        entries.add(18, HOURS);
++        entries.add(12, HOURS);
++        entries.add(8, HOURS);
++        entries.add(4, HOURS);
++        entries.add(2, HOURS);
++        entries.add(1, HOURS);
++        entries.add(30, MINUTES);
++        entries.add(10, MINUTES);
++    }
++
++    @Override
++    protected boolean isCredentialConfirmationRequired() {
++        return true;
++    }
++}
+diff --git a/src/com/android/settings/widget/RadioButtonPickerFragment.java b/src/com/android/settings/widget/RadioButtonPickerFragment.java
+index 9578efbb..81c2d519 100644
+--- a/src/com/android/settings/widget/RadioButtonPickerFragment.java
++++ b/src/com/android/settings/widget/RadioButtonPickerFragment.java
+@@ -62,8 +62,7 @@ public abstract class RadioButtonPickerFragment extends SettingsPreferenceFragme
+         SelectorWithWidgetPreference.OnClickListener {
+ 
+     @VisibleForTesting
+-    static final String EXTRA_FOR_WORK = "for_work";
+-
++    protected static final String EXTRA_FOR_WORK = "for_work";
+     private static final String TAG = "RadioButtonPckrFrgmt";
+     private static final String KEY_CATEGORY_PREFERENCE = "radio_button_picker_category";
+     @VisibleForTesting
+@@ -182,6 +181,12 @@ public abstract class RadioButtonPickerFragment extends SettingsPreferenceFragme
+         return new RestrictedSelectorWithWidgetPreference(getPrefContext());
+     }
+ 
++    protected void addPrefsBeforeList(PreferenceScreen screen) {
++        if (!mAppendStaticPreferences) {
++            addStaticPreferences(screen);
++        }
++    }
++
+     public void updateCandidates() {
+         mCandidates.clear();
+         final List<? extends CandidateInfo> candidateList = getCandidates();
+@@ -197,6 +202,7 @@ public abstract class RadioButtonPickerFragment extends SettingsPreferenceFragme
+         if (mIllustrationId != 0) {
+             addIllustration(screen);
+         }
++        addPrefsBeforeList(screen);
+         if (!mAppendStaticPreferences) {
+             addStaticPreferences(screen);
+         }
+@@ -235,6 +241,10 @@ public abstract class RadioButtonPickerFragment extends SettingsPreferenceFragme
+             }
+         }
+         mayCheckOnlyRadioButton();
++        addPrefsAfterList(screen);
++    }
++
++    protected void addPrefsAfterList(PreferenceScreen screen) {
+         if (mAppendStaticPreferences) {
+             addStaticPreferences(screen);
+         }
 -- 
 2.34.1
 

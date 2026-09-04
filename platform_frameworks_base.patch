@@ -1214,28 +1214,21 @@ index a56624ca6..37af5f827 100644
 2.34.1
 
 
-From c04aa7e397ecbd8349f51cab79115528dd6c4308 Mon Sep 17 00:00:00 2001
+From 459566bf0b31c30bb4254689fe3587d3dfd0b6cd Mon Sep 17 00:00:00 2001
 From: Daniel Zhang <danielzhang130@gmail.com>
 Date: Sun, 22 Feb 2026 20:55:15 -0500
-Subject: [PATCH 19/20] Update default spoofing, add vending app
+Subject: [PATCH 19/20] Update default spoofing
 
 Change-Id: I3190ef9b94456537cc65877f22a75987f5cc2cb3
 ---
- .../internal/gmscompat/AttestationHooks.java  | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
+ .../internal/gmscompat/AttestationHooks.java    | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 
 diff --git a/core/java/com/android/internal/gmscompat/AttestationHooks.java b/core/java/com/android/internal/gmscompat/AttestationHooks.java
-index ee174dfb5..478e64e88 100644
+index ee174dfb5..0b486519d 100644
 --- a/core/java/com/android/internal/gmscompat/AttestationHooks.java
 +++ b/core/java/com/android/internal/gmscompat/AttestationHooks.java
-@@ -35,12 +35,16 @@ public final class AttestationHooks {
- 
-     private static final String PACKAGE_GMS_CORE = "com.google.android.gms";
-     private static final String PACKAGE_G_PAY = "com.google.android.apps.walletnfcrel";
-+    private static final String PACKAGE_VENDING = "com.android.vending";
- 
-     private static volatile boolean sIsGms = false;
- 
+@@ -41,6 +41,9 @@ public final class AttestationHooks {
      private AttestationHooks() { }
  
      private static void setBuildField(Class clazz, String key, String value) {
@@ -1245,7 +1238,7 @@ index ee174dfb5..478e64e88 100644
          try {
              // Unlock
              Field field = clazz.getDeclaredField(key);
-@@ -58,23 +62,24 @@ public final class AttestationHooks {
+@@ -58,23 +61,23 @@ public final class AttestationHooks {
  
      private static void spoofBuildGms() {
          setBuildField(Build.class, "PRODUCT", 
@@ -1272,8 +1265,7 @@ index ee174dfb5..478e64e88 100644
          if ((PACKAGE_GMS_CORE.equals(app.getPackageName()) &&
                  PROCESS_UNSTABLE.equals(Application.getProcessName())) ||
 -            PACKAGE_G_PAY.equals(app.getPackageName())){
-+            PACKAGE_G_PAY.equals(app.getPackageName()) ||
-+            PACKAGE_VENDING.equals(app.getPackageName())){
++            PACKAGE_G_PAY.equals(app.getPackageName())) {
              sIsGms = true;
              spoofBuildGms();
          }
@@ -1281,7 +1273,7 @@ index ee174dfb5..478e64e88 100644
 2.34.1
 
 
-From 9309c2b8ecb806b72ec4f38575964b7d1467488c Mon Sep 17 00:00:00 2001
+From fa86815ecd40697971a2af52f7434b739281af93 Mon Sep 17 00:00:00 2001
 From: Dmitry Muhomor <muhomor.dmitry@gmail.com>
 Date: Sun, 12 Feb 2023 19:38:02 +0200
 Subject: [PATCH 20/20] add auto-reboot feature
